@@ -119,8 +119,9 @@ const BIO = [
     }
     next();
   } else if (!reduce && coarseSmall && (AI.length || BIO.length)) {
-    // MOBILE: one looping video + all the still images, gently cross-fading in a loop.
-    // Only ever ONE video decoding (easy on phones); stills get a soft Ken Burns. All muted.
+    // MOBILE: cycles STILL, video, STILL, video … through ALL videos (stills interleaved,
+    // and cycled if there are fewer of them). Only one video decodes at a time, with a still
+    // between each — so it stays light on phones. Stills get a soft Ken Burns. All muted.
     const layers = [document.getElementById('hL0'), document.getElementById('hL1')];
     let poster = document.querySelector('.poster');
     const isVid = (f) => /\.(mp4|webm|mov)$/i.test(f);
@@ -128,8 +129,15 @@ const BIO = [
     const vids = all.filter(isVid);
     const stills = all.filter((f) => !isVid(f));
     const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-    const oneVid = vids.length ? [vids[Math.floor(Math.random() * vids.length)]] : [];
-    const queue = shuffle([...oneVid, ...stills]);   // one random video + every still, shuffled
+    const vOrder = shuffle(vids.slice());    // all videos, random order
+    const sOrder = shuffle(stills.slice());  // all stills, random order
+    let queue;
+    if (vOrder.length && sOrder.length) {
+      queue = [];
+      vOrder.forEach((v, i) => { queue.push(sOrder[i % sOrder.length], v); });  // still, video, still, video …
+    } else {
+      queue = shuffle([...vOrder, ...sOrder]);   // fallback if there are no stills (or no videos)
+    }
     if (queue.length) {
       const DWELL = 5000, FADE = 1100;
       let cur = 0, idx = -1;
