@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
-import pubs from '../data/publications.json';
+import { getEntry } from 'astro:content';
+const pubs = (await getEntry('publications', 'all'))?.data.items ?? [];
 
 // group by year, most recent first
 const byYear = new Map<number, typeof pubs>();

@@ -193,7 +193,42 @@ const openings = defineCollection({
   }),
 });
 
+/* Single-file, easy-to-edit lists (Reading + Publications) --------- *
+ * Each is ONE YAML file with a copy-paste template at the top:
+ *   src/content/reading/all.yaml       and   src/content/publications/all.yaml
+ * (These supersede the old readingSessions/ folder and src/data/publications.json.) */
+const reading = defineCollection({
+  type: 'data',
+  schema: z.object({
+    sessions: z.array(z.object({
+      date: z.date(),
+      tags: z.array(z.string()).default([]),
+      papers: z.array(z.object({
+        title: z.string(),
+        authors: z.string().default(''),
+        venue: z.string().default(''),
+        year: z.number().optional(),
+        url: link,
+        why: z.string().default(''),
+      })).default([]),
+    })).default([]),
+  }),
+});
+const publications = defineCollection({
+  type: 'data',
+  schema: z.object({
+    items: z.array(z.object({
+      year: z.number(),
+      title: z.string(),
+      authors: z.string().default(''),
+      venue: z.string().default(''),
+      url: link,
+    })).default([]),
+  }),
+});
+
 export const collections = {
   site, home, methods, domains, collaborations, groups, people,
+  reading, publications,
   selectedPublications, readingSessions, gallery, openScience, openings,
 };

@@ -1,14 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
-import { getCollection } from 'astro:content';
+import { getEntry } from 'astro:content';
 import libData from '../../public/library-public.json';
 // Embed the (public, sanitised) library at build time so the archive renders without a
 // runtime fetch — makes the page work from any server root, subpath or offline copy.
 const libJson = JSON.stringify(libData).replace(/</g, '\\u003c');
 
-const sessions = (await getCollection('readingSessions', (s) => !s.data.draft))
-  .sort((a, b) => +b.data.date - +a.data.date);
+// Reading-group sessions come from the single file src/content/reading/all.yaml
+const readingEntry = await getEntry('reading', 'all');
+const sessions = (readingEntry?.data.sessions ?? []).slice()
+  .sort((a, b) => +new Date(b.date) - +new Date(a.date));
 const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 <Base title="What We Read" description="Every week we read and discuss papers we think are important, surprising, provocative, or simply worth understanding.">
@@ -23,12 +25,11 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
           {sessions.slice(0, 6).map((s) => (
             <article class="card session">
               <header class="s-head">
-                <span class="s-date">{fmt(s.data.date)}</span>
-                {s.data.presenters.length > 0 && <span class="faint">· {s.data.presenters.join(', ')}</span>}
-                {s.data.tags.length > 0 && <span class="s-tags">{s.data.tags.map((t) => <span class="tag">{t}</span>)}</span>}
+                <span class="s-date">{fmt(s.date)}</span>
+                {s.tags.length > 0 && <span class="s-tags">{s.tags.map((t) => <span class="tag">{t}</span>)}</span>}
               </header>
               <ul class="s-papers">
-                {s.data.papers.map((p) => (
+                {s.papers.map((p) => (
                   <li>
                     <a href={p.url || '#'} target={p.url ? '_blank' : undefined} rel="noopener">{p.title}</a>
                     <div class="faint p-meta">{p.authors}{p.venue ? ` · ${p.venue}` : ''}{p.year ? ` ${p.year}` : ''}</div>

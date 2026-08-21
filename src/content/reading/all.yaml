@@ -1,0 +1,76 @@
+# =========================================================================
+# WHAT WE READ  —  reading-group sessions (the "Recent sessions" list).
+#
+# TO ADD THE PAPER(S) YOU DISCUSSED: copy the TEMPLATE block below, paste it
+# as the FIRST item under `sessions:` (newest at the top), and fill it in.
+# Keep the 2-space indentation exactly as shown. Save/commit -> it publishes.
+#
+#   - date: 2026-08-25              # YYYY-MM-DD (the day you discussed it)
+#     tags: ["a-tag", "another"]    # optional topic tags
+#     papers:
+#       - title: "Paper title"
+#         authors: "A. Author, B. Author, et al."
+#         venue: "arXiv"            # journal / conference / arXiv
+#         year: 2026
+#         url: "https://arxiv.org/abs/2601.00000"
+#         why: "One sentence on why we picked it."   # optional
+#
+# (The big searchable "Everything we've read" archive is separate — it comes
+#  from public/library-public.json, not this file.)
+# =========================================================================
+
+sessions:
+- date: 2026-07-29
+  tags:
+  - flow-matching
+  - generative-modeling
+  papers:
+  - title: 'Carré du champ flow matching: better quality-generalisation tradeoff in generative models'
+    authors: Jacob Bamberger, Iolo Jones, Dennis Duncan, Michael M. Bronstein, Pierre Vandergheynst, Adam Gosztolai
+    venue: arXiv
+    year: 2025
+    url: https://arxiv.org/abs/2510.05930
+    why: ''
+- date: 2026-07-21
+  tags:
+  - flow-matching
+  - generative-modeling
+  papers:
+  - title: Generative Modeling via Drifting
+    authors: Mingyang Deng, He Li, Tianhong Li, Yilun Du, Kaiming He
+    venue: arXiv
+    year: 2026
+    url: https://arxiv.org/abs/2602.04770
+    why: ''
+  - title: Kernel-Gradient Drifting Models
+    authors: Maria Esteban-Casadevall, Jorge Carrasco-Pollo, Max Welling, Jan-Willem van de Meent, Erik J. Bekkers, Floor Eijkelboom
+    venue: arXiv
+    year: 2026
+    url: https://arxiv.org/abs/2605.10727
+    why: ''
+- date: 2026-07-09
+  tags:
+  - flow-matching
+  papers:
+  - title: 'CellFlux: Simulating Cellular Morphology Changes via Flow Matching'
+    authors: Yuhui Zhang, Yuchang Su, Chenyu Wang, Tianhong Li, Zoe Wefers, Jeffrey Nirschl et al.
+    venue: arXiv
+    year: 2025
+    url: https://arxiv.org/abs/2502.09775
+    why: ''
+  - title: Morphologically Intelligent Perturbation Prediction with FORM
+    authors: Reed Naidoo, Matt De Vries, Olga Fourkioti, Vicky Bousgouni, Mar Arias-Garcia, Maria Portillo-Malumbres et al.
+    venue: arXiv
+    year: 2025
+    url: https://arxiv.org/abs/2510.21337
+    why: ''
+- date: 2026-05-27
+  tags:
+  - representation-learning
+  papers:
+  - title: Learning Shared Representations from Unpaired Data
+    authors: Amitai Yacobi, Nir Ben-Ari, Ronen Talmon, Uri Shaham
+    venue: arXiv
+    year: 2025
+    url: https://arxiv.org/abs/2505.21524
+    why: ''
