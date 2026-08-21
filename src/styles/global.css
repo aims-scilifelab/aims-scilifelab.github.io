@@ -132,6 +132,71 @@ p { text-wrap: pretty; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
 }
 
+/* Hero "code slide" — a typed-code panel that joins the background rotation.
+ * These live here (global, unscoped) because the elements are created in JS
+ * inside Hero.astro and so never receive Astro's scoped-style attribute. */
+.codeslide {
+  position: absolute; inset: 0; overflow: hidden;
+  background: radial-gradient(120% 120% at 78% 12%, #141a2b 0%, #0a0d15 55%, #070910 100%);
+  display: flex; flex-direction: column;
+}
+.codeslide .cs-bar {
+  display: flex; align-items: center; gap: 7px;
+  padding: clamp(.6rem, 1.4vw, 1rem) clamp(.9rem, 2vw, 1.4rem);
+  border-bottom: 1px solid rgba(255,255,255,.06); flex: none;
+}
+.codeslide .cs-bar i { width: 11px; height: 11px; border-radius: 50%; background: #33384a; }
+.codeslide .cs-bar i:nth-child(1) { background: #e05c68; }
+.codeslide .cs-bar i:nth-child(2) { background: #e0a94b; }
+.codeslide .cs-bar i:nth-child(3) { background: #4bb36b; }
+.codeslide .cs-bar b { margin-left: .5rem; font-weight: 500; color: #7b8296;
+  font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: clamp(.72rem, 1.4vw, .9rem); }
+.codeslide .cs-pre {
+  margin: 0; padding: clamp(1.1rem, 3.4vw, 2.8rem) clamp(1.2rem, 4.4vw, 3.4rem);
+  flex: 1; min-height: 0; overflow: hidden; white-space: pre; tab-size: 2;
+  font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: clamp(1.05rem, 2.7vw, 2rem); line-height: 1.65;
+  color: #cdd6f4; text-shadow: 0 1px 12px rgba(0,0,0,.4);
+}
+.codeslide .cs-code .k { color: #c39bff; }   /* keywords  */
+.codeslide .cs-code .s { color: #9ece6a; }   /* strings   */
+.codeslide .cs-code .c { color: #5c667e; font-style: italic; }  /* comments */
+.codeslide .cs-code .n { color: #ff9e64; }   /* numbers   */
+.codeslide .cs-caret {
+  display: inline-block; width: .6ch; height: 1.15em; margin-left: 1px;
+  vertical-align: text-bottom; background: #6aa4ee; animation: cs-blink 1s steps(1) infinite;
+}
+@keyframes cs-blink { 50% { opacity: 0; } }
+
+/* Hero "sequence slide" — rows of colour-coded DNA/RNA bases scrolling
+ * horizontally, each row at its own speed and direction. Also JS-created
+ * in Hero.astro, so the styles live here (global, unscoped). */
+.seqslide {
+  position: absolute; inset: 0; overflow: hidden;
+  background: radial-gradient(120% 120% at 22% 8%, #0c1a18 0%, #081210 55%, #060b0a 100%);
+}
+.seqslide .seq-rows {
+  position: absolute; inset: clamp(.4rem, 2vw, 1.6rem) 0;
+  display: flex; flex-direction: column; justify-content: space-evenly;
+}
+.seqslide .seq-row {
+  white-space: nowrap; will-change: transform; font-weight: 600; letter-spacing: .06em;
+  font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: clamp(.85rem, 1.9vw, 1.45rem); line-height: 1.15;
+  text-shadow: 0 1px 10px rgba(0,0,0,.45);
+}
+.seqslide .seq-run { display: inline-block; padding-left: 2vw; }
+.seqslide .seq-l { animation-name: seq-left;  animation-timing-function: linear; animation-iteration-count: infinite; }
+.seqslide .seq-r { animation-name: seq-right; animation-timing-function: linear; animation-iteration-count: infinite; }
+@keyframes seq-left  { from { transform: translateX(0); }      to { transform: translateX(-50%); } }
+@keyframes seq-right { from { transform: translateX(-50%); }   to { transform: translateX(0); } }
+.seqslide .bA { color: #5fd08a; }   /* adenine  — green  */
+.seqslide .bT { color: #ef6d7e; }   /* thymine  — coral  */
+.seqslide .bG { color: #f0b45c; }   /* guanine  — amber  */
+.seqslide .bC { color: #6aa4ee; }   /* cytosine — blue   */
+.seqslide .bU { color: #b98bff; }   /* uracil   — violet (RNA) */
+
 /* Simple prose defaults for Markdown-rendered bodies */
 .prose { color: var(--muted); max-width: var(--measure); }
 .prose > * + * { margin-top: .9em; }
