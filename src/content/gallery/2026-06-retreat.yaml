@@ -1,0 +1,7 @@
+date: 2026-06-05
+title: "Group retreat"
+type: "retreat"
+featured: true
+photos:
+  - { src: "/gallery/retreat-1.jpg", alt: "AIMS group retreat (placeholder photo)", caption: "Group retreat" }
+  - { src: "/gallery/retreat-2.jpg", alt: "AIMS group retreat (placeholder photo)", caption: "Somewhere by the water" }

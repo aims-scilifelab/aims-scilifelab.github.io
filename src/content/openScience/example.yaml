@@ -1,0 +1,7 @@
+# TEMPLATE — copy & set draft: false to list a real public resource.
+title: "Example resource"
+category: "code"        # code | models | data | tools | benchmarks | protocols | other
+url: ""
+description: "What this resource is."
+order: 100
+draft: true

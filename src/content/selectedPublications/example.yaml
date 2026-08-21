@@ -1,0 +1,11 @@
+# TEMPLATE — copy this file, rename it after the paper, fill it in, set draft: false.
+# Aim for a spread across area: methods / medicine / biology.
+title: "Paper title here"
+authors: "A. Author, B. Author, …"
+venue: "NeurIPS"
+year: 2026
+url: ""
+area: "methods"        # methods | medicine | biology
+note: "One short sentence on why this work matters."
+order: 100
+draft: true            # TEMPLATE — leave true; copy & set false for a real entry

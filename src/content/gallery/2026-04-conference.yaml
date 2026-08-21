@@ -1,0 +1,5 @@
+date: 2026-04-10
+title: "At a conference"
+type: "conference"
+photos:
+  - { src: "/gallery/conf-1.jpg", alt: "AIMS at a conference (placeholder photo)", caption: "Presenting our work" }

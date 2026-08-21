@@ -1,0 +1,5 @@
+date: 2026-02-18
+title: "A talk"
+type: "talk"
+photos:
+  - { src: "/gallery/talk-1.jpg", alt: "A talk at AIMS (placeholder photo)", caption: "Guest talk" }

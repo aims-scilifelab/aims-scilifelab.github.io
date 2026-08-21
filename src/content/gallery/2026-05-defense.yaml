@@ -1,0 +1,6 @@
+date: 2026-05-20
+title: "A PhD defense"
+type: "defense"
+photos:
+  - { src: "/gallery/defense-1.jpg", alt: "PhD defense (placeholder photo)", caption: "Defense day" }
+  - { src: "/gallery/defense-2.jpg", alt: "Celebrating afterwards (placeholder photo)", caption: "Celebrating afterwards" }

@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const groups = await getCollection('groups', (g) => !g.data.draft);
+  return groups.map((g) => ({ params: { slug: g.slug }, props: { group: g } }));
+}
+const { group } = Astro.props;
+const { Content } = await group.render();
+
+const people = await getCollection('people', (p) => !p.data.draft);
+const catOrder = ['lead', 'researcher', 'postdoc', 'phd', 'masters', 'engineer', 'staff', 'affiliate'];
+const lead = people.find((p) => p.data.name === group.data.lead)?.data;
+const members = people
+  .filter((p) => p.data.status === 'current' && p.data.group_leader === group.data.lead && p.data.name !== group.data.lead)
+  .map((p) => p.data)
+  .sort((a, b) => (catOrder.indexOf(a.category) - catOrder.indexOf(b.category)) || (a.order - b.order));
+
+const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
+---
+<Base title={group.data.name} description={group.data.tagline || `The ${group.data.name} at AIMS.`}>
+  <PageHeader eyebrow="Group" title={group.data.name} lede={group.data.tagline}>
+    <p class="gback"><a class="link" href="/groups">← All groups</a></p>
+  </PageHeader>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="prose measure"><Content /></div>
+      {group.data.focus.length > 0 && (
+        <ul class="kw">{group.data.focus.map((k) => <li class="tag">{k}</li>)}</ul>
+      )}
+
+      {lead && (
+        <article class="card lead-card">
+          <div class="avatar" aria-hidden="true">
+            {lead.photo ? <img src={lead.photo} alt="" width="72" height="72" loading="lazy" /> : <span>{initials(lead.name)}</span>}
+          </div>
+          <div>
+            <p class="faint role-l">Group leader</p>
+            <h2 class="ln">{lead.name}</h2>
+            <p class="muted">{lead.role}{lead.affiliation ? ` · ${lead.affiliation}` : ''}</p>
+            <div class="links">
+              {lead.website && <a class="link" href={lead.website} target="_blank" rel="noopener">Website</a>}
+              {lead.google_scholar && <a class="link" href={lead.google_scholar} target="_blank" rel="noopener">Scholar</a>}
+            </div>
+          </div>
+        </article>
+      )}
+
+      {members.length > 0 && (
+        <div class="mem">
+          <h2 class="cat">Members</h2>
+          <div class="grid">
+            {members.map((p) => (
+              <article class="card person">
+                <div class="avatar" aria-hidden="true">
+                  {p.photo ? <img src={p.photo} alt="" width="56" height="56" loading="lazy" /> : <span>{initials(p.name)}</span>}
+                </div>
+                <div class="pbody">
+                  <h3>{p.name}</h3>
+                  <p class="role muted">{p.role}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <p class="more2"><a class="link" href="/publications">Publications →</a> &nbsp;·&nbsp; <a class="link" href="/people">All people →</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .gback { margin-top: 1rem; font-size: var(--step--1); }
+  .kw { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.4rem; }
+  .lead-card { display: flex; gap: 1.1rem; align-items: center; padding: 1.3rem; margin-top: 1.8rem; max-width: var(--measure); }
+  .role-l { text-transform: uppercase; letter-spacing: .07em; font-size: var(--step--1); }
+  .lead-card .ln { font-size: var(--step-1); margin-top: .1rem; }
+  .lead-card .links { display: flex; gap: 14px; margin-top: .6rem; font-size: var(--step--1); }
+  .mem { margin-top: 2.4rem; }
+  .cat { font-size: var(--step-1); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: clamp(.9rem, 2vw, 1.2rem); margin-top: 1.2rem; }
+  .person { display: flex; gap: .9rem; align-items: center; padding: 1rem; }
+  .avatar { flex: 0 0 auto; width: 72px; height: 72px; border-radius: 50%; overflow: hidden; background: var(--bg-3);
+            display: grid; place-items: center; color: var(--muted); font-weight: 700; border: 1px solid var(--border); }
+  .person .avatar { width: 56px; height: 56px; font-size: .9rem; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .pbody h3 { font-size: var(--step-0); }
+  .pbody .role { font-size: var(--step--1); margin-top: 1px; }
+  .more2 { margin-top: 2.2rem; }
+</style>

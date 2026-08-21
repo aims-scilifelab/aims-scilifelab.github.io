@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getCollection } from 'astro:content';
+
+const entries = (await getCollection('gallery', (g) => !g.data.draft))
+  .sort((a, b) => +b.data.date - +a.data.date);
+---
+<Base title="Life at AIMS" description="Research is more than papers and models — a look at the people and community behind AIMS.">
+  <PageHeader eyebrow="Life at AIMS" title="Life at AIMS"
+    lede="Research is more than papers and models." />
+
+  <section class="section-tight">
+    <div class="wrap">
+      <h2 class="cat">How we work</h2>
+      <ul class="how measure muted">
+        <li>A weekly reading group where we discuss papers worth understanding.</li>
+        <li>Regular research discussions across machine learning, medicine and biology.</li>
+        <li>Shared supervision and collaboration across groups.</li>
+        <li>Close interaction between ML methods and their scientific and clinical applications.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <h2 class="cat">AIMS in the Wild</h2>
+      {entries.length > 0 ? (
+        <div class="gallery">
+          {entries.flatMap((e) => e.data.photos.map((ph) => (
+            <figure>
+              <img src={ph.src} alt={ph.alt} loading="lazy" />
+              {(ph.caption || e.data.title) && <figcaption class="faint">{ph.caption || e.data.title}</figcaption>}
+            </figure>
+          )))}
+        </div>
+      ) : (
+        <p class="muted measure evergreen">Photos from conferences, defenses, retreats, fika and ordinary lab moments
+        will appear here as we add them.</p>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cat { font-size: var(--step-2); }
+  .how { margin-top: 1.2rem; padding-left: 1.2rem; display: grid; gap: .5rem; }
+  /* gallery wall: framed, slightly-tilted tiles in a masonry flow */
+  .gallery { columns: 1; column-gap: 16px; margin-top: 1.6rem; }
+  @media (min-width: 560px) { .gallery { columns: 2; } }
+  @media (min-width: 940px) { .gallery { columns: 3; } }
+  .gallery figure { break-inside: avoid; margin: 0 0 16px; padding: 9px 9px 8px; background: #14141b;
+    border: 1px solid var(--border); border-radius: 4px; box-shadow: 0 8px 22px rgba(0,0,0,.4); transition: transform .18s, box-shadow .18s; }
+  .gallery figure:nth-child(4n+1) { transform: rotate(-1.1deg); }
+  .gallery figure:nth-child(4n+2) { transform: rotate(0.9deg); }
+  .gallery figure:nth-child(4n+3) { transform: rotate(0.5deg); }
+  .gallery figure:nth-child(4n)   { transform: rotate(-0.6deg); }
+  .gallery figure:hover { transform: rotate(0) scale(1.02); box-shadow: 0 12px 30px rgba(0,0,0,.5); z-index: 2; position: relative; }
+  .gallery img { width: 100%; height: auto; display: block; border-radius: 2px; }
+  .gallery figcaption { font-size: var(--step--1); margin-top: .5rem; text-align: center; color: var(--faint); }
+  .evergreen { margin-top: 1.2rem; }
+</style>

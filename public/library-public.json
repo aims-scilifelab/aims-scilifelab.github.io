@@ -1,0 +1,7530 @@
+{
+ "papers": [
+  {
+   "title": "A multimodal and temporal foundation model for virtual patient representations at healthcare system scale",
+   "authors": [
+    "Andrew Zhang",
+    "Tong Ding",
+    "Sophia J. Wagner",
+    "Caiwei Tian",
+    "Ming Y. Lu",
+    "Rowland Pettit",
+    "Joshua E. Lewis",
+    "Alexandre Misrahi",
+    "Dandan Mo",
+    "Long Phi Le",
+    "Faisal Mahmood"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2604.18570",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "foundation-models",
+    "multimodal",
+    "medical",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2604.18570"
+  },
+  {
+   "title": "A Multimodal Foundation Model of Spatial Transcriptomics and Histology for Biological Discovery and Clinical Prediction",
+   "authors": [
+    "Jinxi Xiang",
+    "Siyu Hou",
+    "Yuchen Li",
+    "Ryan Quinton",
+    "Xiaoming Zhang",
+    "Feyisope Eweje",
+    "Xiangde Luo",
+    "Yijiang Chen",
+    "Zhe Li",
+    "Colin Bergstrom",
+    "Ted Kim",
+    "Sierra Willens",
+    "Francesca Maria Olguin",
+    "Matthew Abikenari"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2604.03630",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "multimodal",
+    "omics",
+    "pathology",
+    "genomics",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2604.03630"
+  },
+  {
+   "title": "Algebraic Representability as the Limiting Regime of Grokking: An Exactly Solvable Model with Holomorphic Activations",
+   "authors": [
+    "Chon-Fai Kam",
+    "Xavier Cadet",
+    "Miloud Bessafi",
+    "Frederic Cadet"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2607.13749",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2607.13749"
+  },
+  {
+   "title": "Aligning What Vision-Language Models See and Perceive with Adaptive Information Flow",
+   "authors": [
+    "Chengxin Liu",
+    "Wonseok Choi",
+    "Chenshuang Zhang",
+    "Tae-Hyun Oh"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2604.15809",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "LLMs",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2604.15809"
+  },
+  {
+   "title": "Back into Plato's Cave: Examining Cross-modal Representational Convergence at Scale",
+   "authors": [
+    "A. Sophia Koepke",
+    "Daniil Zverev",
+    "Shiry Ginosar",
+    "Alexei A. Efros"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2604.18572",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "image",
+    "natural-images",
+    "theory"
+   ],
+   "presented": "2026-04-29",
+   "url": "https://arxiv.org/abs/2604.18572"
+  },
+  {
+   "title": "DALPHIN: Benchmarking Digital Pathology AI Copilots Against Pathologists on an Open Multicentric Dataset",
+   "authors": [
+    "Carlijn Lems",
+    "Sander Moonemans",
+    "Nat\u00e1lie Klub\u00ed\u010dkov\u00e1",
+    "Biagio Brattoli",
+    "Taebum Lee",
+    "Seokhwi Kim",
+    "Veronica Vilaplana",
+    "Laura Pons",
+    "Sapir Hochman",
+    "Mauricio Eduardo Su\u00e1rez-Franck",
+    "Pedro Luis Fernandez",
+    "Juliu"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2605.03544",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "image",
+    "pathology",
+    "benchmark"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2605.03544"
+  },
+  {
+   "title": "End-to-End Autoregressive Image Generation with 1D Semantic Tokenizer",
+   "authors": [
+    "Wenda Chu",
+    "Bingliang Zhang",
+    "Jiaqi Han",
+    "Yizhuo Li",
+    "Linjie Yang",
+    "Yisong Yue",
+    "Qiushan Guo"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2605.00503",
+   "doi": "",
+   "tags": [
+    "generative-modeling",
+    "generation",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-05-20",
+   "url": "https://arxiv.org/abs/2605.00503"
+  },
+  {
+   "title": "Fr\u00e9chet radiomic distance (FRD): A versatile metric for comparing medical imaging datasets",
+   "authors": [
+    "Nicholas Konz",
+    "Richard Osuala",
+    "Preeti Verma",
+    "Yuwen Chen",
+    "Hanxue Gu",
+    "Haoyu Dong",
+    "Yaqian Chen",
+    "Andrew Marshall",
+    "Lidia Garrucho",
+    "Kaisar Kushibar",
+    "Daniel M. Lang",
+    "Gene S. Kim",
+    "Lars J. Grimm",
+    "John M. Lewin"
+   ],
+   "year": "2026",
+   "venue": "Medical Image Analysis",
+   "arxiv_id": "",
+   "doi": "10.1016/j.media.2026.103943",
+   "tags": [
+    "image",
+    "medical",
+    "dataset"
+   ],
+   "presented": "2026-03-18",
+   "url": "https://doi.org/10.1016/j.media.2026.103943"
+  },
+  {
+   "title": "Gemini Embedding 2: A Native Multimodal Embedding Model from Gemini",
+   "authors": [
+    "Madhuri Shanbhogue",
+    "Zhe Li",
+    "Shanfeng Zhang",
+    "Gustavo Hern\u00e1ndez \u00c1brego",
+    "Shih-Cheng Huang",
+    "Aashi Jain",
+    "Daniel Salz",
+    "Sonam Goenka",
+    "Chaitra Hegde",
+    "Ji Ma",
+    "Feiyang Chen",
+    "Jiaxing Wu",
+    "Tanmaya Dabral",
+    "Babak Sam"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2605.27295",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "multimodal",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2605.27295"
+  },
+  {
+   "title": "Generative Modeling via Drifting",
+   "authors": [
+    "Mingyang Deng",
+    "He Li",
+    "Tianhong Li",
+    "Yilun Du",
+    "Kaiming He"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2602.04770",
+   "doi": "",
+   "tags": [
+    "flow-matching",
+    "generative-modeling",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-07-21",
+   "url": "https://arxiv.org/abs/2602.04770"
+  },
+  {
+   "title": "Generative Recursive Reasoning",
+   "authors": [
+    "Junyeob Baek",
+    "Mingyu Jo",
+    "Minsu Kim",
+    "Mengye Ren",
+    "Yoshua Bengio",
+    "Sungjin Ahn"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2605.19376",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2605.19376"
+  },
+  {
+   "title": "Hilbert Operator for Progressive Encoding (HOPE): A Mathematical Framework for Deconstructing Learned Representations in Deep Networks",
+   "authors": [
+    "Hossein Mobahi",
+    "Peter L. Bartlett"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2607.21366",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2607.21366"
+  },
+  {
+   "title": "Image Generators are Generalist Vision Learners",
+   "authors": [
+    "Valentin Gabeur",
+    "Shangbang Long",
+    "Songyou Peng",
+    "Paul Voigtlaender",
+    "Shuyang Sun",
+    "Yanan Bao",
+    "Karen Truong",
+    "Zhicheng Wang",
+    "Wenlei Zhou",
+    "Jonathan T. Barron",
+    "Kyle Genova",
+    "Nithish Kannen",
+    "Sherry Ben",
+    "Yandong"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2604.20329",
+   "doi": "",
+   "tags": [
+    "generative-modeling",
+    "foundation-models",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2604.20329"
+  },
+  {
+   "title": "Introspection Adapters: Training LLMs to Report Their Learned Behaviors",
+   "authors": [
+    "Keshav Shenoy",
+    "Li Yang",
+    "Abhay Sheshadri",
+    "S\u00f6ren Mindermann",
+    "Jack Lindsey",
+    "Sam Marks",
+    "Rowan Wang"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2604.16812",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2604.16812"
+  },
+  {
+   "title": "Kernel-Gradient Drifting Models",
+   "authors": [
+    "Maria Esteban-Casadevall",
+    "Jorge Carrasco-Pollo",
+    "Max Welling",
+    "Jan-Willem van de Meent",
+    "Erik J. Bekkers",
+    "Floor Eijkelboom"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2605.10727",
+   "doi": "",
+   "tags": [
+    "flow-matching",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-07-21",
+   "url": "https://arxiv.org/abs/2605.10727"
+  },
+  {
+   "title": "Learning What Helps: Task-Aligned Context Selection for Vision Tasks",
+   "authors": [
+    "Jingyu Guo",
+    "Emir Konuk",
+    "Fredrik Strand",
+    "Kevin Smith",
+    "Christos Matsoukas"
+   ],
+   "year": "2026",
+   "venue": "CVPR 2026",
+   "arxiv_id": "",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": ""
+  },
+  {
+   "title": "Linking spatial biology and clinical histology via Haiku",
+   "authors": [
+    "Yan Cui",
+    "Jacob S. Leiby",
+    "Wenhui Lei",
+    "Dokyoon Kim",
+    "Yanxiang Deng",
+    "Aaron T. Mayer",
+    "Zhenqin Wu",
+    "Alexandro E. Trevino",
+    "Zhi Huang"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2605.00925",
+   "doi": "",
+   "tags": [
+    "computational-biology",
+    "omics",
+    "pathology",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2605.00925"
+  },
+  {
+   "title": "LUMINA: A Multi-Vendor Mammography Benchmark with Energy Harmonization Protocol",
+   "authors": [
+    "Hongyi Pan",
+    "Gorkem Durak",
+    "Halil Ertugrul Aktas",
+    "Andrea M. Bejar",
+    "Baver Tutun",
+    "Emre Uysal",
+    "Ezgi Bulbul",
+    "Mehmet Fatih Dogan",
+    "Berrin Erok",
+    "Berna Akkus Yildirim",
+    "Sukru Mehmet Erturk",
+    "Ulas Bagci"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2603.14644",
+   "doi": "",
+   "tags": [
+    "image",
+    "mammography",
+    "benchmark"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2603.14644"
+  },
+  {
+   "title": "MedGemma 1.5 Technical Report",
+   "authors": [
+    "Andrew Sellergren",
+    "Chufan Gao",
+    "Fereshteh Mahvar",
+    "Timo Kohlberger",
+    "Fayaz Jamil",
+    "Madeleine Traverse",
+    "Alberto Tono",
+    "Bashir Sadjad",
+    "Lin Yang",
+    "Charles Lau",
+    "Liron Yatziv",
+    "Tiffany Chen",
+    "Bram Sterling",
+    "Kennet"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2604.05081",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2604.05081"
+  },
+  {
+   "title": "MIRAGE: The Illusion of Visual Understanding",
+   "authors": [
+    "Mohammad Asadi",
+    "Jack W. O'Sullivan",
+    "Fang Cao",
+    "Tahoura Nedaee",
+    "Kamyar Rajabalifardi",
+    "Fei-Fei Li",
+    "Ehsan Adeli",
+    "Euan Ashley"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2603.21687",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2603.21687"
+  },
+  {
+   "title": "MLPs are Hebbians: Constructing Efficient Fact-Storing MLPs for Transformers",
+   "authors": [
+    "Roberto Garcia",
+    "Jerry Liu",
+    "Ronny Junkins",
+    "Sabri Eyuboglu",
+    "Atri Rudra",
+    "Christopher R\u00e9"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2607.10034",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "efficiency",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2607.10034"
+  },
+  {
+   "title": "MMBU: A Massive Multi-modal Biomedical Understanding Benchmark to Probe the Perception Capabilities of Vision-Language Models",
+   "authors": [
+    "Ryan D'Cunha",
+    "Alejandro Lozano",
+    "Xiaoxiao Sun",
+    "Daniel Vela Jarquin",
+    "Min Woo Sun",
+    "Josiah Aklilu",
+    "James Burgess",
+    "Yuhui Zhang",
+    "Ryan Nayebi",
+    "Paola Avila",
+    "Robayo",
+    "Jin Ye",
+    "Ming Hu",
+    "Zhongying Deng",
+    "Junjun He"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2606.06696",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "LLMs",
+    "text",
+    "medical",
+    "benchmark"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2606.06696"
+  },
+  {
+   "title": "MONET: A Massive, Open, Non-redundant and Enriched Text-to-image dataset",
+   "authors": [
+    "Benjamin Aubin",
+    "Gonzalo I\u00f1aki Quintana",
+    "Onur Tasar",
+    "Sanjeev Sreetharan",
+    "Urszula Czerwinska",
+    "Damien Henry",
+    "Cl\u00e9ment Chadebec"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2605.21272",
+   "doi": "",
+   "tags": [
+    "generative-modeling",
+    "generation",
+    "text",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2605.21272"
+  },
+  {
+   "title": "MuViT: Multi-Resolution Vision Transformers for Learning Across Scales in Microscopy",
+   "authors": [
+    "Albert Dominguez Mantes",
+    "Gioele La Manno",
+    "Martin Weigert"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2602.24222",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "image",
+    "microscopy",
+    "method"
+   ],
+   "presented": "2026-03-18",
+   "url": "https://arxiv.org/abs/2602.24222"
+  },
+  {
+   "title": "Neuron Populations Exhibit Divergent Selectivity with Scale",
+   "authors": [
+    "Amil Dravid",
+    "Yasaman Bahri",
+    "Alexei A. Efros",
+    "Yossi Gandelsman"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2606.03990",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2606.03990"
+  },
+  {
+   "title": "Not All LLM Reasoning is Visible in the Chain-of-Thought",
+   "authors": [
+    "Vatsal Baherwani",
+    "Tom Goldstein",
+    "Ashwinee Panda"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2607.22925",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2607.22925"
+  },
+  {
+   "title": "PIXELRAG: Web Screenshots Beat Text for Retrieval-Augmented Generation",
+   "authors": [
+    "Yichuan Wang",
+    "Zhifei Li",
+    "Zirui Wang",
+    "Paul Teiletche",
+    "Lesheng Jin",
+    "Matei Zaharia",
+    "Joseph E. Gonzalez",
+    "Sewon Min"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2606.28344",
+   "doi": "",
+   "tags": [
+    "retrieval-RAG",
+    "retrieval",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2606.28344"
+  },
+  {
+   "title": "Position: LLMs Can't Jump",
+   "authors": [
+    "Tom Zahavy"
+   ],
+   "year": "2026",
+   "venue": "ICML 2026",
+   "arxiv_id": "",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "position"
+   ],
+   "presented": "",
+   "url": ""
+  },
+  {
+   "title": "Retrieval-Augmented Anatomical Guidance for Text-to-CT Generation",
+   "authors": [
+    "Daniele Molino",
+    "Camillo Maria Caruso",
+    "Paolo Soda",
+    "Valerio Guarrasi"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2603.08305",
+   "doi": "",
+   "tags": [
+    "retrieval-RAG",
+    "retrieval",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2603.08305"
+  },
+  {
+   "title": "SOTAlign: Semi-Supervised Alignment of Unimodal Vision and Language Models via Optimal Transport",
+   "authors": [
+    "Simon Roschmann",
+    "Paul Krzakala",
+    "Sonia Mazelet",
+    "Quentin Bouniot",
+    "Zeynep Akata"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2602.23353",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2602.23353"
+  },
+  {
+   "title": "Steerable Visual Representations",
+   "authors": [
+    "Jona Ruthardt",
+    "Manu Gaur",
+    "Deva Ramanan",
+    "Makarand Tapaswi",
+    "Yuki M. Asano"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2604.02327",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-04-16",
+   "url": "https://arxiv.org/abs/2604.02327"
+  },
+  {
+   "title": "The AI Layoff Trap",
+   "authors": [
+    "Brett Hemenway Falk",
+    "Gerry Tsoukalas"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2603.20617",
+   "doi": "",
+   "tags": [
+    "AI-society",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2603.20617"
+  },
+  {
+   "title": "The Cost of Reasoning: Chain-of-Thought Induces Overconfidence in Vision-Language Models",
+   "authors": [
+    "Robert Welch",
+    "Emir Konuk",
+    "Kevin Smith"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2603.16728",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "LLMs",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2603.16728"
+  },
+  {
+   "title": "The Many Senses of Visual Similarity: A Text-Prompted Image Perceptual Metric",
+   "authors": [
+    "Sheng-Yu Wang",
+    "Yotam Nitzan",
+    "Aaron Hertzmann",
+    "Jun-Yan Zhu",
+    "Eli Shechtman",
+    "Alexei A. Efros",
+    "Richard Zhang"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2607.18237",
+   "doi": "",
+   "tags": [
+    "perceptual-similarity",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2607.18237"
+  },
+  {
+   "title": "The SIGReg Objective as Variational Free Energy: A Theoretical Active-Inference Account of JEPA World Models",
+   "authors": [
+    "Fabio Arnez",
+    "Alexandra Gomez-Villa"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2607.13612",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "image",
+    "natural-images",
+    "theory"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2607.13612"
+  },
+  {
+   "title": "TIPSv2: Advancing Vision-Language Pretraining with Enhanced Patch-Text Alignment",
+   "authors": [
+    "Bingyi Cao",
+    "Koert Chen",
+    "Kevis-Kokitsi Maninis",
+    "Kaifeng Chen",
+    "Arjun Karpur",
+    "Ye Xia",
+    "Sahil Dua",
+    "Tanmaya Dabral",
+    "Guangxing Han",
+    "Bohyung Han",
+    "Joshua Ainslie",
+    "Alex Bewley",
+    "Mithun Jacob",
+    "Ren\u00e9 Wagner",
+    "Washin"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2604.12012",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "multimodal",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2604.12012"
+  },
+  {
+   "title": "Towards Automating Scientific Review with Google's Paper Assistant Tool",
+   "authors": [
+    "Rajesh Jayaram",
+    "Drew Tyler",
+    "David Woodruff",
+    "Corinna Cortes",
+    "Yossi Matias",
+    "Vahab Mirrokni",
+    "Vincent Cohen-Addad"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2606.28277",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2606.28277"
+  },
+  {
+   "title": "Towards Spatial Transcriptomics-driven Pathology Foundation Models",
+   "authors": [
+    "Konstantin Hemker",
+    "Andrew H. Song",
+    "Cristina Almagro-P\u00e9rez",
+    "Guillaume Jaume",
+    "Sophia J. Wagner",
+    "Anurag Vaidya",
+    "Nikola Simidjievski",
+    "Mateja Jamnik",
+    "Faisal Mahmood"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2602.14177",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "omics",
+    "pathology",
+    "genomics",
+    "method"
+   ],
+   "presented": "2026-03-04",
+   "url": "https://arxiv.org/abs/2602.14177"
+  },
+  {
+   "title": "Vision Pretraining for Dense Spatial Perception",
+   "authors": [
+    "Zelin Fu",
+    "Bin Tan",
+    "Changjiang Sun",
+    "Shaohui Liu",
+    "Kecheng Zheng",
+    "Yinghao Xu",
+    "Xing Zhu",
+    "Yujun Shen",
+    "Nan Xue"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2607.05247",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2607.05247"
+  },
+  {
+   "title": "What Makes a Representational Prior Work? Feature Families, Label-Free Invariances, and Critical Windows in Grokking",
+   "authors": [
+    "Gunner Levi Howe"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2607.12735",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "generalization",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2607.12735"
+  },
+  {
+   "title": "When Structured Sparse Autoencoders Learn Consistent Concepts Across Modalities",
+   "authors": [
+    "Weiduo Liao",
+    "Yunqiao Yang",
+    "Ying Wei"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2607.08605",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "efficiency",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2607.08605"
+  },
+  {
+   "title": "A concept-based interpretable model for the diagnosis of choroid neoplasias using multimodal data",
+   "authors": [
+    "Yifan Wu",
+    "Yang Liu",
+    "Yue Yang",
+    "Michael S. Yao",
+    "Wenli Yang",
+    "Xuehui Shi",
+    "Lihong Yang",
+    "Dongjun Li",
+    "Yueming Liu",
+    "Shiyi Yin",
+    "Chunyan Lei",
+    "Meixia Zhang",
+    "James C. Gee",
+    "Xuan Yang",
+    "Wenbin Wei",
+    "Shi Gu"
+   ],
+   "year": "2025",
+   "venue": "Nature Communications",
+   "arxiv_id": "",
+   "doi": "10.1038/s41467-025-58801-7",
+   "tags": [
+    "multimodal",
+    "LLMs",
+    "interpretability",
+    "radiology",
+    "method"
+   ],
+   "presented": "2026-01-14",
+   "url": "https://doi.org/10.1038/s41467-025-58801-7"
+  },
+  {
+   "title": "A large model for non-invasive and personalized management of breast cancer from multiparametric MRI",
+   "authors": [
+    "Luyang Luo",
+    "Mingxiang Wu",
+    "Mei Li",
+    "Xin Yi",
+    "Qiong Wang",
+    "Varut Vardhanabhuti",
+    "Chiu\u2010Wing Winnie Chu",
+    "Zhenhui Li",
+    "Juan Zhou",
+    "Pranav Rajpurkar",
+    "Hao Chen"
+   ],
+   "year": "2025",
+   "venue": "Nature Communications",
+   "arxiv_id": "",
+   "doi": "10.1038/s41467-025-58798-z",
+   "tags": [
+    "multimodal",
+    "image",
+    "radiology",
+    "mammography",
+    "method"
+   ],
+   "presented": "2025-05-07",
+   "url": "https://doi.org/10.1038/s41467-025-58798-z"
+  },
+  {
+   "title": "A visual\u2013omics foundation model to bridge histopathology with spatial transcriptomics",
+   "authors": [
+    "Weiqing Chen",
+    "Pengzhi Zhang",
+    "Tu Tran",
+    "Yiwei Xiao",
+    "Shengyu Li",
+    "Vrutant Shah",
+    "Hao Cheng",
+    "Kristopher W. Brannan",
+    "Keith A. Youker",
+    "Li Lai",
+    "Longhou Fang",
+    "Yang Yu",
+    "Nhat\u2010Tu Le",
+    "Jun\u2010ichi Abe",
+    "Shu\u2010Hsia Chen",
+    "Q"
+   ],
+   "year": "2025",
+   "venue": "Nature Methods",
+   "arxiv_id": "",
+   "doi": "10.1038/s41592-025-02707-1",
+   "tags": [
+    "foundation-models",
+    "multimodal",
+    "omics",
+    "pathology",
+    "genomics",
+    "method"
+   ],
+   "presented": "2025-10-29",
+   "url": "https://doi.org/10.1038/s41592-025-02707-1"
+  },
+  {
+   "title": "APLA: A Simple Adaptation Method for Vision Transformers",
+   "authors": [
+    "Moein Sorkhei",
+    "Emir Konuk",
+    "Kevin Smith",
+    "Christos Matsoukas"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2503.11335",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2503.11335"
+  },
+  {
+   "title": "Back to Basics: Let Denoising Generative Models Denoise",
+   "authors": [
+    "Tianhong Li",
+    "Kaiming He"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2511.13720",
+   "doi": "",
+   "tags": [
+    "diffusion",
+    "flow-matching",
+    "generative-modeling",
+    "correspondence",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-11-26",
+   "url": "https://arxiv.org/abs/2511.13720"
+  },
+  {
+   "title": "Better Together: Leveraging Unpaired Multimodal Data for Stronger Unimodal Models",
+   "authors": [
+    "Sharut Gupta",
+    "Shobhita Sundaram",
+    "Chenyu Wang",
+    "Stefanie Jegelka",
+    "Phillip Isola"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2510.08492",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "text",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2025-11-12",
+   "url": "https://arxiv.org/abs/2510.08492"
+  },
+  {
+   "title": "Brief analysis of DeepSeek R1 and its implications for Generative AI",
+   "authors": [
+    "Sarah Mercer",
+    "Samuel Spillard",
+    "Daniel P. Martin"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2502.02523",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2502.02523"
+  },
+  {
+   "title": "Carr\u00e9 du champ flow matching: better quality-generalisation tradeoff in generative models",
+   "authors": [
+    "Jacob Bamberger",
+    "Iolo Jones",
+    "Dennis Duncan",
+    "Michael M. Bronstein",
+    "Pierre Vandergheynst",
+    "Adam Gosztolai"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2510.05930",
+   "doi": "",
+   "tags": [
+    "flow-matching",
+    "generative-modeling",
+    "correspondence",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-07-29",
+   "url": "https://arxiv.org/abs/2510.05930"
+  },
+  {
+   "title": "CellFlux: Simulating Cellular Morphology Changes via Flow Matching",
+   "authors": [
+    "Yuhui Zhang",
+    "Yuchang Su",
+    "Chenyu Wang",
+    "Tianhong Li",
+    "Zoe Wefers",
+    "Jeffrey Nirschl",
+    "James Burgess",
+    "Daisy Ding",
+    "Alejandro Lozano",
+    "Emma Lundberg",
+    "Serena Yeung-Levy"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2502.09775",
+   "doi": "",
+   "tags": [
+    "flow-matching",
+    "correspondence",
+    "image",
+    "microscopy",
+    "method"
+   ],
+   "presented": "2026-07-09",
+   "url": "https://arxiv.org/abs/2502.09775"
+  },
+  {
+   "title": "DatasetAgent: A Novel Multi-Agent System for Auto-Constructing Datasets from Real-World Images",
+   "authors": [
+    "Haoran Sun",
+    "Haoyu Bian",
+    "Shaoning Zeng",
+    "Yunbo Rao",
+    "Xu Xu",
+    "Lin Mei",
+    "Jianping Gou"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2507.08648",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2507.08648"
+  },
+  {
+   "title": "Deep Visual Proteomics maps proteotoxicity in a genetic liver disease",
+   "authors": [
+    "Florian A. Rosenberger",
+    "Sophia C. M\u00e4dler",
+    "Katrine Holtz Thorhauge",
+    "Sophia Steigerwald",
+    "Malin Fromme",
+    "Mikhail Lebedev",
+    "Caroline A M Weiss",
+    "Marc Oeller",
+    "Maria Wahle",
+    "Andreas Metousis",
+    "Maximilian Zwiebel"
+   ],
+   "year": "2025",
+   "venue": "Nature",
+   "arxiv_id": "",
+   "doi": "10.1038/s41586-025-08885-4",
+   "tags": [
+    "computational-biology",
+    "omics",
+    "medical",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://doi.org/10.1038/s41586-025-08885-4"
+  },
+  {
+   "title": "Describe Anything: Detailed Localized Image and Video Captioning",
+   "authors": [
+    "Long Lian",
+    "Yifan Ding",
+    "Yunhao Ge",
+    "Sifei Liu",
+    "Hanzi Mao",
+    "Boyi Li",
+    "Marco Pavone",
+    "Ming-Yu Liu",
+    "Trevor Darrell",
+    "Adam Yala",
+    "Yin Cui"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2504.16072",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "multimodal",
+    "VQA-captioning",
+    "video",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-04-30",
+   "url": "https://arxiv.org/abs/2504.16072"
+  },
+  {
+   "title": "DINOv3",
+   "authors": [
+    "Oriane Sim\u00e9oni",
+    "Huy V. Vo",
+    "Maximilian Seitzer",
+    "Federico Baldassarre",
+    "Maxime Oquab",
+    "Cijo Jose",
+    "Vasil Khalidov",
+    "Marc Szafraniec",
+    "Seungeun Yi",
+    "Micha\u00ebl Ramamonjisoa",
+    "Francisco Massa",
+    "Daniel Haziza",
+    "Luca W"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2508.10104",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "transformers",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "dataset",
+    "influential"
+   ],
+   "presented": "2025-08-20",
+   "url": "https://arxiv.org/abs/2508.10104"
+  },
+  {
+   "title": "Disentangling the Factors of Convergence between Brains and Computer Vision Models",
+   "authors": [
+    "Jos\u00e9phine Raugel",
+    "Marc Szafraniec",
+    "Huy V. Vo",
+    "Camille Couprie",
+    "Patrick Labatut",
+    "Piotr Bojanowski",
+    "Valentin Wyart",
+    "Jean-R\u00e9mi King"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2508.18226",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "transformers",
+    "image",
+    "natural-images",
+    "theory"
+   ],
+   "presented": "2025-10-01",
+   "url": "https://arxiv.org/abs/2508.18226"
+  },
+  {
+   "title": "Do It Yourself: Learning Semantic Correspondence from Pseudo-Labels",
+   "authors": [
+    "Olaf D\u00fcnkel",
+    "Thomas Wimmer",
+    "Christian Theobalt",
+    "Christian Rupprecht",
+    "Adam Kortylewski"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2506.05312",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "correspondence",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-11-05",
+   "url": "https://arxiv.org/abs/2506.05312"
+  },
+  {
+   "title": "Does DINOv3 Set a New Medical Vision Standard? Benchmarking 2D and 3D Classification, Segmentation, and Registration",
+   "authors": [
+    "Che Liu",
+    "Yinda Chen",
+    "Haoyuan Shi",
+    "Jinpeng Lu",
+    "Bailiang Jian",
+    "Jiazhen Pan",
+    "Linghan Cai",
+    "Jiayi Wang"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2509.06467",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "classification",
+    "image",
+    "medical",
+    "benchmark"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2509.06467"
+  },
+  {
+   "title": "Efficient Self-Supervised Adaptation for Medical Image Analysis",
+   "authors": [
+    "Moein Sorkhei",
+    "Emir Konuk",
+    "Jingyu Guo",
+    "Chanjuan Meng",
+    "Christos Matsoukas",
+    "Kevin Smith"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2503.18873",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "efficiency",
+    "transfer-learning",
+    "image",
+    "medical",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2503.18873"
+  },
+  {
+   "title": "FAST-CAD: A Fairness-Aware Framework for Non-Contact Stroke Diagnosis",
+   "authors": [
+    "Tommy Sha",
+    "Zhan Cheng",
+    "Haotian Zhai",
+    "Xuwei Ding",
+    "Junnan Li",
+    "Haixiang Tang",
+    "Zaoting Sun",
+    "Yanchuan Tang",
+    "Yongzhe",
+    "Yi",
+    "Yuan Gao",
+    "Anhao Li"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2511.08887",
+   "doi": "",
+   "tags": [
+    "fairness-privacy",
+    "image",
+    "medical",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2511.08887"
+  },
+  {
+   "title": "FedAgentBench: Towards Automating Real-world Federated Medical Image Analysis with Server-Client LLM Agents",
+   "authors": [
+    "Pramit Saha",
+    "Joshua Strong",
+    "Divyanshu Mishra",
+    "Cheng Ouyang",
+    "J. Alison Noble"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2509.23803",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "medical",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2509.23803"
+  },
+  {
+   "title": "Harnessing the Universal Geometry of Embeddings",
+   "authors": [
+    "Rishi Jha",
+    "Collin Zhang",
+    "Vitaly Shmatikov",
+    "John X. Morris"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2505.12540",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "correspondence",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-05-28",
+   "url": "https://arxiv.org/abs/2505.12540"
+  },
+  {
+   "title": "International multicenter validation of AI-driven ultrasound detection of ovarian cancer",
+   "authors": [
+    "Frank Christiansen",
+    "Emir Konuk",
+    "Adithya Raju Ganeshan",
+    "Robert Welch",
+    "Joana Pal\u00e9s Huix",
+    "Artur Czekierdowski",
+    "Francesco Leone",
+    "Lucia Anna Haak",
+    "Robert Fruscio",
+    "Adrius Gauril\u010dikas",
+    "D. Franchi",
+    "D. Fischer"
+   ],
+   "year": "2025",
+   "venue": "Nature Medicine",
+   "arxiv_id": "",
+   "doi": "10.1038/s41591-024-03329-4",
+   "tags": [
+    "detection",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://doi.org/10.1038/s41591-024-03329-4"
+  },
+  {
+   "title": "Interpreting vision transformers via residual replacement model",
+   "authors": [
+    "Jinyeong Kim",
+    "Junhyeok Kim",
+    "Yumin Shim",
+    "Joohyeok Kim",
+    "Sunyoung Jung",
+    "Seong Jae Hwang"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2509.17401",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2509.17401"
+  },
+  {
+   "title": "k-NN as a Simple and Effective Estimator of Transferability",
+   "authors": [
+    "Moein Sorkhei",
+    "Christos Matsoukas",
+    "Johan Fredin Haslum",
+    "Emir Konuk",
+    "Kevin Smith"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2503.18528",
+   "doi": "",
+   "tags": [
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2503.18528"
+  },
+  {
+   "title": "KerJEPA: Kernel Discrepancies for Euclidean Self-Supervised Learning",
+   "authors": [
+    "Eric Zimmermann",
+    "Harley Wiltzer",
+    "Justin Szeto",
+    "David Alvarez-Melis",
+    "Lester Mackey"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2512.19605",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-03-25",
+   "url": "https://arxiv.org/abs/2512.19605"
+  },
+  {
+   "title": "Language Models Are Implicitly Continuous",
+   "authors": [
+    "Samuele Marro",
+    "Davide Evangelista",
+    "X. Angelo Huang",
+    "Emanuele La Malfa",
+    "Michele Lombardi",
+    "Michael Wooldridge"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2504.03933",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2504.03933"
+  },
+  {
+   "title": "Large Language Diffusion Models",
+   "authors": [
+    "Shen Nie",
+    "Fengqi Zhu",
+    "Zebin You",
+    "Xiaolu Zhang",
+    "Jingyang Ou",
+    "Jun Hu",
+    "Jun Zhou",
+    "Yankai Lin",
+    "Ji-Rong Wen",
+    "Chongxuan Li"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2502.09992",
+   "doi": "",
+   "tags": [
+    "diffusion",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2502.09992"
+  },
+  {
+   "title": "Latent Implicit Visual Reasoning",
+   "authors": [
+    "Kelvin Li",
+    "Chuyi Shang",
+    "Leonid Karlinsky",
+    "Rogerio Feris",
+    "Trevor Darrell",
+    "Roei Herzig"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2512.21218",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-02-11",
+   "url": "https://arxiv.org/abs/2512.21218"
+  },
+  {
+   "title": "Learning Shared Representations from Unpaired Data",
+   "authors": [
+    "Amitai Yacobi",
+    "Nir Ben-Ari",
+    "Ronen Talmon",
+    "Uri Shaham"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2505.21524",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-05-27",
+   "url": "https://arxiv.org/abs/2505.21524"
+  },
+  {
+   "title": "Learning the natural history of human disease with generative transformers",
+   "authors": [
+    "Artem Shmatko",
+    "Alexander W. Jung",
+    "Kumar Gaurav",
+    "S\u00f8ren Brunak",
+    "Laust Hvas Mortensen",
+    "Ewan Birney",
+    "Tomas Fitzgerald",
+    "Moritz Gerstung"
+   ],
+   "year": "2025",
+   "venue": "Nature",
+   "arxiv_id": "",
+   "doi": "10.1038/s41586-025-09529-3",
+   "tags": [
+    "transformers",
+    "LLMs",
+    "image",
+    "medical",
+    "method"
+   ],
+   "presented": "2025-10-01",
+   "url": "https://doi.org/10.1038/s41586-025-09529-3"
+  },
+  {
+   "title": "Learning without training: The implicit dynamics of in-context learning",
+   "authors": [
+    "Benoit Dherin",
+    "Michael Munn",
+    "Hanna Mazzawi",
+    "Michael Wunder",
+    "Javier Gonzalvo"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2507.16003",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2507.16003"
+  },
+  {
+   "title": "LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics",
+   "authors": [
+    "Randall Balestriero",
+    "Yann LeCun"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2511.08544",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "theory",
+    "influential"
+   ],
+   "presented": "2025-11-26",
+   "url": "https://arxiv.org/abs/2511.08544"
+  },
+  {
+   "title": "Lingshu: A Generalist Foundation Model for Unified Multimodal Medical Understanding and Reasoning",
+   "authors": [
+    "LASA Team",
+    "Weiwen Xu",
+    "Hou Pong Chan",
+    "Long Li",
+    "Mahani Aljunied",
+    "Ruifeng Yuan",
+    "Jianyu Wang",
+    "Chenghao Xiao",
+    "Guizhen Chen",
+    "Chaoqun Liu",
+    "Zhaodonghui Li",
+    "Yu Sun",
+    "Junao Shen",
+    "Chaojun Wang",
+    "Jie Tan",
+    "Deli Zha"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2506.07044",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "multimodal",
+    "LLMs",
+    "medical",
+    "empirical-study",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2506.07044"
+  },
+  {
+   "title": "LLMs Get Lost In Multi-Turn Conversation",
+   "authors": [
+    "Philippe Laban",
+    "Hiroaki Hayashi",
+    "Yingbo Zhou",
+    "Jennifer Neville"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2505.06120",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "text",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2025-08-27",
+   "url": "https://arxiv.org/abs/2505.06120"
+  },
+  {
+   "title": "Mammo-AGE: deep learning estimation of breast age from mammograms",
+   "authors": [
+    "Xin Wang",
+    "Tao Tan",
+    "Yuan Gao",
+    "Hong-Yu Zhou",
+    "Tianyu Zhang",
+    "Luyi Han",
+    "Antonio Portaluri",
+    "Eric Marcus",
+    "Chunyao Lu",
+    "Caroline A. Drukker",
+    "Jonas Teuwen",
+    "Regina G. H. Beets\u2010Tan",
+    "Shanshan Wang",
+    "Nico Karssemeij"
+   ],
+   "year": "2025",
+   "venue": "Nature Communications",
+   "arxiv_id": "",
+   "doi": "10.1038/s41467-025-65923-5",
+   "tags": [
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-01-28",
+   "url": "https://doi.org/10.1038/s41467-025-65923-5"
+  },
+  {
+   "title": "Morphologically Intelligent Perturbation Prediction with FORM",
+   "authors": [
+    "Reed Naidoo",
+    "Matt De Vries",
+    "Olga Fourkioti",
+    "Vicky Bousgouni",
+    "Mar Arias-Garcia",
+    "Maria Portillo-Malumbres",
+    "Chris Bakal"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2510.21337",
+   "doi": "",
+   "tags": [
+    "computational-biology",
+    "image",
+    "microscopy",
+    "method"
+   ],
+   "presented": "2026-07-09",
+   "url": "https://arxiv.org/abs/2510.21337"
+  },
+  {
+   "title": "Nested Learning: The Illusion of Deep Learning Architectures",
+   "authors": [
+    "Ali Behrouz",
+    "Meisam Razaviyayn",
+    "Peilin Zhong",
+    "Vahab Mirrokni"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2512.24695",
+   "doi": "",
+   "tags": [
+    "optimization-training",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2512.24695"
+  },
+  {
+   "title": "Next-Embedding Prediction Makes Strong Vision Learners",
+   "authors": [
+    "Sihan Xu",
+    "Ziqiao Ma",
+    "Wenhao Chai",
+    "Xuweiyi Chen",
+    "Weiyang Jin",
+    "Joyce Chai",
+    "Saining Xie",
+    "Stella X. Yu"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2512.16922",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-01-26",
+   "url": "https://arxiv.org/abs/2512.16922"
+  },
+  {
+   "title": "No Data? No Problem: Robust Vision-Tabular Learning with Missing Values",
+   "authors": [
+    "Marta Hasny",
+    "Laura Daza",
+    "Keno Bressem",
+    "Maxime Di Folco",
+    "Julia Schnabel"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2512.19602",
+   "doi": "",
+   "tags": [
+    "robustness",
+    "tabular",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2512.19602"
+  },
+  {
+   "title": "On the Complexity-Faithfulness Trade-off of Gradient-Based Explanations",
+   "authors": [
+    "Amir Mehrpanah",
+    "Matteo Gamba",
+    "Kevin Smith",
+    "Hossein Azizpour"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2508.10490",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2508.10490"
+  },
+  {
+   "title": "Optimal Conformal Prediction under Epistemic Uncertainty",
+   "authors": [
+    "Alireza Javanmardi",
+    "Soroush H. Zargarbashi",
+    "Santo M. A. R. Thies",
+    "Willem Waegeman",
+    "Aleksandar Bojchevski",
+    "Eyke H\u00fcllermeier"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2505.19033",
+   "doi": "",
+   "tags": [
+    "uncertainty-calibration",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2505.19033"
+  },
+  {
+   "title": "Patronus: Interpretable Diffusion Models with Prototypes",
+   "authors": [
+    "Nina Weng",
+    "Aasa Feragen",
+    "Siavash Bigdeli"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2503.22782",
+   "doi": "",
+   "tags": [
+    "diffusion",
+    "interpretability",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2503.22782"
+  },
+  {
+   "title": "Perception Encoder: The best visual embeddings are not at the output of the network",
+   "authors": [
+    "Daniel Bolya",
+    "Po-Yao Huang",
+    "Peize Sun",
+    "Jang Hyun Cho",
+    "Andrea Madotto",
+    "Chen Wei",
+    "Tengyu Ma",
+    "Jiale Zhi",
+    "Jathushan Rajasegaran",
+    "Hanoona Rasheed",
+    "Junke Wang",
+    "Marco Monteiro",
+    "Hu Xu",
+    "Shiyu Dong",
+    "Nikhila Rav"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2504.13181",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "foundation-models",
+    "multimodal",
+    "medical",
+    "method",
+    "influential"
+   ],
+   "presented": "2025-05-14",
+   "url": "https://arxiv.org/abs/2504.13181"
+  },
+  {
+   "title": "Primus: Enforcing Attention Usage for 3D Medical Image Segmentation",
+   "authors": [
+    "Tassilo Wald",
+    "Saikat Roy",
+    "Fabian Isensee",
+    "Constantin Ulrich",
+    "Sebastian Ziegler",
+    "Dasha Trofimova",
+    "Raphael Stock",
+    "Michael Baumgartner",
+    "Gregor K\u00f6hler",
+    "Klaus Maier-Hein"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2503.01835",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "segmentation",
+    "image",
+    "medical",
+    "method"
+   ],
+   "presented": "2025-06-18",
+   "url": "https://arxiv.org/abs/2503.01835"
+  },
+  {
+   "title": "RadIR: A Scalable Framework for Multi-Grained Medical Image Retrieval via Radiology Report Mining",
+   "authors": [
+    "Tengfei Zhang",
+    "Ziheng Zhao",
+    "Chaoyi Wu",
+    "Xiao Zhou",
+    "Ya Zhang",
+    "Yanfeng Wang",
+    "Weidi Xie"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2503.04653",
+   "doi": "",
+   "tags": [
+    "retrieval-RAG",
+    "classification",
+    "image",
+    "radiology",
+    "dataset"
+   ],
+   "presented": "2025-04-23",
+   "url": "https://arxiv.org/abs/2503.04653"
+  },
+  {
+   "title": "Scaling Language-Free Visual Representation Learning",
+   "authors": [
+    "David Fan",
+    "Shengbang Tong",
+    "Jiachen Zhu",
+    "Koustuv Sinha",
+    "Zhuang Liu",
+    "Xinlei Chen",
+    "Michael Rabbat",
+    "Nicolas Ballas",
+    "Yann LeCun",
+    "Amir Bar",
+    "Saining Xie"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2504.01017",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "multimodal",
+    "VQA-captioning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-04-16",
+   "url": "https://arxiv.org/abs/2504.01017"
+  },
+  {
+   "title": "Stronger Normalization-Free Transformers",
+   "authors": [
+    "Mingzhi Chen",
+    "Taiming Lu",
+    "Jiachen Zhu",
+    "Mingjie Sun",
+    "Zhuang Liu"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2512.10938",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "optimization-training",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2512.10938"
+  },
+  {
+   "title": "The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity",
+   "authors": [
+    "Parshin Shojaee"
+   ],
+   "year": "2025",
+   "venue": "",
+   "arxiv_id": "2506.06941",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "empirical-study",
+    "influential"
+   ],
+   "presented": "2025-08-20",
+   "url": "https://arxiv.org/abs/2506.06941"
+  },
+  {
+   "title": "Token Activation Map to Visually Explain Multimodal LLMs",
+   "authors": [
+    "Yi Li",
+    "Hualiang Wang",
+    "Xinpeng Ding",
+    "Haonan Wang",
+    "Xiaomeng Li"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2506.23270",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "LLMs",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-11-05",
+   "url": "https://arxiv.org/abs/2506.23270"
+  },
+  {
+   "title": "Transformer-Squared: Self-adaptive LLMs",
+   "authors": [
+    "Qi Sun",
+    "Edoardo Cetin",
+    "Yujin Tang"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2501.06252",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "LLMs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-01-22",
+   "url": "https://arxiv.org/abs/2501.06252"
+  },
+  {
+   "title": "Transformers without Normalization",
+   "authors": [
+    "Jiachen Zhu",
+    "Xinlei Chen",
+    "Kaiming He",
+    "Yann LeCun",
+    "Zhuang Liu"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2503.10622",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "optimization-training",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2025-03-26",
+   "url": "https://arxiv.org/abs/2503.10622"
+  },
+  {
+   "title": "VORTEX: Challenging CNNs at Texture Recognition by using Vision Transformers with Orderless and Randomized Token Encodings",
+   "authors": [
+    "Leonardo Scabini",
+    "Kallil M. Zielinski",
+    "Emir Konuk",
+    "Ricardo T. Fares",
+    "Lucas C. Ribas",
+    "Kevin Smith",
+    "Odemir M. Bruno"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2503.06368",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "classification",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2503.06368"
+  },
+  {
+   "title": "We Can't Understand AI Using our Existing Vocabulary",
+   "authors": [
+    "John Hewitt",
+    "Robert Geirhos",
+    "Been Kim"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2502.07586",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2502.07586"
+  },
+  {
+   "title": "Your ViT is Secretly an Image Segmentation Model",
+   "authors": [
+    "Tommie Kerssies",
+    "Niccol\u00f2 Cavagnero",
+    "Alexander Hermans",
+    "Narges Norouzi",
+    "Giuseppe Averta",
+    "Bastian Leibe",
+    "Gijs Dubbelman",
+    "Daan de Geus"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2503.19108",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "foundation-models",
+    "segmentation",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-06-04",
+   "url": "https://arxiv.org/abs/2503.19108"
+  },
+  {
+   "title": "$\u03c0_0$: A Vision-Language-Action Flow Model for General Robot Control",
+   "authors": [
+    "Kevin Black",
+    "Noah Brown",
+    "Danny Driess",
+    "Adnan Esmail",
+    "Michael Equi",
+    "Chelsea Finn",
+    "Niccolo Fusai",
+    "Lachy Groom",
+    "Karol Hausman",
+    "Brian Ichter",
+    "Szymon Jakubczak",
+    "Tim Jones",
+    "Liyiming Ke",
+    "Sergey Levine",
+    "Adria"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2410.24164",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "robotics",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2410.24164"
+  },
+  {
+   "title": "A Textbook Remedy for Domain Shifts: Knowledge Priors for Medical Image Analysis",
+   "authors": [
+    "Yue Yang",
+    "Mona Gandhi",
+    "Yufei Wang",
+    "Yifan Wu",
+    "Michael S. Yao",
+    "Chris Callison-Burch",
+    "James C. Gee",
+    "Mark Yatskar"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2405.14839",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "interpretability",
+    "uncertainty-calibration",
+    "text",
+    "medical",
+    "method"
+   ],
+   "presented": "2024-12-18",
+   "url": "https://arxiv.org/abs/2405.14839"
+  },
+  {
+   "title": "AI-based selection of individuals for supplemental MRI in population-based breast cancer screening: the randomized ScreenTrustMRI trial",
+   "authors": [
+    "Mattie Salim",
+    "Yue Liu",
+    "Moein Sorkhei",
+    "Dimitra Ntoula",
+    "Theodoros Foukakis",
+    "Irma Fredriksson",
+    "Yanlu Wang",
+    "Martin Eklund",
+    "Hossein Azizpour",
+    "Kevin Smith",
+    "Fredrik Strand"
+   ],
+   "year": "2024",
+   "venue": "Nature Medicine",
+   "arxiv_id": "",
+   "doi": "10.1038/s41591-024-03093-5",
+   "tags": [
+    "image",
+    "radiology",
+    "mammography",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://doi.org/10.1038/s41591-024-03093-5"
+  },
+  {
+   "title": "Attention as an RNN",
+   "authors": [
+    "Leo Feng",
+    "Frederick Tung",
+    "Hossein Hajimirsadeghi",
+    "Mohamed Osama Ahmed",
+    "Yoshua Bengio",
+    "Greg Mori"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2405.13956",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "efficiency",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-05-29",
+   "url": "https://arxiv.org/abs/2405.13956"
+  },
+  {
+   "title": "BABILong: Testing the Limits of LLMs with Long Context Reasoning-in-a-Haystack",
+   "authors": [
+    "Yuri Kuratov",
+    "Aydar Bulatov",
+    "Petr Anokhin",
+    "Ivan Rodkin",
+    "Dmitry Sorokin",
+    "Artyom Sorokin",
+    "Mikhail Burtsev"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2406.10149",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "benchmark",
+    "influential"
+   ],
+   "presented": "2025-04-02",
+   "url": "https://arxiv.org/abs/2406.10149"
+  },
+  {
+   "title": "Cell Painting-based bioactivity prediction boosts high-throughput screening hit-rates and compound diversity",
+   "authors": [
+    "Johan Fredin Haslum",
+    "Charles-Hugues Lardeau",
+    "Johan Karlsson",
+    "Riku Turkki",
+    "Karl\u2010Johan Leuchowius",
+    "Kevin Smith",
+    "Erik M\u00fcllers"
+   ],
+   "year": "2024",
+   "venue": "Nature Communications",
+   "arxiv_id": "",
+   "doi": "10.1038/s41467-024-47171-1",
+   "tags": [
+    "computational-biology",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://doi.org/10.1038/s41467-024-47171-1"
+  },
+  {
+   "title": "CleanDIFT: Diffusion Features without Noise",
+   "authors": [
+    "Nick Stracke",
+    "Stefan Andreas Baumann",
+    "Kolja Bauer",
+    "Frank Fundel",
+    "Bj\u00f6rn Ommer"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2412.03439",
+   "doi": "",
+   "tags": [
+    "diffusion",
+    "foundation-models",
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-12-11",
+   "url": "https://arxiv.org/abs/2412.03439"
+  },
+  {
+   "title": "CoA-VLA: Improving Vision-Language-Action Models via Visual-Textual Chain-of-Affordance",
+   "authors": [
+    "Jinming Li",
+    "Yichen Zhu",
+    "Zhibin Tang",
+    "Junjie Wen",
+    "Minjie Zhu",
+    "Xiaoyu Liu",
+    "Chengmeng Li",
+    "Ran Cheng",
+    "Yaxin Peng",
+    "Yan Peng",
+    "Feifei Feng"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2412.20451",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "robotics",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2412.20451"
+  },
+  {
+   "title": "Comparative Benchmarking of Failure Detection Methods in Medical Image Segmentation: Unveiling the Role of Confidence Aggregation",
+   "authors": [
+    "Maximilian Zenk",
+    "David Zimmerer",
+    "Fabian Isensee",
+    "Jeremias Traub",
+    "Tobias Norajitra",
+    "Paul F. J\u00e4ger",
+    "Klaus Maier-Hein"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2406.03323",
+   "doi": "",
+   "tags": [
+    "uncertainty-calibration",
+    "segmentation",
+    "image",
+    "medical",
+    "benchmark"
+   ],
+   "presented": "2024-06-26",
+   "url": "https://arxiv.org/abs/2406.03323"
+  },
+  {
+   "title": "Cross-modal deep learning model for predicting pathologic complete response to neoadjuvant chemotherapy in breast cancer",
+   "authors": [
+    "Jianming Guo",
+    "Baihui Chen",
+    "Hongda Cao",
+    "Quan Dai",
+    "Ling Qin",
+    "Jinfeng Zhang",
+    "Youxue Zhang",
+    "Huanyu Zhang",
+    "Yuan Sui",
+    "Tianyu Chen",
+    "Dongxu Yang",
+    "Xue Gong",
+    "Dalin Li"
+   ],
+   "year": "2024",
+   "venue": "npj Precision Oncology",
+   "arxiv_id": "",
+   "doi": "10.1038/s41698-024-00678-8",
+   "tags": [
+    "multimodal",
+    "image",
+    "pathology",
+    "mammography",
+    "method"
+   ],
+   "presented": "2025-04-16",
+   "url": "https://doi.org/10.1038/s41698-024-00678-8"
+  },
+  {
+   "title": "Data Shapley in One Training Run",
+   "authors": [
+    "Jiachen T. Wang",
+    "Prateek Mittal",
+    "Dawn Song",
+    "Ruoxi Jia"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2406.11011",
+   "doi": "",
+   "tags": [
+    "data-valuation",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2406.11011"
+  },
+  {
+   "title": "DeepSeek-V3 Technical Report",
+   "authors": [
+    "DeepSeek-AI",
+    "Aixin Liu",
+    "Bei Feng",
+    "Bing Xue",
+    "Bingxuan Wang",
+    "Bochao Wu",
+    "Chengda Lu",
+    "Chenggang Zhao",
+    "Chengqi Deng",
+    "Chenyu Zhang",
+    "Chong Ruan",
+    "Damai Dai",
+    "Daya Guo",
+    "Dejian Yang",
+    "Deli Chen",
+    "Dongjie Ji",
+    "Erha"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2412.19437",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2412.19437"
+  },
+  {
+   "title": "DiffBoost: Enhancing Medical Image Segmentation via Text-Guided Diffusion Model",
+   "authors": [
+    "Zheyuan Zhang",
+    "Lanhong Yao",
+    "Bin Wang",
+    "Debesh Jha",
+    "G\u00f6rkem Durak",
+    "Elif Kele\u015f",
+    "Alpay Medetalibeyo\u011flu",
+    "Ula\u015f Ba\u011fc\u0131"
+   ],
+   "year": "2024",
+   "venue": "IEEE Transactions on Medical Imaging",
+   "arxiv_id": "",
+   "doi": "10.1109/tmi.2024.3519307",
+   "tags": [
+    "diffusion",
+    "segmentation",
+    "text",
+    "medical",
+    "method"
+   ],
+   "presented": "2025-01-29",
+   "url": "https://doi.org/10.1109/tmi.2024.3519307"
+  },
+  {
+   "title": "Do I Know This Entity? Knowledge Awareness and Hallucinations in Language Models",
+   "authors": [
+    "Javier Ferrando",
+    "Oscar Obeso",
+    "Senthooran Rajamanoharan",
+    "Neel Nanda"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2411.14257",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-02-19",
+   "url": "https://arxiv.org/abs/2411.14257"
+  },
+  {
+   "title": "Emergent properties with repeated examples",
+   "authors": [
+    "Fran\u00e7ois Charton",
+    "Julia Kempe"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2410.07041",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-09-24",
+   "url": "https://arxiv.org/abs/2410.07041"
+  },
+  {
+   "title": "Evaluation of clinical prediction models (part 3): calculating the sample size required for an external validation study",
+   "authors": [
+    "Richard D Riley",
+    "Kym I E Snell",
+    "Lucinda Archer",
+    "Joie Ensor",
+    "Thomas P. A. Debray",
+    "Ben Van Calster",
+    "Maarten van Smeden",
+    "Professor Gary S. Collins"
+   ],
+   "year": "2024",
+   "venue": "BMJ",
+   "arxiv_id": "",
+   "doi": "10.1136/bmj-2023-074821",
+   "tags": [
+    "image",
+    "medical",
+    "benchmark",
+    "influential"
+   ],
+   "presented": "2025-04-30",
+   "url": "https://doi.org/10.1136/bmj-2023-074821"
+  },
+  {
+   "title": "Human Expertise in Algorithmic Prediction",
+   "authors": [
+    "Rohan Alur",
+    "Manish Raghavan",
+    "Devavrat Shah"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2402.00793",
+   "doi": "",
+   "tags": [
+    "AI-society",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-02-12",
+   "url": "https://arxiv.org/abs/2402.00793"
+  },
+  {
+   "title": "Incremental Residual Concept Bottleneck Models",
+   "authors": [
+    "Chenming Shang",
+    "Shiji Zhou",
+    "Hengyuan Zhang",
+    "Xinzhe Ni",
+    "Yujiu Yang",
+    "Yuwang Wang"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2404.08978",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "multimodal",
+    "interpretability",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-05-21",
+   "url": "https://arxiv.org/abs/2404.08978"
+  },
+  {
+   "title": "IT$^3$: Idempotent Test-Time Training",
+   "authors": [
+    "Nikita Durasov",
+    "Assaf Shocher",
+    "Doruk Oner",
+    "Gal Chechik",
+    "Alexei A. Efros",
+    "Pascal Fua"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2410.04201",
+   "doi": "",
+   "tags": [
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-10-20",
+   "url": "https://arxiv.org/abs/2410.04201"
+  },
+  {
+   "title": "Learning CNN on ViT: A Hybrid Model to Explicitly Class-specific Boundaries for Domain Adaptation",
+   "authors": [
+    "Ba Hung Ngo",
+    "Nhat-Tuong Do-Tran",
+    "Tuan-Ngoc Nguyen",
+    "Hae-Gon Jeon",
+    "Tae Jong Choi"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2403.18360",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-06-26",
+   "url": "https://arxiv.org/abs/2403.18360"
+  },
+  {
+   "title": "Learning from Offline Foundation Features with Tensor Augmentations",
+   "authors": [
+    "Emir Konuk",
+    "Christos Matsoukas",
+    "Moein Sorkhei",
+    "Phitchapha Lertsiravaramet",
+    "Kevin Smith"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2410.02527",
+   "doi": "",
+   "tags": [
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2410.02527"
+  },
+  {
+   "title": "LeFusion: Controllable Pathology Synthesis via Lesion-Focused Diffusion Models",
+   "authors": [
+    "Hantao Zhang",
+    "Yuhe Liu",
+    "Jiancheng Yang",
+    "Shouhong Wan",
+    "Xinyuan Wang",
+    "Wei Peng",
+    "Pascal Fua"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2403.14066",
+   "doi": "",
+   "tags": [
+    "diffusion",
+    "generative-modeling",
+    "segmentation",
+    "text",
+    "pathology",
+    "method"
+   ],
+   "presented": "2025-03-26",
+   "url": "https://arxiv.org/abs/2403.14066"
+  },
+  {
+   "title": "LucidPPN: Unambiguous Prototypical Parts Network for User-centric Interpretable Computer Vision",
+   "authors": [
+    "Mateusz Pach",
+    "Dawid Rymarczyk",
+    "Koryna Lewandowska",
+    "Jacek Tabor",
+    "Bartosz Zieli\u0144ski"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2405.14331",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-02-05",
+   "url": "https://arxiv.org/abs/2405.14331"
+  },
+  {
+   "title": "MAIRA-2: Grounded Radiology Report Generation",
+   "authors": [
+    "Shruthi Bannur",
+    "Kenza Bouzid",
+    "Daniel C. Castro",
+    "Anton Schwaighofer",
+    "Anja Thieme",
+    "Sam Bond-Taylor",
+    "Maximilian Ilse",
+    "Fernando P\u00e9rez-Garc\u00eda",
+    "Valentina Salvatelli",
+    "Harshita Sharma",
+    "Felix Meissen",
+    "Mercy Ra"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2406.04449",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "radiology",
+    "method",
+    "influential"
+   ],
+   "presented": "2024-10-30",
+   "url": "https://arxiv.org/abs/2406.04449"
+  },
+  {
+   "title": "Mammo-CLIP: A Vision Language Foundation Model to\u00a0Enhance Data Efficiency and\u00a0Robustness in\u00a0Mammography",
+   "authors": [
+    "Shantanu Ghosh",
+    "Clare B. Poynton",
+    "Shyam Visweswaran",
+    "Kayhan Batmanghelich"
+   ],
+   "year": "2024",
+   "venue": "Lecture notes in computer science",
+   "arxiv_id": "",
+   "doi": "10.1007/978-3-031-72390-2_59",
+   "tags": [
+    "foundation-models",
+    "multimodal",
+    "robustness",
+    "image",
+    "mammography",
+    "dataset"
+   ],
+   "presented": "2025-01-22",
+   "url": "https://doi.org/10.1007/978-3-031-72390-2_59"
+  },
+  {
+   "title": "MAMOC: MRI Motion Correction via Masked Autoencoding",
+   "authors": [
+    "Lennart Alexander Van der Goten",
+    "Jingyu Guo",
+    "Kevin Smith"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2405.14590",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "image",
+    "radiology",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2405.14590"
+  },
+  {
+   "title": "Masked Autoencoders for Microscopy are Scalable Learners of Cellular Biology",
+   "authors": [
+    "Oren Kraus",
+    "Kian Kenyon-Dean",
+    "Saber Saberian",
+    "Maryam Fallah",
+    "Peter McLean",
+    "Jess Leung",
+    "Vasudev Sharma",
+    "Ayla Khan",
+    "Jia Balakrishnan",
+    "Safiye Celik",
+    "Dominique Beaini",
+    "Maciej Sypetkowski",
+    "Chi Vicky Cheng"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2404.10242",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "generalization",
+    "image",
+    "microscopy",
+    "dataset"
+   ],
+   "presented": "2025-07-23",
+   "url": "https://arxiv.org/abs/2404.10242"
+  },
+  {
+   "title": "MFP: Making Full Use of Probability Maps for Interactive Image Segmentation",
+   "authors": [
+    "Chaewon Lee",
+    "Seon-Ho Lee",
+    "Chang-Su Kim"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2404.18448",
+   "doi": "",
+   "tags": [
+    "segmentation",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-10-16",
+   "url": "https://arxiv.org/abs/2404.18448"
+  },
+  {
+   "title": "OmniBind: Large-scale Omni Multimodal Representation via Binding Spaces",
+   "authors": [
+    "Zehan Wang",
+    "Ziang Zhang",
+    "Hang Zhang",
+    "Luping Liu",
+    "Rongjie Huang",
+    "Xize Cheng",
+    "Hengshuang Zhao",
+    "Zhou Zhao"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2407.11895",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "multimodal",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2407.11895"
+  },
+  {
+   "title": "On the Surprising Effectiveness of Attention Transfer for Vision Transformers",
+   "authors": [
+    "Alexander C. Li",
+    "Yuandong Tian",
+    "Beidi Chen",
+    "Deepak Pathak",
+    "Xinlei Chen"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2411.09702",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "foundation-models",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "2024-12-11",
+   "url": "https://arxiv.org/abs/2411.09702"
+  },
+  {
+   "title": "Random Token Fusion for Multi-View Medical Diagnosis",
+   "authors": [
+    "Jingyu Guo",
+    "Christos Matsoukas",
+    "Fredrik Strand",
+    "Kevin Smith"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2410.15847",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "image",
+    "medical",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2410.15847"
+  },
+  {
+   "title": "ReferEverything: Towards Segmenting Everything We Can Speak of in Videos",
+   "authors": [
+    "Anurag Bagchi",
+    "Zhipeng Bao",
+    "Yu-Xiong Wang",
+    "Pavel Tokmakov",
+    "Martial Hebert"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2410.23287",
+   "doi": "",
+   "tags": [
+    "diffusion",
+    "foundation-models",
+    "interpretability",
+    "segmentation",
+    "video",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2024-11-06",
+   "url": "https://arxiv.org/abs/2410.23287"
+  },
+  {
+   "title": "Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think",
+   "authors": [
+    "Sihyun Yu",
+    "Sangkyung Kwak",
+    "Huiwon Jang",
+    "Jongheon Jeong",
+    "Jonathan Huang",
+    "Jinwoo Shin",
+    "Saining Xie"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2410.06940",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "diffusion",
+    "transformers",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2024-12-18",
+   "url": "https://arxiv.org/abs/2410.06940"
+  },
+  {
+   "title": "Selective \"Selective Prediction\": Reducing Unnecessary Abstention in Vision-Language Reasoning",
+   "authors": [
+    "Tejas Srinivasan",
+    "Jack Hessel",
+    "Tanmay Gupta",
+    "Bill Yuchen Lin",
+    "Yejin Choi",
+    "Jesse Thomason",
+    "Khyathi Raghavi Chandu"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2402.15610",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "LLMs",
+    "VQA-captioning",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-07-09",
+   "url": "https://arxiv.org/abs/2402.15610"
+  },
+  {
+   "title": "The Common Stability Mechanism behind most Self-Supervised Learning Approaches",
+   "authors": [
+    "Abhishek Jha",
+    "Matthew B. Blaschko",
+    "Yuki M. Asano",
+    "Tinne Tuytelaars"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2402.14957",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2026-02-04",
+   "url": "https://arxiv.org/abs/2402.14957"
+  },
+  {
+   "title": "The Mamba in the Llama: Distilling and Accelerating Hybrid Models",
+   "authors": [
+    "Junxiong Wang",
+    "Daniele Paliotta",
+    "Avner May",
+    "Alexander M. Rush",
+    "Tri Dao"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2408.15237",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "state-space-models",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-09-11",
+   "url": "https://arxiv.org/abs/2408.15237"
+  },
+  {
+   "title": "The Platonic Representation Hypothesis",
+   "authors": [
+    "Minyoung Huh",
+    "Brian Cheung",
+    "Tongzhou Wang",
+    "Phillip Isola"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2405.07987",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2025-02-26",
+   "url": "https://arxiv.org/abs/2405.07987"
+  },
+  {
+   "title": "Titans: Learning to Memorize at Test Time",
+   "authors": [
+    "Ali Behrouz",
+    "Peilin Zhong",
+    "Vahab Mirrokni"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2501.00663",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "generalization",
+    "image",
+    "natural-images",
+    "empirical-study",
+    "influential"
+   ],
+   "presented": "2025-02-26",
+   "url": "https://arxiv.org/abs/2501.00663"
+  },
+  {
+   "title": "Training the Untrainable: Introducing Inductive Bias via Representational Alignment",
+   "authors": [
+    "Vighnesh Subramaniam",
+    "David Mayo",
+    "Colin Conwell",
+    "Tomaso Poggio",
+    "Boris Katz",
+    "Brian Cheung",
+    "Andrei Barbu"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2410.20035",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-10-22",
+   "url": "https://arxiv.org/abs/2410.20035"
+  },
+  {
+   "title": "Trajectory Flow Matching with Applications to Clinical Time Series Modeling",
+   "authors": [
+    "Xi Zhang",
+    "Yuan Pu",
+    "Yuki Kawamura",
+    "Andrew Loza",
+    "Yoshua Bengio",
+    "Dennis L. Shung",
+    "Alexander Tong"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2410.21154",
+   "doi": "",
+   "tags": [
+    "flow-matching",
+    "correspondence",
+    "time-series",
+    "medical",
+    "method"
+   ],
+   "presented": "2026-05-18",
+   "url": "https://arxiv.org/abs/2410.21154"
+  },
+  {
+   "title": "Unlocking the Power of Spatial and Temporal Information in Medical Multimodal Pre-training",
+   "authors": [
+    "Jinxia Yang",
+    "Bing Su",
+    "Wayne Xin Zhao",
+    "Ji-Rong Wen"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2405.19654",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "multimodal",
+    "text",
+    "medical",
+    "method"
+   ],
+   "presented": "2025-03-19",
+   "url": "https://arxiv.org/abs/2405.19654"
+  },
+  {
+   "title": "VILA-M3: Enhancing Vision-Language Models with Medical Expert Knowledge",
+   "authors": [
+    "Vishwesh Nath",
+    "Wenqi Li",
+    "Dong Yang",
+    "Andriy Myronenko",
+    "Mingxin Zheng",
+    "Yao Lu",
+    "Zhijian Liu",
+    "Hongxu Yin",
+    "Yucheng Tang",
+    "Pengfei Guo",
+    "Can Zhao",
+    "Ziyue Xu",
+    "Yufan He",
+    "Greg Heinrich",
+    "Yee Man Law",
+    "Benjamin Simo"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2411.12915",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "LLMs",
+    "text",
+    "medical",
+    "method"
+   ],
+   "presented": "2025-04-09",
+   "url": "https://arxiv.org/abs/2411.12915"
+  },
+  {
+   "title": "Vision Mamba: Efficient Visual Representation Learning with Bidirectional State Space Model",
+   "authors": [
+    "Lianghui Zhu",
+    "Bencheng Liao",
+    "Qian Zhang",
+    "Xinlong Wang",
+    "Wenyu Liu",
+    "Xinggang Wang"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2401.09417",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "state-space-models",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2024-04-03",
+   "url": "https://arxiv.org/abs/2401.09417"
+  },
+  {
+   "title": "Weakly Supervised Set-Consistency Learning Improves Morphological Profiling of Single-Cell Images",
+   "authors": [
+    "Heming Yao",
+    "Phil Hanslovsky",
+    "Jan-Christian Huetter",
+    "Burkhard Hoeckendorf",
+    "David Richmond"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2406.05308",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "representation-learning",
+    "omics",
+    "microscopy",
+    "method"
+   ],
+   "presented": "2025-06-18",
+   "url": "https://arxiv.org/abs/2406.05308"
+  },
+  {
+   "title": "Adapting Pre-trained Vision Transformers from 2D to 3D through Weight Inflation Improves Medical Image Segmentation",
+   "authors": [
+    "Yuhui Zhang",
+    "Shih-Cheng Huang",
+    "Zhengping Zhou",
+    "Matthew P. Lungren",
+    "Serena Yeung"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2302.04303",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "representation-learning",
+    "foundation-models",
+    "segmentation",
+    "image",
+    "medical",
+    "method"
+   ],
+   "presented": "2024-02-14",
+   "url": "https://arxiv.org/abs/2302.04303"
+  },
+  {
+   "title": "AM-RADIO: Agglomerative Vision Foundation Model -- Reduce All Domains Into One",
+   "authors": [
+    "Mike Ranzinger",
+    "Greg Heinrich",
+    "Jan Kautz",
+    "Pavlo Molchanov"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2312.06709",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "foundation-models",
+    "multimodal",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-05-08",
+   "url": "https://arxiv.org/abs/2312.06709"
+  },
+  {
+   "title": "B-cos Alignment for Inherently Interpretable CNNs and Vision Transformers",
+   "authors": [
+    "Moritz B\u00f6hle",
+    "Navdeeppal Singh",
+    "Mario Fritz",
+    "Bernt Schiele"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2306.10898",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "interpretability",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2306.10898"
+  },
+  {
+   "title": "Battle of the Backbones: A Large-Scale Comparison of Pretrained Models across Computer Vision Tasks",
+   "authors": [
+    "Micah Goldblum",
+    "Hossein Souri",
+    "Renkun Ni",
+    "Manli Shu",
+    "Viraj Prabhu",
+    "Gowthami Somepalli",
+    "Prithvijit Chattopadhyay",
+    "Mark Ibrahim",
+    "Adrien Bardes",
+    "Judy Hoffman",
+    "Rama Chellappa",
+    "Andrew Gordon Wilson",
+    "Tom Go"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2310.19909",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2023-11-09",
+   "url": "https://arxiv.org/abs/2310.19909"
+  },
+  {
+   "title": "BenchMD: A Benchmark for Unified Learning on Medical Images and Sensors",
+   "authors": [
+    "Kathryn Wantlin",
+    "Chenwei Wu",
+    "Shih-Cheng Huang",
+    "Oishi Banerjee",
+    "Farah Dadabhoy",
+    "Veeral Vipin Mehta",
+    "Ryan Wonhee Han",
+    "Fang Cao",
+    "Raja R. Narayan",
+    "Errol Colak",
+    "Adewole Adamson",
+    "Laura Heacock",
+    "Geoffrey H."
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2304.08486",
+   "doi": "",
+   "tags": [
+    "uncertainty-calibration",
+    "image",
+    "medical",
+    "benchmark"
+   ],
+   "presented": "2023-06-01",
+   "url": "https://arxiv.org/abs/2304.08486"
+  },
+  {
+   "title": "Cut and Learn for Unsupervised Object Detection and Instance Segmentation",
+   "authors": [
+    "Xudong Wang",
+    "Rohit Girdhar",
+    "Stella X. Yu",
+    "Ishan Misra"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2301.11320",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "segmentation",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-04-10",
+   "url": "https://arxiv.org/abs/2301.11320"
+  },
+  {
+   "title": "DAMEX: Dataset-aware Mixture-of-Experts for visual understanding of mixture-of-datasets",
+   "authors": [
+    "Yash Jain",
+    "Harkirat Behl",
+    "Zsolt Kira",
+    "Vibhav Vineet"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2311.04894",
+   "doi": "",
+   "tags": [
+    "mixture-of-experts",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2025-04-02",
+   "url": "https://arxiv.org/abs/2311.04894"
+  },
+  {
+   "title": "DilateFormer: Multi-Scale Dilated Transformer for Visual Recognition",
+   "authors": [
+    "Jiayu Jiao"
+   ],
+   "year": "2023",
+   "venue": "",
+   "arxiv_id": "2302.01791",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2023-02-23",
+   "url": "https://arxiv.org/abs/2302.01791"
+  },
+  {
+   "title": "DINOv2: Learning Robust Visual Features without Supervision",
+   "authors": [
+    "Maxime Oquab",
+    "Timoth\u00e9e Darcet",
+    "Th\u00e9o Moutakanni",
+    "Huy Vo",
+    "Marc Szafraniec",
+    "Vasil Khalidov",
+    "Pierre Fernandez",
+    "Daniel Haziza",
+    "Francisco Massa",
+    "Alaaeldin El-Nouby",
+    "Mahmoud Assran",
+    "Nicolas Ballas",
+    "Wojciech"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2304.07193",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "robustness",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2023-04-20",
+   "url": "https://arxiv.org/abs/2304.07193"
+  },
+  {
+   "title": "DropPos: Pre-Training Vision Transformers by Reconstructing Dropped Positions",
+   "authors": [
+    "Haochen Wang",
+    "Junsong Fan",
+    "Yuxi Wang",
+    "Kaiyou Song",
+    "Tong Wang",
+    "Zhaoxiang Zhang"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2309.03576",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "transformers",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2023-10-05",
+   "url": "https://arxiv.org/abs/2309.03576"
+  },
+  {
+   "title": "Dual PatchNorm",
+   "authors": [
+    "Manoj Kumar",
+    "Mostafa Dehghani",
+    "Neil Houlsby"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2302.01327",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2023-03-02",
+   "url": "https://arxiv.org/abs/2302.01327"
+  },
+  {
+   "title": "EfficientSAM: Leveraged Masked Image Pretraining for Efficient Segment Anything",
+   "authors": [
+    "Yunyang Xiong",
+    "Bala Varadarajan",
+    "Lemeng Wu",
+    "Xiaoyu Xiang",
+    "Fanyi Xiao",
+    "Chenchen Zhu",
+    "Xiaoliang Dai",
+    "Dilin Wang",
+    "Fei Sun",
+    "Forrest Iandola",
+    "Raghuraman Krishnamoorthi",
+    "Vikas Chandra"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2312.00863",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "foundation-models",
+    "efficiency",
+    "segmentation",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2023-12-07",
+   "url": "https://arxiv.org/abs/2312.00863"
+  },
+  {
+   "title": "Emergent Correspondence from Image Diffusion",
+   "authors": [
+    "Luming Tang",
+    "Menglin Jia",
+    "Qianqian Wang",
+    "Cheng Perng Phoo",
+    "Bharath Hariharan"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2306.03881",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "diffusion",
+    "generalization",
+    "correspondence",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-11-27",
+   "url": "https://arxiv.org/abs/2306.03881"
+  },
+  {
+   "title": "From Sparse to Soft Mixtures of Experts",
+   "authors": [
+    "Joan Puigcerver",
+    "Carlos Riquelme",
+    "Basil Mustafa",
+    "Neil Houlsby"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2308.00951",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "mixture-of-experts",
+    "efficiency",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-09-18",
+   "url": "https://arxiv.org/abs/2308.00951"
+  },
+  {
+   "title": "Grokking as the Transition from Lazy to Rich Training Dynamics",
+   "authors": [
+    "Tanishq Kumar",
+    "Blake Bordelon",
+    "Samuel J. Gershman",
+    "Cengiz Pehlevan"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2310.06110",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "optimization-training",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2310.06110"
+  },
+  {
+   "title": "How Far Pre-trained Models Are from Neural Collapse on the Target Dataset Informs their Transferability",
+   "authors": [
+    "Zijian Wang",
+    "Yadan Luo",
+    "Liang Zheng",
+    "Zi Huang",
+    "Mahsa Baktashmotlagh"
+   ],
+   "year": "2023",
+   "venue": "",
+   "arxiv_id": "",
+   "doi": "10.1109/iccv51070.2023.00511",
+   "tags": [
+    "foundation-models",
+    "interpretability",
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2023-10-12",
+   "url": "https://doi.org/10.1109/iccv51070.2023.00511"
+  },
+  {
+   "title": "Predicting Token Impact Towards Efficient Vision Transformer",
+   "authors": [
+    "Hong Wang",
+    "Su Yang",
+    "Xiaoke Huang",
+    "Weishan Zhang"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2305.14840",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "efficiency",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2023-11-30",
+   "url": "https://arxiv.org/abs/2305.14840"
+  },
+  {
+   "title": "Pretrained ViTs Yield Versatile Representations For Medical Images",
+   "authors": [
+    "Christos Matsoukas",
+    "Johan Fredin Haslum",
+    "Moein Sorkhei",
+    "Magnus S\u00f6derberg",
+    "Kevin Smith"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2303.07034",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "representation-learning",
+    "foundation-models",
+    "image",
+    "medical",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2303.07034"
+  },
+  {
+   "title": "Privacy Protection in MRI Scans Using 3D Masked Autoencoders",
+   "authors": [
+    "Lennart Alexander Van der Goten",
+    "Kevin Smith"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2310.15778",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "fairness-privacy",
+    "image",
+    "radiology",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2310.15778"
+  },
+  {
+   "title": "Prototype-based Dataset Comparison",
+   "authors": [
+    "Nanne van Noord"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2309.02401",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "interpretability",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2024-02-21",
+   "url": "https://arxiv.org/abs/2309.02401"
+  },
+  {
+   "title": "Reverse Engineering Self-Supervised Learning",
+   "authors": [
+    "Ido Ben-Shaul",
+    "Ravid Shwartz-Ziv",
+    "Tomer Galanti",
+    "Shai Dekel",
+    "Yann LeCun"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2305.15614",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2023-06-01",
+   "url": "https://arxiv.org/abs/2305.15614"
+  },
+  {
+   "title": "Ring Attention with Blockwise Transformers for Near-Infinite Context",
+   "authors": [
+    "Hao Liu",
+    "Matei Zaharia",
+    "Pieter Abbeel"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2310.01889",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-09-18",
+   "url": "https://arxiv.org/abs/2310.01889"
+  },
+  {
+   "title": "RoFormer: Enhanced transformer with Rotary Position Embedding",
+   "authors": [
+    "Jianlin Su",
+    "Murtadha Ahmed",
+    "Yu Lu",
+    "Shengfeng Pan",
+    "Bo Wen",
+    "Yunfeng Liu"
+   ],
+   "year": "2023",
+   "venue": "Neurocomputing",
+   "arxiv_id": "",
+   "doi": "10.1016/j.neucom.2023.127063",
+   "tags": [
+    "transformers",
+    "representation-learning",
+    "LLMs",
+    "text",
+    "natural-images",
+    "theory",
+    "influential"
+   ],
+   "presented": "2025-06-04",
+   "url": "https://doi.org/10.1016/j.neucom.2023.127063"
+  },
+  {
+   "title": "Segment Anything",
+   "authors": [
+    "Alexander Kirillov",
+    "Eric Mintun",
+    "Nikhila Ravi",
+    "Hanzi Mao",
+    "Chloe Rolland",
+    "Laura Gustafson",
+    "Tete Xiao",
+    "Spencer Whitehead",
+    "Alexander C. Berg",
+    "Wan-Yen Lo",
+    "Piotr Doll\u00e1r",
+    "Ross Girshick"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2304.02643",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "segmentation",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2304.02643"
+  },
+  {
+   "title": "Segment Anything in Medical Images",
+   "authors": [
+    "Jun Ma",
+    "Yuting He",
+    "Feifei Li",
+    "Lin Han",
+    "Chenyu You",
+    "Bo Wang"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2304.12306",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "segmentation",
+    "image",
+    "medical",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2304.12306"
+  },
+  {
+   "title": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture",
+   "authors": [
+    "Mahmoud Assran",
+    "Quentin Duval",
+    "Ishan Misra",
+    "Piotr Bojanowski",
+    "Pascal Vincent",
+    "Michael Rabbat",
+    "Yann LeCun",
+    "Nicolas Ballas"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2301.08243",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2301.08243"
+  },
+  {
+   "title": "Sigmoid Loss for Language Image Pre-Training",
+   "authors": [
+    "Xiaohua Zhai"
+   ],
+   "year": "2023",
+   "venue": "",
+   "arxiv_id": "2303.15343",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "multimodal",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2025-03-05",
+   "url": "https://arxiv.org/abs/2303.15343"
+  },
+  {
+   "title": "ZePT: Zero-Shot Pan-Tumor Segmentation via Query-Disentangling and Self-Prompting",
+   "authors": [
+    "Yankai Jiang",
+    "Zhongzhen Huang",
+    "Rongzhao Zhang",
+    "Xiaofan Zhang",
+    "Shaoting Zhang"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2312.04964",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "segmentation",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-03-05",
+   "url": "https://arxiv.org/abs/2312.04964"
+  },
+  {
+   "title": "Zorro: the masked multimodal transformer",
+   "authors": [
+    "Adri\u00e0 Recasens",
+    "Jason Lin",
+    "Jo\u0101o Carreira",
+    "Drew Jaegle",
+    "Luyu Wang",
+    "Jean-baptiste Alayrac",
+    "Pauline Luc",
+    "Antoine Miech",
+    "Lucas Smaira",
+    "Ross Hemsley",
+    "Andrew Zisserman"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2301.09595",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "transformers",
+    "representation-learning",
+    "multimodal",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2023-02-23",
+   "url": "https://arxiv.org/abs/2301.09595"
+  },
+  {
+   "title": "Benchmarking Self-Supervised Learning on Diverse Pathology Datasets",
+   "authors": [
+    "Mingu Kang",
+    "Heon Song",
+    "Seonwook Park",
+    "Donggeun Yoo",
+    "S\u00e9rgio Pereira"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2212.04690",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "foundation-models",
+    "image",
+    "pathology",
+    "benchmark"
+   ],
+   "presented": "2023-09-21",
+   "url": "https://arxiv.org/abs/2212.04690"
+  },
+  {
+   "title": "Beyond Attentive Tokens: Incorporating Token Importance and Diversity for Efficient Vision Transformers",
+   "authors": [
+    "Sifan Long",
+    "Zhen Zhao",
+    "Jimin Pi",
+    "Shengsheng Wang",
+    "Jingdong Wang"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2211.11315",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "efficiency",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2023-10-26",
+   "url": "https://arxiv.org/abs/2211.11315"
+  },
+  {
+   "title": "Continuous-Time Modeling of Counterfactual Outcomes Using Neural Controlled Differential Equations",
+   "authors": [
+    "Nabeel Seedat",
+    "Fergus Imrie",
+    "Alexis Bellot",
+    "Zhaozhi Qian",
+    "Mihaela van der Schaar"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2206.08311",
+   "doi": "",
+   "tags": [
+    "causal-inference",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2206.08311"
+  },
+  {
+   "title": "DETRs with Collaborative Hybrid Assignments Training",
+   "authors": [
+    "Zhuofan Zong",
+    "Guanglu Song",
+    "Yu Liu"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2211.12860",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "detection",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-11-13",
+   "url": "https://arxiv.org/abs/2211.12860"
+  },
+  {
+   "title": "FlexiViT: One Model for All Patch Sizes",
+   "authors": [
+    "Lucas Beyer",
+    "Pavel Izmailov",
+    "Alexander Kolesnikov",
+    "Mathilde Caron",
+    "Simon Kornblith",
+    "Xiaohua Zhai",
+    "Matthias Minderer",
+    "Michael Tschannen",
+    "Ibrahim Alabdulmohsin",
+    "Filip Pavetic"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2212.08013",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "foundation-models",
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2023-03-23",
+   "url": "https://arxiv.org/abs/2212.08013"
+  },
+  {
+   "title": "Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets",
+   "authors": [
+    "Alethea Power",
+    "Yuri Burda",
+    "Harri Edwards",
+    "Igor Babuschkin",
+    "Vedant Misra"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2201.02177",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2201.02177"
+  },
+  {
+   "title": "Image as a Foreign Language: BEiT Pretraining for All Vision and Vision-Language Tasks",
+   "authors": [
+    "Wenhui Wang"
+   ],
+   "year": "2022",
+   "venue": "",
+   "arxiv_id": "2208.10442",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "multimodal",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-07-16",
+   "url": "https://arxiv.org/abs/2208.10442"
+  },
+  {
+   "title": "Learning 3D Representations from 2D Pre-trained Models via Image-to-Point Masked Autoencoders",
+   "authors": [
+    "Renrui Zhang",
+    "Liuhui Wang",
+    "Yu Qiao",
+    "Peng Gao",
+    "Hongsheng Li"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2212.06785",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "representation-learning",
+    "foundation-models",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-04-17",
+   "url": "https://arxiv.org/abs/2212.06785"
+  },
+  {
+   "title": "Learning to Estimate Shapley Values with Vision Transformers",
+   "authors": [
+    "Ian Covert",
+    "Chanwoo Kim",
+    "Su-In Lee"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2206.05282",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "interpretability",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-05-07",
+   "url": "https://arxiv.org/abs/2206.05282"
+  },
+  {
+   "title": "Model Ratatouille: Recycling Diverse Models for Out-of-Distribution Generalization",
+   "authors": [
+    "Alexandre Ram\u00e9",
+    "Kartik Ahuja",
+    "Jianyu Zhang",
+    "Matthieu Cord",
+    "L\u00e9on Bottou",
+    "David Lopez-Paz"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2212.10445",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "uncertainty-calibration",
+    "generalization",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-02-08",
+   "url": "https://arxiv.org/abs/2212.10445"
+  },
+  {
+   "title": "Model soups: averaging weights of multiple fine-tuned models improves accuracy without increasing inference time",
+   "authors": [
+    "Mitchell Wortsman",
+    "Gabriel Ilharco",
+    "Samir Yitzhak Gadre",
+    "Rebecca Roelofs",
+    "Raphael Gontijo-Lopes",
+    "Ari S. Morcos",
+    "Hongseok Namkoong",
+    "Ali Farhadi",
+    "Yair Carmon",
+    "Simon Kornblith",
+    "Ludwig Schmidt"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2203.05482",
+   "doi": "",
+   "tags": [
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "dataset",
+    "influential"
+   ],
+   "presented": "2023-03-30",
+   "url": "https://arxiv.org/abs/2203.05482"
+  },
+  {
+   "title": "Multimodal Token Fusion for Vision Transformers",
+   "authors": [
+    "Yikai Wang",
+    "Xinghao Chen",
+    "Lele Cao",
+    "Wenbing Huang",
+    "Fuchun Sun",
+    "Yunhe Wang"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2204.08721",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "multimodal",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2024-03-20",
+   "url": "https://arxiv.org/abs/2204.08721"
+  },
+  {
+   "title": "No Reason for No Supervision: Improved Generalization in Supervised Models",
+   "authors": [
+    "Mert Bulent Sariyildiz",
+    "Yannis Kalantidis",
+    "Karteek Alahari",
+    "Diane Larlus"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2206.15369",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "foundation-models",
+    "uncertainty-calibration",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2023-10-19",
+   "url": "https://arxiv.org/abs/2206.15369"
+  },
+  {
+   "title": "The potential of artificial intelligence for achieving healthy and sustainable societies",
+   "authors": [
+    "B. Sirmacek",
+    "S. Gupta",
+    "F. Mallor",
+    "H. Azizpour",
+    "Y. Ban",
+    "H. Eivazi",
+    "H. Fang",
+    "F. Golzar",
+    "I. Leite",
+    "G. I. Melsion",
+    "K. Smith",
+    "F. Fuso Nerini",
+    "R. Vinuesa"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2202.07424",
+   "doi": "",
+   "tags": [
+    "AI-society",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2202.07424"
+  },
+  {
+   "title": "Three things everyone should know about Vision Transformers",
+   "authors": [
+    "Hugo Touvron"
+   ],
+   "year": "2022",
+   "venue": "",
+   "arxiv_id": "2203.09795",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "transformers",
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2022-03-28",
+   "url": "https://arxiv.org/abs/2203.09795"
+  },
+  {
+   "title": "Uncovering the Disentanglement Capability in Text-to-Image Diffusion Models",
+   "authors": [
+    "Qiucheng Wu",
+    "Yujian Liu",
+    "Handong Zhao",
+    "Ajinkya Kale",
+    "Trung Bui",
+    "Tong Yu",
+    "Zhe Lin",
+    "Yang Zhang",
+    "Shiyu Chang"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2212.08698",
+   "doi": "",
+   "tags": [
+    "diffusion",
+    "GANs",
+    "generative-modeling",
+    "generation",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2025-07-23",
+   "url": "https://arxiv.org/abs/2212.08698"
+  },
+  {
+   "title": "What learning algorithm is in-context learning? Investigations with linear models",
+   "authors": [
+    "Ekin Aky\u00fcrek",
+    "Dale Schuurmans",
+    "Jacob Andreas",
+    "Tengyu Ma",
+    "Denny Zhou"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2211.15661",
+   "doi": "",
+   "tags": [
+    "LLMs",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2211.15661"
+  },
+  {
+   "title": "What Makes Transfer Learning Work For Medical Images: Feature Reuse & Other Factors",
+   "authors": [
+    "Christos Matsoukas",
+    "Johan Fredin Haslum",
+    "Moein Sorkhei",
+    "Magnus S\u00f6derberg",
+    "Kevin Smith"
+   ],
+   "year": "2022",
+   "venue": "arXiv",
+   "arxiv_id": "2203.01825",
+   "doi": "",
+   "tags": [
+    "transfer-learning",
+    "image",
+    "medical",
+    "empirical-study"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2203.01825"
+  },
+  {
+   "title": "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification",
+   "authors": [
+    "Anastasios N. Angelopoulos",
+    "Stephen Bates"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2107.07511",
+   "doi": "",
+   "tags": [
+    "uncertainty-calibration",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2107.07511"
+  },
+  {
+   "title": "CheXtransfer: Performance and Parameter Efficiency of ImageNet Models for Chest X-Ray Interpretation",
+   "authors": [
+    "Alexander Ke",
+    "William Ellsworth",
+    "Oishi Banerjee",
+    "Andrew Y. Ng",
+    "Pranav Rajpurkar"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2101.06871",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "interpretability",
+    "optimization-training",
+    "image",
+    "radiology",
+    "dataset"
+   ],
+   "presented": "2021-01-22",
+   "url": "https://arxiv.org/abs/2101.06871"
+  },
+  {
+   "title": "CoMoGAN: continuous model-guided image-to-image translation",
+   "authors": [
+    "Fabio Pizzati",
+    "Pietro Cerri",
+    "Raoul de Charette"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2103.06879",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "2021-03-22",
+   "url": "https://arxiv.org/abs/2103.06879"
+  },
+  {
+   "title": "Conditional De-Identification of 3D Magnetic Resonance Images",
+   "authors": [
+    "Lennart Alexander Van der Goten",
+    "Tobias Hepp",
+    "Zeynep Akata",
+    "Kevin Smith"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2110.09927",
+   "doi": "",
+   "tags": [
+    "fairness-privacy",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2110.09927"
+  },
+  {
+   "title": "ConvNets vs. Transformers: Whose Visual Representations are More Transferable?",
+   "authors": [
+    "Hong-Yu Zhou",
+    "Chixiang Lu",
+    "Sibei Yang",
+    "Yizhou Yu"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2108.05305",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "representation-learning",
+    "foundation-models",
+    "classification",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2022-03-21",
+   "url": "https://arxiv.org/abs/2108.05305"
+  },
+  {
+   "title": "CSAW-M: An Ordinal Classification Dataset for Benchmarking Mammographic Masking of Cancer",
+   "authors": [
+    "Moein Sorkhei",
+    "Yue Liu",
+    "Hossein Azizpour",
+    "Edward Azavedo",
+    "Karin Dembrower",
+    "Dimitra Ntoula",
+    "Athanasios Zouzos",
+    "Fredrik Strand",
+    "Kevin Smith"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2112.01330",
+   "doi": "",
+   "tags": [
+    "classification",
+    "image",
+    "mammography",
+    "benchmark"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2112.01330"
+  },
+  {
+   "title": "Deep Learning Through the Lens of Example Difficulty",
+   "authors": [
+    "Robert J. N. Baldock",
+    "Hartmut Maennel",
+    "Behnam Neyshabur"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2106.09647",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2022-04-11",
+   "url": "https://arxiv.org/abs/2106.09647"
+  },
+  {
+   "title": "Do Vision Transformers See Like Convolutional Neural Networks?",
+   "authors": [
+    "Maithra Raghu",
+    "Thomas Unterthiner",
+    "Simon Kornblith",
+    "Chiyuan Zhang",
+    "Alexey Dosovitskiy"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2108.08810",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2021-08-23",
+   "url": "https://arxiv.org/abs/2108.08810"
+  },
+  {
+   "title": "DynamicViT: Efficient Vision Transformers with Dynamic Token Sparsification",
+   "authors": [
+    "Yongming Rao",
+    "Wenliang Zhao",
+    "Benlin Liu",
+    "Jiwen Lu",
+    "Jie Zhou",
+    "Cho-Jui Hsieh"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2106.02034",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "representation-learning",
+    "uncertainty-calibration",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2022-02-07",
+   "url": "https://arxiv.org/abs/2106.02034"
+  },
+  {
+   "title": "Early Convolutions Help Transformers See Better",
+   "authors": [
+    "Tete Xiao",
+    "Mannat Singh",
+    "Eric Mintun",
+    "Trevor Darrell",
+    "Piotr Doll\u00e1r",
+    "Ross Girshick"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2106.14881",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "fairness-privacy",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2021-07-26",
+   "url": "https://arxiv.org/abs/2106.14881"
+  },
+  {
+   "title": "Emerging Properties in Self-Supervised Vision Transformers",
+   "authors": [
+    "Mathilde Caron",
+    "Hugo Touvron",
+    "Ishan Misra",
+    "Herv\u00e9 J\u00e9gou",
+    "Julien Mairal",
+    "Piotr Bojanowski",
+    "Armand Joulin"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2104.14294",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "transformers",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2104.14294"
+  },
+  {
+   "title": "High-Performance Large-Scale Image Recognition Without Normalization",
+   "authors": [
+    "Andrew Brock",
+    "Soham De",
+    "Samuel L. Smith",
+    "Karen Simonyan"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2102.06171",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "optimization-training",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2021-03-22",
+   "url": "https://arxiv.org/abs/2102.06171"
+  },
+  {
+   "title": "How to train your ViT? Data, Augmentation, and Regularization in Vision Transformers",
+   "authors": [
+    "Andreas Steiner",
+    "Alexander Kolesnikov",
+    "Xiaohua Zhai",
+    "Ross Wightman",
+    "Jakob Uszkoreit",
+    "Lucas Beyer"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2106.10270",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "foundation-models",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2021-07-26",
+   "url": "https://arxiv.org/abs/2106.10270"
+  },
+  {
+   "title": "Instance-Conditioned GAN",
+   "authors": [
+    "Arantxa Casanova",
+    "Marl\u00e8ne Careil",
+    "Jakob Verbeek",
+    "Michal Drozdzal",
+    "Adriana Romero-Soriano"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2109.05070",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2021-10-04",
+   "url": "https://arxiv.org/abs/2109.05070"
+  },
+  {
+   "title": "Intriguing Properties of Vision Transformers",
+   "authors": [
+    "Muzammal Naseer",
+    "Kanchana Ranasinghe",
+    "Salman Khan",
+    "Munawar Hayat",
+    "Fahad Shahbaz Khan",
+    "Ming-Hsuan Yang"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2105.10497",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "representation-learning",
+    "uncertainty-calibration",
+    "text",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2021-05-31",
+   "url": "https://arxiv.org/abs/2105.10497"
+  },
+  {
+   "title": "Is it Time to Replace CNNs with Transformers for Medical Images?",
+   "authors": [
+    "Christos Matsoukas",
+    "Johan Fredin Haslum",
+    "Magnus S\u00f6derberg",
+    "Kevin Smith"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2108.09038",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "image",
+    "medical",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2108.09038"
+  },
+  {
+   "title": "Learning Transferable Visual Models From Natural Language Supervision",
+   "authors": [
+    "Alec Radford",
+    "Jong Wook Kim",
+    "Chris Hallacy",
+    "Aditya Ramesh",
+    "Gabriel Goh",
+    "Sandhini Agarwal",
+    "Girish Sastry",
+    "Amanda Askell",
+    "Pamela Mishkin",
+    "Jack Clark",
+    "Gretchen Krueger",
+    "Ilya Sutskever"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2103.00020",
+   "doi": "",
+   "tags": [
+    "multimodal",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2103.00020"
+  },
+  {
+   "title": "Masked Autoencoders Are Scalable Vision Learners",
+   "authors": [
+    "Kaiming He",
+    "Xinlei Chen",
+    "Saining Xie",
+    "Yanghao Li",
+    "Piotr Doll\u00e1r",
+    "Ross Girshick"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2111.06377",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "transformers",
+    "efficiency",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2021-11-29",
+   "url": "https://arxiv.org/abs/2111.06377"
+  },
+  {
+   "title": "MLP-Mixer: An all-MLP Architecture for Vision",
+   "authors": [
+    "Ilya Tolstikhin",
+    "Neil Houlsby",
+    "Alexander Kolesnikov",
+    "Lucas Beyer",
+    "Xiaohua Zhai",
+    "Thomas Unterthiner",
+    "Jessica Yung",
+    "Andreas Steiner",
+    "Daniel Keysers",
+    "Jakob Uszkoreit",
+    "Mario Lucic",
+    "Alexey Dosovitskiy"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2105.01601",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2021-06-14",
+   "url": "https://arxiv.org/abs/2105.01601"
+  },
+  {
+   "title": "PSViT: Better Vision Transformer via Token Pooling and Attention Sharing",
+   "authors": [
+    "Boyu Chen",
+    "Peixia Li",
+    "Baopu Li",
+    "Chuming Li",
+    "Lei Bai",
+    "Chen Lin",
+    "Ming Sun",
+    "Junjie Yan",
+    "Wanli Ouyang"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2108.03428",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2021-09-20",
+   "url": "https://arxiv.org/abs/2108.03428"
+  },
+  {
+   "title": "Robust breast cancer detection in mammography and digital breast tomosynthesis using an annotation-efficient deep learning approach.",
+   "authors": [
+    "William Lotter",
+    "Abdul Rahman Diab",
+    "Bryan Haslam",
+    "Jiye G. Kim",
+    "Giorgia Grisot",
+    "Eric Q. Wu",
+    "Kevin Wu",
+    "Jorge Onieva Onieva",
+    "Yun Boyer",
+    "Jerrold L. Boxerman",
+    "Meiyun Wang",
+    "Mack Bandler",
+    "Gopal R. Vijayaragha"
+   ],
+   "year": "2021",
+   "venue": "PubMed",
+   "arxiv_id": "",
+   "doi": "10.1038/s41591-020-01174-9",
+   "tags": [
+    "generative-modeling",
+    "robustness",
+    "generalization",
+    "detection",
+    "image",
+    "radiology",
+    "mammography",
+    "method"
+   ],
+   "presented": "2021-02-09",
+   "url": "https://doi.org/10.1038/s41591-020-01174-9"
+  },
+  {
+   "title": "Robust fine-tuning of zero-shot models",
+   "authors": [
+    "Mitchell Wortsman",
+    "Gabriel Ilharco",
+    "Jong Wook Kim",
+    "Mike Li",
+    "Simon Kornblith",
+    "Rebecca Roelofs",
+    "Raphael Gontijo-Lopes",
+    "Hannaneh Hajishirzi",
+    "Ali Farhadi",
+    "Hongseok Namkoong",
+    "Ludwig Schmidt"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2109.01903",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "robustness",
+    "optimization-training",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2023-06-15",
+   "url": "https://arxiv.org/abs/2109.01903"
+  },
+  {
+   "title": "Size Matters",
+   "authors": [
+    "Mats L. Richter",
+    "Wolf Byttner",
+    "Ulf Krumnack",
+    "Ludwdig Schallner",
+    "Justin Shenk"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2102.01582",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2022-05-09",
+   "url": "https://arxiv.org/abs/2102.01582"
+  },
+  {
+   "title": "Swin Transformer V2: Scaling Up Capacity and Resolution",
+   "authors": [
+    "Ze Liu",
+    "Han Hu",
+    "Yutong Lin",
+    "Zhuliang Yao",
+    "Zhenda Xie",
+    "Yixuan Wei",
+    "Jia Ning",
+    "Yue Cao",
+    "Zheng Zhang",
+    "Li Dong",
+    "Furu Wei",
+    "Baining Guo"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2111.09883",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2021-12-13",
+   "url": "https://arxiv.org/abs/2111.09883"
+  },
+  {
+   "title": "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows",
+   "authors": [
+    "Ze Liu",
+    "Yutong Lin",
+    "Yue Cao",
+    "Han Hu",
+    "Yixuan Wei",
+    "Zheng Zhang",
+    "Stephen Lin",
+    "Baining Guo"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2103.14030",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2021-10-18",
+   "url": "https://arxiv.org/abs/2103.14030"
+  },
+  {
+   "title": "The Intrinsic Dimension of Images and Its Impact on Learning",
+   "authors": [
+    "Phillip Pope",
+    "Chen Zhu",
+    "Ahmed Abdelkader",
+    "Micah Goldblum",
+    "Tom Goldstein"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2104.08894",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2021-10-18",
+   "url": "https://arxiv.org/abs/2104.08894"
+  },
+  {
+   "title": "Toward robust mammography-based models for breast cancer risk",
+   "authors": [
+    "Adam Yala",
+    "Peter G. Mikhael",
+    "Fredrik Strand",
+    "Gigin Lin",
+    "Kevin Smith",
+    "Yung\u2010Liang Wan",
+    "Leslie R. Lamb",
+    "Kevin S. Hughes",
+    "Constance D. Lehman",
+    "Regina Barzilay"
+   ],
+   "year": "2021",
+   "venue": "Science Translational Medicine",
+   "arxiv_id": "",
+   "doi": "10.1126/scitranslmed.aba4373",
+   "tags": [
+    "robustness",
+    "image",
+    "mammography",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://doi.org/10.1126/scitranslmed.aba4373"
+  },
+  {
+   "title": "Transferability Estimation using Bhattacharyya Class Separability",
+   "authors": [
+    "Michal P\u00e1ndy",
+    "Andrea Agostinelli",
+    "Jasper Uijlings",
+    "Vittorio Ferrari",
+    "Thomas Mensink"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2111.12780",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "foundation-models",
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2022-10-15",
+   "url": "https://arxiv.org/abs/2111.12780"
+  },
+  {
+   "title": "ViViT: A Video Vision Transformer",
+   "authors": [
+    "Anurag Arnab",
+    "Mostafa Dehghani",
+    "Georg Heigold",
+    "Chen Sun",
+    "Mario Lu\u010di\u0107",
+    "Cordelia Schmid"
+   ],
+   "year": "2021",
+   "venue": "arXiv",
+   "arxiv_id": "2103.15691",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "representation-learning",
+    "classification",
+    "video",
+    "natural-images",
+    "benchmark",
+    "influential"
+   ],
+   "presented": "2021-11-30",
+   "url": "https://arxiv.org/abs/2103.15691"
+  },
+  {
+   "title": "A Simple Framework for Contrastive Learning of Visual Representations",
+   "authors": [
+    "Ting Chen",
+    "Simon Kornblith",
+    "Mohammad Norouzi",
+    "Geoffrey Hinton"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2002.05709",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-06-04",
+   "url": "https://arxiv.org/abs/2002.05709"
+  },
+  {
+   "title": "Adding Seemingly Uninformative Labels Helps in Low Data Regimes",
+   "authors": [
+    "Christos Matsoukas",
+    "Albert Bou I Hernandez",
+    "Yue Liu",
+    "Karin Dembrower",
+    "Gisele Miranda",
+    "Emir Konuk",
+    "Johan Fredin Haslum",
+    "Athanasios Zouzos",
+    "Peter Lindholm",
+    "Fredrik Strand",
+    "Kevin Smith"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2008.00807",
+   "doi": "",
+   "tags": [
+    "semi-supervised",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2008.00807"
+  },
+  {
+   "title": "An Adversarial Approach for the Robust Classification of Pneumonia from Chest Radiographs",
+   "authors": [
+    "Joseph D. Janizek",
+    "Gabriel Erion",
+    "Alex J. DeGrave",
+    "Su-In Lee"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2001.04051",
+   "doi": "",
+   "tags": [
+    "fairness-privacy",
+    "robustness",
+    "classification",
+    "image",
+    "radiology",
+    "dataset"
+   ],
+   "presented": "2020-03-06",
+   "url": "https://arxiv.org/abs/2001.04051"
+  },
+  {
+   "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+   "authors": [
+    "Alexey Dosovitskiy",
+    "Lucas Beyer",
+    "Alexander Kolesnikov",
+    "Dirk Weissenborn",
+    "Xiaohua Zhai",
+    "Thomas Unterthiner",
+    "Mostafa Dehghani",
+    "Matthias Minderer",
+    "Georg Heigold",
+    "Sylvain Gelly",
+    "Jakob Uszkoreit",
+    "Neil Houl"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2010.11929",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "classification",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2010.11929"
+  },
+  {
+   "title": "Are all negatives created equal in contrastive instance discrimination?",
+   "authors": [
+    "Tiffany Tianhui Cai",
+    "Jonathan Frankle",
+    "David J. Schwab",
+    "Ari S. Morcos"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2010.06682",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "uncertainty-calibration",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "2021-01-22",
+   "url": "https://arxiv.org/abs/2010.06682"
+  },
+  {
+   "title": "Are we done with ImageNet?",
+   "authors": [
+    "Lucas Beyer",
+    "Olivier J. H\u00e9naff",
+    "Alexander Kolesnikov",
+    "Xiaohua Zhai",
+    "A\u00e4ron van den Oord"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2006.07159",
+   "doi": "",
+   "tags": [
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-06-26",
+   "url": "https://arxiv.org/abs/2006.07159"
+  },
+  {
+   "title": "Bootstrap your own latent: A new approach to self-supervised learning",
+   "authors": [
+    "Jean-Bastien Grill"
+   ],
+   "year": "2020",
+   "venue": "",
+   "arxiv_id": "2006.07733",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-12-10",
+   "url": "https://arxiv.org/abs/2006.07733"
+  },
+  {
+   "title": "CO2: Consistent Contrast for Unsupervised Visual Representation Learning",
+   "authors": [
+    "Chen Wei"
+   ],
+   "year": "2020",
+   "venue": "",
+   "arxiv_id": "2010.02217",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "representation-learning",
+    "transfer-learning",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-10-30",
+   "url": "https://arxiv.org/abs/2010.02217"
+  },
+  {
+   "title": "Continuous Conditional Generative Adversarial Networks: Novel Empirical Losses and Label Input Mechanisms",
+   "authors": [
+    "Xin Ding",
+    "Yongwei Wang",
+    "Zuheng Xu",
+    "William J. Welch",
+    "Z. Jane Wang"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2011.07466",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "generative-modeling",
+    "generation",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-12-18",
+   "url": "https://arxiv.org/abs/2011.07466"
+  },
+  {
+   "title": "Contrastive learning of global and local features for medical image segmentation with limited annotations",
+   "authors": [
+    "Krishna Chaitanya",
+    "Ertunc Erdil",
+    "Neerav Karani",
+    "Ender Konukoglu"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2006.10511",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "segmentation",
+    "image",
+    "radiology",
+    "dataset"
+   ],
+   "presented": "2020-12-03",
+   "url": "https://arxiv.org/abs/2006.10511"
+  },
+  {
+   "title": "Debiasing Convolutional Neural Networks via Meta Orthogonalization",
+   "authors": [
+    "Kurtis Evan David",
+    "Qiang Liu",
+    "Ruth Fong"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2011.07453",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "fairness-privacy",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-11-27",
+   "url": "https://arxiv.org/abs/2011.07453"
+  },
+  {
+   "title": "Decoupling Inherent Risk and Early Cancer Signs in Image-based Breast Cancer Risk Models",
+   "authors": [
+    "Yue Liu",
+    "Hossein Azizpour",
+    "Fredrik Strand",
+    "Kevin Smith"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2007.05791",
+   "doi": "",
+   "tags": [
+    "image",
+    "mammography",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2007.05791"
+  },
+  {
+   "title": "Denoising Diffusion Probabilistic Models",
+   "authors": [
+    "Jonathan Ho",
+    "Ajay Jain",
+    "Pieter Abbeel"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2006.11239",
+   "doi": "",
+   "tags": [
+    "diffusion",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2006.11239"
+  },
+  {
+   "title": "Differentiable Augmentation for Data-Efficient GAN Training",
+   "authors": [
+    "Shengyu Zhao",
+    "Zhijian Liu",
+    "Ji Lin",
+    "Jun-Yan Zhu",
+    "Song Han"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2006.10738",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "efficiency",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-07-03",
+   "url": "https://arxiv.org/abs/2006.10738"
+  },
+  {
+   "title": "Do We Need Zero Training Loss After Achieving Zero Training Error?",
+   "authors": [
+    "Takashi Ishida"
+   ],
+   "year": "2020",
+   "venue": "",
+   "arxiv_id": "2002.08709",
+   "doi": "",
+   "tags": [
+    "uncertainty-calibration",
+    "image",
+    "natural-images",
+    "benchmark"
+   ],
+   "presented": "2020-07-17",
+   "url": "https://arxiv.org/abs/2002.08709"
+  },
+  {
+   "title": "Explanation-based Weakly-supervised Learning of Visual Relations with Graph Networks",
+   "authors": [
+    "Federico Baldassarre",
+    "Kevin Smith",
+    "Josephine Sullivan",
+    "Hossein Azizpour"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2006.09562",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2006.09562"
+  },
+  {
+   "title": "Exploring Simple Siamese Representation Learning",
+   "authors": [
+    "Xinlei Chen",
+    "Kaiming He"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2011.10566",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "empirical-study",
+    "influential"
+   ],
+   "presented": "2020-12-18",
+   "url": "https://arxiv.org/abs/2011.10566"
+  },
+  {
+   "title": "Freeze the Discriminator: a Simple Baseline for Fine-Tuning GANs",
+   "authors": [
+    "Sangwoo Mo",
+    "Minsu Cho",
+    "Jinwoo Shin"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2002.10964",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "transfer-learning",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-10-09",
+   "url": "https://arxiv.org/abs/2002.10964"
+  },
+  {
+   "title": "How Much Position Information Do Convolutional Neural Networks Encode?",
+   "authors": [
+    "Md Amirul Islam",
+    "Sen Jia",
+    "Neil D. B. Bruce"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2001.08248",
+   "doi": "",
+   "tags": [
+    "CNNs",
+    "interpretability",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-04-03",
+   "url": "https://arxiv.org/abs/2001.08248"
+  },
+  {
+   "title": "nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation",
+   "authors": [
+    "Fabian Isensee",
+    "Paul F. Jaeger",
+    "Simon A. A. Kohl",
+    "Jens Petersen",
+    "Klaus H. Maier-Hein"
+   ],
+   "year": "2020",
+   "venue": "Nature Methods",
+   "arxiv_id": "",
+   "doi": "10.1038/s41592-020-01008-z",
+   "tags": [
+    "CNNs",
+    "segmentation",
+    "image",
+    "medical",
+    "method",
+    "influential"
+   ],
+   "presented": "2025-07-30",
+   "url": "https://doi.org/10.1038/s41592-020-01008-z"
+  },
+  {
+   "title": "nucleAIzer: A Parameter-free Deep Learning Framework for Nucleus Segmentation Using Image Style Transfer",
+   "authors": [
+    "R\u00e9ka Hollandi",
+    "\u00c1bel Szkalisity",
+    "T\u00edmea T\u00f3th",
+    "Ervin Tasn\u00e1di",
+    "Csaba Moln\u00e1r",
+    "Botond Mathe",
+    "Istv\u00e1n Grexa",
+    "J\u00f3zsef Moln\u00e1r",
+    "\u00c1rp\u00e1d B\u00e1lind",
+    "Mate Gorbe",
+    "M\u00e1ria Kov\u00e1cs",
+    "Ede Migh",
+    "Allen Goodman",
+    "Tam\u00e1s Balassa",
+    "Kris"
+   ],
+   "year": "2020",
+   "venue": "Cell Systems",
+   "arxiv_id": "",
+   "doi": "10.1016/j.cels.2020.04.003",
+   "tags": [
+    "CNNs",
+    "computational-biology",
+    "segmentation",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://doi.org/10.1016/j.cels.2020.04.003"
+  },
+  {
+   "title": "OBoW: Online Bag-of-Visual-Words Generation for Self-Supervised Learning",
+   "authors": [
+    "Spyros Gidaris",
+    "Andrei Bursuc",
+    "Gilles Puy",
+    "Nikos Komodakis",
+    "Matthieu Cord",
+    "Patrick P\u00e9rez"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2012.11552",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2021-06-28",
+   "url": "https://arxiv.org/abs/2012.11552"
+  },
+  {
+   "title": "On Noise Injection in Generative Adversarial Networks",
+   "authors": [
+    "Ruili Feng",
+    "Deli Zhao",
+    "Zhengjun Zha"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2006.05891",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "image",
+    "natural-images",
+    "theory"
+   ],
+   "presented": "2020-07-17",
+   "url": "https://arxiv.org/abs/2006.05891"
+  },
+  {
+   "title": "Rethinking Pre-training and Self-training",
+   "authors": [
+    "Barret Zoph",
+    "Golnaz Ghiasi",
+    "Tsung-Yi Lin",
+    "Yin Cui",
+    "Hanxiao Liu",
+    "Ekin D. Cubuk",
+    "Quoc V. Le"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2006.06882",
+   "doi": "",
+   "tags": [
+    "foundation-models",
+    "uncertainty-calibration",
+    "transfer-learning",
+    "detection",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "2020-06-26",
+   "url": "https://arxiv.org/abs/2006.06882"
+  },
+  {
+   "title": "SAM: The Sensitivity of Attribution Methods to Hyperparameters",
+   "authors": [
+    "Naman Bansal",
+    "Chirag Agarwal",
+    "Anh Nguyen"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2003.08754",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-10-09",
+   "url": "https://arxiv.org/abs/2003.08754"
+  },
+  {
+   "title": "Score-Based Generative Modeling through Stochastic Differential Equations",
+   "authors": [
+    "Yang Song",
+    "Jascha Sohl-Dickstein",
+    "Diederik P. Kingma",
+    "Abhishek Kumar",
+    "Stefano Ermon",
+    "Ben Poole"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2011.13456",
+   "doi": "",
+   "tags": [
+    "diffusion",
+    "generative-modeling",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2011.13456"
+  },
+  {
+   "title": "Self-Supervision Closes the Gap Between Weak and Strong Supervision in Histology",
+   "authors": [
+    "Olivier Dehaene",
+    "Axel Camara",
+    "Olivier Moindrot",
+    "Axel de Lavergne",
+    "Pierre Courtiol"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2012.03583",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "representation-learning",
+    "segmentation",
+    "image",
+    "pathology",
+    "dataset"
+   ],
+   "presented": "2021-02-09",
+   "url": "https://arxiv.org/abs/2012.03583"
+  },
+  {
+   "title": "SRFlow: Learning the Super-Resolution Space with Normalizing Flow",
+   "authors": [
+    "Andreas Lugmayr",
+    "Martin Danelljan",
+    "Luc Van Gool",
+    "Radu Timofte"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2006.14200",
+   "doi": "",
+   "tags": [
+    "flow-matching",
+    "generative-modeling",
+    "super-resolution",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-08-14",
+   "url": "https://arxiv.org/abs/2006.14200"
+  },
+  {
+   "title": "Subclass Distillation",
+   "authors": [
+    "Rafael M\u00fcller",
+    "Simon Kornblith",
+    "Geoffrey Hinton"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2002.03936",
+   "doi": "",
+   "tags": [
+    "efficiency",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-06-27",
+   "url": "https://arxiv.org/abs/2002.03936"
+  },
+  {
+   "title": "Supervised Contrastive Learning",
+   "authors": [
+    "Prannay Khosla",
+    "Piotr Teterwak",
+    "Chen Wang",
+    "Aaron Sarna",
+    "Yonglong Tian",
+    "Phillip Isola",
+    "Aaron Maschinot",
+    "Ce Liu",
+    "Dilip Krishnan"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2004.11362",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "robustness",
+    "classification",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-07-02",
+   "url": "https://arxiv.org/abs/2004.11362"
+  },
+  {
+   "title": "Target-Embedding Autoencoders for Supervised Representation Learning",
+   "authors": [
+    "Daniel Jarrett",
+    "Mihaela van der Schaar"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2001.08345",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "classification",
+    "image",
+    "natural-images",
+    "theory"
+   ],
+   "presented": "2021-02-15",
+   "url": "https://arxiv.org/abs/2001.08345"
+  },
+  {
+   "title": "The Surprising Effectiveness of Linear Unsupervised Image-to-Image Translation",
+   "authors": [
+    "Eitan Richardson",
+    "Yair Weiss"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2007.12568",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "2020-09-11",
+   "url": "https://arxiv.org/abs/2007.12568"
+  },
+  {
+   "title": "Training Generative Adversarial Networks with Limited Data",
+   "authors": [
+    "Tero Karras",
+    "Miika Aittala",
+    "Janne Hellsten",
+    "Samuli Laine",
+    "Jaakko Lehtinen",
+    "Timo Aila"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2006.06676",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-07-10",
+   "url": "https://arxiv.org/abs/2006.06676"
+  },
+  {
+   "title": "Underspecification Presents Challenges for Credibility in Modern Machine Learning",
+   "authors": [
+    "Alexander D'Amour",
+    "Katherine Heller",
+    "Dan Moldovan",
+    "Ben Adlam",
+    "Babak Alipanahi",
+    "Alex Beutel",
+    "Christina Chen",
+    "Jonathan Deaton",
+    "Jacob Eisenstein",
+    "Matthew D. Hoffman",
+    "Farhad Hormozdiari",
+    "Neil Houlsby",
+    "Sha"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2011.03395",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "robustness",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2011.03395"
+  },
+  {
+   "title": "Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere",
+   "authors": [
+    "Tongzhou Wang",
+    "Phillip Isola"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2005.10242",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "empirical-study",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2005.10242"
+  },
+  {
+   "title": "Unsupervised Deep Metric Learning with Transformed Attention Consistency and Contrastive Clustering Loss",
+   "authors": [
+    "Yang Li",
+    "Shichao Kan",
+    "Zhihai He"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2008.04378",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "transformers",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-10-30",
+   "url": "https://arxiv.org/abs/2008.04378"
+  },
+  {
+   "title": "What makes instance discrimination good for transfer learning?",
+   "authors": [
+    "Nanxuan Zhao",
+    "Zhirong Wu",
+    "Rynson W. H. Lau",
+    "Stephen Lin"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2006.06606",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "foundation-models",
+    "uncertainty-calibration",
+    "detection",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "2020-07-03",
+   "url": "https://arxiv.org/abs/2006.06606"
+  },
+  {
+   "title": "A Quaternion-based Certifiably Optimal Solution to the Wahba Problem with Outliers",
+   "authors": [
+    "Heng Yang",
+    "Luca Carlone"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1905.12536",
+   "doi": "",
+   "tags": [
+    "3D-vision",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-02-07",
+   "url": "https://arxiv.org/abs/1905.12536"
+  },
+  {
+   "title": "An empirical study of the relation between network architecture and complexity",
+   "authors": [
+    "Emir Konuk",
+    "Kevin Smith"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1911.04120",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "image",
+    "natural-images",
+    "empirical-study"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1911.04120"
+  },
+  {
+   "title": "Analyzing and Improving the Image Quality of StyleGAN",
+   "authors": [
+    "Tero Karras",
+    "Samuli Laine",
+    "Miika Aittala",
+    "Janne Hellsten",
+    "Jaakko Lehtinen",
+    "Timo Aila"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1912.04958",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1912.04958"
+  },
+  {
+   "title": "BBN: Bilateral-Branch Network with Cumulative Learning for Long-Tailed Visual Recognition",
+   "authors": [
+    "Boyan Zhou",
+    "Quan Cui",
+    "Xiu-Shen Wei",
+    "Zhao-Min Chen"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1912.02413",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "classification",
+    "image",
+    "natural-images",
+    "benchmark"
+   ],
+   "presented": "2020-03-27",
+   "url": "https://arxiv.org/abs/1912.02413"
+  },
+  {
+   "title": "Data-Efficient Image Recognition with Contrastive Predictive Coding",
+   "authors": [
+    "Olivier J. H\u00e9naff",
+    "Aravind Srinivas",
+    "Jeffrey De Fauw",
+    "Ali Razavi",
+    "Carl Doersch",
+    "S. M. Ali Eslami",
+    "Aaron van den Oord"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1905.09272",
+   "doi": "",
+   "tags": [
+    "self-supervised",
+    "foundation-models",
+    "robustness",
+    "classification",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-07-24",
+   "url": "https://arxiv.org/abs/1905.09272"
+  },
+  {
+   "title": "Jointly De-biasing Face Recognition and Demographic Attribute Estimation",
+   "authors": [
+    "Sixue Gong",
+    "Xiaoming Liu",
+    "Anil K. Jain"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1911.08080",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "representation-learning",
+    "fairness-privacy",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-08-21",
+   "url": "https://arxiv.org/abs/1911.08080"
+  },
+  {
+   "title": "MSG-GAN: Multi-Scale Gradients for Generative Adversarial Networks",
+   "authors": [
+    "Animesh Karnewar",
+    "Oliver Wang"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1903.06048",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-07-07",
+   "url": "https://arxiv.org/abs/1903.06048"
+  },
+  {
+   "title": "Network Deconvolution",
+   "authors": [
+    "Chengxi Ye"
+   ],
+   "year": "2019",
+   "venue": "",
+   "arxiv_id": "1905.11926",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "efficiency",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-06-12",
+   "url": "https://arxiv.org/abs/1905.11926"
+  },
+  {
+   "title": "Self-training with Noisy Student improves ImageNet classification",
+   "authors": [
+    "Qizhe Xie",
+    "Minh-Thang Luong",
+    "Eduard Hovy",
+    "Quoc V. Le"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1911.04252",
+   "doi": "",
+   "tags": [
+    "semi-supervised",
+    "classification",
+    "image",
+    "natural-images",
+    "dataset",
+    "influential"
+   ],
+   "presented": "2020-07-10",
+   "url": "https://arxiv.org/abs/1911.04252"
+  },
+  {
+   "title": "Simple yet Effective Way for Improving the Performance of GAN",
+   "authors": [
+    "Yong-Goo Shin",
+    "Yoon-Jae Yeo",
+    "Sung-Jea Ko"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1911.10979",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-07-07",
+   "url": "https://arxiv.org/abs/1911.10979"
+  },
+  {
+   "title": "SpineNet: Learning Scale-Permuted Backbone for Recognition and Localization",
+   "authors": [
+    "Xianzhi Du",
+    "Tsung-Yi Lin",
+    "Pengchong Jin",
+    "Golnaz Ghiasi",
+    "Mingxing Tan",
+    "Yin Cui",
+    "Quoc V. Le",
+    "Xiaodan Song"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1912.05027",
+   "doi": "",
+   "tags": [
+    "uncertainty-calibration",
+    "efficiency",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-07-10",
+   "url": "https://arxiv.org/abs/1912.05027"
+  },
+  {
+   "title": "Towards Automatic Concept-based Explanations",
+   "authors": [
+    "Amirata Ghorbani",
+    "James Wexler",
+    "James Zou",
+    "Been Kim"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1902.03129",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-07-02",
+   "url": "https://arxiv.org/abs/1902.03129"
+  },
+  {
+   "title": "Towards Fairness in Visual Recognition: Effective Strategies for Bias Mitigation",
+   "authors": [
+    "Zeyu Wang",
+    "Klint Qinami",
+    "Ioannis Christos Karakozis",
+    "Kyle Genova",
+    "Prem Nair",
+    "Kenji Hata",
+    "Olga Russakovsky"
+   ],
+   "year": "2019",
+   "venue": "arXiv",
+   "arxiv_id": "1911.11834",
+   "doi": "",
+   "tags": [
+    "fairness-privacy",
+    "classification",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2021-06-14",
+   "url": "https://arxiv.org/abs/1911.11834"
+  },
+  {
+   "title": "A Style-Based Generator Architecture for Generative Adversarial Networks",
+   "authors": [
+    "Tero Karras",
+    "Samuli Laine",
+    "Timo Aila"
+   ],
+   "year": "2018",
+   "venue": "arXiv",
+   "arxiv_id": "1812.04948",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1812.04948"
+  },
+  {
+   "title": "Balanced Datasets Are Not Enough: Estimating and Mitigating Gender Bias in Deep Image Representations",
+   "authors": [
+    "Tianlu Wang",
+    "Jieyu Zhao",
+    "Mark Yatskar",
+    "Kai-Wei Chang",
+    "Vicente Ordonez"
+   ],
+   "year": "2018",
+   "venue": "arXiv",
+   "arxiv_id": "1811.08489",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "uncertainty-calibration",
+    "fairness-privacy",
+    "classification",
+    "image",
+    "natural-images",
+    "dataset"
+   ],
+   "presented": "2020-01-17",
+   "url": "https://arxiv.org/abs/1811.08489"
+  },
+  {
+   "title": "Bayesian Uncertainty Estimation for Batch Normalized Deep Networks",
+   "authors": [
+    "Mattias Teye",
+    "Hossein Azizpour",
+    "Kevin Smith"
+   ],
+   "year": "2018",
+   "venue": "arXiv",
+   "arxiv_id": "1802.06455",
+   "doi": "",
+   "tags": [
+    "uncertainty-calibration",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1802.06455"
+  },
+  {
+   "title": "ImageNet-trained CNNs are biased towards texture; increasing shape bias improves accuracy and robustness",
+   "authors": [
+    "Robert Geirhos",
+    "Patricia Rubisch",
+    "Claudio Michaelis",
+    "Matthias Bethge",
+    "Felix A. Wichmann",
+    "Wieland Brendel"
+   ],
+   "year": "2018",
+   "venue": "arXiv",
+   "arxiv_id": "1811.12231",
+   "doi": "",
+   "tags": [
+    "robustness",
+    "text",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1811.12231"
+  },
+  {
+   "title": "Intelligent image-based in situ single-cell isolation",
+   "authors": [
+    "Csilla Brask\u00f3",
+    "Kevin Smith",
+    "Csaba Moln\u00e1r",
+    "N\u00f3ra Farag\u00f3",
+    "Lili Heged\u0171s",
+    "\u00c1rp\u00e1d B\u00e1lind",
+    "Tam\u00e1s Balassa",
+    "\u00c1bel Szkalisity",
+    "Farkas S\u00fck\u00f6sd",
+    "K. Kocsis",
+    "Bal\u00e1zs B\u00e1lint",
+    "Lassi Paavolainen",
+    "M\u00e1rton Zsolt Enyedi",
+    "Istv"
+   ],
+   "year": "2018",
+   "venue": "Nature Communications",
+   "arxiv_id": "",
+   "doi": "10.1038/s41467-017-02628-4",
+   "tags": [
+    "computational-biology",
+    "omics",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://doi.org/10.1038/s41467-017-02628-4"
+  },
+  {
+   "title": "Reconciling modern machine learning practice and the bias-variance trade-off",
+   "authors": [
+    "Mikhail Belkin",
+    "Daniel Hsu",
+    "Siyuan Ma",
+    "Soumik Mandal"
+   ],
+   "year": "2018",
+   "venue": "arXiv",
+   "arxiv_id": "1812.11118",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-07-07",
+   "url": "https://arxiv.org/abs/1812.11118"
+  },
+  {
+   "title": "Region-Based Convolutional Neural Nets for Localization of Glomeruli in Trichrome-Stained Whole Kidney Sections",
+   "authors": [
+    "John D. Bukowy",
+    "Alex Dayton",
+    "Dustin Cloutier",
+    "Anna D. Manis",
+    "Alexander Staruschenko",
+    "Julian H. Lombard",
+    "Leah C. Solberg Woods",
+    "Daniel Beard",
+    "Allen W. Cowley"
+   ],
+   "year": "2018",
+   "venue": "Journal of the American Society of Nephrology",
+   "arxiv_id": "",
+   "doi": "10.1681/asn.2017111210",
+   "tags": [
+    "CNNs",
+    "computational-biology",
+    "detection",
+    "image",
+    "pathology",
+    "method"
+   ],
+   "presented": "2020-07-02",
+   "url": "https://doi.org/10.1681/asn.2017111210"
+  },
+  {
+   "title": "The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks",
+   "authors": [
+    "Jonathan Frankle",
+    "Michael Carbin"
+   ],
+   "year": "2018",
+   "venue": "arXiv",
+   "arxiv_id": "1803.03635",
+   "doi": "",
+   "tags": [
+    "efficiency",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1803.03635"
+  },
+  {
+   "title": "The relativistic discriminator: a key element missing from standard GAN",
+   "authors": [
+    "Alexia Jolicoeur-Martineau"
+   ],
+   "year": "2018",
+   "venue": "arXiv",
+   "arxiv_id": "1807.00734",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-06-27",
+   "url": "https://arxiv.org/abs/1807.00734"
+  },
+  {
+   "title": "The Unreasonable Effectiveness of Deep Features as a Perceptual Metric",
+   "authors": [
+    "Richard Zhang",
+    "Phillip Isola",
+    "Alexei A. Efros",
+    "Eli Shechtman",
+    "Oliver Wang"
+   ],
+   "year": "2018",
+   "venue": "arXiv",
+   "arxiv_id": "1801.03924",
+   "doi": "",
+   "tags": [
+    "perceptual-similarity",
+    "image",
+    "natural-images",
+    "dataset",
+    "influential"
+   ],
+   "presented": "2020-07-24",
+   "url": "https://arxiv.org/abs/1801.03924"
+  },
+  {
+   "title": "This Looks Like That: Deep Learning for Interpretable Image Recognition",
+   "authors": [
+    "Chaofan Chen",
+    "Oscar Li",
+    "Chaofan Tao",
+    "Alina Jade Barnett",
+    "Jonathan Su",
+    "Cynthia Rudin"
+   ],
+   "year": "2018",
+   "venue": "arXiv",
+   "arxiv_id": "1806.10574",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "classification",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2025-07-09",
+   "url": "https://arxiv.org/abs/1806.10574"
+  },
+  {
+   "title": "Attention Is All You Need",
+   "authors": [
+    "Ashish Vaswani",
+    "Noam Shazeer",
+    "Niki Parmar",
+    "Jakob Uszkoreit",
+    "Llion Jones",
+    "Aidan N. Gomez",
+    "Lukasz Kaiser",
+    "Illia Polosukhin"
+   ],
+   "year": "2017",
+   "venue": "arXiv",
+   "arxiv_id": "1706.03762",
+   "doi": "",
+   "tags": [
+    "transformers",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-07-02",
+   "url": "https://arxiv.org/abs/1706.03762"
+  },
+  {
+   "title": "Deep Learning Scaling is Predictable, Empirically",
+   "authors": [
+    "Joel Hestness",
+    "Sharan Narang",
+    "Newsha Ardalani",
+    "Gregory Diamos",
+    "Heewoo Jun",
+    "Hassan Kianinejad",
+    "Md. Mostofa Ali Patwary",
+    "Yang Yang",
+    "Yanqi Zhou"
+   ],
+   "year": "2017",
+   "venue": "arXiv",
+   "arxiv_id": "1712.00409",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1712.00409"
+  },
+  {
+   "title": "ImageNet classification with deep convolutional neural networks",
+   "authors": [
+    "Alex Krizhevsky",
+    "Ilya Sutskever",
+    "Geoffrey E. Hinton"
+   ],
+   "year": "2017",
+   "venue": "Communications of the ACM",
+   "arxiv_id": "",
+   "doi": "10.1145/3065386",
+   "tags": [
+    "CNNs",
+    "classification",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://doi.org/10.1145/3065386"
+  },
+  {
+   "title": "Interpretability Beyond Feature Attribution: Quantitative Testing with Concept Activation Vectors (TCAV)",
+   "authors": [
+    "Been Kim",
+    "Martin Wattenberg",
+    "Justin Gilmer",
+    "Carrie Cai",
+    "James Wexler",
+    "Fernanda Viegas",
+    "Rory Sayres"
+   ],
+   "year": "2017",
+   "venue": "arXiv",
+   "arxiv_id": "1711.11279",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2026-04-03",
+   "url": "https://arxiv.org/abs/1711.11279"
+  },
+  {
+   "title": "Mask R-CNN",
+   "authors": [
+    "Kaiming He",
+    "Georgia Gkioxari",
+    "Piotr Doll\u00e1r",
+    "Ross Girshick"
+   ],
+   "year": "2017",
+   "venue": "arXiv",
+   "arxiv_id": "1703.06870",
+   "doi": "",
+   "tags": [
+    "CNNs",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1703.06870"
+  },
+  {
+   "title": "Neural Discrete Representation Learning",
+   "authors": [
+    "Aaron van den Oord",
+    "Oriol Vinyals",
+    "Koray Kavukcuoglu"
+   ],
+   "year": "2017",
+   "venue": "arXiv",
+   "arxiv_id": "1711.00937",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1711.00937"
+  },
+  {
+   "title": "On Calibration of Modern Neural Networks",
+   "authors": [
+    "Chuan Guo",
+    "Geoff Pleiss",
+    "Yu Sun",
+    "Kilian Q. Weinberger"
+   ],
+   "year": "2017",
+   "venue": "arXiv",
+   "arxiv_id": "1706.04599",
+   "doi": "",
+   "tags": [
+    "uncertainty-calibration",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1706.04599"
+  },
+  {
+   "title": "Categorical Reparameterization with Gumbel-Softmax",
+   "authors": [
+    "Eric Jang",
+    "Shixiang Gu",
+    "Ben Poole"
+   ],
+   "year": "2016",
+   "venue": "arXiv",
+   "arxiv_id": "1611.01144",
+   "doi": "",
+   "tags": [
+    "generative-modeling",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-07-07",
+   "url": "https://arxiv.org/abs/1611.01144"
+  },
+  {
+   "title": "Feature Pyramid Networks for Object Detection",
+   "authors": [
+    "Tsung-Yi Lin",
+    "Piotr Doll\u00e1r",
+    "Ross Girshick",
+    "Kaiming He",
+    "Bharath Hariharan",
+    "Serge Belongie"
+   ],
+   "year": "2016",
+   "venue": "arXiv",
+   "arxiv_id": "1612.03144",
+   "doi": "",
+   "tags": [
+    "CNNs",
+    "detection",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1612.03144"
+  },
+  {
+   "title": "Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization",
+   "authors": [
+    "Ramprasaath R. Selvaraju",
+    "Michael Cogswell",
+    "Abhishek Das",
+    "Ramakrishna Vedantam",
+    "Devi Parikh",
+    "Dhruv Batra"
+   ],
+   "year": "2016",
+   "venue": "arXiv",
+   "arxiv_id": "1610.02391",
+   "doi": "",
+   "tags": [
+    "interpretability",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1610.02391"
+  },
+  {
+   "title": "Pruning Convolutional Neural Networks for Resource Efficient Inference",
+   "authors": [
+    "Pavlo Molchanov",
+    "Stephen Tyree",
+    "Tero Karras",
+    "Timo Aila",
+    "Jan Kautz"
+   ],
+   "year": "2016",
+   "venue": "arXiv",
+   "arxiv_id": "1611.06440",
+   "doi": "",
+   "tags": [
+    "efficiency",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1611.06440"
+  },
+  {
+   "title": "The Concrete Distribution: A Continuous Relaxation of Discrete Random Variables",
+   "authors": [
+    "Chris J. Maddison",
+    "Andriy Mnih",
+    "Yee Whye Teh"
+   ],
+   "year": "2016",
+   "venue": "arXiv",
+   "arxiv_id": "1611.00712",
+   "doi": "",
+   "tags": [
+    "generative-modeling",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-07-07",
+   "url": "https://arxiv.org/abs/1611.00712"
+  },
+  {
+   "title": "Understanding deep learning requires rethinking generalization",
+   "authors": [
+    "Chiyuan Zhang",
+    "Samy Bengio",
+    "Moritz Hardt",
+    "Benjamin Recht",
+    "Oriol Vinyals"
+   ],
+   "year": "2016",
+   "venue": "arXiv",
+   "arxiv_id": "1611.03530",
+   "doi": "",
+   "tags": [
+    "generalization",
+    "image",
+    "natural-images",
+    "empirical-study",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1611.03530"
+  },
+  {
+   "title": "WaveNet: A Generative Model for Raw Audio",
+   "authors": [
+    "Aaron van den Oord",
+    "Sander Dieleman",
+    "Heiga Zen",
+    "Karen Simonyan",
+    "Oriol Vinyals",
+    "Alex Graves",
+    "Nal Kalchbrenner",
+    "Andrew Senior",
+    "Koray Kavukcuoglu"
+   ],
+   "year": "2016",
+   "venue": "arXiv",
+   "arxiv_id": "1609.03499",
+   "doi": "",
+   "tags": [
+    "generative-modeling",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "2020-07-07",
+   "url": "https://arxiv.org/abs/1609.03499"
+  },
+  {
+   "title": "Deep Residual Learning for Image Recognition",
+   "authors": [
+    "Kaiming He",
+    "Xiangyu Zhang",
+    "Shaoqing Ren",
+    "Jian Sun"
+   ],
+   "year": "2015",
+   "venue": "arXiv",
+   "arxiv_id": "1512.03385",
+   "doi": "",
+   "tags": [
+    "CNNs",
+    "classification",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1512.03385"
+  },
+  {
+   "title": "Distilling the Knowledge in a Neural Network",
+   "authors": [
+    "Geoffrey Hinton",
+    "Oriol Vinyals",
+    "Jeff Dean"
+   ],
+   "year": "2015",
+   "venue": "arXiv",
+   "arxiv_id": "1503.02531",
+   "doi": "",
+   "tags": [
+    "efficiency",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1503.02531"
+  },
+  {
+   "title": "Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning",
+   "authors": [
+    "Yarin Gal",
+    "Zoubin Ghahramani"
+   ],
+   "year": "2015",
+   "venue": "arXiv",
+   "arxiv_id": "1506.02142",
+   "doi": "",
+   "tags": [
+    "uncertainty-calibration",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1506.02142"
+  },
+  {
+   "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation",
+   "authors": [
+    "Olaf Ronneberger",
+    "Philipp Fischer",
+    "Thomas Brox"
+   ],
+   "year": "2015",
+   "venue": "arXiv",
+   "arxiv_id": "1505.04597",
+   "doi": "",
+   "tags": [
+    "CNNs",
+    "segmentation",
+    "image",
+    "medical",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1505.04597"
+  },
+  {
+   "title": "Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks",
+   "authors": [
+    "Alec Radford",
+    "Luke Metz",
+    "Soumith Chintala"
+   ],
+   "year": "2015",
+   "venue": "arXiv",
+   "arxiv_id": "1511.06434",
+   "doi": "",
+   "tags": [
+    "GANs",
+    "representation-learning",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1511.06434"
+  },
+  {
+   "title": "You Only Look Once: Unified, Real-Time Object Detection",
+   "authors": [
+    "Joseph Redmon",
+    "Santosh Divvala",
+    "Ross Girshick",
+    "Ali Farhadi"
+   ],
+   "year": "2015",
+   "venue": "arXiv",
+   "arxiv_id": "1506.02640",
+   "doi": "",
+   "tags": [
+    "CNNs",
+    "detection",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1506.02640"
+  },
+  {
+   "title": "Explaining and Harnessing Adversarial Examples",
+   "authors": [
+    "Ian J. Goodfellow",
+    "Jonathon Shlens",
+    "Christian Szegedy"
+   ],
+   "year": "2014",
+   "venue": "arXiv",
+   "arxiv_id": "1412.6572",
+   "doi": "",
+   "tags": [
+    "robustness",
+    "image",
+    "natural-images",
+    "method",
+    "influential"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/1412.6572"
+  },
+  {
+   "title": "Learning Structured Models for Segmentation of 2-D and 3-D Imagery",
+   "authors": [
+    "Aur\u00e9lien Lucchi",
+    "Pablo M\u00e1rquez-Neila",
+    "Carlos Becker",
+    "Yunpeng Li",
+    "Kevin Smith",
+    "Graham Knott",
+    "Pascal Fua"
+   ],
+   "year": "2014",
+   "venue": "IEEE Transactions on Medical Imaging",
+   "arxiv_id": "",
+   "doi": "10.1109/tmi.2014.2376274",
+   "tags": [
+    "segmentation",
+    "image",
+    "medical",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://doi.org/10.1109/tmi.2014.2376274"
+  },
+  {
+   "title": "DeViSE: A Deep Visual-Semantic Embedding Model",
+   "authors": [
+    "Andrea Frome",
+    "Greg S. Corrado",
+    "Jon Shlens",
+    "Samy Bengio",
+    "Jeff Dean",
+    "Marc\u2019Aurelio Ranzato",
+    "Tom\u00e1\u0161 Mikolov"
+   ],
+   "year": "2013",
+   "venue": "",
+   "arxiv_id": "",
+   "doi": "",
+   "tags": [
+    "representation-learning",
+    "foundation-models",
+    "classification",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "2020-07-02",
+   "url": ""
+  },
+  {
+   "title": "A Fully Automated Approach to Segmentation of Irregularly Shaped Cellular Structures in EM Images",
+   "authors": [
+    "Aur\u00e9lien Lucchi",
+    "Kevin Smith",
+    "Radhakrishna Achanta",
+    "et al."
+   ],
+   "year": "2010",
+   "venue": "MICCAI 2010",
+   "arxiv_id": "",
+   "doi": "10.1007/978-3-642-15745-5_57",
+   "tags": [
+    "computational-biology",
+    "segmentation",
+    "image",
+    "microscopy",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://doi.org/10.1007/978-3-642-15745-5_57"
+  },
+  {
+   "title": "SLIC Superpixels (EPFL Technical Report 149300)",
+   "authors": [
+    "Radhakrishna Achanta",
+    "Appu Shaji",
+    "Kevin Smith",
+    "Aur\u00e9lien Lucchi",
+    "Pascal Fua",
+    "Sabine S\u00fcsstrunk"
+   ],
+   "year": "2010",
+   "venue": "EPFL Tech Report",
+   "arxiv_id": "",
+   "doi": "",
+   "tags": [
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": ""
+  },
+  {
+   "title": "Detecting Abandoned Luggage Items in a Public Space",
+   "authors": [
+    "Kevin Smith",
+    "Pedro Quelhas",
+    "Daniel Gatica-Perez"
+   ],
+   "year": "2006",
+   "venue": "",
+   "arxiv_id": "",
+   "doi": "",
+   "tags": [
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": ""
+  },
+  {
+   "title": "Tracking People in Meetings with Particles",
+   "authors": [
+    "Kevin Smith",
+    "Daniel Gatica-Perez",
+    "Jean-Marc Odobez"
+   ],
+   "year": "2004",
+   "venue": "",
+   "arxiv_id": "",
+   "doi": "",
+   "tags": [
+    "tracking",
+    "image",
+    "natural-images",
+    "method"
+   ],
+   "presented": "",
+   "url": ""
+  }
+ ],
+ "stats": {
+  "total": 302,
+  "by_year": [
+   [
+    "2004",
+    1
+   ],
+   [
+    "2006",
+    1
+   ],
+   [
+    "2010",
+    2
+   ],
+   [
+    "2013",
+    1
+   ],
+   [
+    "2014",
+    2
+   ],
+   [
+    "2015",
+    6
+   ],
+   [
+    "2016",
+    7
+   ],
+   [
+    "2017",
+    7
+   ],
+   [
+    "2018",
+    11
+   ],
+   [
+    "2019",
+    13
+   ],
+   [
+    "2020",
+    37
+   ],
+   [
+    "2021",
+    29
+   ],
+   [
+    "2022",
+    18
+   ],
+   [
+    "2023",
+    29
+   ],
+   [
+    "2024",
+    44
+   ],
+   [
+    "2025",
+    53
+   ],
+   [
+    "2026",
+    41
+   ]
+  ],
+  "by_venue": [
+   [
+    "arXiv",
+    262
+   ],
+   [
+    "Nature Communications",
+    5
+   ],
+   [
+    "Nature Methods",
+    2
+   ],
+   [
+    "Nature",
+    2
+   ],
+   [
+    "Nature Medicine",
+    2
+   ],
+   [
+    "IEEE Transactions on Medical Imaging",
+    2
+   ],
+   [
+    "Medical Image Analysis",
+    1
+   ],
+   [
+    "CVPR 2026",
+    1
+   ],
+   [
+    "ICML 2026",
+    1
+   ],
+   [
+    "npj Precision Oncology",
+    1
+   ],
+   [
+    "BMJ",
+    1
+   ],
+   [
+    "Lecture notes in computer science",
+    1
+   ],
+   [
+    "Neurocomputing",
+    1
+   ],
+   [
+    "PubMed",
+    1
+   ],
+   [
+    "Science Translational Medicine",
+    1
+   ]
+  ],
+  "by_tag": [
+   [
+    "image",
+    252
+   ],
+   [
+    "natural-images",
+    239
+   ],
+   [
+    "method",
+    236
+   ],
+   [
+    "influential",
+    74
+   ],
+   [
+    "transformers",
+    56
+   ],
+   [
+    "representation-learning",
+    49
+   ],
+   [
+    "foundation-models",
+    42
+   ],
+   [
+    "self-supervised",
+    40
+   ],
+   [
+    "multimodal",
+    35
+   ],
+   [
+    "LLMs",
+    30
+   ],
+   [
+    "medical",
+    29
+   ],
+   [
+    "classification",
+    29
+   ],
+   [
+    "dataset",
+    27
+   ],
+   [
+    "text",
+    26
+   ],
+   [
+    "interpretability",
+    23
+   ],
+   [
+    "segmentation",
+    20
+   ],
+   [
+    "generalization",
+    18
+   ],
+   [
+    "empirical-study",
+    18
+   ],
+   [
+    "uncertainty-calibration",
+    18
+   ],
+   [
+    "efficiency",
+    16
+   ],
+   [
+    "transfer-learning",
+    16
+   ],
+   [
+    "GANs",
+    16
+   ],
+   [
+    "generative-modeling",
+    15
+   ],
+   [
+    "benchmark",
+    13
+   ],
+   [
+    "diffusion",
+    12
+   ]
+  ]
+ },
+ "note": "Public export \u2014 no presenter/rating/summary data."
+}

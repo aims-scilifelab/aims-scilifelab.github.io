@@ -1,0 +1,6 @@
+name: "AstraZeneca"
+kind: "company"
+url: "https://www.astrazeneca.com"
+note: "AI for kidney disease and biomedical discovery"
+order: 20
+draft: false

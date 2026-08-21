@@ -1,0 +1,6 @@
+name: "Karolinska Institutet"
+kind: "clinical"
+url: "https://ki.se"
+note: "Clinical collaboration in cancer screening and medical imaging"
+order: 10
+draft: false

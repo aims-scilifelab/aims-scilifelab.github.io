@@ -1,0 +1,6 @@
+title: "CSAW-M"
+category: "data"
+url: "https://github.com/yueliukth/CSAW-M"
+description: "An ordinal-classification dataset for benchmarking mammographic masking of cancer (code + access instructions; data hosted at SciLifeLab)."
+order: 10
+draft: false

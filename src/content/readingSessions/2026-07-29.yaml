@@ -1,0 +1,12 @@
+date: 2026-07-29
+presenters: []
+tags:
+  - "flow-matching"
+  - "generative-modeling"
+papers:
+  - title: "Carré du champ flow matching: better quality-generalisation tradeoff in generative models"
+    authors: "Jacob Bamberger, Iolo Jones, Dennis Duncan, Michael M. Bronstein, Pierre Vandergheynst, Adam Gosztolai"
+    venue: "arXiv"
+    year: 2025
+    url: "https://arxiv.org/abs/2510.05930"
+    why: ""            # add one human sentence: why we picked it

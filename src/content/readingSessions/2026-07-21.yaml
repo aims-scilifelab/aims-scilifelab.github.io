@@ -1,0 +1,18 @@
+date: 2026-07-21
+presenters: []
+tags:
+  - "flow-matching"
+  - "generative-modeling"
+papers:
+  - title: "Generative Modeling via Drifting"
+    authors: "Mingyang Deng, He Li, Tianhong Li, Yilun Du, Kaiming He"
+    venue: "arXiv"
+    year: 2026
+    url: "https://arxiv.org/abs/2602.04770"
+    why: ""            # add one human sentence: why we picked it
+  - title: "Kernel-Gradient Drifting Models"
+    authors: "Maria Esteban-Casadevall, Jorge Carrasco-Pollo, Max Welling, Jan-Willem van de Meent, Erik J. Bekkers, Floor Eijkelboom"
+    venue: "arXiv"
+    year: 2026
+    url: "https://arxiv.org/abs/2605.10727"
+    why: ""            # add one human sentence: why we picked it

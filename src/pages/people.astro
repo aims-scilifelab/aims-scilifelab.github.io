@@ -1,0 +1,114 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('people', (p) => !p.data.draft))
+  .map((p) => p.data)
+  .sort((a, b) => a.order - b.order);
+
+const inCats = (cats: string[]) => all.filter((p) => p.status === 'current' && cats.includes(p.category));
+const leads      = inCats(['lead']);
+const researchers = inCats(['researcher', 'postdoc']);
+const phds       = inCats(['phd']);
+const masters    = inCats(['masters']);
+const staff      = inCats(['engineer', 'staff']);
+const affiliates = inCats(['affiliate']);
+
+// Alumni: anyone with alumnus status, plus current people who are also alumni (alumnus_of set)
+const alumni = all
+  .filter((p) => p.status === 'alumnus' || (p.alumnus_of && p.alumnus_of.length))
+  .sort((a, b) => (b.alumni_year ?? 0) - (a.alumni_year ?? 0) || a.name.localeCompare(b.name));
+
+const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
+const sections = [
+  { title: 'Group Leaders', people: leads },
+  { title: 'Researchers & Postdocs', people: researchers },
+  { title: 'PhD Students', people: phds },
+  { title: "Master's Students", people: masters },
+  { title: 'Research Engineers & Staff', people: staff },
+  { title: 'Affiliated Researchers', people: affiliates },
+];
+---
+<Base title="People" description="AIMS is a multi-group research environment across AI, medicine and the life sciences.">
+  <PageHeader eyebrow="People" title="The people of AIMS"
+    lede="AIMS is a shared research environment spanning several groups. Below are the people who make up the lab and those affiliated with it.">
+    <p class="ph-link"><a class="link" href="/groups">Browse by research group →</a></p>
+  </PageHeader>
+
+  {sections.map((sec) => sec.people.length > 0 && (
+    <section class="section-tight" aria-labelledby={sec.title.replace(/\W+/g, '-')}>
+      <div class="wrap">
+        <h2 id={sec.title.replace(/\W+/g, '-')} class="cat">{sec.title}</h2>
+        {sec.title === 'Affiliated Researchers' && (
+          <p class="muted measure aff-note">Researchers based in collaborating groups who regularly take part in AIMS research and activities.</p>
+        )}
+        <div class="grid">
+          {sec.people.map((p) => (
+            <article class="card person">
+              <div class="avatar" aria-hidden="true">
+                {p.photo ? <img src={p.photo} alt="" width="72" height="72" loading="lazy" /> : <span>{initials(p.name)}</span>}
+              </div>
+              <div class="pbody">
+                <h3>{p.name}</h3>
+                <p class="role muted">{p.role}{p.category === 'affiliate' && p.aims_role ? '' : ''}</p>
+                {p.category === 'affiliate'
+                  ? <p class="aff faint">{[p.home_group, p.aims_role].filter(Boolean).join(' · ')}{p.primary_affiliation ? ` · ${p.primary_affiliation}` : ''}</p>
+                  : (p.affiliation && <p class="aff faint">{p.affiliation}</p>)}
+                {p.research_interests.length > 0 && (
+                  <p class="interests muted">{p.research_interests.slice(0, 4).join(' · ')}</p>
+                )}
+                <div class="links">
+                  {p.website && <a class="link" href={p.website} target="_blank" rel="noopener">Website</a>}
+                  {p.google_scholar && <a class="link" href={p.google_scholar} target="_blank" rel="noopener">Scholar</a>}
+                  {p.github && <a class="link" href={p.github} target="_blank" rel="noopener">GitHub</a>}
+                  {p.email && <a class="link" href={`mailto:${p.email}`}>Email</a>}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  {alumni.length > 0 && (
+    <section class="section" aria-labelledby="alumni-h">
+      <div class="wrap">
+        <h2 id="alumni-h" class="cat">Alumni</h2>
+        <ul class="alumni-list">
+          {alumni.map((p) => (
+            <li>
+              <span class="an">{p.name}</span>
+              <span class="ar faint">
+                {p.alumnus_of || p.role}{p.alumni_year ? `, ${p.alumni_year}` : ''}
+                {p.alumni_destination ? ` · now ${p.alumni_destination}` : ''}
+                {p.status === 'current' ? ' · currently at AIMS' : ''}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .cat { font-size: var(--step-2); }
+  .ph-link { margin-top: 1rem; font-size: var(--step--1); }
+  .aff-note { margin-top: .5rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: clamp(1rem, 2.5vw, 1.4rem); margin-top: 1.5rem; }
+  .person { display: flex; gap: 1rem; padding: 1.2rem; }
+  .avatar { flex: 0 0 auto; width: 72px; height: 72px; border-radius: 50%; overflow: hidden; background: var(--bg-3);
+            display: grid; place-items: center; color: var(--muted); font-weight: 700; font-size: 1.1rem; border: 1px solid var(--border); }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .pbody h3 { font-size: var(--step-0); font-weight: 700; }
+  .role { font-size: var(--step--1); margin-top: 1px; }
+  .aff { font-size: var(--step--1); margin-top: 2px; }
+  .interests { font-size: var(--step--1); margin-top: .5rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: .7rem; font-size: var(--step--1); }
+  .alumni-list { list-style: none; padding: 0; margin-top: 1.4rem; display: grid; gap: .6rem; max-width: var(--measure); }
+  .alumni-list li { display: flex; flex-wrap: wrap; gap: .1rem .6rem; align-items: baseline; }
+  .an { font-weight: 600; }
+  .ar { font-size: var(--step--1); }
+</style>

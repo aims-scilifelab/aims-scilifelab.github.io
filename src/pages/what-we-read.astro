@@ -1,0 +1,140 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getCollection } from 'astro:content';
+import libData from '../../public/library-public.json';
+// Embed the (public, sanitised) library at build time so the archive renders without a
+// runtime fetch — makes the page work from any server root, subpath or offline copy.
+const libJson = JSON.stringify(libData).replace(/</g, '\\u003c');
+
+const sessions = (await getCollection('readingSessions', (s) => !s.data.draft))
+  .sort((a, b) => +b.data.date - +a.data.date);
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+<Base title="What We Read" description="Every week we read and discuss papers we think are important, surprising, provocative, or simply worth understanding.">
+  <PageHeader eyebrow="What We Read" title="What We Read"
+    lede="Every week we read and discuss papers we think are important, surprising, provocative, or simply worth understanding. Here is what we've been reading." />
+
+  {sessions.length > 0 && (
+    <section class="section-tight" aria-labelledby="recent-h">
+      <div class="wrap">
+        <h2 id="recent-h" class="cat">Recent sessions</h2>
+        <div class="sessions">
+          {sessions.slice(0, 6).map((s) => (
+            <article class="card session">
+              <header class="s-head">
+                <span class="s-date">{fmt(s.data.date)}</span>
+                {s.data.presenters.length > 0 && <span class="faint">· {s.data.presenters.join(', ')}</span>}
+                {s.data.tags.length > 0 && <span class="s-tags">{s.data.tags.map((t) => <span class="tag">{t}</span>)}</span>}
+              </header>
+              <ul class="s-papers">
+                {s.data.papers.map((p) => (
+                  <li>
+                    <a href={p.url || '#'} target={p.url ? '_blank' : undefined} rel="noopener">{p.title}</a>
+                    <div class="faint p-meta">{p.authors}{p.venue ? ` · ${p.venue}` : ''}{p.year ? ` ${p.year}` : ''}</div>
+                    {p.why && <div class="muted p-why"><strong>Why we picked it:</strong> {p.why}</div>}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Full searchable archive (data read at runtime from /library-public.json) -->
+  <section class="section-tight" aria-labelledby="all-h">
+    <div class="wrap">
+      <h2 id="all-h" class="cat">Everything we've read</h2>
+      <div class="controls" role="search">
+        <label class="sr-only" for="q">Search papers</label>
+        <input id="q" type="search" placeholder="Search title, author, venue…" autocomplete="off" />
+        <label class="sr-only" for="tag">Filter by tag</label>
+        <select id="tag"><option value="">All tags</option></select>
+        <label class="sr-only" for="year">Filter by year</label>
+        <select id="year"><option value="">All years</option></select>
+        <button id="clear" class="btn btn-ghost" type="button">Clear</button>
+      </div>
+      <p class="count faint" id="count" aria-live="polite"></p>
+      <ul class="feed" id="feed"></ul>
+      <p class="status muted" id="status">Loading library…</p>
+      <script type="application/json" id="lib" is:inline set:html={libJson}></script>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cat { font-size: var(--step-2); }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .sessions { display: grid; gap: 1.2rem; margin-top: 1.4rem; }
+  .session { padding: clamp(1.1rem, 3vw, 1.6rem); }
+  .s-head { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; font-size: var(--step--1); }
+  .s-date { font-weight: 600; }
+  .s-tags { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+  .s-papers { list-style: none; padding: 0; margin-top: 1rem; display: grid; gap: 1rem; }
+  .s-papers > li > a { font-weight: 600; }
+  .s-papers > li > a:hover { color: var(--blue); }
+  .p-meta { font-size: var(--step--1); margin-top: .2rem; }
+  .p-why { font-size: var(--step--1); margin-top: .3rem; }
+
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1.4rem; }
+  .controls input { flex: 1 1 240px; background: var(--bg-2); border: 1px solid var(--border-strong); color: var(--text);
+                    border-radius: var(--radius); padding: 11px 13px; font: inherit; font-size: var(--step--1); }
+  .controls select { background: var(--bg-2); border: 1px solid var(--border-strong); color: var(--text);
+                     border-radius: var(--radius); padding: 11px 12px; font: inherit; font-size: var(--step--1); min-height: 44px; }
+  .controls input:focus, .controls select:focus { border-color: var(--blue); outline: none; }
+  .count { margin: 1rem 0 .2rem; font-size: var(--step--1); }
+  .feed { list-style: none; padding: 0 0 1rem; }
+  .feed :global(.item) { padding: 1.1rem 0; border-bottom: 1px solid var(--border); }
+  .feed :global(.item h3) { font-size: var(--step-0); font-weight: 600; display: inline; }
+  .feed :global(.item h3 a:hover) { color: var(--blue); }
+  .feed :global(.badge) { display: inline-block; margin-left: .5rem; font-size: var(--step--1); font-weight: 600; color: #dfe7f4;
+      border: 1px solid rgba(120,150,210,.4); border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+  .feed :global(.au) { color: var(--muted); font-size: var(--step--1); margin-top: .3rem; }
+  .feed :global(.mt) { color: var(--faint); font-size: var(--step--1); margin-top: .2rem; }
+  .feed :global(.tgs) { display: flex; flex-wrap: wrap; gap: 6px; margin-top: .5rem; }
+  .feed :global(mark) { background: var(--sel); color: inherit; }
+  .status { padding: 2rem 0; }
+</style>
+
+<script>
+  const $ = (id: string) => document.getElementById(id)!;
+  const esc = (s: any) => (s == null ? '' : String(s)).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
+  const M = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const fdate = (iso: string) => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${M[+m[2]-1]} ${m[1]}` : iso; };
+  const eff = (p: any) => p.presented || ((p.year || '0000') + '-00-00');
+  let ALL: any[] = []; const st = { q: '', tag: '', year: '' };
+
+  const hl = (t: string, q: string) => { const e = esc(t); if (!q) return e; try { return e.replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig'), '<mark>$1</mark>'); } catch { return e; } };
+  const match = (p: any) => {
+    if (st.tag && !(p.tags || []).includes(st.tag)) return false;
+    if (st.year && String(p.year) !== st.year) return false;
+    if (st.q) { const h = ((p.title || '') + ' ' + (p.authors || []).join(' ') + ' ' + (p.venue || '')).toLowerCase(); if (!h.includes(st.q.toLowerCase())) return false; }
+    return true;
+  };
+  function render() {
+    const list = ALL.filter(match);
+    $('count').textContent = list.length === ALL.length ? `Showing all ${list.length} papers` : `${list.length} of ${ALL.length} papers`;
+    if (!list.length) { $('feed').innerHTML = ''; $('status').textContent = 'No papers match these filters.'; $('status').style.display = ''; return; }
+    $('status').style.display = 'none';
+    const au = (a: string[]) => (a || []).length <= 6 ? (a || []).join(', ') : a.slice(0, 6).join(', ') + ' … +' + (a.length - 6) + ' more';
+    $('feed').innerHTML = list.map((p) => {
+      const t = p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${hl(p.title, st.q)}</a>` : hl(p.title, st.q);
+      const badge = p.presented ? `<span class="badge">Discussed ${esc(fdate(p.presented))}</span>` : '';
+      const tags = (p.tags || []).map((x: string) => `<span class="tag">${esc(x)}</span>`).join('');
+      return `<li class="item"><h3>${t}</h3>${badge}<div class="au">${hl(au(p.authors), st.q)}</div><div class="mt">${hl(p.venue || '', st.q)}${p.year ? ' · ' + esc(p.year) : ''}</div>${tags ? `<div class="tgs">${tags}</div>` : ''}</li>`;
+    }).join('');
+  }
+  try {
+    const d = JSON.parse(document.getElementById('lib')?.textContent || '{}');
+    ALL = (d.papers || []).slice().sort((a: any, b: any) => { const ea = eff(a), eb = eff(b); return ea < eb ? 1 : ea > eb ? -1 : (a.title || '').localeCompare(b.title || ''); });
+    (d.stats?.by_tag || []).forEach(([t, c]: [string, number]) => { const o = document.createElement('option'); o.value = t; o.textContent = `${t} (${c})`; $('tag').appendChild(o); });
+    (d.stats?.by_year || []).slice().sort((a: any, b: any) => b[0].localeCompare(a[0])).forEach(([y, c]: [string, number]) => { const o = document.createElement('option'); o.value = y; o.textContent = `${y} (${c})`; $('year').appendChild(o); });
+    let t: any; $('q').addEventListener('input', (e: any) => { clearTimeout(t); t = setTimeout(() => { st.q = e.target.value.trim(); render(); }, 120); });
+    $('tag').addEventListener('change', (e: any) => { st.tag = e.target.value; render(); });
+    $('year').addEventListener('change', (e: any) => { st.year = e.target.value; render(); });
+    $('clear').addEventListener('click', () => { st.q = st.tag = st.year = ''; ($('q') as HTMLInputElement).value = ''; ($('tag') as HTMLSelectElement).value = ''; ($('year') as HTMLSelectElement).value = ''; render(); });
+    render();
+  } catch (err: any) { $('status').innerHTML = 'Could not load the library (' + esc(String(err && err.message || err)) + ').'; }
+</script>

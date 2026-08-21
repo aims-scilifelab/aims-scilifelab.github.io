@@ -1,0 +1,62 @@
+---
+import { getEntry } from 'astro:content';
+const s = (await getEntry('site', 'settings'))!.data;
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <div class="fb-name">{s.name}</div>
+      <div class="fb-desc muted">{s.descriptor}</div>
+    </div>
+
+    <div class="foot-inst muted">
+      {s.institution.map((line) => <div>{line}</div>)}
+      {s.visitingAddress.length > 0 && (
+        <div class="addr">
+          <div class="addr-l faint">Visiting address</div>
+          {s.visitingAddress.map((l) => <div>{l}</div>)}
+        </div>
+      )}
+      {s.postalAddress.length > 0 && (
+        <div class="addr">
+          <div class="addr-l faint">Postal address</div>
+          {s.postalAddress.map((l) => <div>{l}</div>)}
+        </div>
+      )}
+    </div>
+
+    <nav class="foot-nav" aria-label="Footer">
+      {s.footerLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+  </div>
+
+  <div class="wrap foot-bottom">
+    <span class="faint">© {year} {s.name} Laboratory</span>
+    {s.institutionLinks.length > 0 && (
+      <span class="inst-links">
+        {s.institutionLinks.map((l) => <a class="link" href={l.href} target="_blank" rel="noopener">{l.label}</a>)}
+      </span>
+    )}
+  </div>
+</footer>
+
+<style>
+  footer { border-top: 1px solid var(--border); margin-top: clamp(3rem, 6vw, 6rem); padding-block: clamp(2rem, 4vw, 3rem) 1.5rem; }
+  .foot-in { display: grid; grid-template-columns: 1.2fr 1fr auto; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+  .fb-name { font-weight: 800; font-size: 1.15rem; letter-spacing: -.03em; }
+  .fb-desc { font-size: var(--step--1); margin-top: 2px; }
+  .foot-inst { font-size: var(--step--1); line-height: 1.7; }
+  .addr { margin-top: .8rem; line-height: 1.5; }
+  .addr-l { text-transform: uppercase; letter-spacing: .06em; font-size: calc(var(--step--1) - 1px); margin-bottom: .1rem; }
+  .foot-nav { display: flex; flex-direction: column; gap: 8px; }
+  .foot-nav a { color: var(--muted); font-size: var(--step--1); }
+  .foot-nav a:hover { color: var(--text); }
+  .foot-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+                 margin-top: clamp(1.5rem, 3vw, 2.5rem); padding-top: 1.2rem; border-top: 1px solid var(--border); font-size: var(--step--1); }
+  .inst-links { display: flex; gap: 16px; }
+  @media (max-width: 720px) {
+    .foot-in { grid-template-columns: 1fr; gap: 1.5rem; }
+    .foot-nav { flex-flow: row wrap; gap: 8px 18px; }
+  }
+</style>

@@ -1,0 +1,155 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { getEntry, getCollection } from 'astro:content';
+
+const h = (await getEntry('home', 'home'))!.data;
+const s = (await getEntry('site', 'settings'))!.data;
+const mapQuery = encodeURIComponent(['SciLifeLab', ...(s.visitingAddress ?? [])].join(', '));
+
+const pub = (c: { data: { draft?: boolean } }) => !c.data.draft;
+const methods = (await getCollection('methods', pub)).sort((a, b) => a.data.order - b.data.order);
+const domains = (await getCollection('domains', pub)).sort((a, b) => a.data.order - b.data.order);
+
+const leads = (await getCollection('people', (p) => !p.data.draft && p.data.category === 'lead'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+// latest reading session
+const sessions = (await getCollection('readingSessions', pub))
+  .sort((a, b) => +b.data.date - +a.data.date);
+const latest = sessions[0];
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+<Base>
+  <Hero />
+
+  <!-- Research introduction: Methods × Domains -->
+  <section class="section" aria-labelledby="rh">
+    <div class="wrap">
+      <p class="eyebrow">Research</p>
+      <h2 id="rh" class="mx">Methods <span class="x">×</span> Domains</h2>
+      <p class="lede muted intro">{h.researchIntro}</p>
+
+      <div class="cols">
+        <div>
+          <h3 class="colh">Methods</h3>
+          <ul class="theme-list">
+            {methods.map((m) => (
+              <li><a href="/research"><span class="tt">{m.data.title}</span><span class="ts muted">{m.data.summary}</span></a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 class="colh">Domains</h3>
+          <ul class="theme-list">
+            {domains.map((m) => (
+              <li><a href="/research"><span class="tt">{m.data.title}</span><span class="ts muted">{m.data.summary}</span></a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <p class="more"><a class="link" href="/research">Explore our research →</a></p>
+    </div>
+  </section>
+
+  <!-- What we're reading -->
+  {latest && (
+    <section class="section" aria-labelledby="wr">
+      <div class="wrap">
+        <p class="eyebrow">What we're reading</p>
+        <h2 id="wr">This week</h2>
+        {h.readingIntro && <p class="lede muted intro">{h.readingIntro}</p>}
+        <ul class="read-list">
+          {latest.data.papers.slice(0, 3).map((p) => (
+            <li>
+              <a href={p.url || '#'} target={p.url ? '_blank' : undefined} rel="noopener">{p.title}</a>
+              <div class="faint sel-meta">{p.venue}{p.year ? ` · ${p.year}` : ''}</div>
+              {p.why && <div class="muted sel-note"><strong>Why we picked it:</strong> {p.why}</div>}
+            </li>
+          ))}
+        </ul>
+        <p class="faint reading-date">Discussed {fmt(latest.data.date)}</p>
+        <p class="more"><a class="link" href="/what-we-read">See what we read →</a></p>
+      </div>
+    </section>
+  )}
+
+  <!-- People / culture teaser -->
+  <section class="section band" aria-labelledby="pc">
+    <div class="wrap">
+      <p class="eyebrow">The lab</p>
+      <h2 id="pc">People &amp; culture</h2>
+      {h.cultureIntro && <p class="lede muted intro">{h.cultureIntro}</p>}
+      {leads.length > 0 && (
+        <p class="leads muted">Led by {leads.map((l, i) => (<span>{i > 0 ? ' & ' : ''}<strong>{l.data.name}</strong></span>))}.</p>
+      )}
+      <p class="more"><a class="link" href="/groups">Our groups →</a> &nbsp; <a class="link" href="/people">Meet the lab →</a> &nbsp; <a class="link" href="/life-at-aims">Life at AIMS →</a></p>
+    </div>
+  </section>
+
+  <!-- Join -->
+  <section class="section join" aria-labelledby="jn">
+    <div class="wrap">
+      <h2 id="jn">{h.joinIntro}</h2>
+      <p class="more"><a class="btn btn-ghost" href="/join">Join AIMS</a></p>
+    </div>
+  </section>
+
+  <!-- Find us — SciLifeLab photo band with a small inset map -->
+  <section class="findus" aria-labelledby="fu">
+    <img class="findus-img" src="/scilifelab.jpg" alt="Science for Life Laboratory in Solna, where AIMS is based" loading="lazy" width="1920" height="720" />
+    <div class="findus-shade"></div>
+    <div class="wrap findus-in">
+      <div class="findus-lead">
+        <p class="eyebrow">Find us</p>
+        <h2 id="fu">Based at SciLifeLab, Solna</h2>
+        <p class="muted">AIMS is part of KTH Royal Institute of Technology and Science for Life Laboratory, in Solna, Stockholm.</p>
+        <div class="findus-map">
+          <div class="map-card-sm">
+            <iframe title="Map showing AIMS at SciLifeLab, Tomtebodavägen 23A, Solna"
+              src={`https://www.google.com/maps?q=${mapQuery}&z=15&output=embed`}
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .mx { max-width: 20ch; }
+  .intro { margin-top: 1rem; }
+  .band { background: var(--bg-2); border-block: 1px solid var(--border); }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); margin-top: 2.2rem; }
+  .colh { font-size: var(--step--1); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .8rem; }
+  .theme-list { list-style: none; padding: 0; display: grid; gap: .3rem; }
+  .theme-list a { display: block; padding: .8rem 0; border-top: 1px solid var(--border); }
+  .theme-list li:last-child a { border-bottom: 1px solid var(--border); }
+  .theme-list .tt { display: block; font-weight: 600; }
+  .theme-list .ts { display: block; font-size: var(--step--1); margin-top: .15rem; }
+  .theme-list a:hover .tt { color: var(--blue); }
+  .more { margin-top: 1.8rem; }
+  .sel-list, .read-list { list-style: none; padding: 0; display: grid; gap: 1.3rem; margin-top: 1.8rem; max-width: var(--measure); }
+  .sel-list > li > a, .read-list > li > a { font-weight: 600; font-size: var(--step-0); }
+  .sel-list > li > a:hover, .read-list > li > a:hover { color: var(--blue); }
+  .sel-meta { font-size: var(--step--1); margin-top: .25rem; }
+  .sel-note { font-size: var(--step--1); margin-top: .3rem; }
+  .reading-date { margin-top: 1.2rem; font-size: var(--step--1); }
+  .leads { margin-top: 1rem; }
+  .join h2 { max-width: 20ch; }
+
+  /* Find-us photo band with a small inset map */
+  .findus { position: relative; overflow: hidden; margin-top: clamp(2rem, 5vw, 4rem);
+            min-height: clamp(340px, 44vh, 480px); display: flex; align-items: flex-end; }
+  .findus-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.62) saturate(.92); }
+  .findus-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,12,.15), rgba(8,8,12,.78)); }
+  .findus-in { position: relative; width: 100%; padding-block: clamp(1.6rem, 4vw, 2.6rem); }
+  .findus-lead h2 { font-size: var(--step-2); text-shadow: 0 2px 18px rgba(0,0,0,.6); }
+  .findus-lead p { margin-top: .5rem; max-width: 44ch; text-shadow: 0 1px 12px rgba(0,0,0,.6); }
+  .findus-map { margin-top: 1.1rem; }
+  .map-card-sm { width: clamp(220px, 34vw, 300px); border: 1px solid rgba(255,255,255,.28); border-radius: 8px;
+                 overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+  .map-card-sm iframe { width: 100%; height: 150px; border: 0; display: block; }
+  .map-cta-sm { display: inline-block; margin-top: .55rem; font-size: var(--step--1); text-shadow: 0 1px 10px rgba(0,0,0,.6); }
+  @media (max-width: 640px) { .cols { grid-template-columns: 1fr; } .map-card-sm { width: 100%; max-width: 320px; } }
+</style>

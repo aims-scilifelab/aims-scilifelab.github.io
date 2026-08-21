@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('openScience', (r) => !r.data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+const order = ['code', 'models', 'data', 'tools', 'benchmarks', 'protocols', 'other'];
+const label: Record<string, string> = { code: 'Code', models: 'Models', data: 'Data', tools: 'Tools', benchmarks: 'Benchmarks', protocols: 'Protocols', other: 'Other resources' };
+const groups = order.map((c) => ({ c, items: items.filter((i) => i.data.category === c) })).filter((g) => g.items.length);
+---
+<Base title="Open Science" description="Public code, models, tools and resources from AIMS, released where permitted.">
+  <PageHeader eyebrow="Open Science" title="Open Science"
+    lede="We release code, models, tools and other resources where we can, to make our work useful and reproducible." />
+
+  <section class="section-tight">
+    <div class="wrap">
+      {groups.length > 0 ? groups.map((g) => (
+        <div class="grp">
+          <h2 class="cat">{label[g.c]}</h2>
+          <ul class="res">
+            {g.items.map((i) => (
+              <li>
+                {i.data.url ? <a class="link" href={i.data.url} target="_blank" rel="noopener">{i.data.title}</a> : <span>{i.data.title}</span>}
+                {i.data.description && <span class="faint"> — {i.data.description}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )) : (
+        <p class="muted measure evergreen">Public releases — code, models, tools and benchmarks — will be listed here.</p>
+      )}
+
+      <p class="muted measure sensitive">Sensitive human data are not made publicly available. Public resources are
+      released where permitted by ethics approvals, data-use agreements and applicable governance requirements.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cat { font-size: var(--step-1); }
+  .grp { margin-bottom: 2rem; }
+  .res { list-style: none; padding: 0; margin-top: .9rem; display: grid; gap: .6rem; max-width: var(--measure); }
+  .evergreen { margin-top: .5rem; }
+  .sensitive { margin-top: 2.5rem; padding-top: 1.4rem; border-top: 1px solid var(--border); font-size: var(--step--1); }
+</style>

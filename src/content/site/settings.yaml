@@ -1,0 +1,43 @@
+# ---------------------------------------------------------------------------
+# GLOBAL SITE IDENTITY  —  edit the lab name, descriptor, institution,
+# navigation and footer here. Changing `nav` updates the menu everywhere.
+# ---------------------------------------------------------------------------
+name: "AIMS"
+descriptor: "AI × Medicine × Life Sciences"
+tagline: "We develop machine-learning methods to understand biology and improve medicine."
+institution:
+  - "KTH Royal Institute of Technology"
+  - "Science for Life Laboratory (SciLifeLab)"
+location: "Stockholm, Sweden"
+# Visiting + postal address (SciLifeLab, Solna). Each line is a separate row.
+visitingAddress:
+  - "Tomtebodavägen 23A"
+  - "171 65 Solna, Sweden"
+postalAddress:
+  - "Science for Life Laboratory"
+  - "Box 1031"
+  - "171 21 Solna, Sweden"
+domain: "https://aims-lab.se"
+contactEmail: ""            # leave blank to keep no public email; used on Join if set
+
+nav:
+  - { label: "Research",     href: "/research" }
+  - { label: "People",       href: "/people" }
+  - { label: "Publications", href: "/publications" }
+  - { label: "What We Read", href: "/what-we-read" }
+  - { label: "Life at AIMS", href: "/life-at-aims" }
+  - { label: "Open Science", href: "/open-science" }
+  - { label: "Join",         href: "/join", cta: true }
+
+footerLinks:
+  - { label: "Research",     href: "/research" }
+  - { label: "People",       href: "/people" }
+  - { label: "Publications", href: "/publications" }
+  - { label: "What We Read", href: "/what-we-read" }
+  - { label: "Join",         href: "/join" }
+
+institutionLinks:
+  - { label: "KTH",        href: "https://www.kth.se" }
+  - { label: "SciLifeLab", href: "https://www.scilifelab.se" }
+
+social: []                  # add e.g. { label: "GitHub", href: "https://github.com/..." } only if real

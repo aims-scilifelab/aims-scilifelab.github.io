@@ -1,0 +1,111 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getCollection } from 'astro:content';
+
+const pub = (c: { data: { draft?: boolean } }) => !c.data.draft;
+const methods = (await getCollection('methods', pub)).sort((a, b) => a.data.order - b.data.order);
+const domains = (await getCollection('domains', pub)).sort((a, b) => a.data.order - b.data.order);
+const collabs = (await getCollection('collaborations', pub)).sort((a, b) => a.data.order - b.data.order);
+const groups = (await getCollection('groups', pub)).sort((a, b) => a.data.order - b.data.order);
+const people = await getCollection('people', pub);
+const sizeOf = (lead: string) => people.filter((p) => p.data.status === 'current' && p.data.group_leader === lead).length;
+
+const rendered = async (list: typeof methods) =>
+  Promise.all(list.map(async (e) => ({ data: e.data, Content: (await e.render()).Content })));
+const methodsR = await rendered(methods);
+const domainsR = await rendered(domains);
+---
+<Base title="Research" description="AIMS develops machine-learning methods for problems across medicine and the life sciences — from foundational methodology to real-world scientific and clinical applications.">
+  <PageHeader eyebrow="Research" title="Methods × Domains"
+    lede="We develop artificial-intelligence and machine-learning methods for problems across medicine and the life sciences — building learning systems that generalise across settings, adapt to new data, and collaborate with human experts, especially where data are scarce and uncertainty matters. Our work ranges from foundational methodology to real-world scientific and clinical applications." />
+
+  {groups.length > 0 && (
+    <section class="section-tight" aria-labelledby="groups-h">
+      <div class="wrap">
+        <h2 id="groups-h" class="cat">Research groups</h2>
+        <p class="scale muted">AIMS brings together several research groups under one roof — sharing methods, a reading group and a lot of cross-disciplinary work.</p>
+        <div class="grid">
+          {groups.map((g) => {
+            const n = sizeOf(g.data.lead);
+            return (
+              <a class="card theme grp" href={`/groups/${g.slug}`}>
+                <h3>{g.data.name}</h3>
+                {g.data.tagline && <p class="gt">{g.data.tagline}</p>}
+                <p class="faint gl">Led by {g.data.lead}{n > 0 ? ` · ${n} member${n > 1 ? 's' : ''}` : ''}</p>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section-tight" aria-labelledby="methods-h">
+    <div class="wrap">
+      <h2 id="methods-h" class="cat">Methods</h2>
+      <div class="grid">
+        {methodsR.map(({ data, Content }) => (
+          <article class="card theme">
+            <h3>{data.title}</h3>
+            <div class="prose"><Content /></div>
+            {data.keywords.length > 0 && (
+              <ul class="kw">{data.keywords.map((k) => <li class="tag">{k}</li>)}</ul>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="domains-h">
+    <div class="wrap">
+      <h2 id="domains-h" class="cat">Domains</h2>
+      <p class="scale muted">Across scales from molecules and cells to tissues and patients.</p>
+      <div class="grid">
+        {domainsR.map(({ data, Content }) => (
+          <article class="card theme">
+            <h3>{data.title}</h3>
+            <div class="prose"><Content /></div>
+            {data.keywords.length > 0 && (
+              <ul class="kw">{data.keywords.map((k) => <li class="tag">{k}</li>)}</ul>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {collabs.length > 0 && (
+    <section class="section" aria-labelledby="collab-h">
+      <div class="wrap">
+        <h2 id="collab-h" class="cat">Collaborations</h2>
+        <p class="lede muted measure">Research at AIMS is collaborative. We work with researchers, clinicians, life-science groups and industry across institutions and disciplines.</p>
+        <ul class="collab-list">
+          {collabs.map((c) => (
+            <li>
+              {c.data.url ? <a class="link" href={c.data.url} target="_blank" rel="noopener">{c.data.name}</a> : <span>{c.data.name}</span>}
+              {c.data.note && <span class="faint"> — {c.data.note}</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .cat { font-size: var(--step-2); }
+  .scale { margin-top: .5rem; font-style: italic; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2.5vw, 1.5rem); margin-top: 1.6rem; }
+  .theme { padding: clamp(1.2rem, 3vw, 1.8rem); }
+  .theme h3 { font-size: var(--step-1); }
+  .theme .prose { margin-top: .7rem; font-size: var(--step-0); }
+  .grp { display: block; transition: border-color .15s, transform .15s; }
+  .grp:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .grp .gt { margin-top: .5rem; color: var(--muted); font-size: var(--step-0); }
+  .grp .gl { margin-top: .6rem; font-size: var(--step--1); }
+  .kw { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .collab-list { list-style: none; padding: 0; margin-top: 1.4rem; display: grid; gap: .7rem; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+</style>

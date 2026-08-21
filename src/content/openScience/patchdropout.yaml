@@ -1,0 +1,6 @@
+title: "PatchDropout"
+category: "code"
+url: "https://github.com/yueliukth/PatchDropout"
+description: "Reference implementation for economising vision transformers with patch dropout (WACV 2023)."
+order: 20
+draft: false

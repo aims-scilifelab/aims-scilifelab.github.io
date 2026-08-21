@@ -1,0 +1,7 @@
+# TEMPLATE — copy & set draft: false to add a real collaboration. Do not invent organisations.
+name: "Example Collaborator"
+kind: "university"
+url: ""
+note: ""
+order: 100
+draft: true

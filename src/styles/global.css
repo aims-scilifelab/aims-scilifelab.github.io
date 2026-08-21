@@ -1,0 +1,141 @@
+/* ============================================================= *
+ * AIMS — design tokens + base styles
+ * Colours, type scale and spacing live here. Change a value once
+ * and it updates everywhere. Page/section styling lives inside the
+ * individual .astro components (scoped), not in this file.
+ * ============================================================= */
+
+:root {
+  /* Core palette — black/white is AIMS; blue↔wine is the intersection */
+  --bg:        #0a0a0e;
+  --bg-2:      #101017;      /* raised panels / cards */
+  --bg-3:      #15151e;
+  --text:      #eef0f5;      /* primary text (high contrast) */
+  --muted:     #a7a9b6;      /* secondary text — still AA on --bg */
+  --faint:     #7a7c8c;      /* decorative metadata only */
+  --border:    rgba(255,255,255,.10);
+  --border-strong: rgba(255,255,255,.18);
+
+  --blue:      #6aa4ee;      /* functional links / accents */
+  --blue-deep: #2f5f9e;
+  --wine:      #b6435f;      /* × branding, subtle accents, highlight */
+  --wine-deep: #8f3049;
+
+  /* The × treatment: blue → wine. Used ONLY on × marks, never on prose. */
+  --x-grad: linear-gradient(115deg, var(--blue) 0%, #7f7fc0 55%, var(--wine) 100%);
+
+  --sel: rgba(106,164,238,.28);
+
+  /* Fluid type scale (clamp: min, preferred, max) */
+  --step--1: clamp(.82rem, .78rem + .2vw, .9rem);
+  --step-0:  clamp(1rem, .96rem + .2vw, 1.12rem);     /* body 16–18px */
+  --step-1:  clamp(1.16rem, 1.05rem + .5vw, 1.4rem);
+  --step-2:  clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
+  --step-3:  clamp(1.7rem, 1.3rem + 2vw, 2.6rem);
+  --step-4:  clamp(2.4rem, 1.6rem + 4vw, 4.4rem);     /* hero H1 ~38→~70px */
+
+  --measure: 66ch;          /* readable line length */
+  --wrap: 1120px;
+  --wrap-narrow: 820px;
+  --gap: clamp(1rem, .6rem + 2vw, 2rem);
+
+  --radius: 10px;
+  --nav-h: 62px;
+
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+/* Reserve the scrollbar gutter on every page so switching between short
+   pages (no scrollbar) and long pages (scrollbar) never shifts the layout. */
+/* Reserve the scrollbar space AND keep the vertical scrollbar always present,
+   so navigating between short and long pages never shifts the layout sideways.
+   (overflow-y:scroll is the belt-and-suspenders fix: body clips overflow-x,
+   which otherwise makes body the scroller and defeats scrollbar-gutter on html.) */
+html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; overflow-y: scroll; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+::selection { background: var(--sel); }
+
+img, video, svg { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; text-decoration: none; }
+a.link, .prose a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+a.link:hover, .prose a:hover { color: #8fbcf3; }
+
+h1, h2, h3, h4 { line-height: 1.15; letter-spacing: -.02em; font-weight: 700; text-wrap: balance; }
+h1 { font-size: var(--step-4); letter-spacing: -.03em; }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-1); }
+p { text-wrap: pretty; }
+
+/* The × mark — the only place the blue→wine gradient appears */
+.x {
+  background: var(--x-grad);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; font-weight: 500; padding: 0 .02em;
+}
+
+/* Layout helpers */
+.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(20px, 5vw, 40px); }
+.narrow { max-width: var(--wrap-narrow); }
+.measure { max-width: var(--measure); }
+.section { padding-block: clamp(3rem, 2rem + 6vw, 6rem); }
+.section-tight { padding-block: clamp(2rem, 1.4rem + 3vw, 3.5rem); }
+.eyebrow { font-size: var(--step--1); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: var(--step-1); color: var(--text); max-width: var(--measure); }
+.muted { color: var(--muted); }
+.faint { color: var(--faint); }
+
+/* Buttons — restrained. Primary = light fill / dark text. */
+.btn {
+  display: inline-flex; align-items: center; gap: .5em;
+  padding: .7em 1.15em; border-radius: var(--radius);
+  font-weight: 600; font-size: var(--step--1); line-height: 1;
+  border: 1px solid transparent; cursor: pointer; transition: background .15s, border-color .15s, color .15s;
+  min-height: 44px;
+}
+.btn-primary { background: var(--text); color: #0a0a0e; }
+.btn-primary:hover { background: #fff; }
+.btn-ghost { border-color: var(--border-strong); color: var(--text); background: transparent; }
+.btn-ghost:hover { border-color: var(--blue); color: #fff; }
+
+/* Cards */
+.card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); }
+
+/* Chips / tags */
+.tag {
+  display: inline-block; font-size: var(--step--1); color: var(--muted);
+  background: var(--bg-3); border: 1px solid var(--border); border-radius: 7px; padding: 3px 9px;
+}
+
+/* Accessibility: visible focus + skip link + reduced motion */
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+.skip {
+  position: absolute; left: 12px; top: -60px; z-index: 100;
+  background: var(--text); color: #0a0a0e; padding: 10px 16px; border-radius: 8px; font-weight: 600;
+  transition: top .15s;
+}
+.skip:focus { top: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+
+/* Simple prose defaults for Markdown-rendered bodies */
+.prose { color: var(--muted); max-width: var(--measure); }
+.prose > * + * { margin-top: .9em; }
+.prose strong { color: var(--text); font-weight: 600; }
+.prose h2, .prose h3 { color: var(--text); margin-top: 1.4em; }
+.prose ul { padding-left: 1.2em; }
+.prose li { margin-top: .3em; }
