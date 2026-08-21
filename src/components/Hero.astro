@@ -7,6 +7,7 @@ const h = (await getEntry('home', 'home'))!.data;
 const AI = [
   'ai_chip.mp4', 'ai_datacenter.mp4', 'ai_fiber.mp4', 'ai_llm.mp4', 'ai_umap.mp4',
   'ai_drug_discovery.mp4', 'ai_loss_landscape.mp4', 'ai_vit.mp4', 'ai_neural.mp4',
+  'tokens.png',
   'code:medvqa',   // a live-typed code panel (see the code-slide helpers in the script below)
 ];
 const BIO = [
@@ -14,6 +15,7 @@ const BIO = [
   'med_ultrasound_ai.mp4', 'bio_dividing_cells.mp4', 'bio_spatial.mp4',
   'micro_fluorescence_cells.png', 'med_fundus.mp4', 'micro_em.png',
   'med_kidney.mp4', 'bio_cell_illustration.png', 'med_mammogram.mp4',
+  'chestxray.png', 'brainmri.png', 'cellpainting.png', 'neurons.png',
   'seq:dna',   // a scrolling DNA/RNA sequence panel (see the seq-slide helpers in the script below)
 ];
 ---
@@ -88,23 +90,30 @@ const BIO = [
   // Any list entry that starts with "code:" renders this instead of a file.
   // Edit CODE to change what's typed. Colours live in global.css (.codeslide).
   const CODE = [
-    "# Medical visual question answering",
-    "from aims import VisionLanguageModel, load_scan",
+    "# Medical VQA with calibrated uncertainty",
+    "import torch",
+    "from aims import VisionLanguageModel",
+    "from aims.io import load_scan",
     "",
-    "model = VisionLanguageModel.from_pretrained('aims/med-vqa')",
-    "scan  = load_scan('chest_ct.nii.gz')",
+    "model = VisionLanguageModel.from_pretrained(",
+    "    'aims/med-vqa-3b',",
+    ").eval()",
     "",
-    "question = 'Is there evidence of pneumonia?'",
-    "answer, uncertainty = model.ask(scan, question)",
+    "scan = load_scan('chest_ct.nii.gz')",
+    "q = 'Is there evidence of pneumonia?'",
     "",
-    "print(answer)       # 'Yes — right lower lobe'",
-    "print(uncertainty)  # 0.08",
+    "with torch.no_grad():",
+    "    out = model.generate(scan, q, n=16)",
+    "",
+    "answer = out.consensus()      # majority vote",
+    "conf = 1.0 - out.entropy()    # calibrated 0-1",
+    "print(f'{answer}  (p={conf:.2f})')",
   ].join("\n");
   const csEsc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   // Single pass so we never re-scan (and corrupt) markup we've already inserted.
   // Order matters: comment first (consumes the rest of a line, incl. any quotes),
-  // then strings, then keywords, then numbers. Quotes are left literal by csEsc.
-  const CS_RE = /(#[^\n]*)|('[^'\n]*'|"[^"\n]*")|\b(from|import|as|def|return|for|in|if|else|print|None|True|False)\b|\b(\d+\.?\d*)\b/g;
+  // then strings (with optional f/r/b prefix), then keywords, then numbers.
+  const CS_RE = /(#[^\n]*)|([frbFRB]{0,2}(?:'[^'\n]*'|"[^"\n]*"))|\b(import|from|as|with|def|return|for|in|if|elif|else|not|and|or|is|None|True|False|print|class|try|except|finally|while|lambda|yield|global|assert|pass|break|continue|async|await|del|raise)\b|\b(\d+\.?\d*)\b/g;
   const hlCode = (s) => csEsc(s).replace(CS_RE, (m, c, str, kw) =>
     c ? '<span class="c">' + c + '</span>'
     : str ? '<span class="s">' + str + '</span>'
@@ -113,10 +122,10 @@ const BIO = [
   const buildCode = () => {
     const wrap = document.createElement('div');
     wrap.className = 'codeslide nokb';
-    wrap.innerHTML = '<div class="cs-bar"><i></i><i></i><i></i><b>med_vqa.py</b></div>'
-      + '<pre class="cs-pre"><code class="cs-code"></code><span class="cs-caret"></span></pre>';
+    wrap.innerHTML = '<div class="cs-window"><div class="cs-bar"><i></i><i></i><i></i><b>med_vqa.py</b></div>'
+      + '<pre class="cs-pre"><code class="cs-code"></code><span class="cs-caret"></span></pre></div>';
     const codeEl = wrap.querySelector('.cs-code');
-    const per = Math.max(14, Math.floor(3400 / CODE.length));
+    const per = Math.max(13, Math.floor(4200 / CODE.length));
     let i = 0;
     const type = () => {
       if (!wrap.isConnected) return;
@@ -132,19 +141,23 @@ const BIO = [
   // Rows of colour-coded DNA/RNA bases scrolling sideways, each row at its
   // own speed and direction. No video/mp4. Colours live in global.css.
   const isSeq = (f) => typeof f === 'string' && f.indexOf('seq:') === 0;
-  const SEQ_ROWS = 16, SEQ_LEN = 84;   // rows × bases-per-half (content is doubled to loop)
-  const randSeq = (n, alpha) => { let s = ''; for (let i = 0; i < n; i++) s += alpha[Math.floor(Math.random() * alpha.length)]; return s; };
+  // A real fragment of the human TP53 (p53) tumour-suppressor coding sequence.
+  const TP53 = 'ATGGAGGAGCCGCAGTCAGATCCTAGCGTCGAGCCCCCTCTGAGTCAGGAAACATTTTCAGACCTATGGAAACTACTTCCTGAAAACAACGTTCTGTCCCCCTTGCCGTCCCAAGCAATGGATGATTTGATGCTGTCCCCGGACGATATTGAACAATGGTTCACTGAAGACCCAGGTCCAGATGAAGCTCCCAGAATGCCAGAGGCTGCTCCCCCCGTGGCCCCTGCACCAGCAGCTCCTACACCGGCGGCCCCTGCACCAGCCCCCTCCTGGCCCCTGTCATCTTCTGTCCCTTCCCAGAAAACCTACCAGGGCAGCTACGGTTTCCGTCTGGGCTTCTTGCATTCTGGGACAGCCAAGTCTGTGACTTGCACGTACTCCCCTGCCCTCAACAAGATGTTTTGCCAACTGGCCAAGACCTGCCCTGTGCAGCTGTGGGTTGATTCCACACCCCCGCCCGGCACCCGCGTCCGCGCCATGGCCATCTACAAGCAGTCACAGCACATGACGGAGGTTGTGAGGCGCTGCCCCCACCATGAGCGCTGCTCAGATAGCGATGGTCTGGCCCCTCCTCAGCATCTTATCCGAGTGGAAGGAAATTTGCGTGTGGAGTATTTGGATGACAGAAACACTTTTCGACATAGTGTGGTGGTGCCCTATGAGCCGCCTGAGGTTGGCTCTGACTGTACCACCATCCACTACAACTACATGTGTAACAGTTCCTGCATGGGCGGCATGAACCGGAGGCCCATCCTCACCATCATCACACTGGAAGAC';
+  const SEQ_ROWS = 26, SEQ_LEN = 130;   // rows × bases-per-half (content is doubled to loop)
   const colorSeq = (seq) => seq.replace(/[ATGCU]/g, (c) => '<span class="b' + c + '">' + c + '</span>');
   const buildSeq = () => {
     const wrap = document.createElement('div');
     wrap.className = 'seqslide nokb';
+    const G = TP53 + TP53;                                  // doubled so any window of SEQ_LEN exists
+    const start = Math.floor(Math.random() * TP53.length);  // a different window each appearance
     let html = '<div class="seq-rows">';
     for (let r = 0; r < SEQ_ROWS; r++) {
-      const isRNA = (r % 4 === 2);                          // an occasional RNA row (uses U)
-      const alpha = isRNA ? 'AUGC' : 'ATGC';
-      const colored = colorSeq(randSeq(SEQ_LEN, alpha));
-      const dur = 24 + (r % 6) * 8;                         // 24s … 64s → different speeds
-      const dir = (r % 2) ? 'seq-r' : 'seq-l';             // alternate scroll direction
+      const off = (start + r * SEQ_LEN) % TP53.length;      // lay the gene out row by row
+      let slice = G.slice(off, off + SEQ_LEN);
+      if (r % 5 === 4) slice = slice.replace(/T/g, 'U');    // every 5th row = mRNA (T→U, violet)
+      const colored = colorSeq(slice);
+      const dur = 26 + (r % 7) * 7;                          // 26s … 68s → many different speeds
+      const dir = (r % 2) ? 'seq-r' : 'seq-l';              // alternate scroll direction
       html += '<div class="seq-row ' + dir + '" style="animation-duration:' + dur + 's">'
             + '<span class="seq-run">' + colored + colored + '</span></div>';
     }
@@ -178,14 +191,16 @@ const BIO = [
         el.addEventListener('load', ok, { once: true }); el.addEventListener('error', fail, { once: true }); setTimeout(ok, 5000);
       }
     });
-    const dwell = (el) => el.classList.contains('codeslide') ? 8500
-      : el.classList.contains('seqslide') ? 9000
+    const dwell = (el) => el.classList.contains('codeslide') ? 11000
+      : el.classList.contains('seqslide') ? 9500
       : (el.tagName === 'VIDEO' && isFinite(el.duration) && el.duration > 0) ? Math.min(el.duration * 1000, MAX_DWELL) : IMG_DWELL;
     async function next() {
       const info = pick(); const el = await build(info);
       if (!el) { timer = setTimeout(next, 200); return; }
       const show = layers[1 - cur]; show.innerHTML = ''; show.appendChild(el);
       if (!el.classList.contains('nokb')) { el.classList.remove('kb'); void el.offsetWidth; el.classList.add('kb'); }
+      const hero = document.querySelector('.hero');
+      if (hero) hero.classList.toggle('panelmode', el.classList.contains('codeslide') || el.classList.contains('seqslide'));
       if (el.tagName === 'VIDEO') el.play().catch(() => {});
       show.style.opacity = 1; layers[cur].style.opacity = 0;
       if (poster) { poster.style.opacity = '0'; poster = null; }  // first clip is up — retire the poster so it can't show through crossfades
@@ -204,7 +219,10 @@ const BIO = [
     const isVid = (f) => /\.(mp4|webm|mov)$/i.test(f);
     const all = [...AI, ...BIO];
     const vids = all.filter(isVid);
-    const stills = all.filter((f) => !isVid(f));
+    // The typed-code editor is a desktop-only card — it needs the right-hand
+    // column, which phones don't have — so keep it off mobile. The DNA/RNA
+    // wall stays (it's a full-bleed still and reads well on a phone).
+    const stills = all.filter((f) => !isVid(f) && !isCode(f));
     const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
     const vOrder = shuffle(vids.slice());    // all videos, random order
     const sOrder = shuffle(stills.slice());  // all stills, random order
@@ -236,11 +254,13 @@ const BIO = [
         const file = queue[idx];
         const show = layers[1 - cur];
         show.innerHTML = ''; show.appendChild(mk(file));
+        const hero = document.querySelector('.hero');
+        if (hero) hero.classList.toggle('panelmode', isCode(file) || isSeq(file));
         show.style.opacity = 1; layers[cur].style.opacity = 0;
         if (poster) { poster.style.opacity = '0'; poster = null; }
         const old = cur; cur = 1 - cur;
         setTimeout(() => { const v = layers[old].querySelector('video'); if (v) { try { v.pause(); } catch (e) {} } layers[old].innerHTML = ''; }, FADE + 100);
-        setTimeout(step, isCode(file) ? 8500 : isSeq(file) ? 9000 : DWELL);
+        setTimeout(step, isCode(file) ? 11000 : isSeq(file) ? 9500 : DWELL);
       };
       step();
     }

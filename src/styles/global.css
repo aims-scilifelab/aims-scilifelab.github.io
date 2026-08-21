@@ -135,10 +135,19 @@ p { text-wrap: pretty; }
 /* Hero "code slide" — a typed-code panel that joins the background rotation.
  * These live here (global, unscoped) because the elements are created in JS
  * inside Hero.astro and so never receive Astro's scoped-style attribute. */
+/* The code lives in a bright editor CARD anchored to the RIGHT of the hero,
+ * clear of the headline column — so the hero text never overlaps the code. */
 .codeslide {
   position: absolute; inset: 0; overflow: hidden;
-  background: radial-gradient(120% 120% at 78% 12%, #141a2b 0%, #0a0d15 55%, #070910 100%);
-  display: flex; flex-direction: column;
+  display: flex; align-items: center; justify-content: flex-end;
+  background: radial-gradient(130% 130% at 84% 34%, rgba(22,28,46,.5), rgba(8,10,18,.12) 55%, transparent 76%);
+}
+.codeslide .cs-window {
+  width: min(43%, 600px); margin-right: clamp(.6rem, 1.5vw, 2.5rem);
+  display: flex; flex-direction: column; border-radius: 14px; overflow: hidden;
+  background: linear-gradient(160deg, #10162a, #0a0d18);
+  border: 1px solid rgba(255,255,255,.13);
+  box-shadow: 0 34px 90px rgba(0,0,0,.62), inset 0 1px 0 rgba(255,255,255,.05);
 }
 .codeslide .cs-bar {
   display: flex; align-items: center; gap: 7px;
@@ -153,11 +162,11 @@ p { text-wrap: pretty; }
   font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   font-size: clamp(.72rem, 1.4vw, .9rem); }
 .codeslide .cs-pre {
-  margin: 0; padding: clamp(1.1rem, 3.4vw, 2.8rem) clamp(1.2rem, 4.4vw, 3.4rem);
-  flex: 1; min-height: 0; overflow: hidden; white-space: pre; tab-size: 2;
+  margin: 0; padding: clamp(1.1rem, 2.6vw, 2rem) clamp(1.2rem, 3vw, 2.2rem);
+  min-height: 0; overflow: hidden; white-space: pre; tab-size: 2;
   font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-  font-size: clamp(1.05rem, 2.7vw, 2rem); line-height: 1.65;
-  color: #cdd6f4; text-shadow: 0 1px 12px rgba(0,0,0,.4);
+  font-size: clamp(.9rem, 1.25vw, 1.28rem); line-height: 1.58;
+  color: #dbe2f7; text-shadow: none;
 }
 .codeslide .cs-code .k { color: #c39bff; }   /* keywords  */
 .codeslide .cs-code .s { color: #9ece6a; }   /* strings   */
@@ -168,34 +177,69 @@ p { text-wrap: pretty; }
   vertical-align: text-bottom; background: #6aa4ee; animation: cs-blink 1s steps(1) infinite;
 }
 @keyframes cs-blink { 50% { opacity: 0; } }
+/* On phones the editor card goes full-width and centred. */
+@media (max-width: 820px) {
+  .codeslide { justify-content: center; }
+  .codeslide .cs-window { width: 92%; margin: 0; }
+  .codeslide .cs-pre { font-size: clamp(.8rem, 3.2vw, 1.05rem); }
+}
 
-/* Hero "sequence slide" — rows of colour-coded DNA/RNA bases scrolling
- * horizontally, each row at its own speed and direction. Also JS-created
- * in Hero.astro, so the styles live here (global, unscoped). */
+/* Hero "sequence slide" — a dense, blocky WALL of a real gene (human TP53),
+ * colour-coded, each row scrolling at its own speed/direction. JS-created in
+ * Hero.astro, so styles live here (global, unscoped). A left scrim keeps the
+ * wall on the right so it never sits under the hero headline. */
 .seqslide {
   position: absolute; inset: 0; overflow: hidden;
-  background: radial-gradient(120% 120% at 22% 8%, #0c1a18 0%, #081210 55%, #060b0a 100%);
+  background: radial-gradient(130% 130% at 72% 12%, #0c1a18 0%, #081210 55%, #060b0a 100%);
 }
 .seqslide .seq-rows {
-  position: absolute; inset: clamp(.4rem, 2vw, 1.6rem) 0;
-  display: flex; flex-direction: column; justify-content: space-evenly;
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: space-between;
 }
 .seqslide .seq-row {
-  white-space: nowrap; will-change: transform; font-weight: 600; letter-spacing: .06em;
-  font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-  font-size: clamp(.85rem, 1.9vw, 1.45rem); line-height: 1.15;
-  text-shadow: 0 1px 10px rgba(0,0,0,.45);
+  white-space: nowrap; will-change: transform; font-weight: 700; letter-spacing: -.02em;
+  font-family: "Consolas", "Menlo", "DejaVu Sans Mono", "Courier New", monospace;
+  font-size: clamp(.72rem, 1.35vw, 1.08rem); line-height: 1;
+  text-shadow: 0 1px 6px rgba(0,0,0,.5);
 }
-.seqslide .seq-run { display: inline-block; padding-left: 2vw; }
+.seqslide .seq-run { display: inline-block; padding-left: 1.5vw; }
 .seqslide .seq-l { animation-name: seq-left;  animation-timing-function: linear; animation-iteration-count: infinite; }
 .seqslide .seq-r { animation-name: seq-right; animation-timing-function: linear; animation-iteration-count: infinite; }
 @keyframes seq-left  { from { transform: translateX(0); }      to { transform: translateX(-50%); } }
 @keyframes seq-right { from { transform: translateX(-50%); }   to { transform: translateX(0); } }
+/* darken the left ~half where the hero text sits, so the gene reads on the right */
+.seqslide::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(6,11,10,.97) 0%, rgba(6,11,10,.9) 26%, rgba(6,11,10,.35) 52%, rgba(6,11,10,0) 72%);
+}
 .seqslide .bA { color: #5fd08a; }   /* adenine  — green  */
 .seqslide .bT { color: #ef6d7e; }   /* thymine  — coral  */
 .seqslide .bG { color: #f0b45c; }   /* guanine  — amber  */
 .seqslide .bC { color: #6aa4ee; }   /* cytosine — blue   */
-.seqslide .bU { color: #b98bff; }   /* uracil   — violet (RNA) */
+.seqslide .bU { color: #b98bff; }   /* uracil   — violet (mRNA rows) */
+@media (max-width: 820px) {
+  /* On phones the hero text nearly fills the screen, so the wall becomes a
+   * dim background texture (still the real gene, still colour-coded) and a
+   * broad scrim keeps the centred text clearly on top. */
+  .seqslide .seq-rows { opacity: .5; }
+  .seqslide .seq-row { font-size: clamp(.66rem, 3vw, .95rem); }
+  .seqslide::after {
+    background: linear-gradient(180deg, rgba(6,11,10,.5) 0%, rgba(6,11,10,.72) 42%, rgba(6,11,10,.92) 100%);
+  }
+}
+
+/* "Panel mode" — while a code or sequence slide is showing, the hero's veil
+ * darkens the text column so the headline never sits over fine code/bases.
+ * (Toggled by a .panelmode class on .hero from the Hero.astro script.) */
+.hero .veil { transition: background .7s ease; }
+.hero.panelmode .veil {
+  background: linear-gradient(90deg, rgba(8,8,12,.98) 0%, rgba(8,8,12,.95) 42%, rgba(8,8,12,.55) 56%, rgba(8,8,12,.05) 74%);
+}
+@media (max-width: 820px) {
+  .hero.panelmode .veil {
+    background: linear-gradient(180deg, rgba(8,8,12,.62) 0%, rgba(8,8,12,.9) 30%, rgba(8,8,12,.9) 74%, rgba(8,8,12,.5) 100%);
+  }
+}
 
 /* Simple prose defaults for Markdown-rendered bodies */
 .prose { color: var(--muted); max-width: var(--measure); }
