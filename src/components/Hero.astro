@@ -118,5 +118,43 @@ const BIO = [
       setTimeout(() => { layers[old].innerHTML = ''; }, FADE + 100);
     }
     next();
+  } else if (!reduce && coarseSmall && (AI.length || BIO.length)) {
+    // MOBILE: one looping video + all the still images, gently cross-fading in a loop.
+    // Only ever ONE video decoding (easy on phones); stills get a soft Ken Burns. All muted.
+    const layers = [document.getElementById('hL0'), document.getElementById('hL1')];
+    let poster = document.querySelector('.poster');
+    const isVid = (f) => /\.(mp4|webm|mov)$/i.test(f);
+    const all = [...AI, ...BIO];
+    const vids = all.filter(isVid);
+    const stills = all.filter((f) => !isVid(f));
+    const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+    const oneVid = vids.length ? [vids[Math.floor(Math.random() * vids.length)]] : [];
+    const queue = shuffle([...oneVid, ...stills]);   // one random video + every still, shuffled
+    if (queue.length) {
+      const DWELL = 5000, FADE = 1100;
+      let cur = 0, idx = -1;
+      const mk = (file) => {
+        if (isVid(file)) {
+          const v = document.createElement('video');
+          v.muted = true; v.defaultMuted = true; v.autoplay = true; v.loop = true; v.playsInline = true;
+          v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.preload = 'auto'; v.src = 'hero/' + file;
+          v.play().catch(() => {});
+          return v;
+        }
+        const im = document.createElement('img'); im.decoding = 'async'; im.src = 'hero/' + file; im.classList.add('kb');
+        return im;
+      };
+      const step = () => {
+        idx = (idx + 1) % queue.length;
+        const show = layers[1 - cur];
+        show.innerHTML = ''; show.appendChild(mk(queue[idx]));
+        show.style.opacity = 1; layers[cur].style.opacity = 0;
+        if (poster) { poster.style.opacity = '0'; poster = null; }
+        const old = cur; cur = 1 - cur;
+        setTimeout(() => { const v = layers[old].querySelector('video'); if (v) { try { v.pause(); } catch (e) {} } layers[old].innerHTML = ''; }, FADE + 100);
+        setTimeout(step, DWELL);
+      };
+      step();
+    }
   }
 </script>
