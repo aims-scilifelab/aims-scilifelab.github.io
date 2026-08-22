@@ -189,7 +189,7 @@ p { text-wrap: pretty; }
 }
 .mathslide .ms-window {
   width: min(41%, 600px); margin-right: clamp(1rem, 2.2vw, 3rem);
-  color: #eef2ff;
+  color: #ccd4e6;   /* a touch dimmer than pure white */
 }
 .mathslide .ms-title {
   letter-spacing: .16em; text-transform: uppercase; margin-bottom: 1.7rem;
@@ -197,13 +197,13 @@ p { text-wrap: pretty; }
   font-family: ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(.62rem, .72vw, .76rem);
 }
-.mathslide .ms-body { display: flex; flex-direction: column; gap: clamp(1rem, 1.8vh, 1.6rem); }
+.mathslide .ms-body { display: flex; flex-direction: column; gap: clamp(.9rem, 1.7vh, 1.5rem); }
 .mathslide .ms-block { opacity: 0; transform: translateY(8px); animation: ms-in .6s cubic-bezier(.2,.7,.2,1) forwards; }
-/* KaTeX output: left-align the display blocks, size them, add the glow */
+/* KaTeX output: left-align the display blocks, size them large, faint glow */
 .mathslide .katex-display { margin: 0; text-align: left; }
 .mathslide .katex-display > .katex { text-align: left; white-space: normal; }
-.mathslide .katex { color: #eef2ff; font-size: clamp(.8em, 1.02vw, 1.12em);
-  text-shadow: 0 0 18px rgba(120,152,224,.45), 0 0 2px rgba(255,255,255,.28); }
+.mathslide .katex { color: #ccd4e6; font-size: clamp(1.05em, 1.5vw, 1.62em);
+  text-shadow: 0 0 22px rgba(110,140,210,.32); }
 @keyframes ms-in { to { opacity: 1; transform: none; } }
 
 /* Hero "sequence slide" — a dense, blocky WALL of a real gene (human TP53),
@@ -240,10 +240,10 @@ p { text-wrap: pretty; }
 .seqslide .bC { color: #8ba4c6; }   /* cytosine — muted steel  */
 .seqslide .bU { color: #a89dc2; }   /* uracil   — soft lavender (mRNA rows) */
 @media (max-width: 820px) {
-  /* On phones the wall uses fewer, bigger rows (set in Hero.astro) so each base
-   * stays crisp instead of collapsing into mush; looser tracking, roomier rows. */
-  .seqslide .seq-rows { justify-content: space-around; }
-  .seqslide .seq-row { font-size: clamp(.95rem, 4.4vw, 1.4rem); letter-spacing: -.01em; line-height: 1.2; }
+  /* On phones: fewer rows (set in Hero.astro), bigger bases, packed close so the
+   * wall reads as a bold dense block rather than tiny sparse text. */
+  .seqslide .seq-rows { justify-content: center; }
+  .seqslide .seq-row { font-size: clamp(1.35rem, 6.6vw, 2.1rem); letter-spacing: -.06em; line-height: 1.06; }
   .seqslide::after { background: linear-gradient(180deg, transparent 0%, rgba(6,11,10,.28) 100%); }
 }
 

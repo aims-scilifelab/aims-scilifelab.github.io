@@ -5,26 +5,28 @@ import 'katex/dist/katex.min.css';
 const s = (await getEntry('site', 'settings'))!.data;
 const h = (await getEntry('home', 'home'))!.data;
 
-// Hero math panel — a full variational-inference derivation, typeset with
-// KaTeX at build time (proper stretchy delimiters, aligned relations, real
-// math fonts). Edit the LaTeX below to change the derivation.
+// Hero math panel — a variational-inference derivation, typeset with KaTeX at
+// build time (proper stretchy delimiters, aligned relations, real math fonts).
+// Compact notation (p, q, 𝔼_q) keeps each line narrow so the type can be large.
+// Edit the LaTeX below to change the derivation.
 const TEX = (s: string) => katex.renderToString(s, { displayMode: true, throwOnError: false });
-const NOTE = String.raw`\;\;\color{#8ea6cf}\footnotesize`;   // muted side-notes
 const mathBlocks = [
   TEX(String.raw`\begin{aligned}
-    \log p_\theta(x)
-      &= \log \int p_\theta(x,z)\,\mathrm{d}z \\[1pt]
-      &= \log \int q_\phi(z\mid x)\,\frac{p_\theta(x,z)}{q_\phi(z\mid x)}\,\mathrm{d}z \\[1pt]
-      &= \log\, \mathbb{E}_{q_\phi(z\mid x)}\!\left[\frac{p_\theta(x,z)}{q_\phi(z\mid x)}\right] \\[1pt]
-      &\ge \mathbb{E}_{q_\phi}\!\left[\log \frac{p_\theta(x,z)}{q_\phi(z\mid x)}\right] ${NOTE}\text{Jensen} \\[1pt]
-      &= \mathbb{E}_{q_\phi}\!\big[\log p_\theta(x\mid z)\big] \;-\; \mathrm{KL}\!\big(q_\phi(z\mid x)\,\|\,p(z)\big) \\[1pt]
-      &=: \mathcal{L}(\theta,\phi;x) ${NOTE}\text{ELBO}
+    \log p(x)
+      &= \log \int p(x,z)\,\mathrm{d}z \\[2pt]
+      &= \log \int q(z\mid x)\,\frac{p(x,z)}{q(z\mid x)}\,\mathrm{d}z \\[2pt]
+      &= \log \mathbb{E}_{q}\!\left[\frac{p(x,z)}{q(z\mid x)}\right] \\[2pt]
+      &\ge \mathbb{E}_{q}\!\left[\log \frac{p(x,z)}{q(z\mid x)}\right] \\[2pt]
+      &= \mathbb{E}_{q}\!\left[\log p(x\mid z)\right] \\[2pt]
+      &\quad {}-\ \mathrm{KL}\!\left(q(z\mid x)\,\|\,p(z)\right) \\[2pt]
+      &=: \mathcal{L}(x)
   \end{aligned}`),
-  TEX(String.raw`\log p_\theta(x) \;-\; \mathcal{L}(\theta,\phi;x) \;=\; \mathrm{KL}\!\big(q_\phi(z\mid x)\,\|\,p_\theta(z\mid x)\big) \;\ge\; 0`),
+  TEX(String.raw`\log p(x) \;=\; \mathcal{L}(x) \,+\, \mathrm{KL}\!\left(q(z\mid x)\,\|\,p(z\mid x)\right)`),
   TEX(String.raw`\begin{aligned}
-    z &= \mu_\phi(x) + \sigma_\phi(x)\odot\epsilon, \qquad \epsilon\sim\mathcal{N}(0,\mathbf{I}) \\[2pt]
-    \nabla_\phi\,\mathcal{L} &= \mathbb{E}_{\epsilon}\!\left[\nabla_\phi \log \frac{p_\theta(x,z)}{q_\phi(z\mid x)}\right]
+    z &= \mu_\phi(x) + \sigma_\phi(x)\odot\epsilon, \quad \epsilon\sim\mathcal{N}(0,I) \\[3pt]
+    \nabla_\phi \mathcal{L} &= \mathbb{E}_{\epsilon}\!\left[\nabla_\phi \log \frac{p(x,z)}{q(z\mid x)}\right]
   \end{aligned}`),
+  TEX(String.raw`\theta^\star,\phi^\star \;=\; \arg\max_{\theta,\phi}\ \sum_i \mathcal{L}(x_i)`),
 ];
 
 // Rotating background — alternates AI ↔ bio, mixing video clips and stills.
@@ -179,7 +181,7 @@ const BIO = [
     wrap.className = 'seqslide nokb';
     // Fewer, larger rows on phones so each base stays legible (32 rows shrink
     // to mush on a narrow screen); a dense wall on desktop.
-    const SEQ_ROWS = matchMedia('(max-width: 820px)').matches ? 20 : 32;
+    const SEQ_ROWS = matchMedia('(max-width: 820px)').matches ? 13 : 32;
     const G = TP53 + TP53;                                  // doubled so any window of SEQ_LEN exists
     const start = Math.floor(Math.random() * TP53.length);  // a different window each appearance
     let html = '<div class="seq-rows">';
@@ -208,8 +210,7 @@ const BIO = [
     mathBlocks.forEach((hML, i) => {
       blocks += '<div class="ms-block" style="animation-delay:' + (0.3 + i * 0.7) + 's">' + hML + '</div>';
     });
-    wrap.innerHTML = '<div class="ms-window"><div class="ms-title">Variational inference &mdash; the evidence lower bound</div>'
-      + '<div class="ms-body">' + blocks + '</div></div>';
+    wrap.innerHTML = '<div class="ms-window"><div class="ms-body">' + blocks + '</div></div>';
     return wrap;
   };
 
@@ -268,10 +269,9 @@ const BIO = [
     const isVid = (f) => /\.(mp4|webm|mov)$/i.test(f);
     const all = [...AI, ...BIO];
     const vids = all.filter(isVid);
-    // Everything non-video is a "still": images plus the code / gene / math
-    // panels. On phones the hero text sits on a frosted-glass card (see
-    // global.css), so these panels read as a crisp backdrop behind it.
-    const stills = all.filter((f) => !isVid(f));
+    // On phones the code editor and math derivation are too fine to read behind
+    // the hero text, so they're desktop-only. Mobile stills = images + the gene.
+    const stills = all.filter((f) => !isVid(f) && !isCode(f) && !isMath(f));
     const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
     const vOrder = shuffle(vids.slice());    // all videos, random order
     const sOrder = shuffle(stills.slice());  // all stills, random order
