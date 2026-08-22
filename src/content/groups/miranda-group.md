@@ -1,14 +1,15 @@
 ---
 name: "Miranda Lab"
 lead: "Gisele Miranda"
-# TODO(Kevin): confirm this lab's tagline and focus — placeholder text below.
-tagline: "Machine learning for the life sciences."
+tagline: "Machine learning for cellular and spatial biology."
 focus:
+  - "Cell Painting"
+  - "Spatial transcriptomics"
+  - "Cellular & spatial biology"
   - "Machine learning"
-  - "Life sciences"
 order: 3
 draft: false
 ---
 
-<!-- TODO(Kevin): replace with a short description of the Miranda Lab's research. -->
-The Miranda Lab works at the intersection of machine learning and the life sciences within AIMS.
+<!-- Draft (from Gisele's listed interests) — edit freely. -->
+The Miranda Lab develops machine-learning methods for cellular and spatial biology — including Cell Painting and spatial transcriptomics — to understand cells in their tissue context.

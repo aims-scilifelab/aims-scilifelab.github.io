@@ -1,13 +1,15 @@
 ---
 name: "Taheri Lab"
-lead: ""
-# TODO(Kevin): add the PI's full name here (it links people to this lab), plus tagline and focus.
-tagline: "Machine learning for medicine and the life sciences."
+lead: "Golnaz Taheri"
+tagline: "Graph-based machine learning for network biology and precision medicine."
 focus:
-  - "Machine learning"
+  - "Network biology"
+  - "Graph machine learning"
+  - "Cancer genomics"
+  - "Precision medicine"
 order: 4
 draft: false
 ---
 
-<!-- TODO(Kevin): replace with a short description of the Taheri Lab's research. -->
-The Taheri Lab works on machine learning for medicine and the life sciences within AIMS.
+<!-- Draft (from public sources) — edit freely. -->
+The Taheri Lab develops graph-based and machine-learning methods for the life sciences — using biological networks to identify essential genes and disease modules and to advance precision medicine.

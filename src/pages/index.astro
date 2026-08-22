@@ -82,7 +82,7 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
       <h2 id="pc">People &amp; culture</h2>
       {h.cultureIntro && <p class="lede muted intro">{h.cultureIntro}</p>}
       {leads.length > 0 && (
-        <p class="leads muted">Led by {leads.map((l, i) => (<span>{i > 0 ? ' & ' : ''}<strong>{l.data.name}</strong></span>))}.</p>
+        <p class="leads muted">Led by {leads.map((l, i) => (<span>{i > 0 ? (i === leads.length - 1 ? ' & ' : ', ') : ''}<strong>{l.data.name}</strong></span>))}.</p>
       )}
       <p class="more"><a class="link" href="/groups">Our labs →</a> &nbsp; <a class="link" href="/people">Meet the lab →</a> &nbsp; <a class="link" href="/life-at-aims">Life at AIMS →</a></p>
     </div>

@@ -1,14 +1,15 @@
 ---
 name: "Lagergren Lab"
 lead: "Jens Lagergren"
-# TODO(Kevin): confirm the PI's full name (it links people to this lab), tagline and focus.
-tagline: "Computational biology and machine learning."
+tagline: "Probabilistic modelling and deep learning for computational biology."
 focus:
   - "Computational biology"
-  - "Machine learning"
+  - "Phylogenetics & evolution"
+  - "Probabilistic & deep learning"
+  - "Genomics"
 order: 2
 draft: false
 ---
 
-<!-- TODO(Kevin): replace with a short description of the Lagergren Lab's research. -->
-The Lagergren Lab works at the intersection of computational biology and machine learning within AIMS.
+<!-- Draft (from public sources) — edit freely. -->
+The Lagergren Lab develops probabilistic models and deep-learning methods for computational biology — spanning the evolution of genes and genomes, phylogenetics, and modern machine learning for high-dimensional biological data.

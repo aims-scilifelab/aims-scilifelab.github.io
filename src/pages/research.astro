@@ -26,16 +26,13 @@ const domainsR = await rendered(domains);
         <h2 id="groups-h" class="cat">Our labs</h2>
         <p class="scale muted">AIMS brings together several labs under one roof — sharing methods, a reading group and a lot of cross-disciplinary work.</p>
         <div class="grid">
-          {groups.map((g) => {
-            const n = sizeOf(g.data.lead);
-            return (
-              <a class="card theme grp" href={`/groups/${g.slug}`}>
-                <h3>{g.data.name}</h3>
-                {g.data.tagline && <p class="gt">{g.data.tagline}</p>}
-                {g.data.lead && <p class="faint gl">Led by {g.data.lead}{n > 0 ? ` · ${n} member${n > 1 ? 's' : ''}` : ''}</p>}
-              </a>
-            );
-          })}
+          {groups.map((g) => (
+            <a class="card theme grp" href={`/groups/${g.slug}`}>
+              <h3>{g.data.name}</h3>
+              {g.data.tagline && <p class="gt">{g.data.tagline}</p>}
+              {g.data.lead && <p class="faint gl">Led by {g.data.lead}</p>}
+            </a>
+          ))}
         </div>
       </div>
     </section>

@@ -14,18 +14,15 @@ const sizeOf = (lead: string) => people.filter((p) => p.data.status === 'current
   <section class="section-tight">
     <div class="wrap">
       <div class="grid">
-        {groups.map((g) => {
-          const n = sizeOf(g.data.lead);
-          return (
-            <a class="card grp" href={`/groups/${g.slug}`}>
-              <h2>{g.data.name}</h2>
-              {g.data.tagline && <p class="muted tl">{g.data.tagline}</p>}
-              {g.data.lead && <p class="faint led">Led by {g.data.lead}{n > 0 ? ` · ${n} member${n > 1 ? 's' : ''}` : ''}</p>}
-              {g.data.focus.length > 0 && <ul class="kw">{g.data.focus.slice(0, 4).map((k) => <li class="tag">{k}</li>)}</ul>}
-              <span class="link more2">View lab →</span>
-            </a>
-          );
-        })}
+        {groups.map((g) => (
+          <a class="card grp" href={`/groups/${g.slug}`}>
+            <h2>{g.data.name}</h2>
+            {g.data.tagline && <p class="muted tl">{g.data.tagline}</p>}
+            {g.data.lead && <p class="faint led">Led by {g.data.lead}</p>}
+            {g.data.focus.length > 0 && <ul class="kw">{g.data.focus.slice(0, 4).map((k) => <li class="tag">{k}</li>)}</ul>}
+            <span class="link more2">View lab →</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
