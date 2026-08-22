@@ -178,40 +178,47 @@ p { text-wrap: pretty; }
 }
 @keyframes cs-blink { 50% { opacity: 0; } }
 
-/* Hero "math slide" — a typeset derivation (the Evidence Lower Bound) revealed
- * line by line. Serif italics + CSS fractions, no MathJax. Desktop: a card on
- * the right (like the code card); mobile: a full-bleed backdrop behind the
- * frosted hero-text card. JS-created in Hero.astro, so styles live here. */
+/* Hero "math slide" — a derivation (the Evidence Lower Bound) written out as a
+ * MANUSCRIPT: a tilted sheet of aged paper, dark ink, a margin rule, the result
+ * boxed by hand. Serif italics + CSS fractions, no MathJax. JS-created in
+ * Hero.astro, so styles live here. Desktop: the page rests on the right. */
 .mathslide {
   position: absolute; inset: 0; overflow: hidden;
   display: flex; align-items: center; justify-content: flex-end;
-  background: radial-gradient(130% 130% at 84% 34%, rgba(26,22,44,.55), rgba(8,10,18,.12) 55%, transparent 76%);
+  background: radial-gradient(130% 130% at 82% 34%, rgba(18,18,26,.42), rgba(8,10,18,.1) 55%, transparent 76%);
 }
 .mathslide .ms-window {
-  width: min(45%, 620px); margin-right: clamp(.6rem, 1.5vw, 2.5rem);
-  padding: clamp(1.4rem, 2.6vw, 2.4rem) clamp(1.4rem, 3vw, 2.6rem);
-  border-radius: 14px; background: linear-gradient(160deg, #181530, #0b0a15);
-  border: 1px solid rgba(255,255,255,.13);
-  box-shadow: 0 34px 90px rgba(0,0,0,.62), inset 0 1px 0 rgba(255,255,255,.05);
+  position: relative; width: min(46%, 640px); margin-right: clamp(1rem, 3vw, 4rem);
+  padding: clamp(1.6rem, 3vw, 2.8rem) clamp(1.8rem, 3.4vw, 3rem);
+  transform: rotate(-1.1deg); border-radius: 5px; color: #241f18;   /* dark ink */
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,0) 14%),
+    linear-gradient(158deg, #f7f2e7 0%, #efe7d5 60%, #e8dfca 100%);   /* aged paper */
+  border: 1px solid rgba(120,105,80,.35);
+  box-shadow: 0 30px 70px rgba(0,0,0,.5), 0 3px 8px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.6);
+}
+.mathslide .ms-window::before {   /* faint manuscript margin rule */
+  content: ''; position: absolute; top: 0; bottom: 0; left: clamp(1rem, 2.4vw, 2.1rem); width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(150,90,80,.3) 12%, rgba(150,90,80,.3) 88%, transparent);
 }
 .mathslide .ms-title {
-  font-style: italic; letter-spacing: .02em; color: #b7a6e8; margin-bottom: 1.1rem;
+  font-style: italic; letter-spacing: .01em; color: #7c6a4c; margin-bottom: 1.2rem; padding-left: .6rem;
   font-family: "STIX Two Text", Georgia, "Times New Roman", serif;
-  font-size: clamp(.86rem, 1.1vw, 1.05rem);
+  font-size: clamp(.9rem, 1.15vw, 1.12rem);
 }
 .mathslide .ms-lines {
-  display: flex; flex-direction: column; gap: .55rem; color: #e8e4f4;
-  font-family: "STIX Two Math", "Cambria Math", "Latin Modern Math", Georgia, "Times New Roman", serif;
-  font-size: clamp(1rem, 1.45vw, 1.5rem); line-height: 1.45; white-space: nowrap;
+  display: flex; flex-direction: column; gap: .6rem; color: #241f18; padding-left: .6rem;
+  font-family: "STIX Two Math", "Cambria Math", "Latin Modern Math", "STIX Two Text", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.05rem, 1.5vw, 1.6rem); line-height: 1.4; white-space: nowrap;
 }
 .mathslide .ms-line { opacity: 0; transform: translateY(6px); animation: ms-in .55s cubic-bezier(.2,.7,.2,1) forwards; }
 .mathslide .ms-cont { padding-left: 1.7em; }   /* indent the running "=" lines */
 .mathslide i { font-style: italic; }
-.mathslide .fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 .18em; font-size: .84em; }
-.mathslide .fr .nu { border-bottom: 1px solid currentColor; padding: 0 .4em .05em; }
-.mathslide .fr .de { padding: .06em .4em 0; }
-.mathslide .ann { color: #8b8598; font-style: italic; font-size: .68em; margin-left: .5em; }
-.mathslide .hl { color: #c6a6ff; font-style: italic; }
+.mathslide .fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 .18em; font-size: .86em; }
+.mathslide .fr .nu { border-bottom: 1.4px solid currentColor; padding: 0 .4em .06em; }
+.mathslide .fr .de { padding: .08em .4em 0; }
+.mathslide .ann { color: #9a7f52; font-style: italic; font-size: .66em; margin-left: .5em; }
+.mathslide .hl { border: 1.6px solid #241f18; border-radius: 4px; padding: .02em .38em; font-style: italic; }  /* the result, boxed */
 @keyframes ms-in { to { opacity: 1; transform: none; } }
 
 /* Hero "sequence slide" — a dense, blocky WALL of a real gene (human TP53),
@@ -267,18 +274,18 @@ p { text-wrap: pretty; }
  * video, code editor, gene wall or math derivation — reads as a crisp,
  * intentional backdrop: sharp around the card, softly blurred behind the text. */
 @media (max-width: 820px) {
-  /* Panels fill the screen from the TOP, on a solid dark ground, so their
-   * opening (editor chrome + first lines, or the derivation's first steps)
-   * shows above the frosted text card and the rest reads softly behind it. */
+  /* The code editor fills the screen from the TOP on a dark ground, so its
+   * chrome + first lines show above the frosted text card. */
   .codeslide { justify-content: center; align-items: flex-start; background: #0a0d17; }
-  .mathslide { justify-content: center; align-items: flex-start; background: #0b0a16; }
-  .codeslide .cs-window, .mathslide .ms-window {
-    width: 100%; height: auto; margin: 0; border-radius: 0; border: 0; box-shadow: none; background: none;
-  }
+  .codeslide .cs-window { width: 100%; height: auto; margin: 0; border-radius: 0; border: 0; box-shadow: none; background: none; }
   .codeslide .cs-pre { font-size: clamp(.64rem, 2.9vw, .9rem); line-height: 1.5; }
-  .mathslide .ms-window { padding: clamp(1rem, 4vw, 1.7rem); }
+  /* The manuscript rests as a paper sheet near the top of the hero. */
+  .mathslide { align-items: flex-start; justify-content: center;
+    background: radial-gradient(120% 75% at 50% 0%, rgba(16,16,24,.5), transparent 72%); }
+  .mathslide .ms-window { width: 90%; margin: 1.1rem auto 0; padding: 1.2rem 1.3rem; }
+  .mathslide .ms-window::before { left: 1rem; }
   .mathslide .ms-title { margin-bottom: .8rem; }
-  .mathslide .ms-lines { font-size: clamp(.82rem, 3.3vw, 1.15rem); gap: .45rem; }
+  .mathslide .ms-lines { font-size: clamp(.82rem, 3.3vw, 1.12rem); gap: .5rem; }
   .mathslide .ms-cont { padding-left: 1em; }
   /* neutralise the desktop veil on phones — the glass card does the work */
   .hero.panelmode .veil { background: none; }
