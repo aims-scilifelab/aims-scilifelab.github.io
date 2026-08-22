@@ -173,13 +173,16 @@ const BIO = [
   const FR = (n, d) => '<span class="fr"><span class="nu">' + n + '</span><span class="de">' + d + '</span></span>';
   const P = '<i>p</i>', Q = '<i>q</i>', X = '<i>x</i>', Z = '<i>z</i>';
   const RATIO = FR(P + '(' + X + ',' + Z + ')', Q + '(' + Z + '|' + X + ')');
+  const EQ = '&#120124;<sub>' + Q + '</sub>';   // 𝔼_q — expectation under q(z|x)
   const MATH = [
-    { t: 'log ' + P + '(' + X + ') = log &int; ' + P + '(' + X + ',' + Z + ') d' + Z, cont: false },
-    { t: '= log &int; ' + Q + '(' + Z + '|' + X + ') ' + RATIO + ' d' + Z, cont: true },
-    { t: '= log &#120124;<sub>' + Q + '</sub>[ ' + RATIO + ' ]', cont: true },
-    { t: '&ge; &#120124;<sub>' + Q + '</sub>[ log ' + RATIO + ' ]', cont: true, ann: 'Jensen' },
-    { t: '= &#120124;<sub>' + Q + '</sub>[log ' + P + '(' + X + '|' + Z + ')] &minus; KL(' + Q + '(' + Z + '|' + X + ') &#8214; ' + P + '(' + Z + '))', cont: true },
-    { t: '=: <span class="hl">ELBO</span>(' + X + ')', cont: true },
+    { t: 'log ' + P + '(' + X + ') = log &int; ' + P + '(' + X + ',&thinsp;' + Z + ') &thinsp;d' + Z, cont: false },
+    { t: '= log &int; ' + Q + '(' + Z + '|' + X + ') ' + RATIO + ' &thinsp;d' + Z, cont: true },
+    { t: '= log ' + EQ + '&#8202;[&#8202; ' + RATIO + ' &#8202;]', cont: true },
+    { t: '&ge; ' + EQ + '&#8202;[&#8202; log ' + RATIO + ' &#8202;]', cont: true, ann: 'Jensen&#8217;s inequality' },
+    { t: '= ' + EQ + '&#8202;[&#8202; log ' + P + '(' + X + '|' + Z + ') + log ' + P + '(' + Z + ') &minus; log ' + Q + '(' + Z + '|' + X + ') &#8202;]', cont: true },
+    { t: '= ' + EQ + '&#8202;[&#8202; log ' + P + '(' + X + '|' + Z + ') &#8202;] &minus; KL&#8202;(&#8202;' + Q + '(' + Z + '|' + X + ') &#8214; ' + P + '(' + Z + ')&#8202;)', cont: true },
+    { t: '=: <span class="hl">ELBO</span>(' + X + ')', cont: true, ann: 'evidence lower bound' },
+    { t: 'log ' + P + '(' + X + ') &minus; ELBO(' + X + ') = KL&#8202;(&#8202;' + Q + '(' + Z + '|' + X + ') &#8214; ' + P + '(' + Z + '|' + X + ')&#8202;) &ge; 0', cont: false, gap: true },
   ];
   const buildMath = () => {
     const wrap = document.createElement('div');
@@ -187,9 +190,10 @@ const BIO = [
     let lines = '';
     MATH.forEach((m, i) => {
       const ann = m.ann ? ' <span class="ann">(' + m.ann + ')</span>' : '';
-      lines += '<div class="ms-line' + (m.cont ? ' ms-cont' : '') + '" style="animation-delay:' + (0.25 + i * 0.55) + 's">' + m.t + ann + '</div>';
+      const cls = 'ms-line' + (m.cont ? ' ms-cont' : '') + (m.gap ? ' ms-gap' : '');
+      lines += '<div class="' + cls + '" style="animation-delay:' + (0.25 + i * 0.5) + 's">' + m.t + ann + '</div>';
     });
-    wrap.innerHTML = '<div class="ms-window"><div class="ms-title">Evidence lower bound</div>'
+    wrap.innerHTML = '<div class="ms-window"><div class="ms-title">Evidence lower bound &mdash; variational inference</div>'
       + '<div class="ms-lines">' + lines + '</div></div>';
     return wrap;
   };
