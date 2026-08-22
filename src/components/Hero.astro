@@ -207,7 +207,7 @@ const BIO = [
     wrap.className = 'mathslide nokb';
     let lines = '';
     mathBlocks.forEach((b, i) => {
-      const delay = (0.15 + i * 0.34).toFixed(2);   // each line wipes in after the last
+      const delay = (0.2 + i * 0.5).toFixed(2);   // each line wipes in after the last
       lines += '<div class="ms-line' + (b.gap ? ' ms-gap' : '') + '" style="animation-delay:' + delay + 's">' + b.html + '</div>';
     });
     wrap.innerHTML = '<div class="ms-window"><div class="ms-body">' + lines + '</div></div>';
@@ -241,7 +241,7 @@ const BIO = [
       }
     });
     const dwell = (el) => el.classList.contains('codeslide') ? 11000
-      : el.classList.contains('mathslide') ? 9500
+      : el.classList.contains('mathslide') ? 11500
       : el.classList.contains('seqslide') ? 9500
       : (el.tagName === 'VIDEO' && isFinite(el.duration) && el.duration > 0) ? Math.min(el.duration * 1000, MAX_DWELL) : IMG_DWELL;
     async function next() {

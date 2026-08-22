@@ -193,7 +193,7 @@ p { text-wrap: pretty; }
 }
 .mathslide .ms-body { display: flex; flex-direction: column; gap: clamp(.28rem, .7vh, .55rem); }
 /* Each line is revealed by a left-to-right "ink wipe", in sequence. */
-.mathslide .ms-line { opacity: 0; clip-path: inset(0 100% 0 0); animation: ms-wipe .6s cubic-bezier(.25,.6,.2,1) forwards; }
+.mathslide .ms-line { opacity: 0; clip-path: inset(0 100% 0 0); animation: ms-wipe 1.15s cubic-bezier(.33,.35,.2,1) forwards; }
 .mathslide .ms-gap { margin-top: clamp(.7rem, 1.6vh, 1.2rem); }
 @keyframes ms-wipe {
   0%   { opacity: 0; clip-path: inset(0 100% 0 0); }
