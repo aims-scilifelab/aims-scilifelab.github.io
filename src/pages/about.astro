@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+const s = (await getEntry('site', 'settings'))!.data;
+const labs = (await getCollection('groups', (g) => !g.data.draft)).sort((a, b) => a.data.order - b.data.order);
+const mapQuery = encodeURIComponent(['SciLifeLab', ...(s.visitingAddress ?? [])].join(', '));
+---
+<Base title="About Us" description="AIMS is a research environment at KTH and SciLifeLab in Stockholm, bringing several labs together to develop machine-learning methods for medicine and the life sciences.">
+  <PageHeader eyebrow="About" title="About AIMS"
+    lede="AIMS — AI × Medicine × Life Sciences — is a research environment at KTH Royal Institute of Technology and Science for Life Laboratory (SciLifeLab) in Stockholm. We develop machine-learning methods for problems across medicine and the life sciences, from foundational methodology to real-world scientific and clinical applications." />
+
+  <section class="section-tight" aria-labelledby="labs-h">
+    <div class="wrap">
+      <h2 id="labs-h" class="cat">One environment, several labs</h2>
+      <p class="lede muted measure">AIMS brings together independent labs under one roof. Each is led by its own
+      principal investigator and pursues its own questions, but we share methods, computing, a weekly reading group
+      and a great deal of cross-disciplinary work — so ideas and tools travel quickly between medicine, imaging,
+      cells and molecules.</p>
+      <div class="lab-grid">
+        {labs.map((g) => (
+          <a class="card lab" href={`/groups/${g.slug}`}>
+            <h3>{g.data.name}</h3>
+            {g.data.tagline && <p class="muted lt">{g.data.tagline}</p>}
+            {g.data.lead && <p class="faint">Led by {g.data.lead}</p>}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="work-h">
+    <div class="wrap measure">
+      <h2 id="work-h" class="cat">What we work on</h2>
+      <p class="muted">We build learning systems that generalise across settings, adapt to new data and collaborate
+      with human experts — especially where data are scarce and uncertainty matters. Our work spans foundational
+      machine learning and its application across scales, from molecules and cells to tissues and patients.</p>
+      <p class="more"><a class="link" href="/research">Explore our research →</a> &nbsp;·&nbsp;
+        <a class="link" href="/publications">Publications →</a></p>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="how-h">
+    <div class="wrap measure">
+      <h2 id="how-h" class="cat">How we work</h2>
+      <p class="muted">We are committed to open science — sharing code, models and data where we can. Every week the
+      whole environment meets for <a class="link" href="/what-we-read">What We Read</a>, a reading group on papers we
+      find important, surprising or simply worth understanding. Much of our work is done in collaboration with
+      clinicians, life-science groups and other researchers across institutions.</p>
+      <p class="more"><a class="link" href="/open-science">Open science →</a> &nbsp;·&nbsp;
+        <a class="link" href="/life-at-aims">Life at AIMS →</a> &nbsp;·&nbsp;
+        <a class="link" href="/people">Meet the people →</a></p>
+    </div>
+  </section>
+
+  <!-- Where we are — SciLifeLab band with an inset map -->
+  <section class="findus" aria-labelledby="where-h">
+    <img class="findus-img" src="/scilifelab.jpg" alt="Science for Life Laboratory in Solna, where AIMS is based" loading="lazy" width="1920" height="720" />
+    <div class="findus-shade"></div>
+    <div class="wrap findus-in">
+      <p class="eyebrow">Where we are</p>
+      <h2 id="where-h">Based at SciLifeLab, Solna</h2>
+      <p class="muted">AIMS is part of KTH Royal Institute of Technology and Science for Life Laboratory, on the
+      SciLifeLab campus in Solna, Stockholm.</p>
+      <div class="map-card-sm">
+        <iframe title="Map showing AIMS at SciLifeLab, Solna"
+          src={`https://www.google.com/maps?q=${mapQuery}&z=15&output=embed`}
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cat { font-size: var(--step-2); }
+  .measure { max-width: var(--measure); }
+  .lede.intro, .lede { margin-top: 1rem; }
+  .more { margin-top: 1.4rem; }
+  .lab-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2.5vw, 1.5rem); margin-top: 1.8rem; }
+  .lab { display: block; padding: clamp(1.2rem, 3vw, 1.7rem); transition: border-color .15s, transform .15s; }
+  .lab:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .lab h3 { font-size: var(--step-1); }
+  .lab .lt { margin-top: .5rem; }
+  .lab .faint { margin-top: .5rem; font-size: var(--step--1); }
+  @media (max-width: 640px) { .lab-grid { grid-template-columns: 1fr; } }
+
+  .findus { position: relative; overflow: hidden; margin-top: clamp(2rem, 5vw, 4rem);
+            min-height: clamp(340px, 44vh, 480px); display: flex; align-items: flex-end; }
+  .findus-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.6) saturate(.92); }
+  .findus-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,12,.15), rgba(8,8,12,.8)); }
+  .findus-in { position: relative; width: 100%; padding-block: clamp(1.6rem, 4vw, 2.6rem); }
+  .findus-in h2 { font-size: var(--step-2); text-shadow: 0 2px 18px rgba(0,0,0,.6); }
+  .findus-in p { margin-top: .5rem; max-width: 46ch; text-shadow: 0 1px 12px rgba(0,0,0,.6); }
+  .map-card-sm { width: clamp(220px, 34vw, 300px); margin-top: 1.1rem; border: 1px solid rgba(255,255,255,.28);
+                 border-radius: 8px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+  .map-card-sm iframe { width: 100%; height: 150px; border: 0; display: block; }
+</style>
