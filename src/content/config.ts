@@ -181,6 +181,8 @@ const openScience = defineCollection({
     category: z.enum(['code', 'models', 'data', 'tools', 'benchmarks', 'protocols', 'other']),
     url: link,
     description: z.string().default(''),
+    badge: z.string().default(''),        // tiny tag, e.g. "Python · MIT" or "WACV 2023"
+    featured: z.boolean().default(false), // show as a highlighted project card up top
     order: z.number().default(100),
     draft: z.boolean().default(false),
   }),

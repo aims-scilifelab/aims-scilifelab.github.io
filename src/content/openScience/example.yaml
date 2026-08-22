@@ -1,7 +1,9 @@
-# TEMPLATE — copy & set draft: false to list a real public resource.
+# TEMPLATE — copy this file, rename it, and set draft: false to list a real resource.
 title: "Example resource"
 category: "code"        # code | models | data | tools | benchmarks | protocols | other
-url: ""
-description: "What this resource is."
+url: ""                # link straight to the repo, dataset or release page
+description: "What this resource is, in one line."
+badge: ""              # optional tiny tag, e.g. "Python · MIT" or "ICML 2025"
+featured: false        # true = show as a highlighted project card at the top of the page
 order: 100
 draft: true

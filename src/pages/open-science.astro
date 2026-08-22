@@ -3,44 +3,159 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import { getCollection } from 'astro:content';
 
+// ── AIMS GitHub organisation ───────────────────────────────────────────────
+// The org where reproducible code lives. Update the handle/URL here if it
+// differs (this is inferred from the site's deploy domain, aims-scilifelab).
+const GITHUB_ORG = 'aims-scilifelab';
+const GITHUB_URL = `https://github.com/${GITHUB_ORG}`;
+
 const items = (await getCollection('openScience', (r) => !r.data.draft))
   .sort((a, b) => a.data.order - b.data.order);
-const order = ['code', 'models', 'data', 'tools', 'benchmarks', 'protocols', 'other'];
-const label: Record<string, string> = { code: 'Code', models: 'Models', data: 'Data', tools: 'Tools', benchmarks: 'Benchmarks', protocols: 'Protocols', other: 'Other resources' };
-const groups = order.map((c) => ({ c, items: items.filter((i) => i.data.category === c) })).filter((g) => g.items.length);
+
+const featured = items.filter((i) => i.data.featured);
+const datasets = items.filter((i) => i.data.category === 'data' && !i.data.featured);
+
+// Everything that isn't featured and isn't a dataset, grouped by category.
+const rest = items.filter((i) => !i.data.featured && i.data.category !== 'data');
+const order = ['code', 'models', 'tools', 'benchmarks', 'protocols', 'other'];
+const label: Record<string, string> = { code: 'Code', models: 'Models', data: 'Datasets', tools: 'Tools', benchmarks: 'Benchmarks', protocols: 'Protocols', other: 'Other resources' };
+const restGroups = order.map((c) => ({ c, items: rest.filter((i) => i.data.category === c) })).filter((g) => g.items.length);
 ---
-<Base title="Open Science" description="Public code, models, tools and resources from AIMS, released where permitted.">
+<Base title="Open Science" description="Public code, models, datasets and tools from AIMS — reproducible research released where permitted.">
   <PageHeader eyebrow="Open Science" title="Open Science"
-    lede="We release code, models, tools and other resources where we can, to make our work useful and reproducible." />
+    lede="We are committed to reproducible research. We release code, models, datasets and tools where we can, so our work is useful, verifiable and easy to build on." />
+
+  <!-- (a) Prominent link to the AIMS GitHub organisation -->
+  <section class="section-tight">
+    <div class="wrap">
+      <a class="ghband" href={GITHUB_URL} target="_blank" rel="noopener">
+        <span class="gh-ic" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="26" height="26"><path fill="currentColor" fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+        </span>
+        <span class="gh-txt">
+          <span class="gh-eyebrow">Code on GitHub</span>
+          <span class="gh-title">github.com/{GITHUB_ORG}</span>
+          <span class="gh-sub faint">Our organisation for reproducible code — implementations, release repositories and project pages.</span>
+        </span>
+        <span class="gh-go" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  {featured.length > 0 && (
+    <!-- (b) Highlighted software projects, pointed to directly -->
+    <section class="section-tight" aria-labelledby="hp-h">
+      <div class="wrap">
+        <h2 id="hp-h" class="cat">Highlighted projects</h2>
+        <p class="muted measure sub">A few projects worth pointing to directly.</p>
+        <div class="proj-grid">
+          {featured.map((i) => (
+            <a class="card proj" href={i.data.url} target="_blank" rel="noopener">
+              <div class="proj-top">
+                <h3>{i.data.title}</h3>
+                {i.data.badge && <span class="badge">{i.data.badge}</span>}
+              </div>
+              {i.data.description && <p class="muted pd">{i.data.description}</p>}
+              <span class="link more2">View repository →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {datasets.length > 0 && (
+    <!-- (c) Open datasets -->
+    <section class="section-tight" aria-labelledby="ds-h">
+      <div class="wrap">
+        <h2 id="ds-h" class="cat">Open datasets</h2>
+        <p class="muted measure sub">Datasets we have released or help maintain, with access instructions on each page.</p>
+        <ul class="res">
+          {datasets.map((i) => (
+            <li>
+              {i.data.url ? <a class="link" href={i.data.url} target="_blank" rel="noopener">{i.data.title}</a> : <span>{i.data.title}</span>}
+              {i.data.badge && <span class="ib">{i.data.badge}</span>}
+              {i.data.description && <span class="faint"> — {i.data.description}</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {restGroups.length > 0 && (
+    <section class="section-tight" aria-labelledby="more-h">
+      <div class="wrap">
+        <h2 id="more-h" class="cat">More resources</h2>
+        {restGroups.map((g) => (
+          <div class="grp">
+            <h3 class="sub-h">{label[g.c]}</h3>
+            <ul class="res">
+              {g.items.map((i) => (
+                <li>
+                  {i.data.url ? <a class="link" href={i.data.url} target="_blank" rel="noopener">{i.data.title}</a> : <span>{i.data.title}</span>}
+                  {i.data.badge && <span class="ib">{i.data.badge}</span>}
+                  {i.data.description && <span class="faint"> — {i.data.description}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
 
   <section class="section-tight">
     <div class="wrap">
-      {groups.length > 0 ? groups.map((g) => (
-        <div class="grp">
-          <h2 class="cat">{label[g.c]}</h2>
-          <ul class="res">
-            {g.items.map((i) => (
-              <li>
-                {i.data.url ? <a class="link" href={i.data.url} target="_blank" rel="noopener">{i.data.title}</a> : <span>{i.data.title}</span>}
-                {i.data.description && <span class="faint"> — {i.data.description}</span>}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )) : (
-        <p class="muted measure evergreen">Public releases — code, models, tools and benchmarks — will be listed here.</p>
-      )}
-
       <p class="muted measure sensitive">Sensitive human data are not made publicly available. Public resources are
-      released where permitted by ethics approvals, data-use agreements and applicable governance requirements.</p>
+      released where permitted by ethics approvals, data-use agreements and applicable governance requirements. Each
+      repository states its own licence and citation.</p>
     </div>
   </section>
 </Base>
 
 <style>
-  .cat { font-size: var(--step-1); }
-  .grp { margin-bottom: 2rem; }
-  .res { list-style: none; padding: 0; margin-top: .9rem; display: grid; gap: .6rem; max-width: var(--measure); }
-  .evergreen { margin-top: .5rem; }
-  .sensitive { margin-top: 2.5rem; padding-top: 1.4rem; border-top: 1px solid var(--border); font-size: var(--step--1); }
+  .cat { font-size: var(--step-2); }
+  .sub { margin-top: .4rem; }
+
+  /* GitHub org callout */
+  .ghband { display: flex; align-items: center; gap: clamp(.9rem, 2.5vw, 1.4rem);
+            padding: clamp(1.1rem, 3vw, 1.5rem) clamp(1.2rem, 3.2vw, 1.7rem);
+            border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-2);
+            position: relative; overflow: hidden; transition: border-color .15s, transform .15s; }
+  .ghband::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--x-grad); }
+  .ghband:hover { border-color: rgba(106,164,238,.45); transform: translateY(-2px); }
+  .gh-ic { flex: none; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 12px;
+           background: var(--x-grad); color: #fff; }
+  .gh-txt { display: grid; gap: .18rem; }
+  .gh-eyebrow { font-size: var(--step--1); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+  .gh-title { font-size: var(--step-1); font-weight: 600; }
+  .gh-sub { font-size: var(--step--1); max-width: 60ch; }
+  .gh-go { margin-left: auto; flex: none; font-size: var(--step-2); color: var(--muted); transition: transform .15s; }
+  .ghband:hover .gh-go { transform: translateX(3px); }
+
+  /* Highlighted project cards */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2.5vw, 1.5rem); margin-top: 1.4rem; }
+  .proj { display: block; padding: clamp(1.2rem, 3vw, 1.6rem); transition: border-color .15s, transform .15s; }
+  .proj:hover { border-color: rgba(106,164,238,.45); transform: translateY(-2px); }
+  .proj-top { display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap; }
+  .proj h3 { font-size: var(--step-1); }
+  .badge { font-size: var(--step--2); letter-spacing: .02em; color: var(--muted);
+           border: 1px solid var(--border); border-radius: 999px; padding: .12em .7em; white-space: nowrap; }
+  .proj .pd { margin-top: .6rem; font-size: var(--step-0); }
+  .more2 { display: inline-block; margin-top: 1rem; font-size: var(--step--1); }
+
+  /* Lists */
+  .grp { margin-top: 1.6rem; }
+  .sub-h { font-size: var(--step-0); color: var(--muted); }
+  .res { list-style: none; padding: 0; margin-top: .8rem; display: grid; gap: .6rem; max-width: var(--measure); }
+  .ib { font-size: var(--step--2); color: var(--muted); border: 1px solid var(--border);
+        border-radius: 999px; padding: .06em .6em; margin-left: .5em; white-space: nowrap; }
+  .sensitive { padding-top: 1.4rem; border-top: 1px solid var(--border); font-size: var(--step--1); }
+
+  @media (max-width: 640px) {
+    .proj-grid { grid-template-columns: 1fr; }
+    .ghband { flex-wrap: wrap; }
+    .gh-go { display: none; }
+  }
 </style>
