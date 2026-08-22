@@ -5,6 +5,6 @@ category: "masters"
 status: "current"
 affiliation: "KTH"
 order: 350
-draft: false
+draft: true   # example entry — hidden from the site
 ---
 Placeholder — replace with a real master's student (or delete this file).

@@ -92,7 +92,9 @@ p { text-wrap: pretty; }
 .measure { max-width: var(--measure); }
 .section { padding-block: clamp(3rem, 2rem + 6vw, 6rem); }
 .section-tight { padding-block: clamp(2rem, 1.4rem + 3vw, 3.5rem); }
-.eyebrow { font-size: var(--step--1); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.eyebrow { font-size: var(--step--1); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+           display: inline-flex; align-items: center; gap: .6em; }
+.eyebrow::before { content: ''; width: 1.7em; height: 2px; border-radius: 2px; background: var(--x-grad); flex: none; }
 .lede { font-size: var(--step-1); color: var(--text); max-width: var(--measure); }
 .muted { color: var(--muted); }
 .faint { color: var(--faint); }

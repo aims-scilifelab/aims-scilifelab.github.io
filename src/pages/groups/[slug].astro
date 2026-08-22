@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import Avatar from '../../components/Avatar.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -41,7 +42,7 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join
       {lead && (
         <article class="card lead-card">
           <div class="avatar" aria-hidden="true">
-            {lead.photo ? <img src={lead.photo} alt="" width="72" height="72" loading="lazy" /> : <span>{initials(lead.name)}</span>}
+            <Avatar photo={lead.photo} name={lead.name} />
           </div>
           <div>
             <p class="faint role-l">Lab lead</p>
