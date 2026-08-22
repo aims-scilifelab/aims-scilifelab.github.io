@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const groups = await getCollection('groups', (g) => !g.data.draft);
@@ -11,12 +11,18 @@ const { group } = Astro.props;
 const { Content } = await group.render();
 
 const people = await getCollection('people', (p) => !p.data.draft);
-const catOrder = ['lead', 'researcher', 'postdoc', 'phd', 'masters', 'engineer', 'staff', 'affiliate'];
 const lead = people.find((p) => p.data.name === group.data.lead)?.data;
-const members = people
-  .filter((p) => p.data.status === 'current' && p.data.group_leader === group.data.lead && p.data.name !== group.data.lead)
-  .map((p) => p.data)
-  .sort((a, b) => (catOrder.indexOf(a.category) - catOrder.indexOf(b.category)) || (a.order - b.order));
+
+// Selected publications: the lab lead's papers, pulled from the global list by
+// surname (no per-lab data entry). Hidden when there are no matches.
+const pubs = (await getEntry('publications', 'all'))?.data.items ?? [];
+const surname = (group.data.lead || '').trim().split(/\s+/).pop() || '';
+const keyPubs = surname
+  ? pubs
+      .filter((p) => (p.authors || '').toLowerCase().includes(surname.toLowerCase()))
+      .sort((a, b) => b.year - a.year)
+      .slice(0, 6)
+  : [];
 
 const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
 ---
@@ -44,31 +50,32 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join
             <div class="links">
               {lead.website && <a class="link" href={lead.website} target="_blank" rel="noopener">Website</a>}
               {lead.google_scholar && <a class="link" href={lead.google_scholar} target="_blank" rel="noopener">Scholar</a>}
+              <a class="link" href="/people">Profile →</a>
             </div>
           </div>
         </article>
       )}
 
-      {members.length > 0 && (
-        <div class="mem">
-          <h2 class="cat">Members</h2>
-          <div class="grid">
-            {members.map((p) => (
-              <article class="card person">
-                <div class="avatar" aria-hidden="true">
-                  {p.photo ? <img src={p.photo} alt="" width="56" height="56" loading="lazy" /> : <span>{initials(p.name)}</span>}
-                </div>
-                <div class="pbody">
-                  <h3>{p.name}</h3>
-                  <p class="role muted">{p.role}</p>
-                </div>
-              </article>
+      {keyPubs.length > 0 && (
+        <div class="pubs-block">
+          <h2 class="cat">Selected publications</h2>
+          <ul class="pubs">
+            {keyPubs.map((p) => (
+              <li>
+                {p.url
+                  ? <a class="ptitle" href={p.url} target="_blank" rel="noopener">{p.title}</a>
+                  : <span class="ptitle">{p.title}</span>}
+                <div class="pmeta faint">{p.authors}{p.venue ? ` · ${p.venue}` : ''}{p.year ? ` · ${p.year}` : ''}</div>
+              </li>
             ))}
-          </div>
+          </ul>
+          <p class="more2"><a class="link" href="/publications">All publications →</a></p>
         </div>
       )}
 
-      <p class="more2"><a class="link" href="/publications">Publications →</a> &nbsp;·&nbsp; <a class="link" href="/people">All people →</a></p>
+      {keyPubs.length === 0 && (
+        <p class="more2"><a class="link" href="/publications">Publications →</a> &nbsp;·&nbsp; <a class="link" href="/people">People →</a></p>
+      )}
     </div>
   </section>
 </Base>
@@ -79,16 +86,16 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join
   .lead-card { display: flex; gap: 1.1rem; align-items: center; padding: 1.3rem; margin-top: 1.8rem; max-width: var(--measure); }
   .role-l { text-transform: uppercase; letter-spacing: .07em; font-size: var(--step--1); }
   .lead-card .ln { font-size: var(--step-1); margin-top: .1rem; }
-  .lead-card .links { display: flex; gap: 14px; margin-top: .6rem; font-size: var(--step--1); }
-  .mem { margin-top: 2.4rem; }
-  .cat { font-size: var(--step-1); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: clamp(.9rem, 2vw, 1.2rem); margin-top: 1.2rem; }
-  .person { display: flex; gap: .9rem; align-items: center; padding: 1rem; }
+  .lead-card .links { display: flex; gap: 14px; margin-top: .6rem; font-size: var(--step--1); flex-wrap: wrap; }
   .avatar { flex: 0 0 auto; width: 72px; height: 72px; border-radius: 50%; overflow: hidden; background: var(--bg-3);
             display: grid; place-items: center; color: var(--muted); font-weight: 700; border: 1px solid var(--border); }
-  .person .avatar { width: 56px; height: 56px; font-size: .9rem; }
   .avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .pbody h3 { font-size: var(--step-0); }
-  .pbody .role { font-size: var(--step--1); margin-top: 1px; }
-  .more2 { margin-top: 2.2rem; }
+
+  .pubs-block { margin-top: 2.6rem; }
+  .cat { font-size: var(--step-1); }
+  .pubs { list-style: none; padding: 0; margin-top: 1.2rem; display: grid; gap: 1.1rem; max-width: var(--measure); }
+  .ptitle { font-weight: 600; }
+  a.ptitle:hover { color: var(--blue); }
+  .pmeta { font-size: var(--step--1); margin-top: .25rem; }
+  .more2 { margin-top: 1.8rem; }
 </style>
