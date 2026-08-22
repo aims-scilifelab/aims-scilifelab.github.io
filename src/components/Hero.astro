@@ -83,7 +83,10 @@ const BIO = [
   .vig  { position: absolute; inset: 0; background: radial-gradient(135% 135% at 42% 45%, transparent 55%, rgba(0,0,0,.44)); }
   /* A small dim band along the top and bottom edges only. */
   .vig-edge { position: absolute; inset: 0; pointer-events: none;
-              background: linear-gradient(180deg, rgba(0,0,0,.42) 0%, transparent 9%, transparent 91%, rgba(0,0,0,.46) 100%); }
+              background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, transparent 10%, transparent 90%, rgba(0,0,0,.58) 100%); }
+  @media (max-width: 820px) {
+    .vig-edge { background: linear-gradient(180deg, rgba(0,0,0,.66) 0%, transparent 11%, transparent 89%, rgba(0,0,0,.70) 100%); }
+  }
 
   /* left-aligned column on the content grid; imagery breathes on the right */
   .hero-in { max-width: 34rem; margin-inline: 0; }
