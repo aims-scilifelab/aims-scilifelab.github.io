@@ -6,28 +6,25 @@ const s = (await getEntry('site', 'settings'))!.data;
 const h = (await getEntry('home', 'home'))!.data;
 
 // Hero math panel — a variational-inference derivation, typeset with KaTeX at
-// build time (proper stretchy delimiters, aligned relations, real math fonts).
-// Compact notation (p, q, 𝔼_q) keeps each line narrow so the type can be large.
-// Edit the LaTeX below to change the derivation.
+// build time. Each LINE is rendered on its own so it can be revealed one at a
+// time; \hphantom{\log p(x)} reserves the width of the head so every "=" lines
+// up as if it were one aligned block. Edit the lines below.
 const TEX = (s: string) => katex.renderToString(s, { displayMode: true, throwOnError: false });
-const mathBlocks = [
-  TEX(String.raw`\begin{aligned}
-    \log p(x)
-      &= \log \int p(x,z)\,\mathrm{d}z \\[2pt]
-      &= \log \int q(z\mid x)\,\frac{p(x,z)}{q(z\mid x)}\,\mathrm{d}z \\[2pt]
-      &= \log \mathbb{E}_{q}\!\left[\frac{p(x,z)}{q(z\mid x)}\right] \\[2pt]
-      &\ge \mathbb{E}_{q}\!\left[\log \frac{p(x,z)}{q(z\mid x)}\right] \\[2pt]
-      &= \mathbb{E}_{q}\!\left[\log p(x\mid z)\right] \\[2pt]
-      &\quad {}-\ \mathrm{KL}\!\left(q(z\mid x)\,\|\,p(z)\right) \\[2pt]
-      &=: \mathcal{L}(x)
-  \end{aligned}`),
-  TEX(String.raw`\log p(x) \;=\; \mathcal{L}(x) \,+\, \mathrm{KL}\!\left(q(z\mid x)\,\|\,p(z\mid x)\right)`),
-  TEX(String.raw`\begin{aligned}
-    z &= \mu_\phi(x) + \sigma_\phi(x)\odot\epsilon, \quad \epsilon\sim\mathcal{N}(0,I) \\[3pt]
-    \nabla_\phi \mathcal{L} &= \mathbb{E}_{\epsilon}\!\left[\nabla_\phi \log \frac{p(x,z)}{q(z\mid x)}\right]
-  \end{aligned}`),
-  TEX(String.raw`\theta^\star,\phi^\star \;=\; \arg\max_{\theta,\phi}\ \sum_i \mathcal{L}(x_i)`),
+const HP = String.raw`\hphantom{\log p(x)}`;   // aligns the relation of continuation lines
+const mathLines = [
+  { tex: String.raw`\log p(x) = \log \int p(x,z)\,\mathrm{d}z` },
+  { tex: HP + String.raw`{}= \log \int q(z\mid x)\,\frac{p(x,z)}{q(z\mid x)}\,\mathrm{d}z` },
+  { tex: HP + String.raw`{}= \log \mathbb{E}_{q}\!\left[\frac{p(x,z)}{q(z\mid x)}\right]` },
+  { tex: HP + String.raw`{}\ge \mathbb{E}_{q}\!\left[\log \frac{p(x,z)}{q(z\mid x)}\right]` },
+  { tex: HP + String.raw`{}= \mathbb{E}_{q}\!\left[\log p(x\mid z)\right]` },
+  { tex: HP + String.raw`\quad {}-\ \mathrm{KL}\!\left(q(z\mid x)\,\|\,p(z)\right)` },
+  { tex: HP + String.raw`{}=: \mathcal{L}(x)` },
+  { tex: String.raw`\log p(x) = \mathcal{L}(x) + \mathrm{KL}\!\left(q(z\mid x)\,\|\,p(z\mid x)\right)`, gap: true },
+  { tex: String.raw`z = \mu_\phi(x) + \sigma_\phi(x)\odot\epsilon,\quad \epsilon\sim\mathcal{N}(0,I)`, gap: true },
+  { tex: String.raw`\nabla_\phi \mathcal{L} = \mathbb{E}_{\epsilon}\!\left[\nabla_\phi \log \frac{p(x,z)}{q(z\mid x)}\right]` },
+  { tex: String.raw`\theta^\star,\phi^\star = \arg\max_{\theta,\phi}\ \sum_i \mathcal{L}(x_i)`, gap: true },
 ];
+const mathBlocks = mathLines.map((l) => ({ html: TEX(l.tex), gap: !!l.gap }));
 
 // Rotating background — alternates AI ↔ bio, mixing video clips and stills.
 // Add/remove files in public/hero/ and edit these two lists.
@@ -117,28 +114,30 @@ const BIO = [
   // Any list entry that starts with "code:" renders this instead of a file.
   // Edit CODE to change what's typed. Colours live in global.css (.codeslide).
   const CODE = [
-    "# Medical VQA with calibrated uncertainty",
     "import torch",
-    "from aims import VisionLanguageModel",
-    "from aims.io import load_scan, windowing",
+    "from diffusers import (",
+    "    AutoencoderKL,",
+    "    DDIMScheduler,",
+    "    UNet2DConditionModel,",
+    ")",
+    "from transformers import CLIPTextModel",
     "",
-    "model = VisionLanguageModel.from_pretrained(",
-    "    'aims/med-vqa-3b',",
-    ").eval()",
+    "# chest x-ray latent diffusion models",
+    "MODELS = {",
+    "    'roentgen': 'stanfordmimi/RoentGen-v2',",
+    "    'covid64': 'teohyc/Covid-XRay-Diffusion',",
+    "}",
     "",
-    "scan = load_scan('chest_ct.nii.gz')",
-    "scan = windowing(scan, level=-600, width=1500)",
-    "q = 'Is there evidence of pneumonia?'",
-    "",
-    "@torch.no_grad()",
-    "def answer(scan, q, n=16):",
-    "    logits = model.sample(scan, q, n=n)",
-    "    p = logits.softmax(-1).mean(0)",
-    "    h = -(p * p.log()).sum()      # entropy",
-    "    return model.decode(p), 1.0 - h",
-    "",
-    "pred, conf = answer(scan, q)",
-    "print(f'{pred}  (p={conf:.2f})')",
+    "def load(model='roentgen'):",
+    "    repo = MODELS[model]",
+    "    dt = {'torch_dtype': torch.float32}",
+    "    unet = UNet2DConditionModel.from_pretrained(",
+    "        repo, subfolder='unet', **dt)",
+    "    vae = AutoencoderKL.from_pretrained(",
+    "        repo, subfolder='vae', **dt)",
+    "    sched = DDIMScheduler.from_pretrained(",
+    "        repo, subfolder='scheduler')",
+    "    return unet, vae, sched",
   ].join("\n");
   const csEsc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   // Single pass so we never re-scan (and corrupt) markup we've already inserted.
@@ -153,7 +152,7 @@ const BIO = [
   const buildCode = () => {
     const wrap = document.createElement('div');
     wrap.className = 'codeslide nokb';
-    wrap.innerHTML = '<div class="cs-window"><div class="cs-bar"><i></i><i></i><i></i><b>med_vqa.py</b></div>'
+    wrap.innerHTML = '<div class="cs-window"><div class="cs-bar"><i></i><i></i><i></i><b>xray_diffusion.py</b></div>'
       + '<pre class="cs-pre"><code class="cs-code"></code><span class="cs-caret"></span></pre></div>';
     const codeEl = wrap.querySelector('.cs-code');
     const per = Math.max(13, Math.floor(4200 / CODE.length));
@@ -206,11 +205,12 @@ const BIO = [
   const buildMath = () => {
     const wrap = document.createElement('div');
     wrap.className = 'mathslide nokb';
-    let blocks = '';
-    mathBlocks.forEach((hML, i) => {
-      blocks += '<div class="ms-block" style="animation-delay:' + (0.3 + i * 0.7) + 's">' + hML + '</div>';
+    let lines = '';
+    mathBlocks.forEach((b, i) => {
+      const delay = (0.15 + i * 0.34).toFixed(2);   // each line wipes in after the last
+      lines += '<div class="ms-line' + (b.gap ? ' ms-gap' : '') + '" style="animation-delay:' + delay + 's">' + b.html + '</div>';
     });
-    wrap.innerHTML = '<div class="ms-window"><div class="ms-body">' + blocks + '</div></div>';
+    wrap.innerHTML = '<div class="ms-window"><div class="ms-body">' + lines + '</div></div>';
     return wrap;
   };
 
