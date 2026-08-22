@@ -48,7 +48,7 @@ const BIO = [
     <!-- No poster image: the hero starts on solid black and the first clip fades in over it. -->
     <div class="layer" id="hL0"></div>
     <div class="layer" id="hL1"></div>
-    <div class="veil"></div><div class="vig"></div>
+    <div class="veil"></div><div class="vig"></div><div class="vig-edge"></div>
   </div>
 
   <div class="wrap"><div class="hero-in">
@@ -81,6 +81,9 @@ const BIO = [
   /* Veil keeps the headline legible on the left; right side is left much brighter now. */
   .veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,8,12,.86), rgba(8,8,12,.42) 52%, rgba(8,8,12,.08)); }
   .vig  { position: absolute; inset: 0; background: radial-gradient(135% 135% at 42% 45%, transparent 55%, rgba(0,0,0,.44)); }
+  /* A small dim band along the top and bottom edges only. */
+  .vig-edge { position: absolute; inset: 0; pointer-events: none;
+              background: linear-gradient(180deg, rgba(0,0,0,.42) 0%, transparent 9%, transparent 91%, rgba(0,0,0,.46) 100%); }
 
   /* left-aligned column on the content grid; imagery breathes on the right */
   .hero-in { max-width: 34rem; margin-inline: 0; }
