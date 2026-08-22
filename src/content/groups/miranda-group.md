@@ -1,12 +1,12 @@
 ---
-name: "Miranda Group"
+name: "Miranda Lab"
 lead: "Gisele Miranda"
-# TODO(Kevin): confirm this group's name, tagline and focus — placeholder text below.
+# TODO(Kevin): confirm this lab's tagline and focus — placeholder text below.
 tagline: "Machine learning for the life sciences."
 focus:
   - "Machine learning"
   - "Life sciences"
-order: 2
+order: 3
 draft: false
 ---
 

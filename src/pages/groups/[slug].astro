@@ -21,8 +21,8 @@ const members = people
 const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
 ---
 <Base title={group.data.name} description={group.data.tagline || `The ${group.data.name} at AIMS.`}>
-  <PageHeader eyebrow="Group" title={group.data.name} lede={group.data.tagline}>
-    <p class="gback"><a class="link" href="/groups">← All groups</a></p>
+  <PageHeader eyebrow="Lab" title={group.data.name} lede={group.data.tagline}>
+    <p class="gback"><a class="link" href="/groups">← All labs</a></p>
   </PageHeader>
 
   <section class="section-tight">
@@ -38,7 +38,7 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join
             {lead.photo ? <img src={lead.photo} alt="" width="72" height="72" loading="lazy" /> : <span>{initials(lead.name)}</span>}
           </div>
           <div>
-            <p class="faint role-l">Group leader</p>
+            <p class="faint role-l">Lab lead</p>
             <h2 class="ln">{lead.name}</h2>
             <p class="muted">{lead.role}{lead.affiliation ? ` · ${lead.affiliation}` : ''}</p>
             <div class="links">

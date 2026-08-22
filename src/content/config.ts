@@ -25,7 +25,13 @@ const site = defineCollection({
     postalAddress: z.array(z.string()).default([]),   // mailing lines, e.g. ["Box 1031", "171 21 Solna, Sweden"]
     domain: z.string().optional(),    // canonical site URL (for meta)
     contactEmail: z.string().optional(),
-    nav: z.array(z.object({ label: z.string(), href: z.string(), cta: z.boolean().optional() })),
+    nav: z.array(z.object({
+      label: z.string(),
+      href: z.string(),
+      cta: z.boolean().optional(),
+      // Optional dropdown items (e.g. Research → About Us + the labs).
+      children: z.array(z.object({ label: z.string(), href: z.string() })).optional(),
+    })),
     footerLinks: z.array(z.object({ label: z.string(), href: z.string() })),
     institutionLinks: z.array(z.object({ label: z.string(), href: z.string() })).default([]),
     social: z.array(z.object({ label: z.string(), href: z.string() })).default([]),

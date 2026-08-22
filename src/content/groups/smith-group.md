@@ -1,5 +1,5 @@
 ---
-name: "Smith Group"
+name: "Smith Lab"
 lead: "Kevin Smith"
 tagline: "Machine-learning methods for medical imaging and the life sciences."
 focus:

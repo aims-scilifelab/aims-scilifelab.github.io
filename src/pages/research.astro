@@ -23,8 +23,8 @@ const domainsR = await rendered(domains);
   {groups.length > 0 && (
     <section class="section-tight" aria-labelledby="groups-h">
       <div class="wrap">
-        <h2 id="groups-h" class="cat">Research groups</h2>
-        <p class="scale muted">AIMS brings together several research groups under one roof — sharing methods, a reading group and a lot of cross-disciplinary work.</p>
+        <h2 id="groups-h" class="cat">Our labs</h2>
+        <p class="scale muted">AIMS brings together several labs under one roof — sharing methods, a reading group and a lot of cross-disciplinary work.</p>
         <div class="grid">
           {groups.map((g) => {
             const n = sizeOf(g.data.lead);
@@ -32,7 +32,7 @@ const domainsR = await rendered(domains);
               <a class="card theme grp" href={`/groups/${g.slug}`}>
                 <h3>{g.data.name}</h3>
                 {g.data.tagline && <p class="gt">{g.data.tagline}</p>}
-                <p class="faint gl">Led by {g.data.lead}{n > 0 ? ` · ${n} member${n > 1 ? 's' : ''}` : ''}</p>
+                {g.data.lead && <p class="faint gl">Led by {g.data.lead}{n > 0 ? ` · ${n} member${n > 1 ? 's' : ''}` : ''}</p>}
               </a>
             );
           })}

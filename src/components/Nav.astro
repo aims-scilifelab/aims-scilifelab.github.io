@@ -6,6 +6,9 @@ const isActive = (href: string) => {
   const h = href.replace(/\/+$/, '') || '/';
   return h === '/' ? path === '/' : path === h || path.startsWith(h + '/');
 };
+// A parent is "active" if it, or any of its dropdown children, is the current page.
+const parentActive = (item: { href: string; children?: { href: string }[] }) =>
+  isActive(item.href) || (item.children ?? []).some((c) => isActive(c.href));
 ---
 <nav aria-label="Primary">
   <div class="wrap nav-in">
@@ -21,11 +24,29 @@ const isActive = (href: string) => {
 
     <ul id="navMenu" class="nav-links">
       {settings.nav.map((item) => (
-        <li>
-          <a href={item.href}
-             class={(item.cta ? 'cta ' : '') + (isActive(item.href) ? 'active' : '')}
-             aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
-        </li>
+        item.children ? (
+          <li class="has-children">
+            <a href={item.href}
+               class={'parent ' + (parentActive(item) ? 'active' : '')}
+               aria-current={parentActive(item) ? 'page' : undefined}>
+              {item.label}<span class="caret" aria-hidden="true">▾</span>
+            </a>
+            <ul class="submenu">
+              {item.children.map((c) => (
+                <li>
+                  <a href={c.href} class={isActive(c.href) ? 'active' : ''}
+                     aria-current={isActive(c.href) ? 'page' : undefined}>{c.label}</a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ) : (
+          <li>
+            <a href={item.href}
+               class={(item.cta ? 'cta ' : '') + (isActive(item.href) ? 'active' : '')}
+               aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+          </li>
+        )
       ))}
     </ul>
   </div>
@@ -42,6 +63,30 @@ const isActive = (href: string) => {
   .nav-links a.active { color: var(--text); }
   .nav-links a.cta { color: var(--text); border: 1px solid var(--border-strong); border-radius: 8px; padding: 8px 14px; }
   .nav-links a.cta:hover { border-color: var(--blue); }
+
+  /* Research dropdown */
+  .has-children { position: relative; }
+  .has-children > a.parent { display: inline-flex; align-items: center; gap: 4px; }
+  .caret { font-size: .7em; line-height: 1; transition: transform .18s; opacity: .7; }
+  .has-children:hover .caret, .has-children:focus-within .caret { transform: rotate(180deg); }
+  .has-children::after {   /* invisible hover bridge to the submenu */
+    content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 12px;
+  }
+  .submenu {
+    list-style: none; margin: 0; padding: 6px; display: flex; flex-direction: column; gap: 2px;
+    position: absolute; top: calc(100% + 10px); left: -10px; min-width: 190px;
+    background: rgba(12,12,17,.98); backdrop-filter: blur(12px);
+    border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 22px 44px rgba(0,0,0,.5);
+    opacity: 0; visibility: hidden; transform: translateY(6px);
+    transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+  }
+  .has-children:hover .submenu, .has-children:focus-within .submenu {
+    opacity: 1; visibility: visible; transform: translateY(0);
+    transition: opacity .18s ease, transform .18s ease;
+  }
+  .submenu a { display: block; padding: 9px 12px; border-radius: 7px; white-space: nowrap; font-size: var(--step--1); }
+  .submenu a:hover { background: var(--bg-3); color: var(--text); }
+  .submenu a.active { color: var(--text); background: var(--bg-3); }
 
   .hamburger { display: none; background: none; border: 1px solid var(--border-strong); color: var(--text);
                width: 44px; height: 44px; border-radius: 9px; cursor: pointer; align-items: center; justify-content: center; }
@@ -61,6 +106,18 @@ const isActive = (href: string) => {
     .nav-links li { width: 100%; }
     .nav-links a { display: block; padding: 14px clamp(20px,5vw,40px); font-size: 1rem; }
     .nav-links a.cta { margin: 8px clamp(20px,5vw,40px); text-align: center; }
+
+    /* Dropdown becomes an inline, always-open indented group on mobile. */
+    .has-children::after { display: none; }
+    .has-children > a.parent .caret { display: none; }
+    .submenu {
+      position: static; opacity: 1; visibility: visible; transform: none;
+      background: none; border: 0; box-shadow: none; backdrop-filter: none;
+      padding: 0; min-width: 0; transition: none;
+    }
+    .submenu a { padding: 12px clamp(20px,5vw,40px); padding-left: calc(clamp(20px,5vw,40px) + 18px);
+                 font-size: .95rem; color: var(--muted); border-radius: 0; }
+    .submenu a:hover, .submenu a.active { background: none; }
     .hamburger[aria-expanded="true"] .l1 { transform: translateY(6px) rotate(45deg); }
     .hamburger[aria-expanded="true"] .l2 { opacity: 0; }
     .hamburger[aria-expanded="true"] .l3 { transform: translateY(-6px) rotate(-45deg); }

@@ -21,7 +21,14 @@ domain: "https://aims-lab.se"
 contactEmail: ""            # leave blank to keep no public email; used on Join if set
 
 nav:
-  - { label: "Research",     href: "/research" }
+  - label: "Research"
+    href: "/research"
+    children:
+      - { label: "About Us",      href: "/research" }
+      - { label: "Smith Lab",     href: "/groups/smith-group" }
+      - { label: "Lagergren Lab", href: "/groups/lagergren-group" }
+      - { label: "Miranda Lab",   href: "/groups/miranda-group" }
+      - { label: "Taheri Lab",    href: "/groups/taheri-group" }
   - { label: "People",       href: "/people" }
   - { label: "Publications", href: "/publications" }
   - { label: "What We Read", href: "/what-we-read" }
