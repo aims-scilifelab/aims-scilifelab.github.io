@@ -7,6 +7,7 @@ const h = (await getEntry('home', 'home'))!.data;
 const AI = [
   'ai_chip.mp4', 'ai_datacenter.mp4', 'ai_fiber.mp4', 'ai_llm.mp4', 'ai_umap.mp4',
   'ai_drug_discovery.mp4', 'ai_loss_landscape.mp4', 'ai_vit.mp4', 'ai_neural.mp4',
+  'math:elbo',     // a typeset math derivation (see the math-slide helpers in the script below)
   'code:medvqa',   // a live-typed code panel (see the code-slide helpers in the script below)
 ];
 const BIO = [
@@ -164,6 +165,35 @@ const BIO = [
     return wrap;
   };
 
+  // ---- Math slide -------------------------------------------------------
+  // A typeset derivation (the Evidence Lower Bound), revealed line by line.
+  // No MathJax/mp4 — just HTML + CSS (serif italics, CSS fractions). Styles
+  // live in global.css (.mathslide). Edit MATH to change the derivation.
+  const isMath = (f) => typeof f === 'string' && f.indexOf('math:') === 0;
+  const FR = (n, d) => '<span class="fr"><span class="nu">' + n + '</span><span class="de">' + d + '</span></span>';
+  const P = '<i>p</i>', Q = '<i>q</i>', X = '<i>x</i>', Z = '<i>z</i>';
+  const RATIO = FR(P + '(' + X + ',' + Z + ')', Q + '(' + Z + '|' + X + ')');
+  const MATH = [
+    { t: 'log ' + P + '(' + X + ') = log &int; ' + P + '(' + X + ',' + Z + ') d' + Z, cont: false },
+    { t: '= log &int; ' + Q + '(' + Z + '|' + X + ') ' + RATIO + ' d' + Z, cont: true },
+    { t: '= log &#120124;<sub>' + Q + '</sub>[ ' + RATIO + ' ]', cont: true },
+    { t: '&ge; &#120124;<sub>' + Q + '</sub>[ log ' + RATIO + ' ]', cont: true, ann: 'Jensen' },
+    { t: '= &#120124;<sub>' + Q + '</sub>[log ' + P + '(' + X + '|' + Z + ')] &minus; KL(' + Q + '(' + Z + '|' + X + ') &#8214; ' + P + '(' + Z + '))', cont: true },
+    { t: '=: <span class="hl">ELBO</span>(' + X + ')', cont: true },
+  ];
+  const buildMath = () => {
+    const wrap = document.createElement('div');
+    wrap.className = 'mathslide nokb';
+    let lines = '';
+    MATH.forEach((m, i) => {
+      const ann = m.ann ? ' <span class="ann">(' + m.ann + ')</span>' : '';
+      lines += '<div class="ms-line' + (m.cont ? ' ms-cont' : '') + '" style="animation-delay:' + (0.25 + i * 0.55) + 's">' + m.t + ann + '</div>';
+    });
+    wrap.innerHTML = '<div class="ms-window"><div class="ms-title">Evidence lower bound</div>'
+      + '<div class="ms-lines">' + lines + '</div></div>';
+    return wrap;
+  };
+
   // Static poster only on reduced-motion or small screens (perf + one-video-at-a-time on mobile).
   if (!reduce && !coarseSmall && (AI.length || BIO.length)) {
     const layers = [document.getElementById('hL0'), document.getElementById('hL1')];
@@ -178,6 +208,7 @@ const BIO = [
       let el, done = false; const ok = () => { if (!done) { done = true; res(el); } }; const fail = () => { if (!done) { done = true; res(null); } };
       if (isCode(info.file)) { el = buildCode(); ok(); return; }
       if (isSeq(info.file))  { el = buildSeq();  ok(); return; }
+      if (isMath(info.file)) { el = buildMath(); ok(); return; }
       if (isVid(info.file)) {
         el = document.createElement('video');
         el.muted = true; el.defaultMuted = true; el.autoplay = true; el.playsInline = true; el.loop = false;
@@ -190,6 +221,7 @@ const BIO = [
       }
     });
     const dwell = (el) => el.classList.contains('codeslide') ? 11000
+      : el.classList.contains('mathslide') ? 9500
       : el.classList.contains('seqslide') ? 9500
       : (el.tagName === 'VIDEO' && isFinite(el.duration) && el.duration > 0) ? Math.min(el.duration * 1000, MAX_DWELL) : IMG_DWELL;
     async function next() {
@@ -198,7 +230,7 @@ const BIO = [
       const show = layers[1 - cur]; show.innerHTML = ''; show.appendChild(el);
       if (!el.classList.contains('nokb')) { el.classList.remove('kb'); void el.offsetWidth; el.classList.add('kb'); }
       const hero = document.querySelector('.hero');
-      if (hero) hero.classList.toggle('panelmode', el.classList.contains('codeslide') || el.classList.contains('seqslide'));
+      if (hero) hero.classList.toggle('panelmode', el.classList.contains('codeslide') || el.classList.contains('seqslide') || el.classList.contains('mathslide'));
       if (el.tagName === 'VIDEO') el.play().catch(() => {});
       show.style.opacity = 1; layers[cur].style.opacity = 0;
       if (poster) { poster.style.opacity = '0'; poster = null; }  // first clip is up — retire the poster so it can't show through crossfades
@@ -217,10 +249,10 @@ const BIO = [
     const isVid = (f) => /\.(mp4|webm|mov)$/i.test(f);
     const all = [...AI, ...BIO];
     const vids = all.filter(isVid);
-    // The typed-code editor is a desktop-only card — it needs the right-hand
-    // column, which phones don't have — so keep it off mobile. The DNA/RNA
-    // wall stays (it's a full-bleed still and reads well on a phone).
-    const stills = all.filter((f) => !isVid(f) && !isCode(f));
+    // Everything non-video is a "still": images plus the code / gene / math
+    // panels. On phones the hero text sits on a frosted-glass card (see
+    // global.css), so these panels read as a crisp backdrop behind it.
+    const stills = all.filter((f) => !isVid(f));
     const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
     const vOrder = shuffle(vids.slice());    // all videos, random order
     const sOrder = shuffle(stills.slice());  // all stills, random order
@@ -237,6 +269,7 @@ const BIO = [
       const mk = (file) => {
         if (isCode(file)) return buildCode();
         if (isSeq(file)) return buildSeq();
+        if (isMath(file)) return buildMath();
         if (isVid(file)) {
           const v = document.createElement('video');
           v.muted = true; v.defaultMuted = true; v.autoplay = true; v.loop = true; v.playsInline = true;
@@ -253,12 +286,12 @@ const BIO = [
         const show = layers[1 - cur];
         show.innerHTML = ''; show.appendChild(mk(file));
         const hero = document.querySelector('.hero');
-        if (hero) hero.classList.toggle('panelmode', isCode(file) || isSeq(file));
+        if (hero) hero.classList.toggle('panelmode', isCode(file) || isSeq(file) || isMath(file));
         show.style.opacity = 1; layers[cur].style.opacity = 0;
         if (poster) { poster.style.opacity = '0'; poster = null; }
         const old = cur; cur = 1 - cur;
         setTimeout(() => { const v = layers[old].querySelector('video'); if (v) { try { v.pause(); } catch (e) {} } layers[old].innerHTML = ''; }, FADE + 100);
-        setTimeout(step, isCode(file) ? 11000 : isSeq(file) ? 9500 : DWELL);
+        setTimeout(step, isCode(file) ? 11000 : (isSeq(file) || isMath(file)) ? 9500 : DWELL);
       };
       step();
     }
