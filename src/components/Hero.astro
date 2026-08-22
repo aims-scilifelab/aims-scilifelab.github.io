@@ -1,7 +1,32 @@
 ---
 import { getEntry } from 'astro:content';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 const s = (await getEntry('site', 'settings'))!.data;
 const h = (await getEntry('home', 'home'))!.data;
+
+// Hero math panel — a full variational-inference derivation, typeset with
+// KaTeX at build time (proper stretchy delimiters, aligned relations, real
+// math fonts). Edit the LaTeX below to change the derivation.
+const TEX = (s: string) => katex.renderToString(s, { displayMode: true, throwOnError: false });
+const NOTE = String.raw`\;\;\color{#8ea6cf}\footnotesize`;   // muted side-notes
+const mathBlocks = [
+  TEX(String.raw`\begin{aligned}
+    \log p_\theta(x)
+      &= \log \int p_\theta(x,z)\,\mathrm{d}z \\[1pt]
+      &= \log \int q_\phi(z\mid x)\,\frac{p_\theta(x,z)}{q_\phi(z\mid x)}\,\mathrm{d}z \\[1pt]
+      &= \log\, \mathbb{E}_{q_\phi(z\mid x)}\!\left[\frac{p_\theta(x,z)}{q_\phi(z\mid x)}\right] \\[1pt]
+      &\ge \mathbb{E}_{q_\phi}\!\left[\log \frac{p_\theta(x,z)}{q_\phi(z\mid x)}\right] ${NOTE}\text{Jensen} \\[1pt]
+      &= \mathbb{E}_{q_\phi}\!\big[\log p_\theta(x\mid z)\big] \;-\; \mathrm{KL}\!\big(q_\phi(z\mid x)\,\|\,p(z)\big) \\[1pt]
+      &=: \mathcal{L}(\theta,\phi;x) ${NOTE}\text{ELBO}
+  \end{aligned}`),
+  TEX(String.raw`\log p_\theta(x) \;-\; \mathcal{L}(\theta,\phi;x) \;=\; \mathrm{KL}\!\big(q_\phi(z\mid x)\,\|\,p_\theta(z\mid x)\big) \;\ge\; 0`),
+  TEX(String.raw`\begin{aligned}
+    z &= \mu_\phi(x) + \sigma_\phi(x)\odot\epsilon, \qquad \epsilon\sim\mathcal{N}(0,\mathbf{I}) \\[2pt]
+    \nabla_\phi\,\mathcal{L} &= \mathbb{E}_{\epsilon}\!\left[\nabla_\phi \log \frac{p_\theta(x,z)}{q_\phi(z\mid x)}\right]
+  \end{aligned}`),
+];
+
 // Rotating background — alternates AI ↔ bio, mixing video clips and stills.
 // Add/remove files in public/hero/ and edit these two lists.
 const AI = [
@@ -81,7 +106,7 @@ const BIO = [
   }
 </style>
 
-<script define:vars={{ AI, BIO }}>
+<script define:vars={{ AI, BIO, mathBlocks }}>
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const coarseSmall = matchMedia('(max-width: 820px)').matches;
 
@@ -93,21 +118,25 @@ const BIO = [
     "# Medical VQA with calibrated uncertainty",
     "import torch",
     "from aims import VisionLanguageModel",
-    "from aims.io import load_scan",
+    "from aims.io import load_scan, windowing",
     "",
     "model = VisionLanguageModel.from_pretrained(",
     "    'aims/med-vqa-3b',",
     ").eval()",
     "",
     "scan = load_scan('chest_ct.nii.gz')",
+    "scan = windowing(scan, level=-600, width=1500)",
     "q = 'Is there evidence of pneumonia?'",
     "",
-    "with torch.no_grad():",
-    "    out = model.generate(scan, q, n=16)",
+    "@torch.no_grad()",
+    "def answer(scan, q, n=16):",
+    "    logits = model.sample(scan, q, n=n)",
+    "    p = logits.softmax(-1).mean(0)",
+    "    h = -(p * p.log()).sum()      # entropy",
+    "    return model.decode(p), 1.0 - h",
     "",
-    "answer = out.consensus()      # majority vote",
-    "conf = 1.0 - out.entropy()    # calibrated 0-1",
-    "print(f'{answer}  (p={conf:.2f})')",
+    "pred, conf = answer(scan, q)",
+    "print(f'{pred}  (p={conf:.2f})')",
   ].join("\n");
   const csEsc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   // Single pass so we never re-scan (and corrupt) markup we've already inserted.
@@ -143,11 +172,14 @@ const BIO = [
   const isSeq = (f) => typeof f === 'string' && f.indexOf('seq:') === 0;
   // A real fragment of the human TP53 (p53) tumour-suppressor coding sequence.
   const TP53 = 'ATGGAGGAGCCGCAGTCAGATCCTAGCGTCGAGCCCCCTCTGAGTCAGGAAACATTTTCAGACCTATGGAAACTACTTCCTGAAAACAACGTTCTGTCCCCCTTGCCGTCCCAAGCAATGGATGATTTGATGCTGTCCCCGGACGATATTGAACAATGGTTCACTGAAGACCCAGGTCCAGATGAAGCTCCCAGAATGCCAGAGGCTGCTCCCCCCGTGGCCCCTGCACCAGCAGCTCCTACACCGGCGGCCCCTGCACCAGCCCCCTCCTGGCCCCTGTCATCTTCTGTCCCTTCCCAGAAAACCTACCAGGGCAGCTACGGTTTCCGTCTGGGCTTCTTGCATTCTGGGACAGCCAAGTCTGTGACTTGCACGTACTCCCCTGCCCTCAACAAGATGTTTTGCCAACTGGCCAAGACCTGCCCTGTGCAGCTGTGGGTTGATTCCACACCCCCGCCCGGCACCCGCGTCCGCGCCATGGCCATCTACAAGCAGTCACAGCACATGACGGAGGTTGTGAGGCGCTGCCCCCACCATGAGCGCTGCTCAGATAGCGATGGTCTGGCCCCTCCTCAGCATCTTATCCGAGTGGAAGGAAATTTGCGTGTGGAGTATTTGGATGACAGAAACACTTTTCGACATAGTGTGGTGGTGCCCTATGAGCCGCCTGAGGTTGGCTCTGACTGTACCACCATCCACTACAACTACATGTGTAACAGTTCCTGCATGGGCGGCATGAACCGGAGGCCCATCCTCACCATCATCACACTGGAAGAC';
-  const SEQ_ROWS = 32, SEQ_LEN = 130;   // rows × bases-per-half (content is doubled to loop)
+  const SEQ_LEN = 130;   // bases-per-half (content is doubled so the row loops)
   const colorSeq = (seq) => seq.replace(/[ATGCU]/g, (c) => '<span class="b' + c + '">' + c + '</span>');
   const buildSeq = () => {
     const wrap = document.createElement('div');
     wrap.className = 'seqslide nokb';
+    // Fewer, larger rows on phones so each base stays legible (32 rows shrink
+    // to mush on a narrow screen); a dense wall on desktop.
+    const SEQ_ROWS = matchMedia('(max-width: 820px)').matches ? 20 : 32;
     const G = TP53 + TP53;                                  // doubled so any window of SEQ_LEN exists
     const start = Math.floor(Math.random() * TP53.length);  // a different window each appearance
     let html = '<div class="seq-rows">';
@@ -166,35 +198,18 @@ const BIO = [
   };
 
   // ---- Math slide -------------------------------------------------------
-  // A typeset derivation (the Evidence Lower Bound), revealed line by line.
-  // No MathJax/mp4 — just HTML + CSS (serif italics, CSS fractions). Styles
-  // live in global.css (.mathslide). Edit MATH to change the derivation.
+  // A variational-inference derivation, typeset with KaTeX at build time and
+  // handed in as `mathBlocks`. buildMath just reveals each block in turn.
   const isMath = (f) => typeof f === 'string' && f.indexOf('math:') === 0;
-  const FR = (n, d) => '<span class="fr"><span class="nu">' + n + '</span><span class="de">' + d + '</span></span>';
-  const P = '<i>p</i>', Q = '<i>q</i>', X = '<i>x</i>', Z = '<i>z</i>';
-  const RATIO = FR(P + '(' + X + ',' + Z + ')', Q + '(' + Z + '|' + X + ')');
-  const EQ = '&#120124;<sub>' + Q + '</sub>';   // 𝔼_q — expectation under q(z|x)
-  const MATH = [
-    { t: 'log ' + P + '(' + X + ') = log &int; ' + P + '(' + X + ',&thinsp;' + Z + ') &thinsp;d' + Z, cont: false },
-    { t: '= log &int; ' + Q + '(' + Z + '|' + X + ') ' + RATIO + ' &thinsp;d' + Z, cont: true },
-    { t: '= log ' + EQ + '&#8202;[&#8202; ' + RATIO + ' &#8202;]', cont: true },
-    { t: '&ge; ' + EQ + '&#8202;[&#8202; log ' + RATIO + ' &#8202;]', cont: true, ann: 'Jensen&#8217;s inequality' },
-    { t: '= ' + EQ + '&#8202;[&#8202; log ' + P + '(' + X + '|' + Z + ') + log ' + P + '(' + Z + ') &minus; log ' + Q + '(' + Z + '|' + X + ') &#8202;]', cont: true },
-    { t: '= ' + EQ + '&#8202;[&#8202; log ' + P + '(' + X + '|' + Z + ') &#8202;] &minus; KL&#8202;(&#8202;' + Q + '(' + Z + '|' + X + ') &#8214; ' + P + '(' + Z + ')&#8202;)', cont: true },
-    { t: '=: <span class="hl">ELBO</span>(' + X + ')', cont: true, ann: 'evidence lower bound' },
-    { t: 'log ' + P + '(' + X + ') &minus; ELBO(' + X + ') = KL&#8202;(&#8202;' + Q + '(' + Z + '|' + X + ') &#8214; ' + P + '(' + Z + '|' + X + ')&#8202;) &ge; 0', cont: false, gap: true },
-  ];
   const buildMath = () => {
     const wrap = document.createElement('div');
     wrap.className = 'mathslide nokb';
-    let lines = '';
-    MATH.forEach((m, i) => {
-      const ann = m.ann ? ' <span class="ann">(' + m.ann + ')</span>' : '';
-      const cls = 'ms-line' + (m.cont ? ' ms-cont' : '') + (m.gap ? ' ms-gap' : '');
-      lines += '<div class="' + cls + '" style="animation-delay:' + (0.25 + i * 0.5) + 's">' + m.t + ann + '</div>';
+    let blocks = '';
+    mathBlocks.forEach((hML, i) => {
+      blocks += '<div class="ms-block" style="animation-delay:' + (0.3 + i * 0.7) + 's">' + hML + '</div>';
     });
-    wrap.innerHTML = '<div class="ms-window"><div class="ms-title">Evidence lower bound &mdash; variational inference</div>'
-      + '<div class="ms-lines">' + lines + '</div></div>';
+    wrap.innerHTML = '<div class="ms-window"><div class="ms-title">Variational inference &mdash; the evidence lower bound</div>'
+      + '<div class="ms-body">' + blocks + '</div></div>';
     return wrap;
   };
 
