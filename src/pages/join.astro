@@ -15,6 +15,15 @@ const mscTopics = [
   'Outlier detection in biomedical data',
   'Risk prediction',
 ];
+
+// ── MSc thesis inquiry form ────────────────────────────────────────────────
+// Paste your published Google Form embed URL between the quotes to switch the
+// form on. In the Google Form: Send → <> (Embed HTML) → copy the src="…" URL
+// (it ends in `?embedded=true`). Suggested questions in the form:
+//   • Name   • Email   • Programme / year   • Your question or project idea
+//   • Upload your CV (a "File upload" question — requires students to sign in
+//     with a Google account, which is fine and keeps the files in your Drive).
+const MSC_FORM_EMBED = '';   // e.g. 'https://docs.google.com/forms/d/e/1FAIpXXXX/viewform?embedded=true'
 ---
 <Base title="Join" description="Join AIMS — PhD, postdoctoral, engineering and master's thesis opportunities in AI, medicine and the life sciences.">
   <PageHeader eyebrow="Join" title="Join AIMS"
@@ -51,6 +60,19 @@ const mscTopics = [
         {mscTopics.map((t) => <li>{t}</li>)}
       </ul>
       <p class="faint measure note">Thesis projects are arranged through KTH's degree-project process.</p>
+
+      <div class="inquiry">
+        <h3 class="cat3">Have a project in mind?</h3>
+        <p class="muted measure">If you're a student interested in a thesis with us, send a short inquiry — tell us
+        your question or idea and attach your CV, and we'll be in touch.</p>
+        {MSC_FORM_EMBED ? (
+          <div class="formwrap">
+            <iframe src={MSC_FORM_EMBED} title="MSc thesis inquiry form" loading="lazy" width="100%" height="920">Loading…</iframe>
+          </div>
+        ) : (
+          <p class="faint measure note">The inquiry form is being set up and will appear here shortly.</p>
+        )}
+      </div>
     </div>
   </section>
 </Base>
@@ -64,4 +86,10 @@ const mscTopics = [
   .opening .prose { margin-top: .6rem; }
   .topics { margin-top: 1rem; padding-left: 1.2rem; display: grid; gap: .5rem; }
   .note { margin-top: 1.2rem; font-size: var(--step--1); }
+  .inquiry { margin-top: 2.4rem; padding-top: 1.8rem; border-top: 1px solid var(--border); }
+  .cat3 { font-size: var(--step-0); }
+  .inquiry p { margin-top: .6rem; }
+  .formwrap { margin-top: 1.4rem; max-width: 720px; border: 1px solid var(--border); border-radius: var(--radius);
+              overflow: hidden; background: var(--bg-2); }
+  .formwrap iframe { display: block; width: 100%; border: 0; }
 </style>
