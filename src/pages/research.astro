@@ -1,36 +1,40 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+
+const s = (await getEntry('site', 'settings'))!.data;
+const mapQuery = encodeURIComponent(['SciLifeLab', ...(s.visitingAddress ?? [])].join(', '));
 
 const pub = (c: { data: { draft?: boolean } }) => !c.data.draft;
 const methods = (await getCollection('methods', pub)).sort((a, b) => a.data.order - b.data.order);
 const domains = (await getCollection('domains', pub)).sort((a, b) => a.data.order - b.data.order);
 const collabs = (await getCollection('collaborations', pub)).sort((a, b) => a.data.order - b.data.order);
-const groups = (await getCollection('groups', pub)).sort((a, b) => a.data.order - b.data.order);
-const people = await getCollection('people', pub);
-const sizeOf = (lead: string) => people.filter((p) => p.data.status === 'current' && p.data.group_leader === lead).length;
+const labs = (await getCollection('groups', pub)).sort((a, b) => a.data.order - b.data.order);
 
 const rendered = async (list: typeof methods) =>
   Promise.all(list.map(async (e) => ({ data: e.data, Content: (await e.render()).Content })));
 const methodsR = await rendered(methods);
 const domainsR = await rendered(domains);
 ---
-<Base title="Research" description="AIMS develops machine-learning methods for problems across medicine and the life sciences — from foundational methodology to real-world scientific and clinical applications.">
-  <PageHeader eyebrow="Research" title="Methods × Domains"
-    lede="We develop artificial-intelligence and machine-learning methods for problems across medicine and the life sciences — building learning systems that generalise across settings, adapt to new data, and collaborate with human experts, especially where data are scarce and uncertainty matters. Our work ranges from foundational methodology to real-world scientific and clinical applications." />
+<Base title="Research" description="AIMS is a research environment at KTH and SciLifeLab in Stockholm, bringing several labs together to develop machine-learning methods for medicine and the life sciences — from foundational methodology to real-world scientific and clinical applications.">
+  <PageHeader eyebrow="About AIMS" title="Research"
+    lede="AIMS — AI × Medicine × Life Sciences — is a research environment at KTH Royal Institute of Technology and Science for Life Laboratory (SciLifeLab) in Stockholm. We develop machine-learning methods for problems across medicine and the life sciences, from foundational methodology to real-world scientific and clinical applications." />
 
-  {groups.length > 0 && (
-    <section class="section-tight" aria-labelledby="groups-h">
+  {labs.length > 0 && (
+    <section class="section-tight" aria-labelledby="labs-h">
       <div class="wrap">
-        <h2 id="groups-h" class="cat">Our labs</h2>
-        <p class="scale muted">AIMS brings together several labs under one roof — sharing methods, a reading group and a lot of cross-disciplinary work.</p>
-        <div class="grid">
-          {groups.map((g) => (
-            <a class="card theme grp" href={`/groups/${g.slug}`}>
+        <h2 id="labs-h" class="cat">One environment, several labs</h2>
+        <p class="lede muted measure">AIMS brings together independent labs under one roof. Each is led by its own
+        principal investigator and pursues its own questions, but we share methods, computing, a weekly reading group
+        and a great deal of cross-disciplinary work — so ideas and tools travel quickly between medicine, imaging,
+        cells and molecules.</p>
+        <div class="lab-grid">
+          {labs.map((g) => (
+            <a class="card lab" href={`/groups/${g.slug}`}>
               <h3>{g.data.name}</h3>
-              {g.data.tagline && <p class="gt">{g.data.tagline}</p>}
-              {g.data.lead && <p class="faint gl">Led by {g.data.lead}</p>}
+              {g.data.tagline && <p class="muted lt">{g.data.tagline}</p>}
+              {g.data.lead && <p class="faint">Led by {g.data.lead}</p>}
             </a>
           ))}
         </div>
@@ -41,6 +45,7 @@ const domainsR = await rendered(domains);
   <section class="section-tight" aria-labelledby="methods-h">
     <div class="wrap">
       <h2 id="methods-h" class="cat">Methods</h2>
+      <p class="scale muted">Learning systems that generalise across settings, adapt to new data, and collaborate with human experts — especially where data are scarce and uncertainty matters.</p>
       <div class="grid">
         {methodsR.map(({ data, Content }) => (
           <article class="card theme">
@@ -73,8 +78,21 @@ const domainsR = await rendered(domains);
     </div>
   </section>
 
+  <section class="section-tight" aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 id="how-h" class="cat">How we work</h2>
+      <p class="muted measure">We are committed to open science — sharing code, models and data where we can. Every week the
+      whole environment meets for <a class="link" href="/what-we-read">What We Read</a>, a reading group on papers we
+      find important, surprising or simply worth understanding. Much of our work is done in collaboration with
+      clinicians, life-science groups and other researchers across institutions.</p>
+      <p class="more"><a class="link" href="/open-science">Open science →</a> &nbsp;·&nbsp;
+        <a class="link" href="/publications">Publications →</a> &nbsp;·&nbsp;
+        <a class="link" href="/people">Meet the people →</a></p>
+    </div>
+  </section>
+
   {collabs.length > 0 && (
-    <section class="section" aria-labelledby="collab-h">
+    <section class="section-tight" aria-labelledby="collab-h">
       <div class="wrap">
         <h2 id="collab-h" class="cat">Collaborations</h2>
         <p class="lede muted measure">Research at AIMS is collaborative. We work with researchers, clinicians, life-science groups and industry across institutions and disciplines.</p>
@@ -89,20 +107,62 @@ const domainsR = await rendered(domains);
       </div>
     </section>
   )}
+
+  <!-- Where we are — SciLifeLab band with an inset map -->
+  <section class="findus" aria-labelledby="where-h">
+    <img class="findus-img" src="/scilifelab.webp" alt="Science for Life Laboratory in Solna, where AIMS is based" loading="lazy" width="1774" height="887" />
+    <div class="findus-shade"></div>
+    <div class="wrap findus-in">
+      <p class="eyebrow">Where we are</p>
+      <h2 id="where-h">Based at SciLifeLab, Solna</h2>
+      <p class="muted">AIMS is part of KTH Royal Institute of Technology and Science for Life Laboratory, on the
+      SciLifeLab campus in Solna, Stockholm.</p>
+      <div class="map-card-sm">
+        <iframe title="Map showing AIMS at SciLifeLab, Solna"
+          src={`https://www.google.com/maps?q=${mapQuery}&z=15&output=embed`}
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
 </Base>
 
 <style>
   .cat { font-size: var(--step-2); }
-  .scale { margin-top: .5rem; font-style: italic; }
+  .measure { max-width: var(--measure); }
+  .lede { margin-top: 1rem; }
+  .scale { margin-top: .5rem; font-style: italic; max-width: var(--measure); }
+  .more { margin-top: 1.4rem; }
+
+  /* Labs grid */
+  .lab-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2.5vw, 1.5rem); margin-top: 1.8rem; }
+  .lab { display: block; padding: clamp(1.2rem, 3vw, 1.7rem); transition: border-color .15s, transform .15s; }
+  .lab:hover { border-color: rgba(106,164,238,.45); transform: translateY(-2px); }
+  .lab h3 { font-size: var(--step-1); }
+  .lab .lt { margin-top: .5rem; }
+  .lab .faint { margin-top: .5rem; font-size: var(--step--1); }
+
+  /* Methods / Domains cards */
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2.5vw, 1.5rem); margin-top: 1.6rem; }
   .theme { padding: clamp(1.2rem, 3vw, 1.8rem); }
   .theme h3 { font-size: var(--step-1); }
   .theme .prose { margin-top: .7rem; font-size: var(--step-0); }
-  .grp { display: block; transition: border-color .15s, transform .15s; }
-  .grp:hover { border-color: rgba(106,164,238,.45); transform: translateY(-2px); }
-  .grp .gt { margin-top: .5rem; color: var(--muted); font-size: var(--step-0); }
-  .grp .gl { margin-top: .6rem; font-size: var(--step--1); }
   .kw { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
   .collab-list { list-style: none; padding: 0; margin-top: 1.4rem; display: grid; gap: .7rem; }
+
   @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .lab-grid { grid-template-columns: 1fr; } }
+
+  /* Find-us photo band with a small inset (dark) map */
+  .findus { position: relative; overflow: hidden; margin-top: clamp(2rem, 5vw, 4rem);
+            min-height: clamp(340px, 44vh, 480px); display: flex; align-items: flex-end; }
+  .findus-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; filter: brightness(.6) saturate(.92); }
+  .findus-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,12,.15), rgba(8,8,12,.8)); }
+  .findus-in { position: relative; width: 100%; padding-block: clamp(1.6rem, 4vw, 2.6rem); }
+  .findus-in h2 { font-size: var(--step-2); text-shadow: 0 2px 18px rgba(0,0,0,.6); }
+  .findus-in p { margin-top: .5rem; max-width: 46ch; text-shadow: 0 1px 12px rgba(0,0,0,.6); }
+  .map-card-sm { width: clamp(220px, 34vw, 300px); margin-top: 1.1rem; border: 1px solid rgba(255,255,255,.28);
+                 border-radius: 8px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+  /* Fake a dark map: invert the light tiles and hue-rotate so the red pin stays red. */
+  .map-card-sm iframe { width: 100%; height: 150px; border: 0; display: block;
+                        filter: invert(0.92) hue-rotate(180deg) brightness(0.9) contrast(0.9); }
 </style>
