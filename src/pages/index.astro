@@ -19,7 +19,6 @@ const readingEntry = await getEntry('reading', 'all');
 const sessions = (readingEntry?.data.sessions ?? []).slice()
   .sort((a, b) => +new Date(b.date) - +new Date(a.date));
 const latest = sessions[0];
-const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 <Base>
   <Hero />
@@ -58,7 +57,7 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
     <section class="section" aria-labelledby="wr">
       <div class="wrap">
         <p class="eyebrow">What we're reading</p>
-        <h2 id="wr">This week</h2>
+        <h2 id="wr">From our reading group</h2>
         {h.readingIntro && <p class="lede muted intro">{h.readingIntro}</p>}
         <ul class="read-list">
           {latest.papers.slice(0, 3).map((p) => (
@@ -69,7 +68,6 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
             </li>
           ))}
         </ul>
-        <p class="faint reading-date">Discussed {fmt(latest.date)}</p>
         <p class="more"><a class="link" href="/what-we-read">See what we read →</a></p>
       </div>
     </section>
@@ -135,7 +133,6 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
   .sel-list > li > a:hover, .read-list > li > a:hover { color: var(--blue); }
   .sel-meta { font-size: var(--step--1); margin-top: .25rem; }
   .sel-note { font-size: var(--step--1); margin-top: .3rem; }
-  .reading-date { margin-top: 1.2rem; font-size: var(--step--1); }
   .leads { margin-top: 1rem; }
   .join h2 { max-width: 20ch; }
 
