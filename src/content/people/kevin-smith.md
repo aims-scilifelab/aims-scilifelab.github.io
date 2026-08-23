@@ -1,6 +1,6 @@
 ---
 name: "Kevin Smith"
-role: "Group Leader"
+role: "Professor"
 category: "lead"
 status: "current"
 group_leader: "Kevin Smith"

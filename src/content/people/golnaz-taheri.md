@@ -1,6 +1,6 @@
 ---
 name: "Golnaz Taheri"
-role: "Researcher"
+role: "Assistant Professor"
 category: "lead"
 status: "current"
 group_leader: "Golnaz Taheri"

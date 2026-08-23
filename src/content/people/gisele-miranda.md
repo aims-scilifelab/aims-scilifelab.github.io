@@ -1,6 +1,6 @@
 ---
 name: "Gisele Miranda"
-role: "Group Leader"
+role: "Assistant Professor"
 category: "lead"
 status: "current"
 group_leader: "Gisele Miranda"
