@@ -4,7 +4,7 @@ role: "ML Research Associate"
 category: "researcher"
 status: "current"
 group_leader: "Kevin Smith"
-affiliation: "Karolinska Institutet (KI)"
+affiliation: "KI · SciLifeLab"
 order: 110
 draft: false
 ---

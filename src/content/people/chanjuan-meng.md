@@ -4,7 +4,7 @@ role: "PhD Student"
 category: "phd"
 status: "current"
 group_leader: "Kevin Smith"
-affiliation: "KTH · AstraZeneca"
-order: 201
+affiliation: "KTH · SciLifeLab · AstraZeneca"
+order: 206
 draft: false
 ---
