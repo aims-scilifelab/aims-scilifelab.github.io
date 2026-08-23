@@ -18,9 +18,11 @@ const staff       = inCats(['engineer', 'staff']);
 const affiliates  = inCats(['affiliate']);
 
 // Alumni: anyone with alumnus status, plus current people who are also alumni (alumnus_of set)
+// Surname = everything after the first name (handles "Van der Goten", "Fredin Haslum").
+const surname = (n: string) => n.split(' ').slice(1).join(' ') || n;
 const alumni = all
   .filter((p) => p.status === 'alumnus' || (p.alumnus_of && p.alumnus_of.length))
-  .sort((a, b) => a.name.localeCompare(b.name));
+  .sort((a, b) => surname(a.name).localeCompare(surname(b.name)));
 
 // Sections rendered with the standard horizontal person card (leads are handled separately above).
 const sections = [
@@ -67,9 +69,11 @@ const sections = [
         <div class="grid">
           {sec.people.map((p) => (
             <article class="card person">
-              <div class="avatar" aria-hidden="true">
-                <Avatar photo={p.photo} name={p.name} />
-              </div>
+              {p.category !== 'collaborator' && (
+                <div class="avatar" aria-hidden="true">
+                  <Avatar photo={p.photo} name={p.name} />
+                </div>
+              )}
               <div class="pbody">
                 <h3>{p.name}</h3>
                 <p class="role muted">{p.role}</p>
