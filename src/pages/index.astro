@@ -142,7 +142,7 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
   /* Find-us photo band with a small inset map */
   .findus { position: relative; overflow: hidden; margin-top: clamp(2rem, 5vw, 4rem);
             min-height: clamp(340px, 44vh, 480px); display: flex; align-items: flex-end; }
-  .findus-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.62) saturate(.92); }
+  .findus-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; filter: brightness(.62) saturate(.92); }
   .findus-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,12,.15), rgba(8,8,12,.78)); }
   .findus-in { position: relative; width: 100%; padding-block: clamp(1.6rem, 4vw, 2.6rem); }
   .findus-lead h2 { font-size: var(--step-2); text-shadow: 0 2px 18px rgba(0,0,0,.6); }
