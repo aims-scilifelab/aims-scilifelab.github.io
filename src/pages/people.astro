@@ -85,6 +85,7 @@ const sections = [
                   {p.website && <a class="link" href={p.website} target="_blank" rel="noopener">Website</a>}
                   {p.google_scholar && <a class="link" href={p.google_scholar} target="_blank" rel="noopener">Scholar</a>}
                   {p.github && <a class="link" href={p.github} target="_blank" rel="noopener">GitHub</a>}
+                  {p.linkedin && <a class="link" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
                   {p.email && <a class="link" href={`mailto:${p.email}`}>Email</a>}
                 </div>
               </div>
@@ -103,15 +104,17 @@ const sections = [
           {alumni.map((p) => (
             <li>
               <span class="an">{p.name}</span>
-              <span class="ar faint">
-                {p.alumnus_of || p.role}{p.alumni_year ? `, ${p.alumni_year}` : ''}
-                {p.alumni_destination
-                  ? ` · now ${p.alumni_destination}`
-                  : (p.status === 'current' && (p.category === 'collaborator' || p.category === 'affiliate') && p.affiliation
-                      ? ` · now at ${p.affiliation}`
-                      : p.status === 'current' ? ' · currently at AIMS' : '')}
+              <span class="ameta">
+                <span class="ar faint">
+                  {p.alumnus_of || p.role}{p.alumni_year ? `, ${p.alumni_year}` : ''}
+                  {p.alumni_destination
+                    ? ` · now at ${p.alumni_destination}`
+                    : (p.status === 'current' && (p.category === 'collaborator' || p.category === 'affiliate') && p.affiliation
+                        ? ` · now at ${p.affiliation}`
+                        : p.status === 'current' ? ' · currently at AIMS' : '')}
+                </span>
+                {p.linkedin && <a class="link alink" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
               </span>
-              {p.linkedin && <a class="link alink" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
             </li>
           ))}
         </ul>
@@ -150,9 +153,12 @@ const sections = [
   .aff { font-size: var(--step--1); margin-top: 2px; }
   .interests { font-size: var(--step--1); margin-top: .5rem; }
   .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: .7rem; font-size: var(--step--1); }
-  .alumni-list { list-style: none; padding: 0; margin-top: 1.4rem; display: grid; gap: .6rem; max-width: var(--measure); }
-  .alumni-list li { display: flex; flex-wrap: wrap; gap: .1rem .6rem; align-items: baseline; }
+  .alumni-list { list-style: none; padding: 0; margin-top: 1.4rem; display: grid; gap: .8rem; max-width: min(100%, 48rem); }
+  .alumni-list li { display: flex; justify-content: space-between; align-items: baseline; gap: .3rem 1.2rem; flex-wrap: wrap;
+                    border-bottom: 1px solid var(--border); padding-bottom: .8rem; }
+  .alumni-list li:last-child { border-bottom: 0; }
   .an { font-weight: 600; }
+  .ameta { display: inline-flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; justify-content: flex-end; }
   .ar { font-size: var(--step--1); }
-  .alink { font-size: var(--step--1); }
+  .alink { font-size: var(--step--1); white-space: nowrap; }
 </style>
