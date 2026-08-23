@@ -24,7 +24,7 @@ nav:
   - label: "Research"
     href: "/research"
     children:
-      - { label: "About Us",      href: "/about" }
+      - { label: "About AIMS",    href: "/research" }
       - { label: "Smith Lab",     href: "/groups/smith-group" }
       - { label: "Lagergren Lab", href: "/groups/lagergren-group" }
       - { label: "Miranda Lab",   href: "/groups/miranda-group" }
