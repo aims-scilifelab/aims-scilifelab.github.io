@@ -1,9 +1,9 @@
 ---
 name: "Adithya Raju"
-role: "PhD"
-category: "phd"
+role: "Research Engineer"
+category: "engineer"
 status: "alumnus"
-alumni_destination: "Karolinska Institutet (KI)"
+alumni_destination: "Research Engineer, Karolinska Institutet (KI)"
 linkedin: "https://www.linkedin.com/in/adithyaraju/"
 order: 306
 draft: false
