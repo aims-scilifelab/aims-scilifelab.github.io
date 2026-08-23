@@ -84,7 +84,7 @@ const people = defineCollection({
   schema: z.object({
     name: z.string(),
     role: z.string(),                                   // free text title, e.g. "PhD Student"
-    category: z.enum(['lead', 'researcher', 'postdoc', 'phd', 'masters', 'engineer', 'staff', 'affiliate']),
+    category: z.enum(['lead', 'researcher', 'postdoc', 'phd', 'masters', 'engineer', 'staff', 'affiliate', 'collaborator']),
     status: z.enum(['current', 'alumnus']).default('current'),
     affiliation: z.string().default(''),               // e.g. "KTH · SciLifeLab"
     home_group: z.string().default(''),                // for affiliates: their real group

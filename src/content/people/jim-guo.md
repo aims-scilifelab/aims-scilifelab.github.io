@@ -1,5 +1,5 @@
 ---
-name: "Jim Guo"
+name: "Jingyu Guo"
 role: "PhD Student"
 category: "phd"
 status: "current"

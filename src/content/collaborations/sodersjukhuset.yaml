@@ -1,0 +1,6 @@
+name: "Södersjukhuset (SÖS)"
+kind: "hospital"
+url: "https://www.sodersjukhuset.se"
+note: ""
+order: 13
+draft: false

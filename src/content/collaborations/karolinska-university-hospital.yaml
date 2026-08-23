@@ -1,0 +1,6 @@
+name: "Karolinska University Hospital"
+kind: "hospital"
+url: "https://www.karolinska.se"
+note: ""
+order: 11
+draft: false

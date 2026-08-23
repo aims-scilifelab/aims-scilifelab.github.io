@@ -1,9 +1,9 @@
 ---
-name: "Apostolia Tsirikoglou"
+name: "Fredrik Strand"
 role: "Researcher"
 category: "collaborator"
 status: "current"
 affiliation: "Karolinska Institutet (KI)"
-order: 500
+order: 501
 draft: false
 ---

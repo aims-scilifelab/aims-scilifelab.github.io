@@ -1,10 +1,9 @@
 ---
-name: "Robert Welch"
+name: "Anna von Sydow"
 role: "PhD Student"
 category: "phd"
 status: "current"
-group_leader: "Kevin Smith"
 affiliation: "KTH · SciLifeLab"
-order: 210
+order: 211
 draft: false
 ---

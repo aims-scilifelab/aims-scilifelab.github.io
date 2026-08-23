@@ -1,10 +1,9 @@
 ---
-name: "Christos Matsoukas"
-role: "AI Director, AstraZeneca"
+name: "Magnus Söderberg"
+role: "Director, AstraZeneca"
 category: "collaborator"
 status: "current"
 affiliation: "AstraZeneca"
-alumnus_of: "PhD"
-order: 505
+order: 506
 draft: false
 ---

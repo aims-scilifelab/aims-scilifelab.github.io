@@ -5,6 +5,7 @@ category: "lead"
 status: "current"
 group_leader: "Gisele Miranda"
 affiliation: "KTH · SciLifeLab"
+website: "https://www.kth.se/profile/gmirand"
 google_scholar: "https://scholar.google.com/citations?user=ufSBBd8AAAAJ"
 research_interests:
   - "Cell Painting"

@@ -1,9 +1,9 @@
 ---
-name: "Apostolia Tsirikoglou"
-role: "Researcher"
+name: "Elisabeth Epstein"
+role: "Professor"
 category: "collaborator"
 status: "current"
 affiliation: "Karolinska Institutet (KI)"
-order: 500
+order: 502
 draft: false
 ---

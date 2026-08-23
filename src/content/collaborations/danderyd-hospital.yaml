@@ -1,0 +1,6 @@
+name: "Danderyd Hospital"
+kind: "hospital"
+url: "https://www.ds.se"
+note: ""
+order: 12
+draft: false

@@ -1,10 +1,10 @@
 ---
 name: "Emir Konuk"
-role: "Research Engineer"
-category: "engineer"
+role: "Senior Researcher"
+category: "researcher"
 status: "current"
 group_leader: "Kevin Smith"
 affiliation: "KTH · SciLifeLab"
-order: 140
+order: 120
 draft: false
 ---
