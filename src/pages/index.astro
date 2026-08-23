@@ -147,7 +147,9 @@ const latest = sessions[0];
   .findus-map { margin-top: 1.1rem; }
   .map-card-sm { width: clamp(220px, 34vw, 300px); border: 1px solid rgba(255,255,255,.28); border-radius: 8px;
                  overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
-  .map-card-sm iframe { width: 100%; height: 150px; border: 0; display: block; }
+  /* Fake a dark map: invert the light tiles and hue-rotate so the red pin stays red. */
+  .map-card-sm iframe { width: 100%; height: 150px; border: 0; display: block;
+                        filter: invert(0.92) hue-rotate(180deg) brightness(0.9) contrast(0.9); }
   .map-cta-sm { display: inline-block; margin-top: .55rem; font-size: var(--step--1); text-shadow: 0 1px 10px rgba(0,0,0,.6); }
   @media (max-width: 640px) { .cols { grid-template-columns: 1fr; } .map-card-sm { width: 100%; max-width: 320px; } }
 </style>
