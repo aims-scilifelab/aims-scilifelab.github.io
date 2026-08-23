@@ -93,8 +93,11 @@ p { text-wrap: pretty; }
 .section { padding-block: clamp(3rem, 2rem + 6vw, 6rem); }
 .section-tight { padding-block: clamp(2rem, 1.4rem + 3vw, 3.5rem); }
 .eyebrow { font-size: var(--step--1); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
-           display: inline-flex; align-items: center; gap: .6em; }
-.eyebrow::before { content: ''; width: 1.7em; height: 2px; border-radius: 2px; background: var(--x-grad); flex: none; }
+           display: inline-flex; align-items: center; gap: .5em; }
+/* A small × mark as the eyebrow bullet — the blue→wine gradient, like the wordmark's ×. */
+.eyebrow::before { content: '\00D7'; flex: none; font-size: 1.15em; font-weight: 500; line-height: 1;
+                   letter-spacing: 0; text-transform: none;
+                   background: var(--x-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lede { font-size: var(--step-1); color: var(--text); max-width: var(--measure); }
 .muted { color: var(--muted); }
 .faint { color: var(--faint); }
