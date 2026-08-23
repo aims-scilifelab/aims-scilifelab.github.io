@@ -111,6 +111,7 @@ const sections = [
                       ? ` · now at ${p.affiliation}`
                       : p.status === 'current' ? ' · currently at AIMS' : '')}
               </span>
+              {p.linkedin && <a class="link alink" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
             </li>
           ))}
         </ul>
@@ -153,4 +154,5 @@ const sections = [
   .alumni-list li { display: flex; flex-wrap: wrap; gap: .1rem .6rem; align-items: baseline; }
   .an { font-weight: 600; }
   .ar { font-size: var(--step--1); }
+  .alink { font-size: var(--step--1); }
 </style>
