@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Avatar from '../../components/Avatar.astro';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const groups = await getCollection('groups', (g) => !g.data.draft);
@@ -14,22 +14,12 @@ const { Content } = await group.render();
 const people = await getCollection('people', (p) => !p.data.draft);
 const lead = people.find((p) => p.data.name === group.data.lead)?.data;
 
-// Selected publications: the lab lead's papers, pulled from the global list by
-// surname (no per-lab data entry). Hidden when there are no matches.
-const pubs = (await getEntry('publications', 'all'))?.data.items ?? [];
-const surname = (group.data.lead || '').trim().split(/\s+/).pop() || '';
-const keyPubs = surname
-  ? pubs
-      .filter((p) => (p.authors || '').toLowerCase().includes(surname.toLowerCase()))
-      .sort((a, b) => b.year - a.year)
-      .slice(0, 6)
-  : [];
-
-const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
+// Selected publications: a hand-picked list per lab (from the group's frontmatter).
+const keyPubs = group.data.keyPublications ?? [];
 ---
 <Base title={group.data.name} description={group.data.tagline || `The ${group.data.name} at AIMS.`}>
   <PageHeader eyebrow="Lab" title={group.data.name} lede={group.data.tagline}>
-    <p class="gback"><a class="link" href="/groups">← All labs</a></p>
+    <p class="gback"><a class="link" href="/research">← All labs</a></p>
   </PageHeader>
 
   <section class="section-tight">
@@ -57,9 +47,9 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join
         </article>
       )}
 
-      {keyPubs.length > 0 && (
-        <div class="pubs-block">
-          <h2 class="cat">Selected publications</h2>
+      <div class="pubs-block">
+        <h2 class="cat">Selected publications</h2>
+        {keyPubs.length > 0 ? (
           <ul class="pubs">
             {keyPubs.map((p) => (
               <li>
@@ -70,13 +60,11 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join
               </li>
             ))}
           </ul>
-          <p class="more2"><a class="link" href="/publications">All publications →</a></p>
-        </div>
-      )}
-
-      {keyPubs.length === 0 && (
-        <p class="more2"><a class="link" href="/publications">Publications →</a> &nbsp;·&nbsp; <a class="link" href="/people">People →</a></p>
-      )}
+        ) : (
+          <p class="faint measure pub-empty">Selected publications will be listed here.</p>
+        )}
+        <p class="more2"><a class="link" href="/publications">All publications →</a></p>
+      </div>
     </div>
   </section>
 </Base>
@@ -98,5 +86,6 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join
   .ptitle { font-weight: 600; }
   a.ptitle:hover { color: var(--blue); }
   .pmeta { font-size: var(--step--1); margin-top: .25rem; }
+  .pub-empty { margin-top: 1rem; }
   .more2 { margin-top: 1.8rem; }
 </style>

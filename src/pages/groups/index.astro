@@ -1,40 +1,19 @@
 ---
-import Base from '../../layouts/Base.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import { getCollection } from 'astro:content';
-
-const groups = (await getCollection('groups', (g) => !g.data.draft)).sort((a, b) => a.data.order - b.data.order);
-const people = await getCollection('people', (p) => !p.data.draft);
-const sizeOf = (lead: string) => people.filter((p) => p.data.status === 'current' && p.data.group_leader === lead).length;
+// The standalone "all labs" listing has been removed. The labs are listed on the
+// Research (About AIMS) page; individual lab pages live at /groups/<slug>. This
+// stub redirects any old /groups links to /research.
 ---
-<Base title="Labs" description="The research labs that make up AIMS.">
-  <PageHeader eyebrow="Labs" title="Our labs"
-    lede="AIMS brings together several labs under one roof — sharing a reading group, methods, and a lot of cross-disciplinary work." />
-
-  <section class="section-tight">
-    <div class="wrap">
-      <div class="grid">
-        {groups.map((g) => (
-          <a class="card grp" href={`/groups/${g.slug}`}>
-            <h2>{g.data.name}</h2>
-            {g.data.tagline && <p class="muted tl">{g.data.tagline}</p>}
-            {g.data.lead && <p class="faint led">Led by {g.data.lead}</p>}
-            {g.data.focus.length > 0 && <ul class="kw">{g.data.focus.slice(0, 4).map((k) => <li class="tag">{k}</li>)}</ul>}
-            <span class="link more2">View lab →</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-</Base>
-
-<style>
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: clamp(1rem, 2.5vw, 1.5rem); margin-top: 1.6rem; }
-  .grp { display: block; padding: clamp(1.3rem, 3vw, 1.8rem); transition: border-color .15s, transform .15s; }
-  .grp:hover { border-color: rgba(106,164,238,.45); transform: translateY(-2px); }
-  .grp h2 { font-size: var(--step-1); }
-  .tl { margin-top: .5rem; }
-  .led { margin-top: .5rem; font-size: var(--step--1); }
-  .kw { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
-  .more2 { display: inline-block; margin-top: 1.2rem; font-size: var(--step--1); }
-</style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=/research" />
+    <link rel="canonical" href="/research" />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting to Research…</title>
+    <script>window.location.replace('/research');</script>
+  </head>
+  <body>
+    <p>This page has moved to <a href="/research">Research</a>.</p>
+  </body>
+</html>

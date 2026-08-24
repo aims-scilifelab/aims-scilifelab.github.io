@@ -120,6 +120,15 @@ const groups = defineCollection({
     lead: z.string(),                   // must match a person's `name`, e.g. "Kevin Smith"
     tagline: z.string().default(''),    // one line shown under the name
     focus: z.array(z.string()).default([]), // a few research-focus tags
+    // A hand-picked list of representative papers for this lab (shown on its page).
+    // Leave empty to show no publications section.
+    keyPublications: z.array(z.object({
+      title: z.string(),
+      authors: z.string().default(''),
+      venue: z.string().default(''),
+      year: z.number().optional(),
+      url: link,
+    })).default([]),
     order: z.number().default(100),
     draft: z.boolean().default(false),
   }),
