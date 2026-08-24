@@ -5,13 +5,15 @@ import 'katex/dist/katex.min.css';
 const s = (await getEntry('site', 'settings'))!.data;
 const h = (await getEntry('home', 'home'))!.data;
 
-// Hero math panel — a variational-inference derivation, typeset with KaTeX at
-// build time. Each LINE is rendered on its own so it can be revealed one at a
-// time; \hphantom{\log p(x)} reserves the width of the head so every "=" lines
-// up as if it were one aligned block. Edit the lines below.
+// Hero math panels — short derivations typeset with KaTeX at build time. Each
+// LINE is rendered on its own so it can be revealed one at a time. Three panels
+// rotate (see the AI list: math:elbo / math:diffusion / math:uncertainty).
+// \hphantom{...} reserves the width of a head so continuation "=" lines align.
 const TEX = (s: string) => katex.renderToString(s, { displayMode: true, throwOnError: false });
-const HP = String.raw`\hphantom{\log p(x)}`;   // aligns the relation of continuation lines
-const mathLines = [
+const HP = String.raw`\hphantom{\log p(x)}`;   // aligns continuation lines in the ELBO panel
+
+// (1) Evidence lower bound / variational inference
+const elboLines = [
   { tex: String.raw`\log p(x) = \log \int p(x,z)\,\mathrm{d}z` },
   { tex: HP + String.raw`{}= \log \int q(z\mid x)\,\frac{p(x,z)}{q(z\mid x)}\,\mathrm{d}z` },
   { tex: HP + String.raw`{}= \log \mathbb{E}_{q}\!\left[\frac{p(x,z)}{q(z\mid x)}\right]` },
@@ -24,14 +26,36 @@ const mathLines = [
   { tex: String.raw`\nabla_\phi \mathcal{L} = \mathbb{E}_{\epsilon}\!\left[\nabla_\phi \log \frac{p(x,z)}{q(z\mid x)}\right]` },
   { tex: String.raw`\theta^\star,\phi^\star = \arg\max_{\theta,\phi}\ \sum_i \mathcal{L}(x_i)`, gap: true },
 ];
-const mathBlocks = mathLines.map((l) => ({ html: TEX(l.tex), gap: !!l.gap }));
+
+// (2) Diffusion / score-based generative model
+const diffusionLines = [
+  { tex: String.raw`q(x_t\mid x_{t-1}) = \mathcal{N}\!\left(x_t;\ \sqrt{1-\beta_t}\,x_{t-1},\ \beta_t I\right)` },
+  { tex: String.raw`x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\epsilon,\quad \epsilon\sim\mathcal{N}(0,I)` },
+  { tex: String.raw`p_\theta(x_{t-1}\mid x_t) = \mathcal{N}\!\left(x_{t-1};\ \mu_\theta(x_t,t),\ \Sigma_t\right)`, gap: true },
+  { tex: String.raw`\mathcal{L}_{\text{simple}} = \mathbb{E}_{t,\,x_0,\,\epsilon}\!\left[\ \big\lVert\, \epsilon - \epsilon_\theta(x_t,t)\,\big\rVert^2\ \right]` },
+  { tex: String.raw`\nabla_{x_t}\log q(x_t) = -\frac{\epsilon}{\sqrt{1-\bar\alpha_t}} =: s_\theta(x_t,t)`, gap: true },
+  { tex: String.raw`x_{t-1} = \frac{1}{\sqrt{\alpha_t}}\!\left(x_t - \frac{1-\alpha_t}{\sqrt{1-\bar\alpha_t}}\,\epsilon_\theta(x_t,t)\right) + \sigma_t z` },
+];
+
+// (3) Predictive uncertainty: total = epistemic + aleatoric
+const uncertaintyLines = [
+  { tex: String.raw`p(y\mid x,\mathcal{D}) = \int p(y\mid x,\theta)\,p(\theta\mid\mathcal{D})\,\mathrm{d}\theta` },
+  { tex: String.raw`\hphantom{p(y\mid x,\mathcal{D})}{}\approx \frac{1}{T}\sum_{t=1}^{T} p(y\mid x,\theta_t),\quad \theta_t\sim q(\theta)` },
+  { tex: String.raw`\mathbb{H}[y\mid x,\mathcal{D}] = -\sum_y p(y\mid x,\mathcal{D})\,\log p(y\mid x,\mathcal{D})`, gap: true },
+  { tex: String.raw`\underbrace{\mathbb{H}[y\mid x,\mathcal{D}]}_{\text{total}} = \underbrace{\mathbb{I}[y;\theta\mid x,\mathcal{D}]}_{\text{epistemic}} + \underbrace{\mathbb{E}_{p(\theta\mid\mathcal{D})}\big[\mathbb{H}[y\mid x,\theta]\big]}_{\text{aleatoric}}`, gap: true },
+  { tex: String.raw`a_{\text{BALD}}(x) = \mathbb{I}[y;\theta\mid x,\mathcal{D}]` },
+  { tex: String.raw`\hat p = \mathrm{softmax}(z/T),\qquad T^\star = \arg\min_{T}\ \mathrm{NLL}(\hat p)`, gap: true },
+];
+
+const toBlocks = (arr: { tex: string; gap?: boolean }[]) => arr.map((l) => ({ html: TEX(l.tex), gap: !!l.gap }));
+const mathSets = { elbo: toBlocks(elboLines), diffusion: toBlocks(diffusionLines), uncertainty: toBlocks(uncertaintyLines) };
 
 // Rotating background — alternates AI ↔ bio, mixing video clips and stills.
 // Add/remove files in public/hero/ and edit these two lists.
 const AI = [
   'ai_chip.mp4', 'ai_datacenter.mp4', 'ai_fiber.mp4', 'ai_llm.mp4', 'ai_umap.mp4',
   'ai_drug_discovery.mp4', 'ai_loss_landscape.mp4', 'ai_vit.mp4', 'ai_neural.mp4',
-  'math:elbo',     // a typeset math derivation (see the math-slide helpers in the script below)
+  'math:elbo', 'math:diffusion', 'math:uncertainty',   // typeset derivations (see the math-slide helpers below)
   'code:medvqa',   // a live-typed code panel (see the code-slide helpers in the script below)
 ];
 const BIO = [
@@ -110,7 +134,7 @@ const BIO = [
   }
 </style>
 
-<script define:vars={{ AI, BIO, mathBlocks }}>
+<script define:vars={{ AI, BIO, mathSets }}>
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const coarseSmall = matchMedia('(max-width: 820px)').matches;
 
@@ -208,11 +232,12 @@ const BIO = [
   // A variational-inference derivation, typeset with KaTeX at build time and
   // handed in as `mathBlocks`. buildMath just reveals each block in turn.
   const isMath = (f) => typeof f === 'string' && f.indexOf('math:') === 0;
-  const buildMath = () => {
+  const buildMath = (key) => {
+    const blocks = mathSets[key] || mathSets.elbo;
     const wrap = document.createElement('div');
     wrap.className = 'mathslide nokb';
     let lines = '';
-    mathBlocks.forEach((b, i) => {
+    blocks.forEach((b, i) => {
       const delay = (0.2 + i * 0.65).toFixed(2);   // each line wipes in after the last
       lines += '<div class="ms-line' + (b.gap ? ' ms-gap' : '') + '" style="animation-delay:' + delay + 's">' + b.html + '</div>';
     });
@@ -234,7 +259,7 @@ const BIO = [
       let el, done = false; const ok = () => { if (!done) { done = true; res(el); } }; const fail = () => { if (!done) { done = true; res(null); } };
       if (isCode(info.file)) { el = buildCode(); ok(); return; }
       if (isSeq(info.file))  { el = buildSeq();  ok(); return; }
-      if (isMath(info.file)) { el = buildMath(); ok(); return; }
+      if (isMath(info.file)) { el = buildMath(info.file.slice(5)); ok(); return; }
       if (isVid(info.file)) {
         el = document.createElement('video');
         el.muted = true; el.defaultMuted = true; el.autoplay = true; el.playsInline = true; el.loop = false;
@@ -294,7 +319,7 @@ const BIO = [
       const mk = (file) => {
         if (isCode(file)) return buildCode();
         if (isSeq(file)) return buildSeq();
-        if (isMath(file)) return buildMath();
+        if (isMath(file)) return buildMath(file.slice(5));
         if (isVid(file)) {
           const v = document.createElement('video');
           v.muted = true; v.defaultMuted = true; v.autoplay = true; v.loop = true; v.playsInline = true;
