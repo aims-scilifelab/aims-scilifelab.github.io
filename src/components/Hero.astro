@@ -5,10 +5,10 @@ import 'katex/dist/katex.min.css';
 const s = (await getEntry('site', 'settings'))!.data;
 const h = (await getEntry('home', 'home'))!.data;
 
-// Hero math panels — short derivations typeset with KaTeX at build time. Each
-// LINE is rendered on its own so it can be revealed one at a time. Three panels
-// rotate (see the AI list: math:elbo / math:diffusion / math:uncertainty).
-// \hphantom{...} reserves the width of a head so continuation "=" lines align.
+// Hero math panel — a variational-inference (ELBO) derivation, typeset with
+// KaTeX at build time. Each LINE is rendered on its own so it can be revealed
+// one at a time (see 'math:elbo' in the AI list). \hphantom{...} reserves the
+// width of the head so every continuation "=" lines up as one aligned block.
 const TEX = (s: string) => katex.renderToString(s, { displayMode: true, throwOnError: false });
 const HP = String.raw`\hphantom{\log p(x)}`;   // aligns continuation lines in the ELBO panel
 
@@ -27,35 +27,14 @@ const elboLines = [
   { tex: String.raw`\theta^\star,\phi^\star = \arg\max_{\theta,\phi}\ \sum_i \mathcal{L}(x_i)`, gap: true },
 ];
 
-// (2) Diffusion / score-based generative model
-const diffusionLines = [
-  { tex: String.raw`q(x_t\mid x_{t-1}) = \mathcal{N}\!\left(x_t;\ \sqrt{1-\beta_t}\,x_{t-1},\ \beta_t I\right)` },
-  { tex: String.raw`x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\epsilon,\quad \epsilon\sim\mathcal{N}(0,I)` },
-  { tex: String.raw`p_\theta(x_{t-1}\mid x_t) = \mathcal{N}\!\left(x_{t-1};\ \mu_\theta(x_t,t),\ \Sigma_t\right)`, gap: true },
-  { tex: String.raw`\mathcal{L}_{\text{simple}} = \mathbb{E}_{t,\,x_0,\,\epsilon}\!\left[\ \big\lVert\, \epsilon - \epsilon_\theta(x_t,t)\,\big\rVert^2\ \right]` },
-  { tex: String.raw`\nabla_{x_t}\log q(x_t) = -\frac{\epsilon}{\sqrt{1-\bar\alpha_t}} =: s_\theta(x_t,t)`, gap: true },
-  { tex: String.raw`x_{t-1} = \frac{1}{\sqrt{\alpha_t}}\!\left(x_t - \frac{1-\alpha_t}{\sqrt{1-\bar\alpha_t}}\,\epsilon_\theta(x_t,t)\right) + \sigma_t z` },
-];
-
-// (3) Predictive uncertainty: total = epistemic + aleatoric
-const uncertaintyLines = [
-  { tex: String.raw`p(y\mid x,\mathcal{D}) = \int p(y\mid x,\theta)\,p(\theta\mid\mathcal{D})\,\mathrm{d}\theta` },
-  { tex: String.raw`\hphantom{p(y\mid x,\mathcal{D})}{}\approx \frac{1}{T}\sum_{t=1}^{T} p(y\mid x,\theta_t),\quad \theta_t\sim q(\theta)` },
-  { tex: String.raw`\mathbb{H}[y\mid x,\mathcal{D}] = -\sum_y p(y\mid x,\mathcal{D})\,\log p(y\mid x,\mathcal{D})`, gap: true },
-  { tex: String.raw`\underbrace{\mathbb{H}[y\mid x,\mathcal{D}]}_{\text{total}} = \underbrace{\mathbb{I}[y;\theta\mid x,\mathcal{D}]}_{\text{epistemic}} + \underbrace{\mathbb{E}_{p(\theta\mid\mathcal{D})}\big[\mathbb{H}[y\mid x,\theta]\big]}_{\text{aleatoric}}`, gap: true },
-  { tex: String.raw`a_{\text{BALD}}(x) = \mathbb{I}[y;\theta\mid x,\mathcal{D}]` },
-  { tex: String.raw`\hat p = \mathrm{softmax}(z/T),\qquad T^\star = \arg\min_{T}\ \mathrm{NLL}(\hat p)`, gap: true },
-];
-
-const toBlocks = (arr: { tex: string; gap?: boolean }[]) => arr.map((l) => ({ html: TEX(l.tex), gap: !!l.gap }));
-const mathSets = { elbo: toBlocks(elboLines), diffusion: toBlocks(diffusionLines), uncertainty: toBlocks(uncertaintyLines) };
+const mathSets = { elbo: elboLines.map((l) => ({ html: TEX(l.tex), gap: !!l.gap })) };
 
 // Rotating background — alternates AI ↔ bio, mixing video clips and stills.
 // Add/remove files in public/hero/ and edit these two lists.
 const AI = [
   'ai_chip.mp4', 'ai_datacenter.mp4', 'ai_fiber.mp4', 'ai_llm.mp4', 'ai_umap.mp4',
   'ai_drug_discovery.mp4', 'ai_loss_landscape.mp4', 'ai_vit.mp4', 'ai_neural.mp4',
-  'math:elbo', 'math:diffusion', 'math:uncertainty',   // typeset derivations (see the math-slide helpers below)
+  'math:elbo',     // a typeset math derivation (see the math-slide helpers in the script below)
   'code:medvqa',   // a live-typed code panel (see the code-slide helpers in the script below)
 ];
 const BIO = [
