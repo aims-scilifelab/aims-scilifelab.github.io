@@ -12,7 +12,7 @@
   --bg-3:      #15151e;
   --text:      #eef0f5;      /* primary text (high contrast) */
   --muted:     #a7a9b6;      /* secondary text — still AA on --bg */
-  --faint:     #7a7c8c;      /* decorative metadata only */
+  --faint:     #84869a;      /* metadata — AA (≥4.5:1) on bg, bg-2 and bg-3 */
   --border:    rgba(255,255,255,.10);
   --border-strong: rgba(255,255,255,.18);
 
