@@ -134,41 +134,6 @@ const groups = defineCollection({
   }),
 });
 
-/* Selected / curated publications -------------------------------- */
-const selectedPublications = defineCollection({
-  type: 'data',
-  schema: z.object({
-    title: z.string(),
-    authors: z.string(),
-    venue: z.string().default(''),
-    year: z.number(),
-    url: link,
-    area: z.enum(['methods', 'medicine', 'biology']),  // used to demonstrate breadth
-    note: z.string().default(''),                      // short human annotation
-    order: z.number().default(100),
-    draft: z.boolean().default(false),
-  }),
-});
-
-/* Reading-group sessions ("What We Read") ------------------------ */
-const readingSessions = defineCollection({
-  type: 'data',
-  schema: z.object({
-    date: z.date(),
-    presenters: z.array(z.string()).default([]),
-    tags: z.array(z.string()).default([]),
-    papers: z.array(z.object({
-      title: z.string(),
-      authors: z.string().default(''),
-      venue: z.string().default(''),
-      year: z.number().optional(),
-      url: link,
-      why: z.string().default(''),                     // "Why we picked it" — written by the group
-    })).default([]),
-    draft: z.boolean().default(false),
-  }),
-});
-
 /* Life at AIMS gallery ------------------------------------------- */
 const gallery = defineCollection({
   type: 'data',
@@ -212,8 +177,7 @@ const openings = defineCollection({
 
 /* Single-file, easy-to-edit lists (Reading + Publications) --------- *
  * Each is ONE YAML file with a copy-paste template at the top:
- *   src/content/reading/all.yaml       and   src/content/publications/all.yaml
- * (These supersede the old readingSessions/ folder and src/data/publications.json.) */
+ *   src/content/reading/all.yaml       and   src/content/publications/all.yaml */
 const reading = defineCollection({
   type: 'data',
   schema: z.object({
@@ -246,6 +210,5 @@ const publications = defineCollection({
 
 export const collections = {
   site, home, methods, domains, collaborations, groups, people,
-  reading, publications,
-  selectedPublications, readingSessions, gallery, openScience, openings,
+  reading, publications, gallery, openScience, openings,
 };

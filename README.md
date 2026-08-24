@@ -6,7 +6,7 @@ It is built with [Astro](https://astro.build). You edit **content** (text, peopl
 reading sessions, …) in Markdown / YAML files under `src/content/`. You almost never
 need to touch the templates or components to update the site.
 
----
+--- 
 
 ## 1. Running & building
 

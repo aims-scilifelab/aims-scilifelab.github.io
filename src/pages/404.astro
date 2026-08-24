@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Page not found" description="That page could not be found — here are some good places to go instead.">
+  <section class="nf">
+    <div class="wrap">
+      <p class="eyebrow">Error 404</p>
+      <h1 class="nf-h">This page wandered off.</h1>
+      <p class="muted measure">The page you're looking for doesn't exist, or it may have moved. Here are some good
+      places to pick up instead:</p>
+      <ul class="nf-links">
+        <li><a class="link" href="/">Home</a></li>
+        <li><a class="link" href="/research">Research</a></li>
+        <li><a class="link" href="/people">People</a></li>
+        <li><a class="link" href="/publications">Publications</a></li>
+        <li><a class="link" href="/what-we-read">What We Read</a></li>
+        <li><a class="link" href="/join">Join</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { min-height: 62svh; display: flex; align-items: center; padding-block: clamp(2rem, 6vh, 5rem); }
+  .nf-h { font-size: clamp(2.2rem, 6vw, 3.4rem); letter-spacing: -.02em; line-height: 1.02; margin-top: .5rem; }
+  .nf .muted { margin-top: 1rem; }
+  .nf-links { list-style: none; padding: 0; margin-top: 1.6rem;
+              display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; font-size: var(--step-0); }
+</style>
