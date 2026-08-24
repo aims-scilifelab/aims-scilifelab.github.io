@@ -17,7 +17,7 @@ postalAddress:
   - "Science for Life Laboratory"
   - "Box 1031"
   - "171 21 Solna, Sweden"
-domain: "https://aims-lab.se"
+domain: "https://aims-scilifelab.github.io"
 contactEmail: ""            # leave blank to keep no public email; used on Join if set
 
 nav:
