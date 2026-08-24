@@ -7,11 +7,11 @@ keywords:
   - pathology
   - microscopy
   - renal pathology
-  - spatial tissue organisation
+  - spatial tissue organization
   - computational tissue analysis
 ---
 
 Between cells and patients sits tissue. We develop computational methods for tissue
 morphology and pathology — microscopy and whole-slide images, spatial tissue
-organisation, and applications such as renal pathology — connecting cellular-scale
+organization, and applications such as renal pathology — connecting cellular-scale
 measurements to tissue- and patient-level understanding.

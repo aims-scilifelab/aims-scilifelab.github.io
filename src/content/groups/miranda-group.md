@@ -5,11 +5,15 @@ tagline: "Machine learning for cellular and spatial biology."
 focus:
   - "Cell Painting"
   - "Spatial transcriptomics"
+  - "Single-cell & omics integration"
+  - "Generative & multimodal AI"
   - "Cellular & spatial biology"
-  - "Machine learning"
 order: 3
 draft: false
 ---
 
-<!-- Draft (from Gisele's listed interests) — edit freely. -->
-The Miranda Lab develops machine-learning methods for cellular and spatial biology — including Cell Painting and spatial transcriptomics — to understand cells in their tissue context.
+The Miranda Lab uses AI to understand how cells organize, interact and shape tissue function.
+It develops generative and multimodal learning methods that integrate single-cell, spatial,
+imaging and omics data — from Cell Painting to spatial transcriptomics — to read cellular state
+and spatial context and to map cellular networks and tissue microenvironments across biological
+conditions and disease.

@@ -1,7 +1,7 @@
 ---
 title: "Robust & Trustworthy AI"
 order: 30
-summary: "Generalisation, distribution shift, uncertainty and evaluation — so models hold up in the real world."
+summary: "Generalization, distribution shift, uncertainty and evaluation — so models hold up in the real world."
 keywords:
   - generalization
   - domain shift

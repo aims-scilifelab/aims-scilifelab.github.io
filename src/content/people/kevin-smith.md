@@ -12,7 +12,7 @@ research_interests:
   - "Biomedical & clinical AI"
   - "Medical imaging & pathology"
   - "Multimodal learning"
-  - "Robustness & generalisation"
+  - "Robustness & generalization"
   - "Human–AI decision making"
 order: 10
 draft: false

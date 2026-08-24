@@ -24,7 +24,7 @@ const entries = (await getCollection('gallery', (g) => !g.data.draft))
 
   <section class="section-tight">
     <div class="wrap">
-      <h2 class="cat">AIMS in the Wild</h2>
+      <h2 class="cat">Around the lab</h2>
       {entries.length > 0 ? (
         <div class="gallery">
           {entries.flatMap((e) => e.data.photos.map((ph) => (

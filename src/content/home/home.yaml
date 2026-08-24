@@ -2,7 +2,7 @@
 # HOMEPAGE COPY  —  all editable homepage text lives here.
 # The big "AIMS" wordmark and the descriptor come from site/settings.yaml.
 # ---------------------------------------------------------------------------
-coreStatement: "We develop machine-learning methods to understand biology and improve medicine."
+coreStatement: "We develop machine learning methods to understand biology and improve medicine."
 supporting: >-
   Our research spans foundational machine learning and real-world biomedical AI,
   across clinical, imaging, cellular, molecular and other forms of data.
@@ -11,8 +11,8 @@ ctaPrimary:   { label: "Explore our research", href: "/research" }
 ctaSecondary: { label: "Meet the lab",         href: "/people" }
 
 researchIntro: >-
-  AIMS develops machine-learning methodology and applies it across medicine and the
-  life sciences. We are interested in learning systems that generalise across settings,
+  AIMS develops machine learning methodology and applies it across medicine and the
+  life sciences. We are interested in learning systems that generalize across settings,
   adapt to new data, and work effectively with human experts — especially where data are
   scarce and uncertainty matters. We think in terms of methods and domains rather than
   individual projects, and most of our work sits at the intersection of several.
@@ -21,7 +21,7 @@ selectedWorkIntro: >-
   A few pieces of work that show the range of what we do — from foundational methods
   to clinical AI and cellular biology.
 
-readingIntro: "Every week we read and discuss a paper or two we think is worth understanding."
+readingIntro: "Every week we read and discuss a paper or two we think are worth understanding."
 
 cultureIntro: >-
   AIMS is a shared research environment spanning machine learning, medicine and the

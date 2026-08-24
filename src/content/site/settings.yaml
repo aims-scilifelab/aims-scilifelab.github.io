@@ -4,7 +4,7 @@
 # ---------------------------------------------------------------------------
 name: "AIMS"
 descriptor: "AI × Medicine × Life Sciences"
-tagline: "We develop machine-learning methods to understand biology and improve medicine."
+tagline: "We develop machine learning methods to understand biology and improve medicine."
 institution:
   - "KTH Royal Institute of Technology"
   - "Science for Life Laboratory (SciLifeLab)"

@@ -17,9 +17,9 @@ const rendered = async (list: typeof methods) =>
 const methodsR = await rendered(methods);
 const domainsR = await rendered(domains);
 ---
-<Base title="Research" description="AIMS is a research environment at KTH and SciLifeLab in Stockholm, bringing several labs together to develop machine-learning methods for medicine and the life sciences — from foundational methodology to real-world scientific and clinical applications.">
+<Base title="Research" description="AIMS is a research environment at KTH and SciLifeLab in Stockholm, bringing several labs together to develop machine learning methods for medicine and the life sciences — from foundational methodology to real-world scientific and clinical applications.">
   <PageHeader eyebrow="About AIMS" title="Research"
-    lede="AIMS — AI × Medicine × Life Sciences — is a research environment at KTH Royal Institute of Technology and Science for Life Laboratory (SciLifeLab) in Stockholm. We develop machine-learning methods for problems across medicine and the life sciences, from foundational methodology to real-world scientific and clinical applications." />
+    lede="AIMS — AI × Medicine × Life Sciences — is a research environment at KTH Royal Institute of Technology and Science for Life Laboratory (SciLifeLab) in Stockholm. We develop machine learning methods for problems across medicine and the life sciences, from foundational methodology to real-world scientific and clinical applications." />
 
   {labs.length > 0 && (
     <section class="section-tight" aria-labelledby="labs-h">
@@ -45,7 +45,7 @@ const domainsR = await rendered(domains);
   <section class="section-tight" aria-labelledby="methods-h">
     <div class="wrap">
       <h2 id="methods-h" class="cat">Methods</h2>
-      <p class="scale muted">Learning systems that generalise across settings, adapt to new data, and collaborate with human experts — especially where data are scarce and uncertainty matters.</p>
+      <p class="scale muted">Learning systems that generalize across settings, adapt to new data, and collaborate with human experts — especially where data are scarce and uncertainty matters.</p>
       <div class="grid">
         {methodsR.map(({ data, Content }) => (
           <article class="card theme">

@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import { getCollection } from 'astro:content';
 
-// ── AIMS GitHub organisation ───────────────────────────────────────────────
+// ── AIMS GitHub organization ───────────────────────────────────────────────
 // The org where reproducible code lives. Update the handle/URL here if it
 // differs (this is inferred from the site's deploy domain, aims-scilifelab).
 const GITHUB_ORG = 'aims-scilifelab';
@@ -25,7 +25,7 @@ const restGroups = order.map((c) => ({ c, items: rest.filter((i) => i.data.categ
   <PageHeader eyebrow="Open Science" title="Open Science"
     lede="We are committed to reproducible research. We release code, models, datasets and tools where we can, so our work is useful, verifiable and easy to build on." />
 
-  <!-- (a) Prominent link to the AIMS GitHub organisation -->
+  <!-- (a) Prominent link to the AIMS GitHub organization -->
   <section class="section-tight">
     <div class="wrap">
       <a class="ghband" href={GITHUB_URL} target="_blank" rel="noopener">
@@ -35,7 +35,7 @@ const restGroups = order.map((c) => ({ c, items: rest.filter((i) => i.data.categ
         <span class="gh-txt">
           <span class="gh-eyebrow">Code on GitHub</span>
           <span class="gh-title">github.com/{GITHUB_ORG}</span>
-          <span class="gh-sub faint">Our organisation for reproducible code — implementations, release repositories and project pages.</span>
+          <span class="gh-sub faint">Our organization for reproducible code — implementations, release repositories and project pages.</span>
         </span>
         <span class="gh-go" aria-hidden="true">→</span>
       </a>
@@ -109,7 +109,7 @@ const restGroups = order.map((c) => ({ c, items: rest.filter((i) => i.data.categ
     <div class="wrap">
       <p class="muted measure sensitive">Sensitive human data are not made publicly available. Public resources are
       released where permitted by ethics approvals, data-use agreements and applicable governance requirements. Each
-      repository states its own licence and citation.</p>
+      repository states its own license and citation.</p>
     </div>
   </section>
 </Base>

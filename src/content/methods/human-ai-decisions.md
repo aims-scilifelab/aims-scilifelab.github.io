@@ -11,6 +11,6 @@ keywords:
 ---
 
 AI rarely acts alone in medicine — it supports a clinician making a decision. We study
-that interaction directly: how decision support changes expert judgement, how to measure
+that interaction directly: how decision support changes expert judgment, how to measure
 the information value of a model's output, and how to design and run reader studies that
 reveal when AI assistance genuinely improves decisions under uncertainty — and when it does not.

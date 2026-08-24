@@ -1,15 +1,17 @@
 ---
 name: "Taheri Lab"
 lead: "Golnaz Taheri"
-tagline: "Graph-based machine learning for network biology and precision medicine."
+tagline: "Machine learning for biological systems and precision medicine."
 focus:
-  - "Network biology"
-  - "Graph machine learning"
+  - "Machine learning for biology"
+  - "Network biology & essential genes"
   - "Cancer genomics"
   - "Precision medicine"
 order: 4
 draft: false
 ---
 
-<!-- Draft (from public sources) — edit freely. -->
-The Taheri Lab develops graph-based and machine-learning methods for the life sciences — using biological networks to identify essential genes and disease modules and to advance precision medicine.
+The Taheri Lab develops machine learning methodology and applies it to large-scale biological
+data — exploring biological systems across temporal and spatial dimensions to uncover patterns
+and relationships. Its work spans network biology, essential-gene and disease-module discovery,
+cancer genomics and precision medicine.

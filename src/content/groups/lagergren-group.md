@@ -1,15 +1,17 @@
 ---
 name: "Lagergren Lab"
 lead: "Jens Lagergren"
-tagline: "Probabilistic modelling and deep learning for computational biology."
+tagline: "Probabilistic modeling and deep learning for computational biology."
 focus:
-  - "Computational biology"
-  - "Phylogenetics & evolution"
-  - "Probabilistic & deep learning"
-  - "Genomics"
+  - "Variational inference & deep generative models"
+  - "Cancer & tumor evolution"
+  - "Phylogenetics"
+  - "Single-cell & spatial biology"
 order: 2
 draft: false
 ---
 
-<!-- Draft (from public sources) — edit freely. -->
-The Lagergren Lab develops probabilistic models and deep-learning methods for computational biology — spanning the evolution of genes and genomes, phylogenetics, and modern machine learning for high-dimensional biological data.
+The Lagergren Lab develops probabilistic models and deep generative methods — variational
+inference, VAEs and approximate Bayesian inference — and applies them to computational biology.
+Its work spans somatic cancer and tumor evolution, phylogenetics, single-cell and spatial data,
+tumor–immune dynamics, and antibiotic resistance in bacterial populations.
