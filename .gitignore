@@ -7,3 +7,6 @@ node_modules/
 # os / editor
 .DS_Store
 *.log
+
+# Windows / Google Drive folder metadata
+desktop.ini
