@@ -5,6 +5,7 @@ category: "lead"
 status: "current"
 group_leader: "Kevin Smith"
 affiliation: "KTH · SciLifeLab"
+photo: "/people/kevin-smith.jpg"
 website: "https://www.kth.se/profile/ksmith"
 google_scholar: "https://scholar.google.com/citations?user=weicM8wAAAAJ"
 research_interests:

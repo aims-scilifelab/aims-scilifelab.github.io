@@ -8,6 +8,7 @@ focus:
   - "Generative models & inverse problems"
   - "Uncertainty & human–AI systems"
   - "Cell & microscopy image analysis"
+  - "Value of information in decision-making"
 keyPublications:
   - title: "International multicenter validation of AI-driven ultrasound detection of ovarian cancer"
     authors: "F. Christiansen, …, K. Smith, E. Epstein"
@@ -48,3 +49,9 @@ life sciences — from foundational methods to real-world clinical and scientifi
 especially where data are scarce and uncertainty matters. Its work spans medical and microscopy
 image analysis, foundation models and transfer learning, generative models and inverse problems,
 and trustworthy human–AI systems.
+
+A growing thread pushes on a more basic question behind these systems: not whether more
+information helps, but *which* information helps a given decision-maker — a person or a model —
+in a given case, and by how much. As AI increasingly shapes what information reaches people, the
+lab is building the theory and estimators needed to measure the value of information and to
+decide who should see what, from cancer diagnosis to scientific discovery.
