@@ -17,15 +17,15 @@ const rendered = async (list: typeof methods) =>
 const methodsR = await rendered(methods);
 const domainsR = await rendered(domains);
 ---
-<Base title="Research" description="AIMS is a research environment at KTH and SciLifeLab in Stockholm, bringing several labs together to develop machine learning methods for medicine and the life sciences — from foundational methodology to real-world scientific and clinical applications.">
-  <PageHeader eyebrow="About AIMS" title="Research"
-    lede="AIMS — AI × Medicine × Life Sciences — is a research environment at KTH Royal Institute of Technology and Science for Life Laboratory (SciLifeLab) in Stockholm. We develop machine learning methods for problems across medicine and the life sciences, from foundational methodology to real-world scientific and clinical applications." />
+<Base title="Research" description="AiMS is a research environment at KTH and SciLifeLab in Stockholm, bringing several labs together to develop machine learning methods for medicine and the life sciences — from foundational methodology to real-world scientific and clinical applications.">
+  <PageHeader eyebrow="About AiMS" title="Research"
+    lede="AiMS — AI × Medicine × Life Sciences — is a research environment at KTH Royal Institute of Technology and Science for Life Laboratory (SciLifeLab) in Stockholm. We develop machine learning methods for problems across medicine and the life sciences, from foundational methodology to real-world scientific and clinical applications." />
 
   {labs.length > 0 && (
     <section class="section-tight" aria-labelledby="labs-h">
       <div class="wrap">
         <h2 id="labs-h" class="cat">One environment, several labs</h2>
-        <p class="lede muted measure">AIMS brings together independent labs under one roof. Each is led by its own
+        <p class="lede muted measure">AiMS brings together independent labs under one roof. Each is led by its own
         principal investigator and pursues its own questions, but we share methods, computing, a weekly reading group
         and a great deal of cross-disciplinary work — so ideas and tools travel quickly between medicine, imaging,
         cells and molecules.</p>
@@ -95,7 +95,7 @@ const domainsR = await rendered(domains);
     <section class="section-tight" aria-labelledby="collab-h">
       <div class="wrap">
         <h2 id="collab-h" class="cat">Collaborations</h2>
-        <p class="lede muted measure">Research at AIMS is collaborative. We work with researchers, clinicians, life-science groups and industry across institutions and disciplines.</p>
+        <p class="lede muted measure">Research at AiMS is collaborative. We work with researchers, clinicians, life-science groups and industry across institutions and disciplines.</p>
         <ul class="collab-list">
           {collabs.map((c) => (
             <li>
@@ -110,15 +110,15 @@ const domainsR = await rendered(domains);
 
   <!-- Where we are — SciLifeLab band with an inset map -->
   <section class="findus" aria-labelledby="where-h">
-    <img class="findus-img" src="/scilifelab.webp" alt="Science for Life Laboratory in Solna, where AIMS is based" loading="lazy" width="1774" height="887" />
+    <img class="findus-img" src="/scilifelab.webp" alt="Science for Life Laboratory in Solna, where AiMS is based" loading="lazy" width="1774" height="887" />
     <div class="findus-shade"></div>
     <div class="wrap findus-in">
       <p class="eyebrow">Where we are</p>
       <h2 id="where-h">Based at SciLifeLab, Solna</h2>
-      <p class="muted">AIMS is part of KTH Royal Institute of Technology and Science for Life Laboratory, on the
+      <p class="muted">AiMS is part of KTH Royal Institute of Technology and Science for Life Laboratory, on the
       SciLifeLab campus in Solna, Stockholm.</p>
       <div class="map-card-sm">
-        <iframe title="Map showing AIMS at SciLifeLab, Solna"
+        <iframe title="Map showing AiMS at SciLifeLab, Solna"
           src={`https://www.google.com/maps?q=${mapQuery}&z=15&output=embed`}
           loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>

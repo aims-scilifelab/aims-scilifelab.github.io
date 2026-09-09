@@ -1,12 +1,12 @@
 /* ============================================================= *
- * AIMS — design tokens + base styles
+ * AiMS — design tokens + base styles
  * Colours, type scale and spacing live here. Change a value once
  * and it updates everywhere. Page/section styling lives inside the
  * individual .astro components (scoped), not in this file.
  * ============================================================= */
 
 :root {
-  /* Core palette — black/white is AIMS; blue↔wine is the intersection */
+  /* Core palette — black/white is AiMS; blue↔wine is the intersection */
   --bg:        #0a0a0e;
   --bg-2:      #101017;      /* raised panels / cards */
   --bg-3:      #15151e;

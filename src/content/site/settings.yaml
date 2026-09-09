@@ -2,7 +2,7 @@
 # GLOBAL SITE IDENTITY  —  edit the lab name, descriptor, institution,
 # navigation and footer here. Changing `nav` updates the menu everywhere.
 # ---------------------------------------------------------------------------
-name: "AIMS"
+name: "AiMS"
 descriptor: "AI × Medicine × Life Sciences"
 tagline: "We develop machine learning methods to understand biology and improve medicine."
 institution:
@@ -24,7 +24,7 @@ nav:
   - label: "Research"
     href: "/research"
     children:
-      - { label: "About AIMS",    href: "/research" }
+      - { label: "About AiMS",    href: "/research" }
       - { label: "Smith Lab",     href: "/groups/smith-group" }
       - { label: "Lagergren Lab", href: "/groups/lagergren-group" }
       - { label: "Miranda Lab",   href: "/groups/miranda-group" }
@@ -32,7 +32,7 @@ nav:
   - { label: "People",       href: "/people" }
   - { label: "Publications", href: "/publications" }
   - { label: "What We Read", href: "/what-we-read" }
-  - { label: "Life at AIMS", href: "/life-at-aims" }
+  - { label: "Life at AiMS", href: "/life-at-aims" }
   - { label: "Open Science", href: "/open-science" }
   - { label: "Join",         href: "/join", cta: true }
 

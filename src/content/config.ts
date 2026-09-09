@@ -16,7 +16,7 @@ const link = z.string().url().or(z.literal('')).optional();
 const site = defineCollection({
   type: 'data',
   schema: z.object({
-    name: z.string(),                 // "AIMS"
+    name: z.string(),                 // "AiMS"
     descriptor: z.string(),           // "AI × Medicine × Life Sciences"
     tagline: z.string(),              // one-line core statement
     institution: z.array(z.string()), // ["KTH Royal Institute of Technology", ...]
@@ -88,9 +88,9 @@ const people = defineCollection({
     status: z.enum(['current', 'alumnus']).default('current'),
     affiliation: z.string().default(''),               // e.g. "KTH · SciLifeLab"
     home_group: z.string().default(''),                // for affiliates: their real group
-    primary_affiliation: z.string().default(''),       // their real institution, if not AIMS
-    aims_role: z.string().default(''),                 // e.g. "AIMS Affiliate"
-    group_leader: z.string().default(''),              // which AIMS lead they work with, if relevant
+    primary_affiliation: z.string().default(''),       // their real institution, if not AiMS
+    aims_role: z.string().default(''),                 // e.g. "AiMS Affiliate"
+    group_leader: z.string().default(''),              // which AiMS lead they work with, if relevant
     photo: z.string().default(''),                     // /people/<file>.jpg in public/, blank -> initials
     research_interests: z.array(z.string()).default([]),
     email: z.string().optional(),
@@ -109,7 +109,7 @@ const people = defineCollection({
   }),
 });
 
-/* Research groups — the labs under the AIMS umbrella -------------- *
+/* Research groups — the labs under the AiMS umbrella -------------- *
  * One file per group under src/content/groups/. The Markdown body is
  * an optional longer description shown on the group's page. Members
  * are people whose `group_leader` matches this group's `lead` name.  */
@@ -134,7 +134,7 @@ const groups = defineCollection({
   }),
 });
 
-/* Life at AIMS gallery ------------------------------------------- */
+/* Life at AiMS gallery ------------------------------------------- */
 const gallery = defineCollection({
   type: 'data',
   schema: z.object({

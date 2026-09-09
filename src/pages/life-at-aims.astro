@@ -6,8 +6,8 @@ import { getCollection } from 'astro:content';
 const entries = (await getCollection('gallery', (g) => !g.data.draft))
   .sort((a, b) => +b.data.date - +a.data.date);
 ---
-<Base title="Life at AIMS" description="Research is more than papers and models — a look at the people and community behind AIMS.">
-  <PageHeader eyebrow="Life at AIMS" title="Life at AIMS"
+<Base title="Life at AiMS" description="Research is more than papers and models — a look at the people and community behind AiMS.">
+  <PageHeader eyebrow="Life at AiMS" title="Life at AiMS"
     lede="Research is more than papers and models." />
 
   <section class="section-tight">

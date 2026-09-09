@@ -12,13 +12,13 @@ for (const p of [...pubs].sort((a, b) => b.year - a.year || a.title.localeCompar
 }
 const years = [...byYear.keys()].sort((a, b) => b - a);
 ---
-<Base title="Publications" description="Publications from the AIMS Laboratory across machine learning, medicine and the life sciences.">
+<Base title="Publications" description="Publications from the AiMS Laboratory across machine learning, medicine and the life sciences.">
   <PageHeader eyebrow="Publications" title="Publications"
     lede="Our work across foundational machine learning, medicine and the life sciences." />
 
   <section class="section-tight">
     <div class="wrap">
-      <p class="muted measure src-note">Publications from across AIMS — spanning our groups and collaborations. For a
+      <p class="muted measure src-note">Publications from across AiMS — spanning our groups and collaborations. For a
       researcher's full, up-to-date list, see their profile on the <a class="link" href="/people">People</a> page.</p>
 
       {years.map((y) => (

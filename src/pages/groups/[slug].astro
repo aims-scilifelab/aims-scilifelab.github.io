@@ -17,7 +17,7 @@ const lead = people.find((p) => p.data.name === group.data.lead)?.data;
 // Selected publications: a hand-picked list per lab (from the group's frontmatter).
 const keyPubs = group.data.keyPublications ?? [];
 ---
-<Base title={group.data.name} description={group.data.tagline || `The ${group.data.name} at AIMS.`}>
+<Base title={group.data.name} description={group.data.tagline || `The ${group.data.name} at AiMS.`}>
   <PageHeader eyebrow="Lab" title={group.data.name} lede={group.data.tagline}>
     <p class="gback"><a class="link" href="/research">← All labs</a></p>
   </PageHeader>

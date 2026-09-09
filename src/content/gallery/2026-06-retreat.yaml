@@ -3,5 +3,5 @@ title: "Group retreat"
 type: "retreat"
 featured: true
 photos:
-  - { src: "/gallery/retreat-1.jpg", alt: "AIMS group retreat (placeholder photo)", caption: "Group retreat" }
-  - { src: "/gallery/retreat-2.jpg", alt: "AIMS group retreat (placeholder photo)", caption: "Somewhere by the water" }
+  - { src: "/gallery/retreat-1.jpg", alt: "AiMS group retreat (placeholder photo)", caption: "Group retreat" }
+  - { src: "/gallery/retreat-2.jpg", alt: "AiMS group retreat (placeholder photo)", caption: "Somewhere by the water" }
