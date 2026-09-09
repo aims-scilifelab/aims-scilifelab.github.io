@@ -43,8 +43,8 @@ const rosters = [
 ];
 ---
 <Base title="People" description="AiMS is a multi-group research environment across AI, medicine and the life sciences.">
-  <PageHeader eyebrow="People" title="The people of AiMS"
-    lede="AiMS is a shared research environment spanning several groups. Move your cursor across the portraits — everyone looks your way. Below are the people who make up the lab, our collaborators, and its alumni." />
+  <PageHeader title="People"
+    lede="AiMS is a shared research environment spanning several groups. Below are the people who make up the lab, our collaborators, and its alumni." />
 
   {galleryPeople.length > 0 && (
     <section class="section-tight" aria-label="Lab members">
@@ -58,8 +58,8 @@ const rosters = [
                 <p class="prl">{p.role}</p>
                 {affLine(p) && <p class="paf">{affLine(p)}</p>}
                 <div class="plinks">
-                  {p.google_scholar && <a class="plink" href={p.google_scholar} target="_blank" rel="noopener">Scholar</a>}
-                  {p.website && <a class="plink" href={p.website} target="_blank" rel="noopener">Website</a>}
+                  <a class="plink" href={p.google_scholar || '#'} target={p.google_scholar ? '_blank' : undefined} rel="noopener">Scholar</a>
+                  <a class="plink" href={p.website || '#'} target={p.website ? '_blank' : undefined} rel="noopener">Website</a>
                   {p.github && <a class="plink" href={p.github} target="_blank" rel="noopener">GitHub</a>}
                   {p.linkedin && <a class="plink" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
                   {p.email && <a class="plink" href={`mailto:${p.email}`} aria-label={`Email ${p.name}`}>Email</a>}
@@ -130,21 +130,20 @@ const rosters = [
   .cat { font-size: var(--step-2); }
   .aff-note { margin-top: .5rem; }
 
-  /* Portrait gallery */
+  /* Portrait gallery — face on top, caption below (face never covered). */
   .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: clamp(10px, 2vw, 18px); margin-top: .5rem; }
-  .ptile { position: relative; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden;
+  .ptile { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden;
            background: var(--bg-3); border: 1px solid var(--border); }
-  .ptile .face { position: absolute; inset: 0; }
-  .ptile .face :global(svg) { width: 100%; height: 100%; display: block; }
+  .ptile .face { position: relative; aspect-ratio: 1 / 1; background: #12131a; }
+  .ptile .face :global(svg) { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
-  .pcap { position: absolute; left: 0; right: 0; bottom: 0; padding: 42px 13px 11px;
-          background: linear-gradient(180deg, transparent, rgba(6,7,12,.72) 42%, rgba(5,6,10,.92) 100%); }
+  .pcap { padding: 11px 13px 13px; }
   .pnm { font-size: var(--step--1); font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
   .prl { font-size: .72rem; color: var(--muted); margin-top: 1px; }
   .paf { font-size: .68rem; color: var(--faint); margin-top: 2px; }
 
-  /* Always-visible, compact links (Scholar + Website prioritised). */
-  .plinks { display: flex; flex-wrap: wrap; gap: 3px 9px; margin-top: 6px; }
+  /* Always-visible, compact links (Scholar + Website first). */
+  .plinks { display: flex; flex-wrap: wrap; gap: 3px 9px; margin-top: 7px; }
   .plink { font-size: .68rem; font-weight: 500; color: var(--blue); }
   .plink:hover { color: var(--text); text-decoration: underline; }
 
