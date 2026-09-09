@@ -10,21 +10,31 @@ focus:
   - "Cell & microscopy image analysis"
   - "Value of information in decision-making"
 keyPublications:
+  - title: "Supplemental MRI screening in women at high AI-predicted risk: results from the randomized ScreenTrustMRI trial"
+    authors: "M. Salim, …, K. Smith, F. Strand"
+    venue: "The Lancet"
+    year: 2026
+    url: ""
   - title: "International multicenter validation of AI-driven ultrasound detection of ovarian cancer"
     authors: "F. Christiansen, …, K. Smith, E. Epstein"
     venue: "Nature Medicine"
     year: 2025
     url: "https://www.nature.com/articles/s41591-024-03329-4"
-  - title: "AI-based selection of individuals for supplemental MRI in population-based breast cancer screening (ScreenTrustMRI)"
-    authors: "M. Salim, …, K. Smith, F. Strand"
-    venue: "Nature Medicine"
-    year: 2024
-    url: "https://www.nature.com/articles/s41591-024-03093-5"
+  - title: "Learning what helps: task-aligned context selection for vision tasks"
+    authors: "J. Guo, E. Konuk, F. Strand, C. Matsoukas, K. Smith"
+    venue: "CVPR"
+    year: 2026
+    url: ""
   - title: "Cell Painting-based bioactivity prediction boosts high-throughput screening hit-rates and compound diversity"
     authors: "J. Fredin Haslum, …, K. Smith, E. Müllers"
     venue: "Nature Communications"
     year: 2024
     url: "https://www.nature.com/articles/s41467-024-47171-1"
+  - title: "A framework for assessing joint human–AI systems based on uncertainty estimation"
+    authors: "E. Konuk, R. Welch, F. Christiansen, E. Epstein, K. Smith"
+    venue: "MICCAI"
+    year: 2024
+    url: "https://link.springer.com/chapter/10.1007/978-3-031-72117-5_1"
   - title: "What makes transfer learning work for medical images: feature reuse & other factors"
     authors: "C. Matsoukas, J. F. Haslum, M. Sorkhei, M. Söderberg, K. Smith"
     venue: "CVPR"
@@ -35,11 +45,6 @@ keyPublications:
     venue: "NeurIPS (Datasets & Benchmarks)"
     year: 2021
     url: "https://arxiv.org/abs/2112.01330"
-  - title: "A framework for assessing joint human–AI systems based on uncertainty estimation"
-    authors: "E. Konuk, R. Welch, F. Christiansen, E. Epstein, K. Smith"
-    venue: "MICCAI"
-    year: 2024
-    url: "https://link.springer.com/chapter/10.1007/978-3-031-72117-5_1"
 order: 1
 draft: false
 ---
@@ -50,8 +55,5 @@ especially where data are scarce and uncertainty matters. Its work spans medical
 image analysis, foundation models and transfer learning, generative models and inverse problems,
 and trustworthy human–AI systems.
 
-A growing thread pushes on a more basic question behind these systems: not whether more
-information helps, but *which* information helps a given decision-maker — a person or a model —
-in a given case, and by how much. As AI increasingly shapes what information reaches people, the
-lab is building the theory and estimators needed to measure the value of information and to
-decide who should see what, from cancer diagnosis to scientific discovery.
+We are also interested in how AI and people interact to make better decisions together — and in
+which information helps, how, and when.
