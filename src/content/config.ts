@@ -17,7 +17,7 @@ const site = defineCollection({
   type: 'data',
   schema: z.object({
     name: z.string(),                 // "AiMS"
-    descriptor: z.string(),           // "AI × Medicine × Life Sciences"
+    descriptor: z.string(),           // "Ai × Medicine × Life Sciences"
     tagline: z.string(),              // one-line core statement
     institution: z.array(z.string()), // ["KTH Royal Institute of Technology", ...]
     location: z.string(),             // "Stockholm, Sweden"

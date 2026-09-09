@@ -3,7 +3,7 @@
 # navigation and footer here. Changing `nav` updates the menu everywhere.
 # ---------------------------------------------------------------------------
 name: "AiMS"
-descriptor: "AI × Medicine × Life Sciences"
+descriptor: "Ai × Medicine × Life Sciences"
 tagline: "We develop machine learning methods to understand biology and improve medicine."
 institution:
   - "KTH Royal Institute of Technology"

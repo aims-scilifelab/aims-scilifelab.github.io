@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
-import Avatar from '../components/Avatar.astro';
 import { getCollection } from 'astro:content';
 
 const all = (await getCollection('people', (p) => !p.data.draft))
@@ -18,14 +17,17 @@ const staff       = inCats(['engineer', 'staff']);
 const affiliates  = inCats(['affiliate']);
 
 // Alumni: anyone with alumnus status, plus current people who are also alumni (alumnus_of set)
-// Surname = everything after the first name (handles "Van der Goten", "Fredin Haslum").
 const surname = (n: string) => n.split(' ').slice(1).join(' ') || n;
 const alumni = all
   .filter((p) => p.status === 'alumnus' || (p.alumnus_of && p.alumnus_of.length))
   .sort((a, b) => surname(a.name).localeCompare(surname(b.name)));
 
-// Sections rendered with the standard horizontal person card (leads are handled separately above).
+// Stable per-person seed (drives the placeholder face's look) from the name.
+const seedOf = (n: string) => { let h = 2166136261; for (let i = 0; i < n.length; i++) { h ^= n.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) % 100000; };
+
+// Portrait sections (everyone current, as a gaze-tracking gallery).
 const sections = [
+  { title: 'Group Leaders', people: leads, note: '' },
   { title: 'Researchers & Postdocs', people: researchers, note: '' },
   { title: 'PhD Students', people: phds, note: '' },
   { title: "Master's Students", people: masters, note: '' },
@@ -35,61 +37,35 @@ const sections = [
   { title: 'Affiliated Researchers', people: affiliates,
     note: 'Researchers based in collaborating groups who regularly take part in AiMS research and activities.' },
 ];
+
+const affLine = (p: typeof all[number]) =>
+  p.category === 'affiliate'
+    ? [p.home_group, p.aims_role].filter(Boolean).join(' · ') + (p.primary_affiliation ? ` · ${p.primary_affiliation}` : '')
+    : (p.affiliation || '');
 ---
 <Base title="People" description="AiMS is a multi-group research environment across AI, medicine and the life sciences.">
   <PageHeader eyebrow="People" title="The people of AiMS"
-    lede="AiMS is a shared research environment spanning several groups. Below are the people who make up the lab, our collaborators, and its alumni." />
-
-  {leads.length > 0 && (
-    <section class="section-tight" aria-labelledby="leads-h">
-      <div class="wrap">
-        <h2 id="leads-h" class="cat">Group Leaders</h2>
-        <div class="leads-grid">
-          {leads.map((p) => (
-            <article class="card lead-card">
-              <div class="lavatar" aria-hidden="true"><Avatar photo={p.photo} name={p.name} /></div>
-              <h3>{p.name}</h3>
-              <p class="role muted">{p.role}</p>
-              {p.affiliation && <p class="laff faint">{p.affiliation}</p>}
-              <div class="llinks">
-                {p.website && <a class="llink" href={p.website} target="_blank" rel="noopener">Website</a>}
-                {p.google_scholar && <a class="llink" href={p.google_scholar} target="_blank" rel="noopener">Scholar</a>}
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
+    lede="AiMS is a shared research environment spanning several groups. Move your cursor across the portraits — everyone looks your way. Below are the people who make up the lab, our collaborators, and its alumni." />
 
   {sections.map((sec) => sec.people.length > 0 && (
     <section class="section-tight" aria-labelledby={sec.title.replace(/\W+/g, '-')}>
       <div class="wrap">
         <h2 id={sec.title.replace(/\W+/g, '-')} class="cat">{sec.title}</h2>
         {sec.note && <p class="muted measure aff-note">{sec.note}</p>}
-        <div class="grid">
+        <div class="pgrid">
           {sec.people.map((p) => (
-            <article class="card person">
-              {p.category !== 'collaborator' && (
-                <div class="avatar" aria-hidden="true">
-                  <Avatar photo={p.photo} name={p.name} />
-                </div>
-              )}
-              <div class="pbody">
-                <h3>{p.name}</h3>
-                <p class="role muted">{p.role}</p>
-                {p.category === 'affiliate'
-                  ? <p class="aff faint">{[p.home_group, p.aims_role].filter(Boolean).join(' · ')}{p.primary_affiliation ? ` · ${p.primary_affiliation}` : ''}</p>
-                  : (p.affiliation && <p class="aff faint">{p.affiliation}</p>)}
-                {p.research_interests.length > 0 && (
-                  <p class="interests muted">{p.research_interests.slice(0, 4).join(' · ')}</p>
-                )}
-                <div class="links">
-                  {p.website && <a class="link" href={p.website} target="_blank" rel="noopener">Website</a>}
-                  {p.google_scholar && <a class="link" href={p.google_scholar} target="_blank" rel="noopener">Scholar</a>}
-                  {p.github && <a class="link" href={p.github} target="_blank" rel="noopener">GitHub</a>}
-                  {p.linkedin && <a class="link" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
-                  {p.email && <a class="link" href={`mailto:${p.email}`}>Email</a>}
+            <article class="ptile" data-seed={seedOf(p.name)}>
+              <div class="face" aria-hidden="true"></div>
+              <div class="pcap">
+                <h3 class="pnm">{p.name}</h3>
+                <p class="prl">{p.role}</p>
+                {affLine(p) && <p class="paf">{affLine(p)}</p>}
+                <div class="plinks">
+                  {p.website && <a class="plink" href={p.website} target="_blank" rel="noopener">Website</a>}
+                  {p.google_scholar && <a class="plink" href={p.google_scholar} target="_blank" rel="noopener">Scholar</a>}
+                  {p.github && <a class="plink" href={p.github} target="_blank" rel="noopener">GitHub</a>}
+                  {p.linkedin && <a class="plink" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
+                  {p.email && <a class="plink" href={`mailto:${p.email}`}>Email</a>}
                 </div>
               </div>
             </article>
@@ -127,32 +103,33 @@ const sections = [
   .cat { font-size: var(--step-2); }
   .aff-note { margin-top: .5rem; }
 
-  /* Group Leaders — equal cards in one row, each with Website + Scholar */
-  .leads-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 2.5vw, 1.4rem); margin-top: 1.5rem; }
-  .lead-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(1.2rem, 3vw, 1.6rem); }
-  .lavatar { width: 96px; height: 96px; border-radius: 50%; overflow: hidden; border: 1px solid var(--border);
-             background: var(--bg-3); display: grid; place-items: center; }
-  .lavatar :global(img), .lavatar :global(svg) { width: 100%; height: 100%; object-fit: cover; }
-  .lead-card h3 { font-size: var(--step-0); font-weight: 700; margin-top: .9rem; }
-  .lead-card .role { font-size: var(--step--1); margin-top: 2px; }
-  .lead-card .laff { font-size: var(--step--1); margin-top: 3px; }
-  .llinks { display: flex; gap: 8px; margin-top: 1rem; width: 100%; }
-  .llink { flex: 1; text-align: center; padding: .45rem .5rem; border: 1px solid var(--border); border-radius: 8px; font-size: var(--step--1); }
-  .llink:hover { border-color: rgba(106,164,238,.5); color: var(--blue); }
-  @media (max-width: 900px) { .leads-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 520px) { .leads-grid { grid-template-columns: 1fr; } }
+  /* Portrait gallery */
+  .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: clamp(10px, 2vw, 18px); margin-top: 1.5rem; }
+  .ptile { position: relative; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden;
+           background: var(--bg-3); border: 1px solid var(--border); }
+  .ptile .face { position: absolute; inset: 0; }
+  .ptile .face :global(svg) { width: 100%; height: 100%; display: block; }
 
-  /* Standard person cards */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: clamp(1rem, 2.5vw, 1.4rem); margin-top: 1.5rem; }
-  .person { display: flex; gap: 1rem; padding: 1.2rem; }
-  .avatar { flex: 0 0 auto; width: 72px; height: 72px; border-radius: 50%; overflow: hidden; background: var(--bg-3);
-            display: grid; place-items: center; color: var(--muted); font-weight: 700; font-size: 1.1rem; border: 1px solid var(--border); }
-  .avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .pbody h3 { font-size: var(--step-0); font-weight: 700; }
-  .role { font-size: var(--step--1); margin-top: 1px; }
-  .aff { font-size: var(--step--1); margin-top: 2px; }
-  .interests { font-size: var(--step--1); margin-top: .5rem; }
-  .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: .7rem; font-size: var(--step--1); }
+  .pcap { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 13px 12px;
+          background: linear-gradient(180deg, transparent, rgba(6,7,12,.85) 58%); }
+  .pnm { font-size: var(--step--1); font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
+  .prl { font-size: .72rem; color: var(--muted); margin-top: 1px; }
+  .paf { font-size: .68rem; color: var(--faint); margin-top: 2px; }
+
+  /* Links hidden until hover/focus on pointer devices; the scrim grows to fit them. */
+  .plinks { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-top: 8px;
+            max-height: 0; opacity: 0; overflow: hidden;
+            transition: max-height .22s ease, opacity .22s ease, margin-top .22s ease; }
+  .plink { font-size: .68rem; color: var(--blue); }
+  .plink:hover { color: var(--text); }
+  .ptile:hover .plinks, .ptile:focus-within .plinks { max-height: 4rem; opacity: 1; }
+
+  /* Touch devices have no hover — always show links. */
+  @media (hover: none) {
+    .plinks { max-height: 4rem; opacity: 1; }
+  }
+
+  /* Alumni list (unchanged) */
   .alumni-list { list-style: none; padding: 0; margin-top: 1.4rem; display: grid; gap: .8rem; max-width: min(100%, 52rem); }
   .alumni-list li { display: grid; grid-template-columns: 14rem 1fr; gap: .3rem 1.4rem; align-items: baseline;
                     border-bottom: 1px solid var(--border); padding-bottom: .8rem; }
@@ -163,3 +140,97 @@ const sections = [
   .alink { font-size: var(--step--1); white-space: nowrap; }
   @media (max-width: 560px) { .alumni-list li { grid-template-columns: 1fr; } }
 </style>
+
+<script>
+  /* ------------------------------------------------------------------ *
+   * Gaze-tracking portrait gallery.
+   *
+   * Each tile currently renders a DRAWN placeholder face (9 fixed gaze
+   * states) that turns toward the pointer / finger. To use REAL photos
+   * for a person later: shoot 9 headshots named by direction
+   * (c, n, ne, e, se, s, sw, w, nw), drop them in public/people/<slug>/,
+   * and swap `variantFor()` to return an <img> for that direction instead
+   * of the generated SVG. The tracking logic below does not change.
+   * ------------------------------------------------------------------ */
+  const tiles = Array.from(document.querySelectorAll<HTMLElement>('.ptile'));
+  if (tiles.length) {
+    const SKIN = ["#c9a58a","#e3b79a","#a9785c","#d9a892","#8d5f47","#e7c2a6","#b98a6b","#caa07f"];
+    const HAIR = ["#2b2b33","#4a3327","#6b4a2f","#1c1c22","#5a5a66","#3a2a3a","#7a5230","#2a3340"];
+
+    function faceSVG(seed: number, dx: number, dy: number) {
+      const skin = SKIN[seed % SKIN.length];
+      const hair = HAIR[(seed * 3 + 1) % HAIR.length];
+      const glasses = (seed % 3 === 0);
+      const hx = dx * 2.4, hy = dy * 2.2, rot = dx * 3.2;   // head turn
+      const px = dx * 3.3, py = dy * 3.0;                   // pupil offset
+      const browY = 41 + dy * 1.6;
+      return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice">
+        <rect width="100" height="120" fill="#12131a"/>
+        <g transform="translate(${hx} ${hy}) rotate(${rot} 50 60)">
+          <path d="M20 118 q6 -30 30 -30 q24 0 30 30 z" fill="#2a2c3a"/>
+          <ellipse cx="50" cy="58" rx="26" ry="30" fill="${skin}"/>
+          <path d="M24 52 q-2 -34 26 -34 q28 0 26 34 q-4 -18 -26 -18 q-22 0 -26 18z" fill="${hair}"/>
+          <ellipse cx="40" cy="57" rx="6.4" ry="4.6" fill="#fff"/>
+          <ellipse cx="60" cy="57" rx="6.4" ry="4.6" fill="#fff"/>
+          <circle cx="${40 + px}" cy="${57 + py}" r="2.7" fill="#20232b"/>
+          <circle cx="${60 + px}" cy="${57 + py}" r="2.7" fill="#20232b"/>
+          <path d="M33 ${browY} q7 -3 13 0" stroke="${hair}" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M54 ${browY} q7 -3 13 0" stroke="${hair}" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M50 60 l-2 8 q2 2 4 0" stroke="${hair}" stroke-width="1.3" fill="none" opacity=".5" stroke-linecap="round"/>
+          <path d="M43 74 q7 5 14 0" stroke="#7a4b45" stroke-width="2" fill="none" stroke-linecap="round"/>
+          ${glasses ? `<g stroke="#20232b" stroke-width="1.4" fill="none" opacity=".85"><rect x="32.5" y="52" width="15" height="10" rx="4"/><rect x="52.5" y="52" width="15" height="10" rx="4"/><path d="M47.5 56 h5"/></g>` : ``}
+        </g></svg>`;
+    }
+
+    const DIRS: [number, number][] = [[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1]]; // by 45° sector, y-down
+    function dirFor(rect: DOMRect, mx: number, my: number): [number, number] {
+      const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+      if (Math.hypot(mx - cx, my - cy) < rect.width * 0.30) return [0, 0]; // pointer on the face → straight ahead
+      const deg = (Math.atan2(my - cy, mx - cx) * 180 / Math.PI + 360) % 360;
+      return DIRS[Math.round(deg / 45) % 8];
+    }
+
+    type Cell = { el: HTMLElement; face: HTMLElement; variants: Record<string,string>; cur: string };
+    const cells: Cell[] = tiles.map((el) => {
+      const seed = Number(el.dataset.seed) || 0;
+      const face = el.querySelector<HTMLElement>('.face')!;
+      const variants: Record<string,string> = {};
+      for (const [dx, dy] of [[0,0], ...DIRS] as [number,number][]) variants[dx + ',' + dy] = faceSVG(seed, dx, dy);
+      face.innerHTML = variants['0,0'];
+      return { el, face, variants, cur: '0,0' };
+    });
+
+    function apply(mx: number, my: number) {
+      for (const c of cells) {
+        const [dx, dy] = dirFor(c.el.getBoundingClientRect(), mx, my);
+        const k = dx + ',' + dy;
+        if (k !== c.cur) { c.face.innerHTML = c.variants[k]; c.cur = k; }
+      }
+    }
+    function center() { for (const c of cells) if (c.cur !== '0,0') { c.face.innerHTML = c.variants['0,0']; c.cur = '0,0'; } }
+
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const coarse = matchMedia('(hover: none), (pointer: coarse)').matches;
+
+    if (reduce) {
+      /* keep everyone straight ahead */
+    } else if (coarse) {
+      // Touch: follow the finger; between touches watch the screen centre on scroll.
+      let raf = 0, tx = innerWidth / 2, ty = innerHeight / 2, touching = false;
+      const track = () => { raf = 0; apply(tx, ty); };
+      const kick = () => { if (!raf) raf = requestAnimationFrame(track); };
+      const onTouch = (e: TouchEvent) => { const t = e.touches[0]; if (!t) return; tx = t.clientX; ty = t.clientY; touching = true; kick(); };
+      addEventListener('touchstart', onTouch, { passive: true });
+      addEventListener('touchmove', onTouch, { passive: true });
+      addEventListener('touchend', () => { touching = false; }, { passive: true });
+      addEventListener('scroll', () => { if (!touching) { tx = innerWidth / 2; ty = innerHeight / 2; kick(); } }, { passive: true });
+      addEventListener('resize', () => { if (!touching) { tx = innerWidth / 2; ty = innerHeight / 2; kick(); } }, { passive: true });
+      track();
+    } else {
+      // Desktop: follow the pointer.
+      let raf = 0, lx = 0, ly = 0;
+      addEventListener('mousemove', (e) => { lx = e.clientX; ly = e.clientY; if (!raf) raf = requestAnimationFrame(() => { raf = 0; apply(lx, ly); }); }, { passive: true });
+      addEventListener('mouseleave', center);
+    }
+  }
+</script>
