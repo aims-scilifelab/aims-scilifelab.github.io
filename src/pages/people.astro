@@ -7,53 +7,50 @@ const all = (await getCollection('people', (p) => !p.data.draft))
   .map((p) => p.data)
   .sort((a, b) => a.order - b.order);
 
-const inCats = (cats: string[]) => all.filter((p) => p.status === 'current' && cats.includes(p.category));
-const leads       = inCats(['lead']);
-const researchers = inCats(['researcher', 'postdoc']);
-const phds        = inCats(['phd']);
-const masters     = inCats(['masters']);
-const collaborators = inCats(['collaborator']);
-const staff       = inCats(['engineer', 'staff']);
-const affiliates  = inCats(['affiliate']);
+// Combined photo gallery: leaders, researchers/postdocs, staff/engineers, PhDs, master's.
+const GALLERY_RANK: Record<string, number> = {
+  lead: 0, researcher: 1, postdoc: 1, phd: 2, masters: 3, engineer: 4, staff: 4,
+};
+const galleryPeople = all
+  .filter((p) => p.status === 'current' && p.category in GALLERY_RANK)
+  .sort((a, b) =>
+    (GALLERY_RANK[a.category] - GALLERY_RANK[b.category]) ||
+    (a.order - b.order) ||
+    a.name.localeCompare(b.name));
 
-// Alumni: anyone with alumnus status, plus current people who are also alumni (alumnus_of set)
+// Faceless lists.
+const collaborators = all.filter((p) => p.status === 'current' && p.category === 'collaborator');
+const affiliates    = all.filter((p) => p.status === 'current' && p.category === 'affiliate');
+
 const surname = (n: string) => n.split(' ').slice(1).join(' ') || n;
 const alumni = all
   .filter((p) => p.status === 'alumnus' || (p.alumnus_of && p.alumnus_of.length))
   .sort((a, b) => surname(a.name).localeCompare(surname(b.name)));
 
-// Stable per-person seed (drives the placeholder face's look) from the name.
 const seedOf = (n: string) => { let h = 2166136261; for (let i = 0; i < n.length; i++) { h ^= n.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) % 100000; };
-
-// Portrait sections (everyone current, as a gaze-tracking gallery).
-const sections = [
-  { title: 'Group Leaders', people: leads, note: '' },
-  { title: 'Researchers & Postdocs', people: researchers, note: '' },
-  { title: 'PhD Students', people: phds, note: '' },
-  { title: "Master's Students", people: masters, note: '' },
-  { title: 'Collaborators', people: collaborators,
-    note: 'Researchers and students in partner groups and organizations we work closely with.' },
-  { title: 'Research Engineers & Staff', people: staff, note: '' },
-  { title: 'Affiliated Researchers', people: affiliates,
-    note: 'Researchers based in collaborating groups who regularly take part in AiMS research and activities.' },
-];
 
 const affLine = (p: typeof all[number]) =>
   p.category === 'affiliate'
     ? [p.home_group, p.aims_role].filter(Boolean).join(' · ') + (p.primary_affiliation ? ` · ${p.primary_affiliation}` : '')
     : (p.affiliation || '');
+
+// Faceless roster sections (no portraits).
+const rosters = [
+  { title: 'Collaborators', people: collaborators,
+    note: 'Researchers and students in partner groups and organizations we work closely with.' },
+  { title: 'Affiliated Researchers', people: affiliates,
+    note: 'Researchers based in collaborating groups who regularly take part in AiMS research and activities.' },
+];
 ---
 <Base title="People" description="AiMS is a multi-group research environment across AI, medicine and the life sciences.">
   <PageHeader eyebrow="People" title="The people of AiMS"
     lede="AiMS is a shared research environment spanning several groups. Move your cursor across the portraits — everyone looks your way. Below are the people who make up the lab, our collaborators, and its alumni." />
 
-  {sections.map((sec) => sec.people.length > 0 && (
-    <section class="section-tight" aria-labelledby={sec.title.replace(/\W+/g, '-')}>
+  {galleryPeople.length > 0 && (
+    <section class="section-tight" aria-label="Lab members">
       <div class="wrap">
-        <h2 id={sec.title.replace(/\W+/g, '-')} class="cat">{sec.title}</h2>
-        {sec.note && <p class="muted measure aff-note">{sec.note}</p>}
         <div class="pgrid">
-          {sec.people.map((p) => (
+          {galleryPeople.map((p) => (
             <article class="ptile" data-seed={seedOf(p.name)}>
               <div class="face" aria-hidden="true"></div>
               <div class="pcap">
@@ -61,16 +58,46 @@ const affLine = (p: typeof all[number]) =>
                 <p class="prl">{p.role}</p>
                 {affLine(p) && <p class="paf">{affLine(p)}</p>}
                 <div class="plinks">
-                  {p.website && <a class="plink" href={p.website} target="_blank" rel="noopener">Website</a>}
                   {p.google_scholar && <a class="plink" href={p.google_scholar} target="_blank" rel="noopener">Scholar</a>}
+                  {p.website && <a class="plink" href={p.website} target="_blank" rel="noopener">Website</a>}
                   {p.github && <a class="plink" href={p.github} target="_blank" rel="noopener">GitHub</a>}
                   {p.linkedin && <a class="plink" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
-                  {p.email && <a class="plink" href={`mailto:${p.email}`}>Email</a>}
+                  {p.email && <a class="plink" href={`mailto:${p.email}`} aria-label={`Email ${p.name}`}>Email</a>}
                 </div>
               </div>
             </article>
           ))}
         </div>
+      </div>
+    </section>
+  )}
+
+  {rosters.map((sec) => sec.people.length > 0 && (
+    <section class="section-tight" aria-labelledby={sec.title.replace(/\W+/g, '-')}>
+      <div class="wrap">
+        <h2 id={sec.title.replace(/\W+/g, '-')} class="cat">{sec.title}</h2>
+        {sec.note && <p class="muted measure aff-note">{sec.note}</p>}
+        <ul class="roster">
+          {sec.people.map((p) => (
+            <li class="rcard">
+              <div class="rmain">
+                <span class="rn">{p.name}</span>
+                <span class="rr muted">{p.role}</span>
+              </div>
+              {affLine(p) && <p class="raf faint">{affLine(p)}</p>}
+              {p.research_interests.length > 0 && (
+                <p class="rint muted">{p.research_interests.slice(0, 4).join(' · ')}</p>
+              )}
+              <div class="rlinks">
+                {p.website && <a class="link" href={p.website} target="_blank" rel="noopener">Website</a>}
+                {p.google_scholar && <a class="link" href={p.google_scholar} target="_blank" rel="noopener">Scholar</a>}
+                {p.github && <a class="link" href={p.github} target="_blank" rel="noopener">GitHub</a>}
+                {p.linkedin && <a class="link" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
+                {p.email && <a class="link" href={`mailto:${p.email}`}>Email</a>}
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   ))}
@@ -104,32 +131,35 @@ const affLine = (p: typeof all[number]) =>
   .aff-note { margin-top: .5rem; }
 
   /* Portrait gallery */
-  .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: clamp(10px, 2vw, 18px); margin-top: 1.5rem; }
+  .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: clamp(10px, 2vw, 18px); margin-top: .5rem; }
   .ptile { position: relative; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden;
            background: var(--bg-3); border: 1px solid var(--border); }
   .ptile .face { position: absolute; inset: 0; }
   .ptile .face :global(svg) { width: 100%; height: 100%; display: block; }
 
-  .pcap { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 13px 12px;
-          background: linear-gradient(180deg, transparent, rgba(6,7,12,.85) 58%); }
+  .pcap { position: absolute; left: 0; right: 0; bottom: 0; padding: 42px 13px 11px;
+          background: linear-gradient(180deg, transparent, rgba(6,7,12,.72) 42%, rgba(5,6,10,.92) 100%); }
   .pnm { font-size: var(--step--1); font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
   .prl { font-size: .72rem; color: var(--muted); margin-top: 1px; }
   .paf { font-size: .68rem; color: var(--faint); margin-top: 2px; }
 
-  /* Links hidden until hover/focus on pointer devices; the scrim grows to fit them. */
-  .plinks { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-top: 8px;
-            max-height: 0; opacity: 0; overflow: hidden;
-            transition: max-height .22s ease, opacity .22s ease, margin-top .22s ease; }
-  .plink { font-size: .68rem; color: var(--blue); }
-  .plink:hover { color: var(--text); }
-  .ptile:hover .plinks, .ptile:focus-within .plinks { max-height: 4rem; opacity: 1; }
+  /* Always-visible, compact links (Scholar + Website prioritised). */
+  .plinks { display: flex; flex-wrap: wrap; gap: 3px 9px; margin-top: 6px; }
+  .plink { font-size: .68rem; font-weight: 500; color: var(--blue); }
+  .plink:hover { color: var(--text); text-decoration: underline; }
 
-  /* Touch devices have no hover — always show links. */
-  @media (hover: none) {
-    .plinks { max-height: 4rem; opacity: 1; }
-  }
+  /* Faceless rosters (collaborators, affiliates) */
+  .roster { list-style: none; padding: 0; margin-top: 1.4rem;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 1rem 1.6rem; }
+  .rcard { border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; }
+  .rmain { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+  .rn { font-weight: 700; font-size: var(--step-0); }
+  .rr { font-size: var(--step--1); }
+  .raf { font-size: var(--step--1); margin-top: 3px; }
+  .rint { font-size: var(--step--1); margin-top: .5rem; }
+  .rlinks { display: flex; flex-wrap: wrap; gap: 12px; margin-top: .7rem; font-size: var(--step--1); }
 
-  /* Alumni list (unchanged) */
+  /* Alumni list */
   .alumni-list { list-style: none; padding: 0; margin-top: 1.4rem; display: grid; gap: .8rem; max-width: min(100%, 52rem); }
   .alumni-list li { display: grid; grid-template-columns: 14rem 1fr; gap: .3rem 1.4rem; align-items: baseline;
                     border-bottom: 1px solid var(--border); padding-bottom: .8rem; }
