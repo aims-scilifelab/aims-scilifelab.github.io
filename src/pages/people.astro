@@ -132,6 +132,8 @@ const rosters = [
 
   /* Portrait gallery — face on top, caption below (face never covered). */
   .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: clamp(10px, 2vw, 18px); margin-top: .5rem; }
+  /* Phones: never a single column — keep at least two across. */
+  @media (max-width: 560px) { .pgrid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
   .ptile { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden;
            background: var(--bg-3); border: 1px solid var(--border); }
   .ptile .face { position: relative; aspect-ratio: 1 / 1; background: #12131a; }
