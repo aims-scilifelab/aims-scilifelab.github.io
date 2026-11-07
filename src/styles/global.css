@@ -278,3 +278,13 @@ p { text-wrap: pretty; }
 .prose h2, .prose h3 { color: var(--text); margin-top: 1.4em; }
 .prose ul { padding-left: 1.2em; }
 .prose li { margin-top: .3em; }
+
+/* Dark, slim scrollbars for inner scroll areas (reading archive, outing strip,
+   photo viewer). Add class="scroll-dark" to any element that scrolls. */
+.scroll-dark { color-scheme: dark; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.22) transparent; }
+.scroll-dark::-webkit-scrollbar { width: 10px; height: 10px; }
+.scroll-dark::-webkit-scrollbar-track { background: transparent; }
+.scroll-dark::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 999px;
+  border: 2px solid transparent; background-clip: padding-box; }
+.scroll-dark::-webkit-scrollbar-thumb:hover { background-color: rgba(255,255,255,.32); }
+.scroll-dark::-webkit-scrollbar-corner { background: transparent; }
