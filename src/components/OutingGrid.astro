@@ -1,12 +1,13 @@
 ---
 /* Team outings: a horizontal, swipeable strip of small framed prints,
- * one per event (newest first). Clicking a print opens a lightbox with
- * the full-size photo(s), title, date and photo caption.
+ * one per event (newest first). Clicking a print opens the shared
+ * <Lightbox /> (full-size photos, title, date, photo captions).
  *
  * Maintenance: just add a YAML file under src/content/gallery/ — the
  * strip grows sideways, so the page never gets longer. Every photo in
- * the event's `photos` list is shown in the lightbox (← / → to browse). */
+ * the event's `photos` list is shown in the viewer (← / → to browse). */
 import type { CollectionEntry } from 'astro:content';
+import { lbData } from '../lib/lightbox';
 
 interface Props {
   entries: CollectionEntry<'gallery'>[];
@@ -22,6 +23,7 @@ const events = entries
     date: fmt(e.data.date),
     iso: e.data.date.toISOString().slice(0, 10),
     photos: e.data.photos,
+    lb: lbData(e, { description: false }),
   }));
 ---
 <div class="outings" data-outings>
@@ -37,7 +39,7 @@ const events = entries
       const ph = ev.photos[0];
       return (
         <li class="print">
-          <button type="button" class="open" data-open={i}
+          <button type="button" class="open" data-lb={ev.lb}
             aria-label={`Open photos from ${ev.title}, ${ev.date}`}>
             <img src={ph.src} alt={ph.alt} loading={i < eager ? 'eager' : 'lazy'} />
             {ev.photos.length > 1 && <span class="count">{ev.photos.length} photos</span>}
@@ -53,37 +55,13 @@ const events = entries
     })}
   </ul>
 
-  <dialog class="lightbox" data-lightbox aria-label="Outing photo">
-    <button type="button" class="close" data-close aria-label="Close">×</button>
-    <figure>
-      <div class="stage">
-        <button type="button" class="step prev" data-step="-1" aria-label="Previous photo">‹</button>
-        <img data-img alt="" />
-        <button type="button" class="step next" data-step="1" aria-label="Next photo">›</button>
-      </div>
-      <figcaption>
-        <p class="row">
-          <span class="ttl" data-title></span>
-          <span class="meta"><time data-date></time> <span data-counter></span></span>
-        </p>
-        <p class="pcap" data-caption></p>
-      </figcaption>
-    </figure>
-  </dialog>
-
-  <script type="application/json" data-events set:html={JSON.stringify(events)} />
 </div>
 
 <script>
   for (const root of document.querySelectorAll<HTMLElement>('[data-outings]')) {
-    const events = JSON.parse(root.querySelector('[data-events]')!.textContent || '[]');
     const strip = root.querySelector<HTMLElement>('[data-strip]')!;
     const prevBtn = root.querySelector<HTMLButtonElement>('[data-prev]')!;
     const nextBtn = root.querySelector<HTMLButtonElement>('[data-next]')!;
-    const dlg = root.querySelector<HTMLDialogElement>('[data-lightbox]')!;
-    const img = dlg.querySelector<HTMLImageElement>('[data-img]')!;
-    const $ = (s: string) => dlg.querySelector<HTMLElement>(s)!;
-    let ev = 0, ph = 0;
 
     // --- strip scrolling -------------------------------------------------
     const page = () => Math.max(strip.clientWidth * 0.8, 200);
@@ -99,40 +77,6 @@ const events = entries
     window.addEventListener('resize', sync);
     sync();
 
-    // --- lightbox --------------------------------------------------------
-    const render = () => {
-      const e = events[ev], p = e.photos[ph];
-      img.src = p.src; img.alt = p.alt;
-      $('[data-title]').textContent = e.title;
-      $('[data-date]').textContent = e.date;
-      $('[data-date]').setAttribute('datetime', e.iso);
-      $('[data-counter]').textContent = e.photos.length > 1 ? `· ${ph + 1} / ${e.photos.length}` : '';
-      $('[data-caption]').textContent = p.caption || '';
-      dlg.classList.toggle('single', e.photos.length < 2);
-    };
-    const step = (d: number) => {
-      const n = events[ev].photos.length;
-      if (n < 2) return;
-      ph = (ph + d + n) % n; render();
-    };
-    root.querySelectorAll<HTMLElement>('[data-open]').forEach((b) =>
-      b.addEventListener('click', () => { ev = +b.dataset.open!; ph = 0; render(); dlg.showModal(); }));
-    dlg.querySelectorAll<HTMLElement>('[data-step]').forEach((b) =>
-      b.addEventListener('click', () => step(+b.dataset.step!)));
-    $('[data-close]').addEventListener('click', () => dlg.close());
-    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); }); // backdrop
-    dlg.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') step(-1);
-      if (e.key === 'ArrowRight') step(1);
-    });
-    // swipe between photos on touch screens
-    let x0: number | null = null;
-    img.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
-    img.addEventListener('touchend', (e) => {
-      if (x0 === null) return;
-      const dx = e.changedTouches[0].clientX - x0; x0 = null;
-      if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
-    });
   }
 </script>
 
@@ -181,26 +125,6 @@ const events = entries
   .ttl { font-weight: 600; font-size: var(--step--1); color: var(--text); line-height: 1.25; }
   time { flex: none; font-size: .75rem; color: var(--faint); }
 
-  /* Lightbox */
-  .lightbox { position: fixed; inset: 0; margin: auto; height: fit-content; width: min(1100px, 94vw); max-height: 94vh; padding: 0; border: 1px solid var(--border-strong);
-    border-radius: var(--radius); background: var(--bg-2); color: var(--text); overflow: auto; }
-  .lightbox::backdrop { background: rgba(5,5,8,.86); backdrop-filter: blur(3px); }
-  .lightbox figure { margin: 0; }
-  .stage { position: relative; background: #000; display: flex; justify-content: center; }
-  .stage img { display: block; max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; }
-  .step { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%;
-    border: 0; background: rgba(0,0,0,.55); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; }
-  .step:hover { background: rgba(0,0,0,.8); }
-  .step.prev { left: 10px; } .step.next { right: 10px; }
-  .single .step { display: none; }
-  .close { position: absolute; top: 8px; right: 8px; z-index: 2; width: 38px; height: 38px; border-radius: 50%;
-    border: 0; background: rgba(0,0,0,.6); color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; }
-  .lightbox figcaption { padding: .9rem 1.1rem 1.1rem; }
-  .lightbox .ttl { font-size: var(--step-1); }
-  .meta { font-size: .8rem; color: var(--faint); }
-  .meta time { font-size: inherit; }
-  .pcap { margin: .3rem 0 0; color: var(--muted); font-size: var(--step--1); font-style: italic; }
-  .pcap:empty { display: none; }
 
   @media (prefers-reduced-motion: reduce) {
     .prints .print, .prints .print:hover { transition: none; transform: none; }

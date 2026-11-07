@@ -1,0 +1,8 @@
+# EXAMPLE placeholder — delete this file before publishing
+date: 2025-10-17
+title: "EXAMPLE — Dr. Jane Doe"
+type: "defense"
+place: "KTH"
+description: "EXAMPLE — Jane defended a thesis on deep learning for mammography screening."
+photos:
+  - { src: "/gallery/defense-1.jpg", alt: "Placeholder defense photo", caption: "" }

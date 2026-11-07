@@ -1,0 +1,7 @@
+# EXAMPLE placeholder — delete this file before publishing
+date: 2024-11-05
+title: "EXAMPLE — New research grant awarded"
+type: "milestone"
+description: "EXAMPLE — Funding for four years of work on foundation models for medical imaging."
+photos:
+  - { src: "/gallery/fika-1.jpg", alt: "Placeholder milestone photo", caption: "" }

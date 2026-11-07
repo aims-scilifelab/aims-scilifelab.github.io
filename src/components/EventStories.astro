@@ -1,8 +1,10 @@
 ---
 /* A list of gallery events shown as "stories": a large framed photo (plus
  * small thumbnails if the event has more photos) beside a tag, date, title
- * and short description. Photos alternate sides on wide screens. */
+ * and short description. Photos alternate sides on wide screens.
+ * Clicking a photo opens the shared <Lightbox />. */
 import type { CollectionEntry } from 'astro:content';
+import { lbData } from '../lib/lightbox';
 
 interface Props {
   entries: CollectionEntry<'gallery'>[];
@@ -25,14 +27,18 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { month: 'long', year: 'n
         {main && (
           <div class="shots">
             <figure class="shot">
-              <img src={main.src} alt={main.alt} loading={load} />
+              <button type="button" class="zoom" data-lb={lbData(e)} aria-label={`View photos from ${e.data.title}`}>
+                <img src={main.src} alt={main.alt} loading={load} />
+              </button>
               {main.caption && <figcaption>{main.caption}</figcaption>}
             </figure>
             {more.length > 0 && (
               <div class="thumbs">
-                {more.map((ph) => (
+                {more.map((ph, k) => (
                   <figure class="thumb">
-                    <img src={ph.src} alt={ph.alt} loading="lazy" />
+                    <button type="button" class="zoom" data-lb={lbData(e, { start: k + 1 })} aria-label={`View photo ${k + 2} from ${e.data.title}`}>
+                      <img src={ph.src} alt={ph.alt} loading="lazy" />
+                    </button>
                     {ph.caption && <figcaption>{ph.caption}</figcaption>}
                   </figure>
                 ))}
@@ -80,6 +86,8 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { month: 'long', year: 'n
   .shot::before { content: ''; position: absolute; top: -11px; left: 50%; width: 92px; height: 22px;
     transform: translateX(-50%) rotate(-3deg); background: var(--accent); opacity: .78; border-radius: 2px;
     box-shadow: 0 2px 6px rgba(0,0,0,.3); }
+  .zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+  .zoom:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
   .shot img, .thumb img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; }
 
   /* extra photos: a row of small prints under the main one */

@@ -1,0 +1,102 @@
+---
+/* One full-size photo viewer for the whole page. Any element with a
+ * `data-lb` attribute (built with lbData() from src/lib/lightbox.ts)
+ * opens it on click. Browse with ‹ ›, arrow keys or swipe; close with
+ * ×, Esc or a click on the backdrop. Include it once per page. */
+---
+<dialog class="lightbox" data-lightbox aria-label="Photo viewer">
+  <button type="button" class="close" data-close aria-label="Close">×</button>
+  <figure>
+    <div class="stage">
+      <button type="button" class="step prev" data-step="-1" aria-label="Previous photo">‹</button>
+      <img data-img alt="" />
+      <button type="button" class="step next" data-step="1" aria-label="Next photo">›</button>
+    </div>
+    <figcaption>
+      <p class="row">
+        <span class="ttl" data-title></span>
+        <span class="meta"><time data-date></time> <span data-counter></span></span>
+      </p>
+      <p class="pcap" data-caption></p>
+      <p class="desc" data-desc></p>
+    </figcaption>
+  </figure>
+</dialog>
+
+<script>
+  type Photo = { src: string; alt: string; caption?: string };
+  type Ev = { title: string; date: string; iso: string; description?: string; photos: Photo[]; start?: number };
+
+  const dlg = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  if (dlg) {
+    const img = dlg.querySelector<HTMLImageElement>('[data-img]')!;
+    const $ = (s: string) => dlg.querySelector<HTMLElement>(s)!;
+    let ev: Ev | null = null, ph = 0;
+
+    const render = () => {
+      if (!ev) return;
+      const p = ev.photos[ph];
+      img.src = p.src; img.alt = p.alt;
+      $('[data-title]').textContent = ev.title;
+      $('[data-date]').textContent = ev.date;
+      $('[data-date]').setAttribute('datetime', ev.iso);
+      $('[data-counter]').textContent = ev.photos.length > 1 ? `· ${ph + 1} / ${ev.photos.length}` : '';
+      $('[data-caption]').textContent = p.caption || '';
+      $('[data-desc]').textContent = ev.description || '';
+      dlg.classList.toggle('single', ev.photos.length < 2);
+    };
+    const step = (d: number) => {
+      if (!ev || ev.photos.length < 2) return;
+      const n = ev.photos.length;
+      ph = (ph + d + n) % n; render();
+    };
+
+    document.addEventListener('click', (e) => {
+      const t = (e.target as Element).closest<HTMLElement>('[data-lb]');
+      if (!t) return;
+      ev = JSON.parse(t.dataset.lb!);
+      if (!ev || !ev.photos.length) return;
+      ph = Math.min(ev.start ?? 0, ev.photos.length - 1);
+      render(); dlg.showModal();
+    });
+    dlg.querySelectorAll<HTMLElement>('[data-step]').forEach((b) =>
+      b.addEventListener('click', () => step(+b.dataset.step!)));
+    $('[data-close]').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+    let x0: number | null = null;
+    img.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    img.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    });
+  }
+</script>
+
+<style>
+  .lightbox { position: fixed; inset: 0; margin: auto; height: fit-content; width: min(1100px, 94vw);
+    max-height: 94vh; padding: 0; border: 1px solid var(--border-strong); border-radius: var(--radius);
+    background: var(--bg-2); color: var(--text); overflow: auto; }
+  .lightbox::backdrop { background: rgba(5,5,8,.86); backdrop-filter: blur(3px); }
+  figure { margin: 0; }
+  .stage { position: relative; background: #000; display: flex; justify-content: center; }
+  .stage img { display: block; max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; }
+  .step { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%;
+    border: 0; background: rgba(0,0,0,.55); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+  .step:hover { background: rgba(0,0,0,.8); }
+  .step.prev { left: 10px; } .step.next { right: 10px; }
+  .single .step { display: none; }
+  .close { position: absolute; top: 8px; right: 8px; z-index: 2; width: 38px; height: 38px; border-radius: 50%;
+    border: 0; background: rgba(0,0,0,.6); color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; }
+  figcaption { padding: .9rem 1.1rem 1.1rem; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; margin: 0; }
+  .ttl { font-weight: 600; font-size: var(--step-1); line-height: 1.25; }
+  .meta { flex: none; font-size: .8rem; color: var(--faint); }
+  .pcap { margin: .3rem 0 0; color: var(--muted); font-size: var(--step--1); font-style: italic; }
+  .desc { margin: .5rem 0 0; color: var(--muted); max-width: var(--measure); }
+  .pcap:empty, .desc:empty { display: none; }
+</style>

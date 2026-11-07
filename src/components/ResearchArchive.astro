@@ -1,0 +1,96 @@
+---
+/* Older research-life events as a compact list grouped by year.
+ * The newest year starts open, older years are collapsed. Each row
+ * opens the shared <Lightbox /> with all photos and the description. */
+import type { CollectionEntry } from 'astro:content';
+import { lbData } from '../lib/lightbox';
+
+interface Props {
+  entries: CollectionEntry<'gallery'>[];   // already sorted newest first
+}
+const { entries } = Astro.props;
+
+const typeLabel: Record<string, string> = {
+  defense: 'PhD defense', graduation: 'Graduation', conference: 'Conference', visit: 'Visit',
+  retreat: 'Retreat', social: 'Team outing', talk: 'Talk', milestone: 'Milestone', other: 'Lab life',
+};
+const month = (d: Date) => d.toLocaleDateString('en-GB', { month: 'short', timeZone: 'UTC' });
+
+const years = new Map<number, CollectionEntry<'gallery'>[]>();
+for (const e of entries) {
+  const y = e.data.date.getUTCFullYear();
+  if (!years.has(y)) years.set(y, []);
+  years.get(y)!.push(e);
+}
+const groups = [...years.entries()];
+---
+<div class="archive">
+  <h3 class="arc-ttl">Earlier</h3>
+  {groups.map(([year, list], gi) => (
+    <details class="year" open={gi === 0}>
+      <summary>
+        <span class="y">{year}</span>
+        <span class="n">{list.length} {list.length === 1 ? 'event' : 'events'}</span>
+      </summary>
+      <ul class="rows">
+        {list.map((e) => {
+          const ph = e.data.photos[0];
+          const inner = (
+            <>
+              <span class="thumb">{ph ? <img src={ph.src} alt="" loading="lazy" /> : null}</span>
+              <span class="body">
+                <span class={`tag t-${e.data.type}`}>{typeLabel[e.data.type] ?? 'Lab life'}</span>
+                <span class="ttl">{e.data.title}</span>
+                {e.data.place && <span class="place">{e.data.place}</span>}
+              </span>
+              <time datetime={e.data.date.toISOString().slice(0, 10)}>{month(e.data.date)}</time>
+            </>
+          );
+          return (
+            <li>
+              {ph
+                ? <button type="button" class="row" data-lb={lbData(e)} aria-label={`View photos from ${e.data.title}`}>{inner}</button>
+                : <div class="row">{inner}</div>}
+            </li>
+          );
+        })}
+      </ul>
+    </details>
+  ))}
+</div>
+
+<style>
+  .archive { margin-top: clamp(2.5rem, 2rem + 3vw, 4rem); }
+  .arc-ttl { margin: 0 0 .6rem; font-size: var(--step-1); }
+
+  .year { border-top: 1px solid var(--border); }
+  .year:last-child { border-bottom: 1px solid var(--border); }
+  summary { display: flex; align-items: baseline; gap: .8rem; padding: .8rem .2rem; cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: '▸'; color: var(--faint); transition: transform .15s; display: inline-block; }
+  .year[open] summary::before { transform: rotate(90deg); }
+  summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+  .y { font-weight: 700; font-size: var(--step-0); }
+  .n { font-size: .8rem; color: var(--faint); }
+
+  .rows { list-style: none; margin: 0 0 .8rem; padding: 0; display: grid; gap: 4px; }
+  .row { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: .9rem;
+    width: 100%; padding: 6px; border: 0; border-radius: 8px; background: none; color: inherit;
+    font: inherit; text-align: left; }
+  button.row { cursor: zoom-in; transition: background .15s; }
+  button.row:hover { background: var(--bg-2); }
+  button.row:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+
+  .thumb { display: block; width: 72px; aspect-ratio: 4 / 3; border-radius: 4px; overflow: hidden; background: var(--bg-3); }
+  .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .body { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .6rem; min-width: 0; }
+  .ttl { font-weight: 600; color: var(--text); }
+  .place { font-size: var(--step--1); color: var(--faint); }
+  time { font-size: .8rem; color: var(--faint); }
+
+  .tag { --accent: var(--blue); font-size: .72rem; font-weight: 600; padding: .1rem .5rem; border-radius: 999px;
+    color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+  .tag.t-defense, .tag.t-graduation, .tag.t-milestone { --accent: var(--wine); }
+</style>

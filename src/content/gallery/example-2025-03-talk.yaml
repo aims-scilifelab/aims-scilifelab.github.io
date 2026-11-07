@@ -1,0 +1,8 @@
+# EXAMPLE placeholder — delete this file before publishing
+date: 2025-03-20
+title: "EXAMPLE — Seminar on diffusion models in microscopy"
+type: "talk"
+place: "SciLifeLab · Solna"
+description: "EXAMPLE — An invited seminar followed by fika."
+photos:
+  - { src: "/gallery/talk-1.jpg", alt: "Placeholder talk photo", caption: "" }

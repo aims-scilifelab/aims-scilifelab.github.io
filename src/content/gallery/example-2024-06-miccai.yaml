@@ -1,0 +1,8 @@
+# EXAMPLE placeholder — delete this file before publishing
+date: 2024-06-28
+title: "EXAMPLE — Oral presentation at MIDL"
+type: "conference"
+place: "MIDL 2024 · Paris"
+description: "EXAMPLE — An oral on robustness to scanner shift."
+photos:
+  - { src: "/gallery/conf-1.jpg", alt: "Placeholder conference photo", caption: "" }

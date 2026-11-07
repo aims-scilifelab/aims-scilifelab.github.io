@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import EventStories from '../components/EventStories.astro';
 import OutingGrid from '../components/OutingGrid.astro';
+import ResearchArchive from '../components/ResearchArchive.astro';
+import Lightbox from '../components/Lightbox.astro';
 import { getCollection } from 'astro:content';
 
 const entries = (await getCollection('gallery', (g) => !g.data.draft))
@@ -13,6 +15,13 @@ const entries = (await getCollection('gallery', (g) => !g.data.draft))
 const researchTypes = ['conference', 'talk', 'defense', 'graduation', 'visit', 'milestone'];
 const research = entries.filter((e) => researchTypes.includes(e.data.type));
 const outings  = entries.filter((e) => !researchTypes.includes(e.data.type));
+
+// Research life: the newest RECENT events (plus any with `featured: true`)
+// are shown as large stories; everything else goes into the yearly archive.
+const RECENT = 3;
+const isStory = (e: (typeof research)[number], i: number) => i < RECENT || e.data.featured;
+const stories = research.filter(isStory);
+const archive = research.filter((e, i) => !isStory(e, i));
 ---
 <Base title="Life at AiMS" description="Research is more than papers and models — a look at the people and community behind AiMS.">
   <PageHeader eyebrow="Life at AiMS" title="Life at AiMS"
@@ -35,7 +44,8 @@ const outings  = entries.filter((e) => !researchTypes.includes(e.data.type));
       <div class="wrap">
         <h2 id="research-life" class="cat">Research life</h2>
         <p class="lede muted measure">Conferences, talks, defenses and the milestones along the way.</p>
-        <EventStories entries={research} eager={2} />
+        <EventStories entries={stories} eager={2} />
+        {archive.length > 0 && <ResearchArchive entries={archive} />}
       </div>
     </section>
   )}
@@ -58,6 +68,7 @@ const outings  = entries.filter((e) => !researchTypes.includes(e.data.type));
       </div>
     </section>
   )}
+  <Lightbox />
 </Base>
 
 <style>
