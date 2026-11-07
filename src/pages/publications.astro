@@ -4,46 +4,175 @@ import PageHeader from '../components/PageHeader.astro';
 import { getEntry } from 'astro:content';
 const pubs = (await getEntry('publications', 'all'))?.data.items ?? [];
 
-// group by year, most recent first
-const byYear = new Map<number, typeof pubs>();
-for (const p of [...pubs].sort((a, b) => b.year - a.year || a.title.localeCompare(b.title))) {
+// Publication type, derived from the venue text (no extra field to maintain).
+type Kind = 'journal' | 'conference' | 'workshop' | 'preprint' | 'other';
+const kindOf = (venue: string): Kind => {
+  const v = venue.toLowerCase();
+  if (!v.trim()) return 'other';             // no venue given: no type badge
+  if (/arxiv|biorxiv|medrxiv|preprint/.test(v)) return 'preprint';
+  if (/workshop|iccvw|cvprw/.test(v)) return 'workshop';
+  if (/proceedings of the national academy/.test(v)) return 'journal';
+  if (/conference|proceedings|symposium|medical imaging with deep learning|miccai|neurips|datasets and benchmarks/.test(v)) return 'conference';
+  return 'journal';
+};
+const KINDS: { id: Exclude<Kind, 'other'>; label: string }[] = [
+  { id: 'journal', label: 'Journal' },
+  { id: 'conference', label: 'Conference' },
+  { id: 'workshop', label: 'Workshop' },
+  { id: 'preprint', label: 'Preprint' },
+];
+// Short venue label: the acronym in parentheses if there is one, else the venue itself.
+const shortVenue = (venue: string) => {
+  const m = venue.match(/\(([^()]+)\)\s*$/);
+  if (m) return m[1];
+  if (/arxiv/i.test(venue)) return 'arXiv';
+  return venue;
+};
+
+const items = [...pubs]
+  .sort((a, b) => b.year - a.year || a.title.localeCompare(b.title))
+  .map((p) => ({ ...p, kind: kindOf(p.venue || ''), short: shortVenue(p.venue || '') }));
+
+const byYear = new Map<number, typeof items>();
+for (const p of items) {
   if (!byYear.has(p.year)) byYear.set(p.year, []);
   byYear.get(p.year)!.push(p);
 }
 const years = [...byYear.keys()].sort((a, b) => b - a);
+const kindCount = (k: Kind) => items.filter((p) => p.kind === k).length;
 ---
 <Base title="Publications" description="Publications from the AiMS Laboratory across machine learning, medicine and the life sciences.">
   <PageHeader title="Publications"
     lede="Our work across foundational machine learning, medicine and the life sciences." />
 
+  <section class="section-tight pub-tools" aria-label="Find a publication">
+    <div class="wrap">
+      <div class="controls" role="search">
+        <label class="sr-only" for="pq">Search publications</label>
+        <input id="pq" type="search" placeholder="Search title, author, venue…" autocomplete="off" />
+        <div class="kinds" role="group" aria-label="Filter by type">
+          <button type="button" class="chip" data-kind="" aria-pressed="true">All <span class="n">{items.length}</span></button>
+          {KINDS.filter((k) => kindCount(k.id) > 0).map((k) => (
+            <button type="button" class="chip" data-kind={k.id} aria-pressed="false">{k.label} <span class="n">{kindCount(k.id)}</span></button>
+          ))}
+        </div>
+      </div>
+      <nav class="years-nav" aria-label="Jump to year">
+        {years.map((y) => <a href={`#y${y}`} data-year-link={y}>{y}</a>)}
+      </nav>
+      <p class="count faint" id="pcount" aria-live="polite">{items.length} publications</p>
+    </div>
+  </section>
+
   <section class="section-tight pub-list">
     <div class="wrap">
       {years.map((y) => (
-        <div class="yr">
-          <h2 class="year">{y}</h2>
-          <ul class="pubs">
+        <section class="yr" id={`y${y}`} data-year={y} aria-labelledby={`yh${y}`}>
+          <header class="yr-head">
+            <h2 class="year" id={`yh${y}`}>{y}</h2>
+          </header>
+          <ol class="pubs">
             {byYear.get(y)!.map((p) => (
-              <li>
+              <li class="pub" data-kind={p.kind}
+                  data-q={`${p.title} ${p.authors} ${p.venue}`.toLowerCase()}>
                 {p.url
                   ? <a class="ptitle" href={p.url} target="_blank" rel="noopener">{p.title}</a>
                   : <span class="ptitle">{p.title}</span>}
-                <div class="pmeta faint">{p.authors} · <span class="venue">{p.venue}</span></div>
+                <div class="pauthors">{p.authors}</div>
+                <div class="pvenue">
+                  {p.kind !== 'other' && <span class={`kind kind-${p.kind}`}>{KINDS.find((k) => k.id === p.kind)!.label}</span>}
+                  {p.venue && <span class="vshort" title={p.venue}>{p.short}</span>}
+                  {p.venue && p.short !== p.venue && <span class="vfull faint">{p.venue}</span>}
+                </div>
               </li>
             ))}
-          </ul>
-        </div>
+          </ol>
+        </section>
       ))}
+      <p class="empty muted" id="pempty" hidden>No publications match these filters.</p>
     </div>
   </section>
 </Base>
 
 <style>
-  .pub-list { padding-top: 0; margin-top: -1rem; }
-  .yr { margin-bottom: 5rem; }
-  .year { font-size: var(--step-1); color: var(--muted); font-weight: 700; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
-  .pubs { list-style: none; padding: 0; margin-top: 1rem; display: grid; gap: 1.1rem; max-width: var(--measure); }
-  .ptitle { font-weight: 600; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+  /* ---- toolbar ---- */
+  .pub-tools { padding-top: 0; padding-bottom: 0; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .controls input { flex: 1 1 260px; min-height: 44px; background: var(--bg-2); border: 1px solid var(--border-strong);
+    color: var(--text); border-radius: var(--radius); padding: 11px 13px; font: inherit; font-size: var(--step--1); }
+  .controls input:focus { border-color: var(--blue); outline: none; }
+  .kinds { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border-strong);
+    background: transparent; color: var(--muted); font: inherit; font-size: var(--step--1); cursor: pointer; }
+  .chip .n { color: var(--faint); margin-left: .2rem; }
+  .chip:hover { color: var(--text); }
+  .chip[aria-pressed="true"] { background: var(--bg-3); color: var(--text); border-color: var(--blue); }
+  .chip:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+  .years-nav { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 1.1rem; font-size: var(--step--1); }
+  .years-nav a { color: var(--muted); padding: 4px 0; }
+  .years-nav a:hover { color: var(--blue); }
+  .years-nav a[aria-disabled="true"] { color: var(--faint); opacity: .45; pointer-events: none; }
+  .count { margin: .8rem 0 0; font-size: var(--step--1); }
+
+  /* ---- list ---- */
+  .pub-list { padding-top: 1.5rem; }
+  .yr { display: grid; gap: .6rem 2rem; padding: 1.6rem 0; border-top: 1px solid var(--border); scroll-margin-top: 1rem; }
+  .yr-head { display: flex; align-items: baseline; gap: .6rem; }
+  .year { font-size: var(--step-1); color: var(--text); font-weight: 700; margin: 0; }
+  @media (min-width: 800px) {
+    .yr { grid-template-columns: 7.5rem 1fr; }
+    .yr-head { flex-direction: column; gap: .1rem; position: sticky; top: 1rem; align-self: start; }
+  }
+
+  .pubs { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.25rem; max-width: var(--measure); }
+  .ptitle { font-weight: 600; line-height: 1.35; }
   a.ptitle:hover { color: var(--blue); }
-  .pmeta { font-size: var(--step--1); margin-top: .25rem; }
-  .venue { color: var(--muted); }
+  .pauthors { color: var(--muted); font-size: var(--step--1); margin-top: .3rem; }
+  .pvenue { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .55rem; margin-top: .35rem; font-size: var(--step--1); }
+  .kind { font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+    border: 1px solid var(--border-strong); border-radius: 999px; padding: 1px 8px; color: var(--muted); }
+  .kind-preprint, .kind-workshop { border-style: dashed; }
+  .vshort { color: var(--text); font-weight: 600; }
+  .vfull { min-width: 0; }
+
+  .empty { padding: 2rem 0; }
 </style>
+
+<script>
+  const q = document.getElementById('pq') as HTMLInputElement;
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')];
+  const pubs = [...document.querySelectorAll<HTMLElement>('.pub')];
+  const yrs = [...document.querySelectorAll<HTMLElement>('.yr')];
+  const count = document.getElementById('pcount')!;
+  const empty = document.getElementById('pempty')!;
+  let kind = '';
+
+  function apply() {
+    const term = q.value.trim().toLowerCase();
+    let shown = 0;
+    for (const p of pubs) {
+      const ok = (!kind || p.dataset.kind === kind) && (!term || p.dataset.q!.includes(term));
+      p.hidden = !ok;
+      if (ok) shown++;
+    }
+    for (const y of yrs) {
+      const n = y.querySelectorAll('.pub:not([hidden])').length;
+      y.hidden = n === 0;
+      const link = document.querySelector(`[data-year-link="${y.dataset.year}"]`);
+      if (n === 0) link?.setAttribute('aria-disabled', 'true'); else link?.removeAttribute('aria-disabled');
+    }
+    count.textContent = shown === pubs.length ? `${shown} publications` : `${shown} of ${pubs.length} publications`;
+    empty.hidden = shown > 0;
+  }
+
+  let t: ReturnType<typeof setTimeout>;
+  q.addEventListener('input', () => { clearTimeout(t); t = setTimeout(apply, 120); });
+  for (const c of chips) c.addEventListener('click', () => {
+    kind = c.dataset.kind || '';
+    for (const o of chips) o.setAttribute('aria-pressed', String(o === c));
+    apply();
+  });
+</script>
