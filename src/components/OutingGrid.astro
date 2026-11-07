@@ -1,7 +1,11 @@
 ---
-/* Compact grid of gallery events: one small framed print per event
- * (its first photo) with title and month.
- * Used for Team outings so the page keeps its focus on research. */
+/* Team outings: a horizontal, swipeable strip of small framed prints,
+ * one per event (newest first). Clicking a print opens a lightbox with
+ * the full-size photo(s), title, date and photo caption.
+ *
+ * Maintenance: just add a YAML file under src/content/gallery/ — the
+ * strip grows sideways, so the page never gets longer. Every photo in
+ * the event's `photos` list is shown in the lightbox (← / → to browse). */
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -10,46 +14,193 @@ interface Props {
 }
 const { entries, eager = 0 } = Astro.props;
 const fmt = (d: Date) => d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+
+const events = entries
+  .filter((e) => e.data.photos.length > 0)
+  .map((e) => ({
+    title: e.data.title,
+    date: fmt(e.data.date),
+    iso: e.data.date.toISOString().slice(0, 10),
+    photos: e.data.photos,
+  }));
 ---
-<ul class="prints">
-  {entries.map((e, i) => {
-    const ph = e.data.photos[0];
-    return (
-      <li class="print">
-        {ph && <img src={ph.src} alt={ph.alt} loading={i < eager ? 'eager' : 'lazy'} />}
-        <div class="cap">
-          <p class="row">
-            <span class="ttl">{e.data.title}</span>
-            <time datetime={e.data.date.toISOString().slice(0, 10)}>{fmt(e.data.date)}</time>
-          </p>
-        </div>
-      </li>
-    );
-  })}
-</ul>
+<div class="outings" data-outings>
+  <div class="strip-head">
+    <div class="nav">
+      <button type="button" class="arrow" data-prev aria-label="Scroll outings left">‹</button>
+      <button type="button" class="arrow" data-next aria-label="Scroll outings right">›</button>
+    </div>
+  </div>
+
+  <ul class="prints" data-strip tabindex="0" aria-label="Team outings">
+    {events.map((ev, i) => {
+      const ph = ev.photos[0];
+      return (
+        <li class="print">
+          <button type="button" class="open" data-open={i}
+            aria-label={`Open photos from ${ev.title}, ${ev.date}`}>
+            <img src={ph.src} alt={ph.alt} loading={i < eager ? 'eager' : 'lazy'} />
+            {ev.photos.length > 1 && <span class="count">{ev.photos.length} photos</span>}
+          </button>
+          <div class="cap">
+            <p class="row">
+              <span class="ttl">{ev.title}</span>
+              <time datetime={ev.iso}>{ev.date}</time>
+            </p>
+          </div>
+        </li>
+      );
+    })}
+  </ul>
+
+  <dialog class="lightbox" data-lightbox aria-label="Outing photo">
+    <button type="button" class="close" data-close aria-label="Close">×</button>
+    <figure>
+      <div class="stage">
+        <button type="button" class="step prev" data-step="-1" aria-label="Previous photo">‹</button>
+        <img data-img alt="" />
+        <button type="button" class="step next" data-step="1" aria-label="Next photo">›</button>
+      </div>
+      <figcaption>
+        <p class="row">
+          <span class="ttl" data-title></span>
+          <span class="meta"><time data-date></time> <span data-counter></span></span>
+        </p>
+        <p class="pcap" data-caption></p>
+      </figcaption>
+    </figure>
+  </dialog>
+
+  <script type="application/json" data-events set:html={JSON.stringify(events)} />
+</div>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-outings]')) {
+    const events = JSON.parse(root.querySelector('[data-events]')!.textContent || '[]');
+    const strip = root.querySelector<HTMLElement>('[data-strip]')!;
+    const prevBtn = root.querySelector<HTMLButtonElement>('[data-prev]')!;
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-next]')!;
+    const dlg = root.querySelector<HTMLDialogElement>('[data-lightbox]')!;
+    const img = dlg.querySelector<HTMLImageElement>('[data-img]')!;
+    const $ = (s: string) => dlg.querySelector<HTMLElement>(s)!;
+    let ev = 0, ph = 0;
+
+    // --- strip scrolling -------------------------------------------------
+    const page = () => Math.max(strip.clientWidth * 0.8, 200);
+    prevBtn.addEventListener('click', () => strip.scrollBy({ left: -page(), behavior: 'smooth' }));
+    nextBtn.addEventListener('click', () => strip.scrollBy({ left: page(), behavior: 'smooth' }));
+    const sync = () => {
+      const max = strip.scrollWidth - strip.clientWidth;
+      prevBtn.disabled = strip.scrollLeft <= 2;
+      nextBtn.disabled = strip.scrollLeft >= max - 2;
+      root.classList.toggle('no-overflow', max <= 2);
+    };
+    strip.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+
+    // --- lightbox --------------------------------------------------------
+    const render = () => {
+      const e = events[ev], p = e.photos[ph];
+      img.src = p.src; img.alt = p.alt;
+      $('[data-title]').textContent = e.title;
+      $('[data-date]').textContent = e.date;
+      $('[data-date]').setAttribute('datetime', e.iso);
+      $('[data-counter]').textContent = e.photos.length > 1 ? `· ${ph + 1} / ${e.photos.length}` : '';
+      $('[data-caption]').textContent = p.caption || '';
+      dlg.classList.toggle('single', e.photos.length < 2);
+    };
+    const step = (d: number) => {
+      const n = events[ev].photos.length;
+      if (n < 2) return;
+      ph = (ph + d + n) % n; render();
+    };
+    root.querySelectorAll<HTMLElement>('[data-open]').forEach((b) =>
+      b.addEventListener('click', () => { ev = +b.dataset.open!; ph = 0; render(); dlg.showModal(); }));
+    dlg.querySelectorAll<HTMLElement>('[data-step]').forEach((b) =>
+      b.addEventListener('click', () => step(+b.dataset.step!)));
+    $('[data-close]').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); }); // backdrop
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+    // swipe between photos on touch screens
+    let x0: number | null = null;
+    img.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    img.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    });
+  }
+</script>
 
 <style>
-  .prints { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: 22px 18px;
-    grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  @media (min-width: 760px)  { .prints { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  @media (min-width: 1040px) { .prints { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .outings { margin-top: 1.4rem; }
+  .strip-head { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; }
+  .nav { display: flex; gap: .4rem; }
+  .arrow { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-strong);
+    background: var(--bg-2); color: var(--text); font-size: 1.3rem; line-height: 1; cursor: pointer;
+    transition: background .15s, opacity .15s; }
+  .arrow:hover:not(:disabled) { background: var(--bg-3); }
+  .arrow:disabled { opacity: .3; cursor: default; }
+  .no-overflow .nav { display: none; }
 
-  .print { position: relative; padding: 7px 7px 10px; background: #14141b; border: 1px solid var(--border);
-    border-radius: 5px; box-shadow: 0 10px 24px rgba(0,0,0,.42); transition: transform .22s ease, box-shadow .22s ease; }
+  /* The strip: horizontal scroll with snap. Vertical padding leaves room
+   * for the tilted prints, tape and shadows so nothing is clipped. */
+  .prints { list-style: none; margin: .4rem -8px 0; padding: 22px 8px 26px; display: grid;
+    grid-auto-flow: column; grid-auto-columns: clamp(200px, 44vw, 260px); gap: 18px;
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+    scroll-padding-inline: 8px; scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+  .prints:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 6px; }
+  /* soft fade at the right edge hints there is more to scroll */
+  .outings:not(.no-overflow) .prints {
+    mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent); }
+
+  .print { position: relative; scroll-snap-align: start; padding: 7px 7px 10px; background: #14141b;
+    border: 1px solid var(--border); border-radius: 5px; box-shadow: 0 10px 24px rgba(0,0,0,.42);
+    transition: transform .22s ease, box-shadow .22s ease; }
   .print:nth-child(4n+1) { transform: rotate(-1.2deg); }
   .print:nth-child(4n+2) { transform: rotate(0.9deg); }
   .print:nth-child(4n+3) { transform: rotate(-0.5deg); }
   .print:nth-child(4n)   { transform: rotate(1.3deg); }
-  .prints .print:hover { transform: rotate(0) scale(1.03); box-shadow: 0 16px 34px rgba(0,0,0,.55); z-index: 2; }
-  /* small strip of amber tape */
+  .prints .print:hover, .prints .print:focus-within { transform: rotate(0) scale(1.03);
+    box-shadow: 0 16px 34px rgba(0,0,0,.55); z-index: 2; }
   .print::before { content: ''; position: absolute; top: -8px; left: 50%; width: 58px; height: 15px;
-    transform: translateX(-50%) rotate(-3deg); background: #e8a54b; opacity: .75; border-radius: 2px; }
+    transform: translateX(-50%) rotate(-3deg); background: #e8a54b; opacity: .75; border-radius: 2px; z-index: 1; }
 
-  .print img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; }
+  .open { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+  .open:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  .open img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; }
+  .count { position: absolute; right: 6px; bottom: 6px; padding: 2px 7px; border-radius: 999px;
+    font-size: .7rem; color: #fff; background: rgba(0,0,0,.62); }
   .cap { padding: .55rem .2rem 0; }
   .row { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; margin: 0; }
   .ttl { font-weight: 600; font-size: var(--step--1); color: var(--text); line-height: 1.25; }
   time { flex: none; font-size: .75rem; color: var(--faint); }
+
+  /* Lightbox */
+  .lightbox { position: fixed; inset: 0; margin: auto; height: fit-content; width: min(1100px, 94vw); max-height: 94vh; padding: 0; border: 1px solid var(--border-strong);
+    border-radius: var(--radius); background: var(--bg-2); color: var(--text); overflow: auto; }
+  .lightbox::backdrop { background: rgba(5,5,8,.86); backdrop-filter: blur(3px); }
+  .lightbox figure { margin: 0; }
+  .stage { position: relative; background: #000; display: flex; justify-content: center; }
+  .stage img { display: block; max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; }
+  .step { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%;
+    border: 0; background: rgba(0,0,0,.55); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+  .step:hover { background: rgba(0,0,0,.8); }
+  .step.prev { left: 10px; } .step.next { right: 10px; }
+  .single .step { display: none; }
+  .close { position: absolute; top: 8px; right: 8px; z-index: 2; width: 38px; height: 38px; border-radius: 50%;
+    border: 0; background: rgba(0,0,0,.6); color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; }
+  .lightbox figcaption { padding: .9rem 1.1rem 1.1rem; }
+  .lightbox .ttl { font-size: var(--step-1); }
+  .meta { font-size: .8rem; color: var(--faint); }
+  .meta time { font-size: inherit; }
+  .pcap { margin: .3rem 0 0; color: var(--muted); font-size: var(--step--1); font-style: italic; }
+  .pcap:empty { display: none; }
 
   @media (prefers-reduced-motion: reduce) {
     .prints .print, .prints .print:hover { transition: none; transform: none; }
