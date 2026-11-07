@@ -14,7 +14,7 @@ const sessions = (readingEntry?.data.sessions ?? []).slice()
 const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 <Base title="What We Read" description="Every week we read and discuss papers we think are important, surprising, provocative, or simply worth understanding.">
-  <PageHeader eyebrow="What We Read" title="What We Read"
+  <PageHeader title="What We Read"
     lede="Every week we read and discuss papers we think are important, surprising, provocative, or simply worth understanding. Here is what we've been reading." />
 
   {sessions.length > 0 && (

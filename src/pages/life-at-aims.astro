@@ -17,14 +17,17 @@ const research = entries.filter((e) => researchTypes.includes(e.data.type));
 const outings  = entries.filter((e) => !researchTypes.includes(e.data.type));
 
 // Research life: the newest RECENT events (plus any with `featured: true`)
-// are shown as large stories; everything else goes into the yearly archive.
+// are shown as large stories, featured ones first; everything else, and any
+// event with `archived: true`, goes into the yearly archive.
 const RECENT = 3;
-const isStory = (e: (typeof research)[number], i: number) => i < RECENT || e.data.featured;
-const stories = research.filter(isStory);
-const archive = research.filter((e, i) => !isStory(e, i));
+const candidates = research.filter((e) => !e.data.archived);
+const stories = candidates
+  .filter((e, i) => i < RECENT || e.data.featured)
+  .sort((a, b) => +b.data.featured - +a.data.featured);   // stable: date order kept within each group
+const archive = research.filter((e) => !stories.includes(e));
 ---
 <Base title="Life at AiMS" description="Research is more than papers and models — a look at the people and community behind AiMS.">
-  <PageHeader eyebrow="Life at AiMS" title="Life at AiMS"
+  <PageHeader title="Life at AiMS"
     lede="Research is more than papers and models." />
 
   <section class="section-tight">

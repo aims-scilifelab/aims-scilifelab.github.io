@@ -147,7 +147,8 @@ const gallery = defineCollection({
     place: z.string().default(''),         // optional venue/occasion, e.g. "NeurIPS 2026 · Vancouver"
     description: z.string().default(''),   // a sentence or two shown next to the photo
     photos: z.array(z.object({ src: z.string(), alt: z.string(), caption: z.string().default('') })).default([]),
-    featured: z.boolean().default(false),
+    featured: z.boolean().default(false),  // research: always a large story, shown first
+    archived: z.boolean().default(false),  // research: always in the yearly archive, never a large story
     draft: z.boolean().default(false),
   }),
 });
