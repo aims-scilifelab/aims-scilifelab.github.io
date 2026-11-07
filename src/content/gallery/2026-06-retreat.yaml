@@ -5,3 +5,4 @@ featured: true
 photos:
   - { src: "/gallery/retreat-1.jpg", alt: "AiMS group retreat (placeholder photo)", caption: "Group retreat" }
   - { src: "/gallery/retreat-2.jpg", alt: "AiMS group retreat (placeholder photo)", caption: "Somewhere by the water" }
+draft: true   # placeholder photo — hidden

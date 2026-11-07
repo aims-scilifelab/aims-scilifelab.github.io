@@ -22,6 +22,7 @@ category: "postdoc"
 status: "current"
 group_leader: "Gisele Miranda"
 affiliation: "KTH · SciLifeLab"
+google_scholar: "https://scholar.google.com/citations?user=3A1fCXkAAAAJ"
 website: "https://axiomcura.github.io"
 order: 152
 draft: false

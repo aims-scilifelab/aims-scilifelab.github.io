@@ -1,6 +1,5 @@
 ---
 name: "Johan Fredin Haslum"
-website: "https://www.kth.se/profile/jhaslum"
 role: "PhD"
 category: "phd"
 status: "alumnus"

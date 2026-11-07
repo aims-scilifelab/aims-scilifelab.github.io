@@ -22,6 +22,7 @@ category: "phd"
 status: "current"
 group_leader: "Kevin Smith"
 affiliation: "KTH · SciLifeLab"
+google_scholar: "https://scholar.google.com/citations?user=Uk9grMAAAAAJ"
 website: "https://www.kth.se/profile/felipeco"
 order: 208
 draft: false

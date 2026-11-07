@@ -69,8 +69,8 @@ const rosters = [
                 <p class="prl">{p.role}</p>
                 {affLine(p) && <p class="paf">{affLine(p)}</p>}
                 <div class="plinks">
-                  <a class="plink" href={p.google_scholar || '#'} target={p.google_scholar ? '_blank' : undefined} rel="noopener">Scholar</a>
                   <a class="plink" href={p.website || '#'} target={p.website ? '_blank' : undefined} rel="noopener">Website</a>
+                  {p.google_scholar && <a class="plink" href={p.google_scholar} target="_blank" rel="noopener">Scholar</a>}
                   {p.github && <a class="plink" href={p.github} target="_blank" rel="noopener">GitHub</a>}
                   {p.linkedin && <a class="plink" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
                   {p.email && <a class="plink" href={`mailto:${p.email}`} aria-label={`Email ${p.name}`}>Email</a>}

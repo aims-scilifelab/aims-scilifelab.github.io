@@ -1,5 +1,10 @@
 date: 2026-04-10
-title: "At a conference"
+title: "Posters and an oral at CVPR"
 type: "conference"
+place: "CVPR 2026 · Example City"
+description: "EXAMPLE — Three posters and one oral on robustness and multimodal learning for medical imaging."
 photos:
-  - { src: "/gallery/conf-1.jpg", alt: "AiMS at a conference (placeholder photo)", caption: "Presenting our work" }
+  - { src: "/gallery/conf-1.jpg", alt: "AiMS at a conference (placeholder photo)", caption: "" }
+  - { src: "/gallery/talk-1.jpg", alt: "Oral presentation (placeholder photo)", caption: "Oral session" }
+  - { src: "/gallery/dinner-1.jpg", alt: "Conference dinner (placeholder photo)", caption: "Conference dinner" }
+draft: false   # EXAMPLE placeholder — set back to true before publishing

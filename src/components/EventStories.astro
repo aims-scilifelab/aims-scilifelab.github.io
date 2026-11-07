@@ -1,0 +1,109 @@
+---
+/* A list of gallery events shown as "stories": a large framed photo (plus
+ * small thumbnails if the event has more photos) beside a tag, date, title
+ * and short description. Photos alternate sides on wide screens. */
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entries: CollectionEntry<'gallery'>[];
+  eager?: number;   // how many events at the top load their photos immediately
+}
+const { entries, eager = 0 } = Astro.props;
+
+const typeLabel: Record<string, string> = {
+  defense: 'PhD defense', graduation: 'Graduation', conference: 'Conference', visit: 'Visit',
+  retreat: 'Retreat', social: 'Team outing', talk: 'Talk', milestone: 'Milestone', other: 'Lab life',
+};
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+<ol class="stories">
+  {entries.map((e, i) => {
+    const [main, ...more] = e.data.photos;
+    const load = i < eager ? 'eager' : 'lazy';
+    return (
+      <li class={`story t-${e.data.type}`}>
+        {main && (
+          <div class="shots">
+            <figure class="shot">
+              <img src={main.src} alt={main.alt} loading={load} />
+              {main.caption && <figcaption>{main.caption}</figcaption>}
+            </figure>
+            {more.length > 0 && (
+              <div class="thumbs">
+                {more.map((ph) => (
+                  <figure class="thumb">
+                    <img src={ph.src} alt={ph.alt} loading="lazy" />
+                    {ph.caption && <figcaption>{ph.caption}</figcaption>}
+                  </figure>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+        <div class="tell">
+          <p class="meta">
+            <span class="tag">{typeLabel[e.data.type] ?? 'Lab life'}</span>
+            <span class="when">
+              {e.data.place && <><span class="place">{e.data.place}</span> · </>}
+              <time datetime={e.data.date.toISOString().slice(0, 10)}>{fmt(e.data.date)}</time>
+            </span>
+          </p>
+          <h3 class="ttl">{e.data.title}</h3>
+          {e.data.description && <p class="desc">{e.data.description}</p>}
+        </div>
+      </li>
+    );
+  })}
+</ol>
+
+<style>
+  .stories { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
+  .story { --accent: var(--blue); display: grid; gap: 1.4rem; align-items: center; }
+  .story.t-social, .story.t-retreat, .story.t-other { --accent: #e8a54b; }
+  .story.t-defense, .story.t-graduation, .story.t-milestone { --accent: var(--wine); }
+  .story.t-conference, .story.t-talk, .story.t-visit { --accent: var(--blue); }
+
+  @media (min-width: 820px) {
+    .story { grid-template-columns: 1.45fr 1fr; gap: clamp(2rem, 1rem + 3vw, 3.5rem); }
+    .story:nth-child(even) { grid-template-columns: 1fr 1.45fr; }
+    .story:nth-child(even) .shots { order: 2; }
+  }
+
+  .shots { display: grid; gap: 16px; }
+  .shot, .thumb { position: relative; margin: 0; background: #14141b; border: 1px solid var(--border);
+    transition: transform .25s ease, box-shadow .25s ease; }
+  .shot { padding: 10px 10px 9px; border-radius: 6px;
+    box-shadow: 0 14px 34px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.02);
+    transform: rotate(-1.4deg); }
+  .story:nth-child(even) .shot { transform: rotate(1.2deg); }
+  /* a strip of washi tape in the event's colour */
+  .shot::before { content: ''; position: absolute; top: -11px; left: 50%; width: 92px; height: 22px;
+    transform: translateX(-50%) rotate(-3deg); background: var(--accent); opacity: .78; border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.3); }
+  .shot img, .thumb img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; }
+
+  /* extra photos: a row of small prints under the main one */
+  .thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; padding: 0 6px; }
+  .thumb { padding: 6px; border-radius: 4px; box-shadow: 0 8px 20px rgba(0,0,0,.4); }
+  .thumb:nth-child(odd)  { transform: rotate(1.6deg); }
+  .thumb:nth-child(even) { transform: rotate(-1.3deg); }
+
+  .story .shot:hover, .story .thumb:hover { transform: rotate(0) scale(1.03); box-shadow: 0 20px 44px rgba(0,0,0,.55); z-index: 2; }
+  .story .shot:hover { transform: rotate(0) scale(1.015); }
+  figcaption { margin-top: .5rem; text-align: center; font-size: var(--step--1); color: var(--faint); }
+  .thumb figcaption { font-size: .75rem; margin-top: .35rem; }
+
+  .tell { position: relative; padding-left: 1.1rem; border-left: 3px solid var(--accent); }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .7rem; margin: 0;
+    font-size: var(--step--1); color: var(--faint); }
+  .tag { display: inline-block; padding: .18rem .6rem; border-radius: 999px; font-weight: 600; letter-spacing: .02em;
+    color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+  .place { color: var(--text); font-weight: 500; }
+  .ttl { margin: .6rem 0 .5rem; font-size: var(--step-2); line-height: 1.15; }
+  .desc { margin: 0; color: var(--muted); max-width: 46ch; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stories .story .shot, .stories .story .thumb, .stories .story .shot:hover, .stories .story .thumb:hover { transition: none; transform: none; }
+  }
+</style>

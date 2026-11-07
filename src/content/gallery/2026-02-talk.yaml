@@ -1,5 +1,8 @@
 date: 2026-02-18
-title: "A talk"
+title: "Guest talk: foundation models in pathology"
 type: "talk"
+place: "SciLifeLab · Solna"
+description: "EXAMPLE — A visiting speaker on scaling foundation models for whole-slide images, followed by a long discussion over fika."
 photos:
-  - { src: "/gallery/talk-1.jpg", alt: "A talk at AiMS (placeholder photo)", caption: "Guest talk" }
+  - { src: "/gallery/talk-1.jpg", alt: "A talk at AiMS (placeholder photo)", caption: "" }
+draft: false   # EXAMPLE placeholder — set back to true before publishing

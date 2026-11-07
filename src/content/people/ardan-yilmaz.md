@@ -22,6 +22,7 @@ category: "phd"
 status: "current"
 group_leader: "Golnaz Taheri"
 affiliation: "KTH · SciLifeLab"
+google_scholar: "https://scholar.google.com/citations?user=g3HjrDAAAAAJ"
 website: "https://www.kth.se/profile/ardany"
 order: 231
 draft: false

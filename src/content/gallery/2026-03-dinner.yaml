@@ -3,3 +3,4 @@ title: "Lab dinner"
 type: "social"
 photos:
   - { src: "/gallery/dinner-1.jpg", alt: "AiMS lab dinner (placeholder photo)", caption: "Fika turned dinner" }
+draft: true   # placeholder photo — hidden

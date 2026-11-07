@@ -22,8 +22,8 @@ category: "phd"
 status: "current"
 group_leader: "Jens Lagergren"
 affiliation: "KTH · SciLifeLab"
-google_scholar: "https://scholar.google.com/citations?user=Ay4cLVkAAAAJ"
-website: "https://haraldmelin.github.io"
+google_scholar: "https://scholar.google.com/citations?user=x8wowAwAAAAJ"
+website: "https://www.kth.se/profile/haraldme?l=en"
 order: 226
 draft: false
 ---

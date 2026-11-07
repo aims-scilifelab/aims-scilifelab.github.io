@@ -144,6 +144,8 @@ const gallery = defineCollection({
     date: z.date(),
     title: z.string(),
     type: z.enum(['defense', 'graduation', 'conference', 'visit', 'retreat', 'social', 'talk', 'milestone', 'other']).default('other'),
+    place: z.string().default(''),         // optional venue/occasion, e.g. "NeurIPS 2026 · Vancouver"
+    description: z.string().default(''),   // a sentence or two shown next to the photo
     photos: z.array(z.object({ src: z.string(), alt: z.string(), caption: z.string().default('') })).default([]),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),

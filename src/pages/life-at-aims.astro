@@ -1,10 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
+import EventStories from '../components/EventStories.astro';
+import OutingGrid from '../components/OutingGrid.astro';
 import { getCollection } from 'astro:content';
 
 const entries = (await getCollection('gallery', (g) => !g.data.draft))
   .sort((a, b) => +b.data.date - +a.data.date);
+
+// An event's `type` decides its section. Everything not listed here
+// (social, retreat, other) goes under Team outings.
+const researchTypes = ['conference', 'talk', 'defense', 'graduation', 'visit', 'milestone'];
+const research = entries.filter((e) => researchTypes.includes(e.data.type));
+const outings  = entries.filter((e) => !researchTypes.includes(e.data.type));
 ---
 <Base title="Life at AiMS" description="Research is more than papers and models — a look at the people and community behind AiMS.">
   <PageHeader eyebrow="Life at AiMS" title="Life at AiMS"
@@ -22,41 +30,39 @@ const entries = (await getCollection('gallery', (g) => !g.data.draft))
     </div>
   </section>
 
-  <section class="section-tight">
-    <div class="wrap">
-      <h2 class="cat">Around the lab</h2>
-      {entries.length > 0 ? (
-        <div class="gallery">
-          {entries.flatMap((e) => e.data.photos.map((ph) => (
-            <figure>
-              <img src={ph.src} alt={ph.alt} loading="lazy" />
-              {(ph.caption || e.data.title) && <figcaption class="faint">{ph.caption || e.data.title}</figcaption>}
-            </figure>
-          )))}
-        </div>
-      ) : (
+  {research.length > 0 && (
+    <section class="section-tight" aria-labelledby="research-life">
+      <div class="wrap">
+        <h2 id="research-life" class="cat">Research life</h2>
+        <p class="lede muted measure">Conferences, talks, defenses and the milestones along the way.</p>
+        <EventStories entries={research} eager={2} />
+      </div>
+    </section>
+  )}
+
+  {outings.length > 0 && (
+    <section class="section-tight" aria-labelledby="team-outings">
+      <div class="wrap">
+        <h2 id="team-outings" class="cat">Team outings</h2>
+        <p class="lede muted measure">The lab away from the lab.</p>
+        <OutingGrid entries={outings} eager={research.length > 0 ? 0 : 4} />
+      </div>
+    </section>
+  )}
+
+  {entries.length === 0 && (
+    <section class="section-tight">
+      <div class="wrap">
         <p class="muted measure evergreen">Photos from conferences, defenses, retreats, fika and ordinary lab moments
         will appear here as we add them.</p>
-      )}
-    </div>
-  </section>
+      </div>
+    </section>
+  )}
 </Base>
 
 <style>
   .cat { font-size: var(--step-2); }
+  .lede { margin: .5rem 0 0; }
   .how { margin-top: 1.2rem; padding-left: 1.2rem; display: grid; gap: .5rem; }
-  /* gallery wall: framed, slightly-tilted tiles in a masonry flow */
-  .gallery { columns: 1; column-gap: 16px; margin-top: 1.6rem; }
-  @media (min-width: 560px) { .gallery { columns: 2; } }
-  @media (min-width: 940px) { .gallery { columns: 3; } }
-  .gallery figure { break-inside: avoid; margin: 0 0 16px; padding: 9px 9px 8px; background: #14141b;
-    border: 1px solid var(--border); border-radius: 4px; box-shadow: 0 8px 22px rgba(0,0,0,.4); transition: transform .18s, box-shadow .18s; }
-  .gallery figure:nth-child(4n+1) { transform: rotate(-1.1deg); }
-  .gallery figure:nth-child(4n+2) { transform: rotate(0.9deg); }
-  .gallery figure:nth-child(4n+3) { transform: rotate(0.5deg); }
-  .gallery figure:nth-child(4n)   { transform: rotate(-0.6deg); }
-  .gallery figure:hover { transform: rotate(0) scale(1.02); box-shadow: 0 12px 30px rgba(0,0,0,.5); z-index: 2; position: relative; }
-  .gallery img { width: 100%; height: auto; display: block; border-radius: 2px; }
-  .gallery figcaption { font-size: var(--step--1); margin-top: .5rem; text-align: center; color: var(--faint); }
   .evergreen { margin-top: 1.2rem; }
 </style>

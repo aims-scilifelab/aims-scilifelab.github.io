@@ -16,6 +16,7 @@ category: "phd"
 status: "current"
 group_leader: "Kevin Smith"
 affiliation: "KTH · KI (joint) · SciLifeLab"
+website: "https://ki.se/en/people/lasse-stahnke"
 order: 205
 draft: false
 ---

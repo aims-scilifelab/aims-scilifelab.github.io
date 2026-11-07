@@ -22,6 +22,7 @@ category: "phd"
 status: "current"
 group_leader: "Jens Lagergren"
 affiliation: "KTH · SciLifeLab"
+website: "https://www.kth.se/profile/marziea"
 order: 223
 draft: false
 ---

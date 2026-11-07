@@ -1,0 +1,57 @@
+---
+/* Compact grid of gallery events: one small framed print per event
+ * (its first photo) with title and month.
+ * Used for Team outings so the page keeps its focus on research. */
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entries: CollectionEntry<'gallery'>[];
+  eager?: number;
+}
+const { entries, eager = 0 } = Astro.props;
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+---
+<ul class="prints">
+  {entries.map((e, i) => {
+    const ph = e.data.photos[0];
+    return (
+      <li class="print">
+        {ph && <img src={ph.src} alt={ph.alt} loading={i < eager ? 'eager' : 'lazy'} />}
+        <div class="cap">
+          <p class="row">
+            <span class="ttl">{e.data.title}</span>
+            <time datetime={e.data.date.toISOString().slice(0, 10)}>{fmt(e.data.date)}</time>
+          </p>
+        </div>
+      </li>
+    );
+  })}
+</ul>
+
+<style>
+  .prints { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: 22px 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 760px)  { .prints { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .prints { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+  .print { position: relative; padding: 7px 7px 10px; background: #14141b; border: 1px solid var(--border);
+    border-radius: 5px; box-shadow: 0 10px 24px rgba(0,0,0,.42); transition: transform .22s ease, box-shadow .22s ease; }
+  .print:nth-child(4n+1) { transform: rotate(-1.2deg); }
+  .print:nth-child(4n+2) { transform: rotate(0.9deg); }
+  .print:nth-child(4n+3) { transform: rotate(-0.5deg); }
+  .print:nth-child(4n)   { transform: rotate(1.3deg); }
+  .prints .print:hover { transform: rotate(0) scale(1.03); box-shadow: 0 16px 34px rgba(0,0,0,.55); z-index: 2; }
+  /* small strip of amber tape */
+  .print::before { content: ''; position: absolute; top: -8px; left: 50%; width: 58px; height: 15px;
+    transform: translateX(-50%) rotate(-3deg); background: #e8a54b; opacity: .75; border-radius: 2px; }
+
+  .print img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; }
+  .cap { padding: .55rem .2rem 0; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; margin: 0; }
+  .ttl { font-weight: 600; font-size: var(--step--1); color: var(--text); line-height: 1.25; }
+  time { flex: none; font-size: .75rem; color: var(--faint); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .prints .print, .prints .print:hover { transition: none; transform: none; }
+  }
+</style>

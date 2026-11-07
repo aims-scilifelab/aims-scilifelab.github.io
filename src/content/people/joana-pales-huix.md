@@ -22,6 +22,7 @@ category: "phd"
 status: "current"
 group_leader: "Kevin Smith"
 affiliation: "KTH · SciLifeLab · AstraZeneca"
+google_scholar: "https://scholar.google.com/citations?user=QWbBBbQAAAAJ"
 website: "https://www.kth.se/profile/joanaph"
 order: 201
 draft: false
