@@ -261,7 +261,7 @@
     "natural-images",
     "method"
    ],
-   "presented": "2026-07-21",
+   "presented": "2026-05-11",
    "url": "https://arxiv.org/abs/2602.04770"
   },
   {
@@ -382,7 +382,7 @@
     "natural-images",
     "method"
    ],
-   "presented": "2026-07-21",
+   "presented": "2026-06-10",
    "url": "https://arxiv.org/abs/2605.10727"
   },
   {
@@ -767,7 +767,7 @@
     "natural-images",
     "method"
    ],
-   "presented": "2026-04-16",
+   "presented": "2026-04-15",
    "url": "https://arxiv.org/abs/2604.02327"
   },
   {
@@ -807,7 +807,7 @@
     "natural-images",
     "method"
    ],
-   "presented": "",
+   "presented": "2026-03-11",
    "url": "https://arxiv.org/abs/2603.16728"
   },
   {
@@ -1237,7 +1237,7 @@
     "microscopy",
     "method"
    ],
-   "presented": "2026-07-09",
+   "presented": "2026-04-29",
    "url": "https://arxiv.org/abs/2502.09775"
   },
   {
@@ -1896,7 +1896,7 @@
     "microscopy",
     "method"
    ],
-   "presented": "2026-07-09",
+   "presented": "2026-03-25",
    "url": "https://arxiv.org/abs/2510.21337"
   },
   {
@@ -1942,7 +1942,7 @@
     "natural-images",
     "method"
    ],
-   "presented": "2026-01-26",
+   "presented": "2026-01-21",
    "url": "https://arxiv.org/abs/2512.16922"
   },
   {
@@ -3309,7 +3309,7 @@
     "medical",
     "method"
    ],
-   "presented": "2026-05-18",
+   "presented": "2026-05-13",
    "url": "https://arxiv.org/abs/2410.21154"
   },
   {
@@ -6772,7 +6772,7 @@
     "method",
     "influential"
    ],
-   "presented": "2026-04-03",
+   "presented": "2026-01-28",
    "url": "https://arxiv.org/abs/1711.11279"
   },
   {
@@ -7287,10 +7287,943 @@
    ],
    "presented": "",
    "url": ""
+  },
+  {
+   "title": "A Pose Proposal and Refinement Network for Better Object Pose Estimation",
+   "authors": [
+    "Ameni Trabelsi",
+    "Mohamed Chaabane",
+    "Nathaniel Blanchard",
+    "Ross Beveridge"
+   ],
+   "year": "2020",
+   "venue": "arXiv",
+   "arxiv_id": "2004.05507",
+   "doi": "",
+   "tags": [
+    "image",
+    "natural-images",
+    "detection",
+    "method"
+   ],
+   "presented": "2020-05-07",
+   "url": "https://arxiv.org/abs/2004.05507"
+  },
+  {
+   "title": "Transformers Improve Breast Cancer Diagnosis from Unregistered Multi-View Mammograms",
+   "authors": [
+    "Xu-Xin Chen",
+    "Ke-Qin Zhang",
+    "Neman Abdoli",
+    "Patrik W. Gilley",
+    "Xi-Ming Wang",
+    "Hong Liu",
+    "Bin Zheng",
+    "Yu-Chen Qiu"
+   ],
+   "year": "2022",
+   "venue": "Diagnostics",
+   "arxiv_id": "2206.10096",
+   "doi": "10.3390/diagnostics12071549",
+   "tags": [
+    "image",
+    "medical",
+    "mammography",
+    "transformers",
+    "classification",
+    "method"
+   ],
+   "presented": "2023-02-23",
+   "url": "https://arxiv.org/abs/2206.10096"
+  },
+  {
+   "title": "Visual Dependency Transformers: Dependency Tree Emerges from Reversed Attention",
+   "authors": [
+    "Mingyu Ding",
+    "Yikang Shen",
+    "Lijie Fan",
+    "Zhenfang Chen",
+    "Z. Chen",
+    "Ping Luo",
+    "J. Tenenbaum",
+    "Chuang Gan"
+   ],
+   "year": "2023",
+   "venue": "CVPR 2023",
+   "arxiv_id": "2304.03282",
+   "doi": "10.1109/CVPR52729.2023.01396",
+   "tags": [
+    "image",
+    "natural-images",
+    "transformers",
+    "method"
+   ],
+   "presented": "2023-05-04",
+   "url": "https://arxiv.org/abs/2304.03282"
+  },
+  {
+   "title": "Mammo-CLIP: Leveraging Contrastive Language-Image Pre-training (CLIP) for Enhanced Breast Cancer Diagnosis with Multi-view Mammography",
+   "authors": [
+    "Xuxin Chen",
+    "Yuheng Li",
+    "Mingzhe Hu",
+    "Ella Salari",
+    "Xiaoqian Chen",
+    "Richard L. J. Qiu",
+    "Bin Zheng",
+    "Xiaofeng Yang"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2404.15946",
+   "doi": "",
+   "tags": [
+    "image",
+    "medical",
+    "mammography",
+    "multimodal",
+    "text",
+    "method"
+   ],
+   "presented": "2024-06-19",
+   "url": "https://arxiv.org/abs/2404.15946"
+  },
+  {
+   "title": "Combining Human Expertise with Artificial Intelligence: Experimental Evidence from Radiology",
+   "authors": [
+    "Nikhil Agarwal",
+    "Alex Moehring",
+    "P. Rajpurkar",
+    "Tobias Salz"
+   ],
+   "year": "2023",
+   "venue": "NBER Working Paper",
+   "arxiv_id": "",
+   "doi": "10.2139/ssrn.4505053",
+   "tags": [
+    "image",
+    "medical",
+    "radiology",
+    "AI-society",
+    "empirical-study"
+   ],
+   "presented": "2024-10-30",
+   "url": "https://doi.org/10.2139/ssrn.4505053"
+  },
+  {
+   "title": "Diffusion-Enhanced Transformation Consistency Learning for Retinal Image Segmentation",
+   "authors": [
+    "Xiang Li",
+    "Huihui Fang",
+    "Mingsi Liu",
+    "Yan-Wu Xu",
+    "Lixin Duan"
+   ],
+   "year": "2024",
+   "venue": "MICCAI 2024",
+   "arxiv_id": "",
+   "doi": "10.1007/978-3-031-72120-5_21",
+   "tags": [
+    "image",
+    "medical",
+    "segmentation",
+    "diffusion",
+    "semi-supervised",
+    "method"
+   ],
+   "presented": "2024-11-20",
+   "url": "https://doi.org/10.1007/978-3-031-72120-5_21"
+  },
+  {
+   "title": "I-MedSAM: Implicit Medical Image Segmentation with\u00a0Segment Anything",
+   "authors": [
+    "Xiaobao Wei",
+    "Jiajun Cao",
+    "Yizhu Jin",
+    "Ming Lu",
+    "Guangyu Wang",
+    "Shanghang Zhang"
+   ],
+   "year": "2024",
+   "venue": "ECCV 2024",
+   "arxiv_id": "",
+   "doi": "10.1007/978-3-031-72684-2_6",
+   "tags": [
+    "image",
+    "medical",
+    "segmentation",
+    "foundation-models",
+    "method"
+   ],
+   "presented": "2025-01-29",
+   "url": "https://doi.org/10.1007/978-3-031-72684-2_6"
+  },
+  {
+   "title": "Cross-modal deep learning model for predicting pathologic complete response to neoadjuvant chemotherapy in breast cancer",
+   "authors": [
+    "Jianming Guo",
+    "Baihui Chen",
+    "Hongda Cao",
+    "Quan Dai",
+    "Ling Qin",
+    "Jinfeng Zhang",
+    "Youxue Zhang",
+    "Huanyu Zhang",
+    "Yuan Sui",
+    "Tianyu Chen",
+    "Dongxu Yang",
+    "Xue Gong",
+    "Dalin Li"
+   ],
+   "year": "2024",
+   "venue": "npj Precision Oncology",
+   "arxiv_id": "",
+   "doi": "10.1038/s41698-024-00678-8",
+   "tags": [
+    "image",
+    "medical",
+    "pathology",
+    "multimodal",
+    "classification",
+    "method"
+   ],
+   "presented": "2025-04-09",
+   "url": "https://doi.org/10.1038/s41698-024-00678-8"
+  },
+  {
+   "title": "Evaluation of clinical prediction models (part 1): from development to external validation",
+   "authors": [
+    "G. Collins",
+    "P. Dhiman",
+    "Jie Ma",
+    "M. Schl\u00fcssel",
+    "Lucinda Archer",
+    "B. van Calster",
+    "F. Harrell",
+    "Glen P. Martin",
+    "K. Moons",
+    "M. van Smeden",
+    "M. Sperrin",
+    "Garrett S. Bullock",
+    "Richard D. Riley"
+   ],
+   "year": "2024",
+   "venue": "BMJ",
+   "arxiv_id": "",
+   "doi": "10.1136/bmj-2023-074819",
+   "tags": [
+    "medical",
+    "generalization",
+    "benchmark"
+   ],
+   "presented": "2025-04-30",
+   "url": "https://doi.org/10.1136/bmj-2023-074819"
+  },
+  {
+   "title": "Diffusion Generative Modeling for Spatially Resolved Gene Expression Inference from Histology Images",
+   "authors": [
+    "Sichen Zhu",
+    "Yuchen Zhu",
+    "Mo-Lei Tao",
+    "Peng Qiu"
+   ],
+   "year": "2025",
+   "venue": "ICLR 2025",
+   "arxiv_id": "2501.15598",
+   "doi": "10.48550/arXiv.2501.15598",
+   "tags": [
+    "image",
+    "pathology",
+    "omics",
+    "diffusion",
+    "generative-modeling",
+    "method"
+   ],
+   "presented": "2025-06-18",
+   "url": "https://arxiv.org/abs/2501.15598"
+  },
+  {
+   "title": "Scaling Channel-Adaptive Self-Supervised Learning",
+   "authors": [
+    "Alice V. De Lorenci",
+    "Seungeun Yi",
+    "Th\u00e9o Moutakanni",
+    "Piotr Bojanowski",
+    "Camille Couprie",
+    "Juan C. Caicedo",
+    "Wolfgang M. Pernice"
+   ],
+   "year": "2025",
+   "venue": "TMLR 2025",
+   "arxiv_id": "",
+   "doi": "",
+   "tags": [
+    "image",
+    "microscopy",
+    "self-supervised",
+    "foundation-models",
+    "method"
+   ],
+   "presented": "2025-09-03",
+   "url": "https://openreview.net/forum?id=pT8sgtRVAf"
+  },
+  {
+   "title": "SAM 3: Segment Anything with Concepts",
+   "authors": [
+    "Nicolas Carion",
+    "Laura Gustafson",
+    "Yuan-Ting Hu",
+    "Shoubhik Debnath",
+    "Ronghang Hu",
+    "D\u00eddac Sur\u00eds",
+    "Chaitanya K. Ryali",
+    "Kalyan Vasudev Alwala",
+    "Haitham Khedr",
+    "Andrew Huang",
+    "Jie Lei",
+    "Tengyu Ma",
+    "Baishan Guo",
+    "Arpit Kalla",
+    "Markus Marks",
+    "J. Greer",
+    "Meng Wang",
+    "Peize Sun",
+    "Roman R\u00e4dle",
+    "Triantafyllos Afouras",
+    "E. Mavroudi",
+    "Katherine Xu",
+    "Tsung-Han Wu",
+    "Yu Zhou",
+    "Liliane Momeni",
+    "Rishi Hazra",
+    "Shuangrui Ding",
+    "S. Vaze",
+    "Fran\u00e7ois Porcher",
+    "Feng Li",
+    "Siyuan Li",
+    "Aishwarya Kamath",
+    "H. Cheng",
+    "Piotr Doll\u00e1r",
+    "Nikhila Ravi",
+    "Kate Saenko",
+    "Peng-Chuan Zhang",
+    "Christoph Feichtenhofer"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2511.16719",
+   "doi": "10.48550/arXiv.2511.16719",
+   "tags": [
+    "image",
+    "natural-images",
+    "segmentation",
+    "foundation-models",
+    "method"
+   ],
+   "presented": "2025-10-29",
+   "url": "https://arxiv.org/abs/2511.16719"
+  },
+  {
+   "title": "Explaining in Diffusion: Explaining a Classifier with Diffusion Semantics",
+   "authors": [
+    "Tahira Kazimi",
+    "Ritika Allada",
+    "Pinar Yanardag"
+   ],
+   "year": "2025",
+   "venue": "CVPR 2025",
+   "arxiv_id": "",
+   "doi": "10.1109/CVPR52734.2025.01379",
+   "tags": [
+    "image",
+    "natural-images",
+    "interpretability",
+    "diffusion",
+    "method"
+   ],
+   "presented": "2025-09-03",
+   "url": "https://doi.org/10.1109/CVPR52734.2025.01379"
+  },
+  {
+   "title": "Improving Explainability of Disentangled Representations using Multipath-Attribution Mappings",
+   "authors": [
+    "Lukas Klein",
+    "J. S. Carvalho",
+    "Mennatallah El-Assady",
+    "Paolo Penna",
+    "J. Buhmann",
+    "P. Jaeger"
+   ],
+   "year": "2022",
+   "venue": "MIDL 2022",
+   "arxiv_id": "2306.09035",
+   "doi": "10.48550/arXiv.2306.09035",
+   "tags": [
+    "image",
+    "medical",
+    "interpretability",
+    "representation-learning",
+    "method"
+   ],
+   "presented": "2025-12-03",
+   "url": "https://openreview.net/forum?id=3uQ2Z0MhnoE"
+  },
+  {
+   "title": "Mammo-AGE: deep learning estimation of breast age from mammograms",
+   "authors": [
+    "Xin Wang",
+    "Tao Tan",
+    "Yuan Gao",
+    "Hong-Yu Zhou",
+    "Tianyu Zhang",
+    "Luyi Han",
+    "Antonio Portaluri",
+    "Eric Marcus",
+    "Chunyao Lu",
+    "Caroline A. Drukker",
+    "Jonas Teuwen",
+    "Regina Beets-Tan",
+    "Shanshan Wang",
+    "Nico Karssemeijer",
+    "Ritse Mann"
+   ],
+   "year": "2025",
+   "venue": "Nature Communications",
+   "arxiv_id": "",
+   "doi": "10.1038/s41467-025-65923-5",
+   "tags": [
+    "image",
+    "medical",
+    "mammography",
+    "classification",
+    "method"
+   ],
+   "presented": "2026-01-28",
+   "url": "https://doi.org/10.1038/s41467-025-65923-5"
+  },
+  {
+   "title": "Mixture of Mini Experts: Overcoming the Linear Layer Bottleneck in Multiple Instance Learning",
+   "authors": [
+    "Daniel Shao",
+    "Joel Runevic",
+    "Richard J. Chen",
+    "Drew F. K. Williamson",
+    "Ahrong Kim",
+    "Andrew H. Song",
+    "F. Mahmood"
+   ],
+   "year": "2026",
+   "venue": "ICLR 2026",
+   "arxiv_id": "2603.22198",
+   "doi": "10.48550/arXiv.2603.22198",
+   "tags": [
+    "image",
+    "pathology",
+    "mixture-of-experts",
+    "classification",
+    "method"
+   ],
+   "presented": "2026-04-01",
+   "url": "https://arxiv.org/abs/2603.22198"
+  },
+  {
+   "title": "A Simple yet Effective Adaptive Inter-organ Contrastive Learning Framework for Unsupervised Domain Adaptation",
+   "authors": [],
+   "year": "2026",
+   "venue": "MIDL 2026",
+   "arxiv_id": "",
+   "doi": "",
+   "tags": [
+    "image",
+    "medical",
+    "radiology",
+    "segmentation",
+    "transfer-learning",
+    "method"
+   ],
+   "presented": "2026-04-15",
+   "url": "https://openreview.net/forum?id=Pt0b9bOgzR"
+  },
+  {
+   "title": "Multicenter Morphometric Analysis of Stratum Corneum Nanotexture for Skin Barrier Assessment",
+   "authors": [
+    "J. Wang",
+    "C. Chu",
+    "Felipe Colombelli",
+    "Ching-Wen Du",
+    "M. O. Christensen",
+    "Jorge Pereda",
+    "J. P. Thyssen",
+    "EdwinEn-TeHwu",
+    "GiseleMiranda"
+   ],
+   "year": "2026",
+   "venue": "MIDL 2026",
+   "arxiv_id": "",
+   "doi": "",
+   "tags": [
+    "image",
+    "microscopy",
+    "medical",
+    "segmentation",
+    "method"
+   ],
+   "presented": "2026-01-14",
+   "url": "https://openreview.net/forum?id=IiwDSw6EeN"
+  },
+  {
+   "title": "SAM 3D: 3Dfy Anything in Images",
+   "authors": [
+    " SAM 3D Team",
+    "Xingyu Chen",
+    "Fu-Jen Chu",
+    "Pierre Gleize",
+    "Kevin J Liang",
+    "Alexander Sax",
+    "Hao Tang",
+    "Weiyao Wang",
+    "Michelle Guo",
+    "Thibaut Hardin",
+    "Xiang Li",
+    "Aohan Lin",
+    "Jiawei Liu",
+    "Ziqi Ma",
+    "Anushka Sagar",
+    "Bowen Song",
+    "Xiaodong Wang",
+    "Jianing Yang",
+    "Bowen Zhang",
+    "Piotr Doll\u00e1r",
+    "Georgia Gkioxari",
+    "Matt Feiszli",
+    "Jitendra Malik"
+   ],
+   "year": "2025",
+   "venue": "arXiv",
+   "arxiv_id": "2511.16624",
+   "doi": "",
+   "tags": [
+    "image",
+    "natural-images",
+    "3D-vision",
+    "foundation-models",
+    "generation",
+    "method"
+   ],
+   "presented": "2026-02-25",
+   "url": "https://arxiv.org/abs/2511.16624"
+  },
+  {
+   "title": "MorphoDiff: Cellular Morphology Painting with Diffusion Models",
+   "authors": [
+    "Zeinab Navidi",
+    "Jun Ma",
+    "Esteban A. Miglietta",
+    "Le Liu",
+    "A. Carpenter",
+    "B. Cimini",
+    "Benjamin Haibe-Kains",
+    "Bo Wang"
+   ],
+   "year": "2025",
+   "venue": "ICLR 2025",
+   "arxiv_id": "",
+   "doi": "",
+   "tags": [
+    "image",
+    "microscopy",
+    "computational-biology",
+    "diffusion",
+    "generation",
+    "method"
+   ],
+   "presented": "2026-05-27",
+   "url": "https://openreview.net/forum?id=PstM8YfhvI"
+  },
+  {
+   "title": "Multimodality as Supervision: Self-Supervised Specialization to the Test Environment via Multimodality",
+   "authors": [
+    "Kunal Pratap Singh",
+    "Ali Garjani",
+    "Rishubh Singh",
+    "Muhammad Uzair Khattak",
+    "Efe Tarhan",
+    "Jason Toskov",
+    "Andrei Atanov",
+    "O\u011fuzhan Fatih Kar",
+    "Amir Zamir"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2607.14721",
+   "doi": "10.48550/arXiv.2607.14721",
+   "tags": [
+    "image",
+    "natural-images",
+    "self-supervised",
+    "multimodal",
+    "method"
+   ],
+   "presented": "2026-09-09",
+   "url": "https://arxiv.org/abs/2607.14721"
+  },
+  {
+   "title": "Clin-JEPA: A Multi-Phase Co-Training Framework for Joint-Embedding Predictive Pretraining on EHR Patient Trajectories",
+   "authors": [
+    "Yixuan Yang",
+    "Mehak Arora",
+    "Ryan Zhang",
+    "Baraa Abed",
+    "Junseob Kim",
+    "Tilendra Choudhary",
+    "Md Hassanuzzaman",
+    "Kevin Zhu",
+    "Ayman Ali",
+    "Chengkun Yang",
+    "Alasdair Edward Gent",
+    "Victor Moas",
+    "Rishikesan Kamaleswaran"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2605.10840",
+   "doi": "",
+   "tags": [
+    "medical",
+    "time-series",
+    "tabular",
+    "self-supervised",
+    "method"
+   ],
+   "presented": "2026-09-23",
+   "url": "https://arxiv.org/abs/2605.10840"
+  },
+  {
+   "title": "Mean Flows for One-step Generative Modeling",
+   "authors": [
+    "Zhengyang Geng",
+    "Mingyang Deng",
+    "Xingjian Bai",
+    "J. Zico Kolter",
+    "Kaiming He"
+   ],
+   "year": "2025",
+   "venue": "NeurIPS 2025",
+   "arxiv_id": "2505.13447",
+   "doi": "",
+   "tags": [
+    "image",
+    "natural-images",
+    "flow-matching",
+    "generative-modeling",
+    "method"
+   ],
+   "presented": "2026-10-01",
+   "url": "https://arxiv.org/abs/2505.13447"
+  },
+  {
+   "title": "Don\u2019t be fooled: label leakage in explanation methods and the importance of their quantitative evaluation",
+   "authors": [
+    "Neil Jethani",
+    "Adriel Saporta",
+    "R. Ranganath"
+   ],
+   "year": "2023",
+   "venue": "AISTATS 2023",
+   "arxiv_id": "2302.12893",
+   "doi": "10.48550/arXiv.2302.12893",
+   "tags": [
+    "image",
+    "natural-images",
+    "interpretability",
+    "method"
+   ],
+   "presented": "2026-10-12",
+   "url": "https://arxiv.org/abs/2302.12893"
+  },
+  {
+   "title": "Correction Training for Diffusion Models",
+   "authors": [
+    "Donghoon Ahn",
+    "Run-Qian Wang",
+    "Alexei A. Efros",
+    "Taesung Park",
+    "Yash Belhe"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2610.14136",
+   "doi": "",
+   "tags": [
+    "image",
+    "natural-images",
+    "diffusion",
+    "generative-modeling",
+    "method"
+   ],
+   "presented": "2026-10-28",
+   "url": "https://arxiv.org/abs/2610.14136"
+  },
+  {
+   "title": "Hallucination Index: An Image Quality Metric for Generative Reconstruction Models",
+   "authors": [
+    "Matthew Tivnan",
+    "Siyeop Yoon",
+    "Zhen-Nong Chen",
+    "Xiang Li",
+    "Du-Fan Wu",
+    "Quanzheng Li"
+   ],
+   "year": "2024",
+   "venue": "MICCAI 2024",
+   "arxiv_id": "2407.12780",
+   "doi": "10.1007/978-3-031-72117-5_42",
+   "tags": [
+    "image",
+    "medical",
+    "generative-modeling",
+    "benchmark",
+    "method"
+   ],
+   "presented": "2026-11-04",
+   "url": "https://arxiv.org/abs/2407.12780"
+  },
+  {
+   "title": "Same Encoder, Different Winner: A Paired-View Framework for Cell Painting Encoder Evaluation",
+   "authors": [
+    "Tim Treis",
+    "Nikita Moshkov",
+    "Johan Fredin Haslum",
+    "Shantanu Singh",
+    "Fabian J. Theis"
+   ],
+   "year": "2026",
+   "venue": "arXiv",
+   "arxiv_id": "2609.12761",
+   "doi": "",
+   "tags": [
+    "image",
+    "microscopy",
+    "benchmark",
+    "representation-learning",
+    "empirical-study"
+   ],
+   "presented": "2026-09-30",
+   "url": "https://arxiv.org/abs/2609.12761"
+  },
+  {
+   "title": "FreeBridge: Variational Schr\u00f6dinger Bridges for Cellular Transition Dynamics",
+   "authors": [
+    "Xurui Wang",
+    "Qin Ren",
+    "Jun Ma",
+    "Haibin Ling",
+    "Chenyu You"
+   ],
+   "year": "2026",
+   "venue": "MICCAI 2026",
+   "arxiv_id": "2606.11286",
+   "doi": "",
+   "tags": [
+    "image",
+    "microscopy",
+    "computational-biology",
+    "generative-modeling",
+    "method"
+   ],
+   "presented": "2026-11-04",
+   "url": "https://arxiv.org/abs/2606.11286"
+  },
+  {
+   "title": "Multi-modal contrastive mutual learning and pseudo-label re-learning for semi-supervised medical image segmentation",
+   "authors": [
+    "Shuo Zhang",
+    "Jiaojiao Zhang",
+    "Biao Tian",
+    "Thomas Lukasiewicz",
+    "Zheng-Hua Xu"
+   ],
+   "year": "2022",
+   "venue": "Medical Image Analysis",
+   "arxiv_id": "",
+   "doi": "10.1016/j.media.2022.102656",
+   "tags": [
+    "image",
+    "medical",
+    "radiology",
+    "segmentation",
+    "semi-supervised",
+    "method"
+   ],
+   "presented": "2024-01-25",
+   "url": "https://doi.org/10.1016/j.media.2022.102656"
+  },
+  {
+   "title": "Aligning Synthetic Medical Images with Clinical Knowledge using Human Feedback",
+   "authors": [
+    "Shenghuan Sun",
+    "Gregory M. Goldgof",
+    "Atul Butte",
+    "Ahmed M. Alaa"
+   ],
+   "year": "2023",
+   "venue": "arXiv",
+   "arxiv_id": "2306.12438",
+   "doi": "",
+   "tags": [
+    "image",
+    "microscopy",
+    "diffusion",
+    "generation",
+    "method"
+   ],
+   "presented": "",
+   "url": "https://arxiv.org/abs/2306.12438"
+  },
+  {
+   "title": "Revisiting Feature Prediction for Learning Visual Representations from Video",
+   "authors": [
+    "Adrien Bardes",
+    "Quentin Garrido",
+    "Jean Ponce",
+    "Xinlei Chen",
+    "Michael Rabbat",
+    "Yann LeCun",
+    "Mahmoud Assran",
+    "Nicolas Ballas"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2404.08471",
+   "doi": "",
+   "tags": [
+    "video",
+    "self-supervised",
+    "representation-learning",
+    "method"
+   ],
+   "presented": "2024-02-28",
+   "url": "https://arxiv.org/abs/2404.08471"
+  },
+  {
+   "title": "Uncovering the Hidden Dynamics of Video Self-supervised Learning under Distribution Shifts",
+   "authors": [
+    "Pritam Sarkar",
+    "Ahmad Beirami",
+    "Ali Etemad"
+   ],
+   "year": "2023",
+   "venue": "NeurIPS 2023",
+   "arxiv_id": "2306.02014",
+   "doi": "10.48550/arXiv.2306.02014",
+   "tags": [
+    "video",
+    "self-supervised",
+    "robustness",
+    "empirical-study"
+   ],
+   "presented": "2024-03-18",
+   "url": "https://arxiv.org/abs/2306.02014"
+  },
+  {
+   "title": "Scaling (Down) CLIP: A Comprehensive Analysis of Data, Architecture, and Training Strategies",
+   "authors": [
+    "Zichao Li",
+    "Cihang Xie",
+    "Ekin Dogus Cubuk"
+   ],
+   "year": "2024",
+   "venue": "TMLR 2024",
+   "arxiv_id": "2404.08197",
+   "doi": "",
+   "tags": [
+    "image",
+    "natural-images",
+    "multimodal",
+    "text",
+    "efficiency",
+    "empirical-study"
+   ],
+   "presented": "2024-04-24",
+   "url": "https://arxiv.org/abs/2404.08197"
+  },
+  {
+   "title": "POA: Pre-training Once for Models of All Sizes",
+   "authors": [
+    "Yingying Zhang",
+    "Xin Guo",
+    "Jiangwei Lao",
+    "Lei Yu",
+    "Lixiang Ru",
+    "Jian Wang",
+    "Guo Ye",
+    "Huimei He",
+    "Jingdong Chen",
+    "Ming Yang"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2408.01031",
+   "doi": "",
+   "tags": [
+    "image",
+    "natural-images",
+    "self-supervised",
+    "efficiency",
+    "method"
+   ],
+   "presented": "2024-10-02",
+   "url": "https://arxiv.org/abs/2408.01031"
+  },
+  {
+   "title": "PIP-Net: Patch-Based Intuitive Prototypes for Interpretable Image Classification",
+   "authors": [
+    "Meike Nauta",
+    "J\u00f6rg Schl\u00f6tterer",
+    "M. van Keulen",
+    "Christin Seifert"
+   ],
+   "year": "2023",
+   "venue": "CVPR 2023",
+   "arxiv_id": "",
+   "doi": "10.1109/CVPR52729.2023.00269",
+   "tags": [
+    "image",
+    "natural-images",
+    "interpretability",
+    "classification",
+    "method"
+   ],
+   "presented": "2024-09-25",
+   "url": "https://doi.org/10.1109/CVPR52729.2023.00269"
+  },
+  {
+   "title": "GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection",
+   "authors": [
+    "Jia-Wei Zhao",
+    "Zhenyu (Allen) Zhang",
+    "Beidi Chen",
+    "Zhang-Yang Wang",
+    "Anima Anandkumar",
+    "Yuandong Tian"
+   ],
+   "year": "2024",
+   "venue": "arXiv",
+   "arxiv_id": "2403.03507",
+   "doi": "10.48550/arXiv.2403.03507",
+   "tags": [
+    "LLMs",
+    "text",
+    "efficiency",
+    "optimization-training",
+    "method"
+   ],
+   "presented": "2024-11-13",
+   "url": "https://arxiv.org/abs/2403.03507"
   }
  ],
  "stats": {
-  "total": 302,
+  "total": 338,
   "by_year": [
    [
     "2004",
@@ -7334,7 +8267,7 @@
    ],
    [
     "2020",
-    37
+    38
    ],
    [
     "2021",
@@ -7342,33 +8275,37 @@
    ],
    [
     "2022",
-    18
+    21
    ],
    [
     "2023",
-    29
+    35
    ],
    [
     "2024",
-    44
+    54
    ],
    [
     "2025",
-    53
+    61
    ],
    [
     "2026",
-    41
+    49
    ]
   ],
   "by_venue": [
    [
     "arXiv",
-    262
+    274
    ],
    [
     "Nature Communications",
-    5
+    6
+   ],
+   [
+    "Medical Image Analysis",
+    2
    ],
    [
     "Nature Methods",
@@ -7383,12 +8320,32 @@
     2
    ],
    [
+    "npj Precision Oncology",
+    2
+   ],
+   [
     "IEEE Transactions on Medical Imaging",
     2
    ],
    [
-    "Medical Image Analysis",
-    1
+    "BMJ",
+    2
+   ],
+   [
+    "CVPR 2023",
+    2
+   ],
+   [
+    "MICCAI 2024",
+    2
+   ],
+   [
+    "ICLR 2025",
+    2
+   ],
+   [
+    "MIDL 2026",
+    2
    ],
    [
     "CVPR 2026",
@@ -7397,44 +8354,20 @@
    [
     "ICML 2026",
     1
-   ],
-   [
-    "npj Precision Oncology",
-    1
-   ],
-   [
-    "BMJ",
-    1
-   ],
-   [
-    "Lecture notes in computer science",
-    1
-   ],
-   [
-    "Neurocomputing",
-    1
-   ],
-   [
-    "PubMed",
-    1
-   ],
-   [
-    "Science Translational Medicine",
-    1
    ]
   ],
   "by_tag": [
    [
     "image",
-    252
-   ],
-   [
-    "natural-images",
-    239
+    283
    ],
    [
     "method",
-    236
+    267
+   ],
+   [
+    "natural-images",
+    251
    ],
    [
     "influential",
@@ -7442,34 +8375,38 @@
    ],
    [
     "transformers",
-    56
+    58
    ],
    [
     "representation-learning",
-    49
+    52
    ],
    [
     "foundation-models",
-    42
+    46
    ],
    [
     "self-supervised",
-    40
-   ],
-   [
-    "multimodal",
-    35
-   ],
-   [
-    "LLMs",
-    30
+    46
    ],
    [
     "medical",
-    29
+    43
+   ],
+   [
+    "multimodal",
+    39
    ],
    [
     "classification",
+    34
+   ],
+   [
+    "LLMs",
+    31
+   ],
+   [
+    "text",
     29
    ],
    [
@@ -7477,23 +8414,31 @@
     27
    ],
    [
-    "text",
-    26
-   ],
-   [
     "interpretability",
-    23
+    27
    ],
    [
     "segmentation",
+    26
+   ],
+   [
+    "empirical-study",
+    22
+   ],
+   [
+    "generative-modeling",
     20
    ],
    [
     "generalization",
-    18
+    19
    ],
    [
-    "empirical-study",
+    "efficiency",
+    19
+   ],
+   [
+    "diffusion",
     18
    ],
    [
@@ -7501,28 +8446,16 @@
     18
    ],
    [
-    "efficiency",
-    16
+    "transfer-learning",
+    17
    ],
    [
-    "transfer-learning",
+    "benchmark",
     16
    ],
    [
     "GANs",
     16
-   ],
-   [
-    "generative-modeling",
-    15
-   ],
-   [
-    "benchmark",
-    13
-   ],
-   [
-    "diffusion",
-    12
    ]
   ]
  },

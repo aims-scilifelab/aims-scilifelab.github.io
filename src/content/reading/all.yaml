@@ -20,57 +20,343 @@
 # =========================================================================
 
 sessions:
+- date: 2026-11-04
+  tags:
+  - medical
+  - generative-modeling
+  - benchmark
+  papers:
+  - title: 'Hallucination Index: An Image Quality Metric for Generative Reconstruction Models'
+    authors: 'Matthew Tivnan, Siyeop Yoon, Zhen-Nong Chen, Xiang Li, Du-Fan Wu, Quanzheng Li'
+    venue: 'MICCAI 2024'
+    year: 2024
+    url: https://arxiv.org/abs/2407.12780
+    why: ''
+  - title: 'FreeBridge: Variational Schrödinger Bridges for Cellular Transition Dynamics'
+    authors: 'Xurui Wang, Qin Ren, Jun Ma, Haibin Ling, Chenyu You'
+    venue: 'MICCAI 2026'
+    year: 2026
+    url: https://arxiv.org/abs/2606.11286
+    why: ''
+- date: 2026-10-28
+  tags:
+  - diffusion
+  - generative-modeling
+  papers:
+  - title: 'Correction Training for Diffusion Models'
+    authors: 'Donghoon Ahn, Run-Qian Wang, Alexei A. Efros, Taesung Park, Yash Belhe'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2610.14136
+    why: ''
+- date: 2026-10-12
+  tags:
+  - interpretability
+  papers:
+  - title: 'Don’t be fooled: label leakage in explanation methods and the importance of their quantitative evaluation'
+    authors: 'Neil Jethani, Adriel Saporta, R. Ranganath'
+    venue: 'AISTATS 2023'
+    year: 2023
+    url: https://arxiv.org/abs/2302.12893
+    why: ''
+- date: 2026-10-01
+  tags:
+  - flow-matching
+  - generative-modeling
+  papers:
+  - title: 'Mean Flows for One-step Generative Modeling'
+    authors: 'Zhengyang Geng, Mingyang Deng, Xingjian Bai, J. Zico Kolter, Kaiming He'
+    venue: 'NeurIPS 2025'
+    year: 2025
+    url: https://arxiv.org/abs/2505.13447
+    why: ''
+- date: 2026-09-30
+  tags:
+  - microscopy
+  - benchmark
+  - representation-learning
+  papers:
+  - title: 'Same Encoder, Different Winner: A Paired-View Framework for Cell Painting Encoder Evaluation'
+    authors: 'Tim Treis, Nikita Moshkov, Johan Fredin Haslum, Shantanu Singh, Fabian J. Theis'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2609.12761
+    why: ''
+- date: 2026-09-23
+  tags:
+  - medical
+  - time-series
+  - tabular
+  papers:
+  - title: 'Clin-JEPA: A Multi-Phase Co-Training Framework for Joint-Embedding Predictive Pretraining on EHR Patient Trajectories'
+    authors: 'Yixuan Yang, Mehak Arora, Ryan Zhang, Baraa Abed, Junseob Kim, Tilendra Choudhary et al.'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2605.10840
+    why: ''
+- date: 2026-09-09
+  tags:
+  - self-supervised
+  - multimodal
+  papers:
+  - title: 'Multimodality as Supervision: Self-Supervised Specialization to the Test Environment via Multimodality'
+    authors: 'Kunal Pratap Singh, Ali Garjani, Rishubh Singh, Muhammad Uzair Khattak, Efe Tarhan, Jason Toskov et al.'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2607.14721
+    why: ''
 - date: 2026-07-29
   tags:
   - flow-matching
   - generative-modeling
   papers:
   - title: 'Carré du champ flow matching: better quality-generalisation tradeoff in generative models'
-    authors: Jacob Bamberger, Iolo Jones, Dennis Duncan, Michael M. Bronstein, Pierre Vandergheynst, Adam Gosztolai
-    venue: arXiv
+    authors: 'Jacob Bamberger, Iolo Jones, Dennis Duncan, Michael M. Bronstein, Pierre Vandergheynst, Adam Gosztolai'
+    venue: 'arXiv'
     year: 2025
     url: https://arxiv.org/abs/2510.05930
     why: ''
-- date: 2026-07-21
+- date: 2026-06-10
   tags:
   - flow-matching
-  - generative-modeling
   papers:
-  - title: Generative Modeling via Drifting
-    authors: Mingyang Deng, He Li, Tianhong Li, Yilun Du, Kaiming He
-    venue: arXiv
-    year: 2026
-    url: https://arxiv.org/abs/2602.04770
-    why: ''
-  - title: Kernel-Gradient Drifting Models
-    authors: Maria Esteban-Casadevall, Jorge Carrasco-Pollo, Max Welling, Jan-Willem van de Meent, Erik J. Bekkers, Floor Eijkelboom
-    venue: arXiv
+  - title: 'Kernel-Gradient Drifting Models'
+    authors: 'Maria Esteban-Casadevall, Jorge Carrasco-Pollo, Max Welling, Jan-Willem van de Meent, Erik J. Bekkers, Floor Eijkelboom'
+    venue: 'arXiv'
     year: 2026
     url: https://arxiv.org/abs/2605.10727
-    why: ''
-- date: 2026-07-09
-  tags:
-  - flow-matching
-  papers:
-  - title: 'CellFlux: Simulating Cellular Morphology Changes via Flow Matching'
-    authors: Yuhui Zhang, Yuchang Su, Chenyu Wang, Tianhong Li, Zoe Wefers, Jeffrey Nirschl et al.
-    venue: arXiv
-    year: 2025
-    url: https://arxiv.org/abs/2502.09775
-    why: ''
-  - title: Morphologically Intelligent Perturbation Prediction with FORM
-    authors: Reed Naidoo, Matt De Vries, Olga Fourkioti, Vicky Bousgouni, Mar Arias-Garcia, Maria Portillo-Malumbres et al.
-    venue: arXiv
-    year: 2025
-    url: https://arxiv.org/abs/2510.21337
     why: ''
 - date: 2026-05-27
   tags:
   - representation-learning
+  - microscopy
+  - computational-biology
   papers:
-  - title: Learning Shared Representations from Unpaired Data
-    authors: Amitai Yacobi, Nir Ben-Ari, Ronen Talmon, Uri Shaham
-    venue: arXiv
+  - title: 'Learning Shared Representations from Unpaired Data'
+    authors: 'Amitai Yacobi, Nir Ben-Ari, Ronen Talmon, Uri Shaham'
+    venue: 'arXiv'
     year: 2025
     url: https://arxiv.org/abs/2505.21524
+    why: ''
+  - title: 'MorphoDiff: Cellular Morphology Painting with Diffusion Models'
+    authors: 'Zeinab Navidi, Jun Ma, Esteban A. Miglietta, Le Liu, A. Carpenter, B. Cimini et al.'
+    venue: 'ICLR 2025'
+    year: 2025
+    url: https://openreview.net/forum?id=PstM8YfhvI
+    why: ''
+- date: 2026-05-20
+  tags:
+  - generative-modeling
+  - generation
+  papers:
+  - title: 'End-to-End Autoregressive Image Generation with 1D Semantic Tokenizer'
+    authors: 'Wenda Chu, Bingliang Zhang, Jiaqi Han, Yizhuo Li, Linjie Yang, Yisong Yue et al.'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2605.00503
+    why: ''
+- date: 2026-05-13
+  tags:
+  - flow-matching
+  - time-series
+  - medical
+  papers:
+  - title: 'Trajectory Flow Matching with Applications to Clinical Time Series Modeling'
+    authors: 'Xi Zhang, Yuan Pu, Yuki Kawamura, Andrew Loza, Yoshua Bengio, Dennis L. Shung et al.'
+    venue: 'arXiv'
+    year: 2024
+    url: https://arxiv.org/abs/2410.21154
+    why: ''
+- date: 2026-05-11
+  tags:
+  - flow-matching
+  - generative-modeling
+  papers:
+  - title: 'Generative Modeling via Drifting'
+    authors: 'Mingyang Deng, He Li, Tianhong Li, Yilun Du, Kaiming He'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2602.04770
+    why: ''
+- date: 2026-04-29
+  tags:
+  - representation-learning
+  - theory
+  - flow-matching
+  papers:
+  - title: 'Back into Plato''s Cave: Examining Cross-modal Representational Convergence at Scale'
+    authors: 'A. Sophia Koepke, Daniil Zverev, Shiry Ginosar, Alexei A. Efros'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2604.18572
+    why: ''
+  - title: 'CellFlux: Simulating Cellular Morphology Changes via Flow Matching'
+    authors: 'Yuhui Zhang, Yuchang Su, Chenyu Wang, Tianhong Li, Zoe Wefers, Jeffrey Nirschl et al.'
+    venue: 'arXiv'
+    year: 2025
+    url: https://arxiv.org/abs/2502.09775
+    why: ''
+- date: 2026-04-15
+  tags:
+  - medical
+  - radiology
+  - segmentation
+  papers:
+  - title: 'A Simple yet Effective Adaptive Inter-organ Contrastive Learning Framework for Unsupervised Domain Adaptation'
+    authors: ''
+    venue: 'MIDL 2026'
+    year: 2026
+    url: https://openreview.net/forum?id=Pt0b9bOgzR
+    why: ''
+  - title: 'Steerable Visual Representations'
+    authors: 'Jona Ruthardt, Manu Gaur, Deva Ramanan, Makarand Tapaswi, Yuki M. Asano'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2604.02327
+    why: ''
+- date: 2026-04-01
+  tags:
+  - pathology
+  - mixture-of-experts
+  papers:
+  - title: 'Mixture of Mini Experts: Overcoming the Linear Layer Bottleneck in Multiple Instance Learning'
+    authors: 'Daniel Shao, Joel Runevic, Richard J. Chen, Drew F. K. Williamson, Ahrong Kim, Andrew H. Song et al.'
+    venue: 'ICLR 2026'
+    year: 2026
+    url: https://arxiv.org/abs/2603.22198
+    why: ''
+- date: 2026-03-25
+  tags:
+  - self-supervised
+  - computational-biology
+  - microscopy
+  papers:
+  - title: 'KerJEPA: Kernel Discrepancies for Euclidean Self-Supervised Learning'
+    authors: 'Eric Zimmermann, Harley Wiltzer, Justin Szeto, David Alvarez-Melis, Lester Mackey'
+    venue: 'arXiv'
+    year: 2025
+    url: https://arxiv.org/abs/2512.19605
+    why: ''
+  - title: 'Morphologically Intelligent Perturbation Prediction with FORM'
+    authors: 'Reed Naidoo, Matt De Vries, Olga Fourkioti, Vicky Bousgouni, Mar Arias-Garcia, Maria Portillo-Malumbres et al.'
+    venue: 'arXiv'
+    year: 2025
+    url: https://arxiv.org/abs/2510.21337
+    why: ''
+- date: 2026-03-18
+  tags:
+  - transformers
+  - microscopy
+  - medical
+  papers:
+  - title: 'MuViT: Multi-Resolution Vision Transformers for Learning Across Scales in Microscopy'
+    authors: 'Albert Dominguez Mantes, Gioele La Manno, Martin Weigert'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2602.24222
+    why: ''
+  - title: 'Fréchet radiomic distance (FRD): A versatile metric for comparing medical imaging datasets'
+    authors: 'Nicholas Konz, Richard Osuala, Preeti Verma, Yuwen Chen, Hanxue Gu, Haoyu Dong et al.'
+    venue: 'Medical Image Analysis'
+    year: 2026
+    url: https://doi.org/10.1016/j.media.2026.103943
+    why: ''
+- date: 2026-03-11
+  tags:
+  - multimodal
+  - LLMs
+  papers:
+  - title: 'The Cost of Reasoning: Chain-of-Thought Induces Overconfidence in Vision-Language Models'
+    authors: 'Robert Welch, Emir Konuk, Kevin Smith'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2603.16728
+    why: ''
+- date: 2026-03-04
+  tags:
+  - foundation-models
+  - omics
+  - pathology
+  papers:
+  - title: 'Towards Spatial Transcriptomics-driven Pathology Foundation Models'
+    authors: 'Konstantin Hemker, Andrew H. Song, Cristina Almagro-Pérez, Guillaume Jaume, Sophia J. Wagner, Anurag Vaidya et al.'
+    venue: 'arXiv'
+    year: 2026
+    url: https://arxiv.org/abs/2602.14177
+    why: ''
+- date: 2026-02-25
+  tags:
+  - 3D-vision
+  - foundation-models
+  - generation
+  papers:
+  - title: 'SAM 3D: 3Dfy Anything in Images'
+    authors: ' SAM 3D Team, Xingyu Chen, Fu-Jen Chu, Pierre Gleize, Kevin J Liang, Alexander Sax et al.'
+    venue: 'arXiv'
+    year: 2025
+    url: https://arxiv.org/abs/2511.16624
+    why: ''
+- date: 2026-02-11
+  tags:
+  - LLMs
+  papers:
+  - title: 'Latent Implicit Visual Reasoning'
+    authors: 'Kelvin Li, Chuyi Shang, Leonid Karlinsky, Rogerio Feris, Trevor Darrell, Roei Herzig'
+    venue: 'arXiv'
+    year: 2025
+    url: https://arxiv.org/abs/2512.21218
+    why: ''
+- date: 2026-02-04
+  tags:
+  - self-supervised
+  papers:
+  - title: 'The Common Stability Mechanism behind most Self-Supervised Learning Approaches'
+    authors: 'Abhishek Jha, Matthew B. Blaschko, Yuki M. Asano, Tinne Tuytelaars'
+    venue: 'arXiv'
+    year: 2024
+    url: https://arxiv.org/abs/2402.14957
+    why: ''
+- date: 2026-01-28
+  tags:
+  - interpretability
+  papers:
+  - title: 'Mammo-AGE: deep learning estimation of breast age from mammograms'
+    authors: 'Xin Wang, Tao Tan, Yuan Gao, Hong-Yu Zhou, Tianyu Zhang, Luyi Han et al.'
+    venue: 'Nature Communications'
+    year: 2025
+    url: https://doi.org/10.1038/s41467-025-65923-5
+    why: ''
+  - title: 'Interpretability Beyond Feature Attribution: Quantitative Testing with Concept Activation Vectors (TCAV)'
+    authors: 'Been Kim, Martin Wattenberg, Justin Gilmer, Carrie Cai, James Wexler, Fernanda Viegas et al.'
+    venue: 'arXiv'
+    year: 2017
+    url: https://arxiv.org/abs/1711.11279
+    why: ''
+- date: 2026-01-21
+  tags:
+  - representation-learning
+  papers:
+  - title: 'Next-Embedding Prediction Makes Strong Vision Learners'
+    authors: 'Sihan Xu, Ziqiao Ma, Wenhao Chai, Xuweiyi Chen, Weiyang Jin, Joyce Chai et al.'
+    venue: 'arXiv'
+    year: 2025
+    url: https://arxiv.org/abs/2512.16922
+    why: ''
+- date: 2026-01-14
+  tags:
+  - multimodal
+  - LLMs
+  - interpretability
+  papers:
+  - title: 'A concept-based interpretable model for the diagnosis of choroid neoplasias using multimodal data'
+    authors: 'Yifan Wu, Yang Liu, Yue Yang, Michael S. Yao, Wenli Yang, Xuehui Shi et al.'
+    venue: 'Nature Communications'
+    year: 2025
+    url: https://doi.org/10.1038/s41467-025-58801-7
+    why: ''
+  - title: 'Multicenter Morphometric Analysis of Stratum Corneum Nanotexture for Skin Barrier Assessment'
+    authors: 'J. Wang, C. Chu, Felipe Colombelli, Ching-Wen Du, M. O. Christensen, Jorge Pereda et al.'
+    venue: 'MIDL 2026'
+    year: 2026
+    url: https://openreview.net/forum?id=IiwDSw6EeN
     why: ''
