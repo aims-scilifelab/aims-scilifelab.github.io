@@ -2,7 +2,7 @@
 name: "Emir Konuk"
 face:
   skin: "#d4a070"
-  face: "long"
+  face: "wide"
   hair: {style: "receding", color: "#1e1a16"}
   beard: {style: "shortBeard"}
   eyes: "#241a12"

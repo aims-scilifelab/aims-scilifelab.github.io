@@ -1,16 +1,17 @@
 ---
 name: "Jingyu Guo"
 face:
-  skin: "#edc59e"
+  skin: "#ffebd9"
+  #skin: "#edc59e"
   face: "round"
   hair: {style: "short", color: "#16161e"}
   beard: {style: "none"}
   eyes: "#241a14"
   glasses: "none"
-  shirt: "#3a4048"
+  shirt: "#0A6CAB"
   collar: false
-  expression: "grin"
-  eyeSize: "md"
+  expression: "neutral"
+  eyeSize: "sm"
   eyeShape: "narrow"
   browShape: "straight"
   browWeight: "med"

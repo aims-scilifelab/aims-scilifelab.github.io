@@ -6,8 +6,8 @@ face:
   hair: {style: "short", color: "#141420"}
   beard: {style: "none"}
   eyes: "#241a14"
-  glasses: "none"
-  shirt: "#2c3340"
+  glasses: "round"
+  shirt: "#c0b296"
   collar: true
   expression: "grin"
   eyeSize: "md"

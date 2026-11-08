@@ -1,5 +1,7 @@
 ---
 name: "Anil August Barot"
+face:
+  skin: "#efcba4"
 role: "PhD Student"
 category: "phd"
 status: "current"
