@@ -1,5 +1,5 @@
 ---
-/* Auto-advancing frame showing every gallery photo, newest event first, with
+/* Auto-advancing frame showing every gallery photo in random order, with
  * a caption saying what it was. Clicking a photo opens the shared <Lightbox />.
  *
  * Maintenance: nothing to do, it picks up every non-draft gallery entry.
@@ -67,6 +67,12 @@ const first = slides[0];
   const root = document.querySelector<HTMLElement>('[data-reel]');
   const slides = root ? [...root.querySelectorAll<HTMLElement>('[data-slide]')] : [];
   if (root && slides.length > 1) {
+    // Random order on every visit. The first photo stays put: it is already in
+    // the page's HTML, so swapping it would make the frame flash on load.
+    for (let n = slides.length - 1; n > 1; n--) {
+      const r = 1 + Math.floor(Math.random() * n);
+      [slides[n], slides[r]] = [slides[r], slides[n]];
+    }
     const $ = (s: string) => root.querySelector<HTMLElement>(s)!;
     const toggle = $('[data-toggle]'), cap = $('[data-cap]'), stage = $('[data-stage]');
     const delay = +root.dataset.interval! || 5000;
