@@ -15,6 +15,15 @@ interface Props { entries: CollectionEntry<'gallery'>[]; interval?: number; }
 const { entries, interval = 5000 } = Astro.props;
 const fmt = (d: Date) => d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
 
+const KIND: Record<string, string> = {
+  defense: 'PhD defense', conference: 'Conference', talk: 'Talk', graduation: 'Graduation',
+  visit: 'Visit', milestone: 'Milestone', retreat: 'Retreat', social: 'Team outing',
+};
+
+// Team outings (social, retreat, other) show no description, only research events do.
+const hasDesc = (e: CollectionEntry<'gallery'>) =>
+  ['conference', 'talk', 'defense', 'graduation', 'visit', 'milestone'].includes(e.data.type);
+
 const slides = entries.flatMap((e) =>
   e.data.photos.map((p, k) => ({ e, p, k })).filter(({ p }) => !/placeholder/i.test(p.alt))
 ).map(({ e, p, k }) => ({
@@ -22,39 +31,60 @@ const slides = entries.flatMap((e) =>
   alt: p.alt,
   title: e.data.title,
   caption: p.caption,
-  sub: [e.data.place, fmt(e.data.date)].filter(Boolean).join(' · '),
-  lb: lbData(e, { start: k }),
+  kind: KIND[e.data.type] ?? '',
+  desc: hasDesc(e) ? e.data.description : '',
+  // the kind label already says "PhD defense", so don't repeat it in the place
+  sub: [e.data.place.replace(/^PhD defense\s*·\s*/, ''), fmt(e.data.date)].filter(Boolean).join(' · '),
+  lb: lbData(e, { start: k, description: hasDesc(e) }),
 }));
 const first = slides[0];
+const pad = (n: number) => String(n).padStart(2, '0');
 ---
 {first && (
-  <section class="section-tight reel-sec" aria-label="Photos from life at AiMS">
+  <section class="reel-sec" aria-label="Photos from life at AiMS">
     <div class="wrap">
       <div class="reel" data-reel data-interval={interval} role="group" aria-roledescription="carousel" aria-label="Life at AiMS photos">
+        <div class="aura" aria-hidden="true">
+          <img class="show" data-aura alt="" src={first.src} />
+          <img data-aura alt="" />
+        </div>
+
         <div class="stage" data-stage>
           {slides.map((s, i) => (
             <button type="button" class:list={['slide', { on: i === 0 }]} data-slide data-lb={s.lb}
               data-title={s.title} data-caption={s.caption} data-sub={s.sub} data-src={s.src}
+              data-kind={s.kind} data-desc={s.desc}
               aria-label={`Open photo from ${s.title}: ${s.alt}`}>
               <img class="bg" alt="" aria-hidden="true" src={i === 0 ? s.src : undefined} />
               <img class="fg" alt="" src={i === 0 ? s.src : undefined} fetchpriority={i === 0 ? 'high' : undefined} />
             </button>
           ))}
+          {slides.length > 1 && <span class="progress" data-progress aria-hidden="true"></span>}
         </div>
-        <div class="bar">
+
+        <div class="panel">
           <div class="cap" data-cap aria-live="off">
-            <p class="line"><span class="ttl" data-c-title>{first.title}</span> <span class="pcap" data-c-caption>{first.caption}</span></p>
+            <p class="kind" data-c-kind>{first.kind}</p>
+            <h2 class="ttl" data-c-title>{first.title}</h2>
+            <p class="pcap" data-c-caption>{first.caption}</p>
             <p class="sub" data-c-sub>{first.sub}</p>
+            <p class="desc" data-c-desc>{first.desc}</p>
           </div>
           {slides.length > 1 && (
             <div class="ctl">
-              <span class="n" data-count>1 / {slides.length}</span>
-              <button type="button" class="btn-i" data-prev aria-label="Previous photo">‹</button>
-              <button type="button" class="btn-i" data-toggle aria-label="Pause slideshow">
-                <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx=".6"/><rect x="9.5" y="2.5" width="3" height="11" rx=".6"/></svg>
-                <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.6v10.8c0 .4.4.6.7.4l8-5.4c.3-.2.3-.6 0-.8l-8-5.4c-.3-.2-.7 0-.7.4z"/></svg>
-              </button>
-              <button type="button" class="btn-i" data-next aria-label="Next photo">›</button>
+              <span class="n"><b data-count>01</b><i>/</i>{pad(slides.length)}</span>
+              <span class="btns">
+                <button type="button" class="btn-i" data-prev aria-label="Previous photo">
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" /></svg>
+                </button>
+                <button type="button" class="btn-i play" data-toggle aria-label="Pause slideshow">
+                  <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9" /></svg>
+                  <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.6 8z" /></svg>
+                </button>
+                <button type="button" class="btn-i" data-next aria-label="Next photo">
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" /></svg>
+                </button>
+              </span>
             </div>
           )}
         </div>
@@ -77,7 +107,9 @@ const first = slides[0];
     const toggle = $('[data-toggle]'), cap = $('[data-cap]'), stage = $('[data-stage]');
     const delay = +root.dataset.interval! || 5000;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let i = 0, playing = !reduced, hovering = false, visible = true, last = performance.now();
+    let i = 0, playing = !reduced, hovering = false, visible = true, elapsed = 0;
+    const aura = [...root.querySelectorAll<HTMLImageElement>('[data-aura]')];
+    const progress = $('[data-progress]');
 
     const load = (k: number) => {
       const s = slides[(k + slides.length) % slides.length];
@@ -101,11 +133,18 @@ const first = slides[0];
       s.classList.add('on');
       i = n;
       load(i + 1); load(i - 1);
-      $('[data-c-title]').textContent = s.dataset.title || '';
-      $('[data-c-caption]').textContent = s.dataset.caption || '';
-      $('[data-c-sub]').textContent = s.dataset.sub || '';
-      $('[data-count]').textContent = `${i + 1} / ${slides.length}`;
-      last = performance.now();
+      const set = (sel: string, v?: string) => { $(sel).textContent = v || ''; };
+      set('[data-c-kind]', s.dataset.kind); set('[data-c-title]', s.dataset.title);
+      set('[data-c-caption]', s.dataset.caption); set('[data-c-sub]', s.dataset.sub);
+      set('[data-c-desc]', s.dataset.desc);
+      $('[data-count]').textContent = String(i + 1).padStart(2, '0');
+      elapsed = 0;
+      // the halo behind the frame follows the photo
+      const [cur, nxt] = aura[0].classList.contains('show') ? aura : [aura[1], aura[0]];
+      nxt.src = s.dataset.src!; nxt.classList.add('show'); cur.classList.remove('show');
+      if (!reduced) cap.animate(
+        [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 550, easing: 'cubic-bezier(.2,.7,.2,1)' });
       setTimeout(() => { if (my === token) slides.forEach((x) => x.classList.remove('was')); }, 900);
     };
     const setPlaying = (p: boolean) => {
@@ -113,16 +152,24 @@ const first = slides[0];
       root.classList.toggle('paused', !p);
       toggle.setAttribute('aria-label', p ? 'Pause slideshow' : 'Play slideshow');
       cap.setAttribute('aria-live', p ? 'off' : 'polite');
-      last = performance.now();
+      elapsed = 0;
     };
     const held = () => hovering || !visible || document.hidden
       || !!root.querySelector(':focus-visible') || !!document.querySelector('dialog[open]');
 
-    setInterval(() => {
-      if (!playing) return;
-      if (held()) { last = performance.now(); return; }   // restart the wait after any pause
-      if (performance.now() - last >= delay) show(i + 1);
-    }, 250);
+    let prev = performance.now();
+    const frame = (t: number) => {
+      const dt = Math.min(t - prev, 100); prev = t;
+      const h = held();
+      root.classList.toggle('held', h);
+      if (playing && !h) {
+        elapsed += dt;
+        if (elapsed >= delay) { elapsed = 0; show(i + 1); }
+      }
+      progress.style.transform = `scaleX(${Math.min(elapsed / delay, 1)})`;
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
 
     $('[data-next]').addEventListener('click', () => show(i + 1));
     $('[data-prev]').addEventListener('click', () => show(i - 1));
@@ -149,42 +196,81 @@ const first = slides[0];
 </script>
 
 <style>
-  .reel-sec { padding-top: 0; padding-bottom: 0; }
-  .reel { border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-2); overflow: hidden; }
-  .stage { position: relative; aspect-ratio: 4 / 3; width: 100%; max-height: min(68vh, 620px); background: #000; overflow: hidden; }
-  @media (min-width: 700px) { .stage { aspect-ratio: 16 / 9; } }
+  /* overflow-x: clip keeps the halo from widening the page on phones */
+  .reel-sec { padding-top: clamp(.5rem, 2vw, 1.25rem); overflow-x: clip; }
+
+  .reel { position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 860px) {
+    .reel { grid-template-columns: minmax(0, 1fr) clamp(270px, 27vw, 340px); }
+  }
+
+  /* soft halo in the colours of the current photo */
+  .aura { position: absolute; inset: -6% -3%; z-index: -1; pointer-events: none; }
+  .aura img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    filter: blur(70px) saturate(1.5); opacity: 0; transition: opacity 1.4s ease; }
+  .aura img.show { opacity: .36; }
+
+  .stage { position: relative; aspect-ratio: 4 / 3; width: 100%; max-height: min(72vh, 640px); background: #000; overflow: hidden;
+    border-radius: 14px 14px 0 0; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  @media (min-width: 860px) { .stage { border-radius: 14px 0 0 14px; } }
 
   .slide { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in;
     opacity: 0; visibility: hidden; z-index: 0; }
   .slide.was { opacity: 1; visibility: visible; z-index: 1; pointer-events: none; }
-  .slide.on { opacity: 1; visibility: visible; z-index: 2; transition: opacity .8s ease; }
-  .slide:focus-visible { outline: 2px solid var(--blue); outline-offset: -3px; }
+  .slide.on { opacity: 1; visibility: visible; z-index: 2; transition: opacity .9s ease; }
+  .slide:focus-visible { outline: 2px solid var(--blue); outline-offset: -4px; }
   .slide img { position: absolute; inset: 0; width: 100%; height: 100%; }
-  /* blurred copy fills the frame so portrait photos have no black bars */
-  .bg { object-fit: cover; filter: blur(26px) brightness(.5); transform: scale(1.15); }
+  /* blurred copy fills the frame so tall or wide photos have no black bars */
+  .bg { object-fit: cover; filter: blur(30px) brightness(.45) saturate(1.2); transform: scale(1.15); }
   .fg { object-fit: contain; }
+  .on .fg, .was .fg { animation: drift 9s ease-out both; }
+  .held .fg { animation-play-state: paused; }
+  @keyframes drift { from { transform: scale(1); } to { transform: scale(1.045); } }
 
-  .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; padding: .7rem clamp(.8rem, 2.5vw, 1.2rem); }
-  .cap { flex: 1 1 240px; min-width: 0; min-height: 2.9em; }
-  .line, .sub { margin: 0; }
-  .ttl { font-weight: 600; }
-  .pcap { color: var(--muted); }
-  .pcap:not(:empty) { margin-left: .35em; }
-  .pcap:not(:empty)::before { content: "· "; }
-  .sub { color: var(--faint); font-size: var(--step--1); margin-top: .1rem; }
+  /* time until the next photo */
+  .progress { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; z-index: 3; background: var(--blue);
+    transform: scaleX(0); transform-origin: left; transition: opacity .3s; }
+  .paused .progress { opacity: 0; }
 
-  .ctl { display: flex; align-items: center; gap: 6px; }
-  .n { color: var(--faint); font-size: var(--step--1); margin-right: .4rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .btn-i { width: 44px; height: 44px; display: inline-grid; place-items: center; padding: 0; font-size: 1.4rem; line-height: 1;
-    color: var(--text); background: transparent; border: 1px solid var(--border-strong); border-radius: 999px; cursor: pointer; }
-  .btn-i:hover { background: var(--bg-3); }
-  .btn-i:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-  .btn-i svg { width: 14px; height: 14px; fill: currentColor; }
-  .i-play { display: none; }
+  .panel { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem;
+    padding: clamp(1.1rem, 2.2vw, 1.7rem); min-width: 0;
+    background: linear-gradient(165deg, var(--bg-3), var(--bg-2) 70%);
+    border: 1px solid var(--border); border-top: 0; border-radius: 0 0 14px 14px; }
+  @media (min-width: 860px) { .panel { border-top: 1px solid var(--border); border-left: 0; border-radius: 0 14px 14px 0; } }
+
+  .cap { min-width: 0; min-height: 7.2rem; }
+  .cap p, .cap h2 { margin: 0; }
+  .kind { display: flex; align-items: center; gap: .55em; font-size: .72rem; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--blue); min-height: 1.3em; }
+  .kind:not(:empty)::before { content: ""; width: 1.5em; height: 1px; background: currentColor; }
+  .ttl { font-size: var(--step-2); font-weight: 700; line-height: 1.12; letter-spacing: -.015em; margin-top: .55rem !important;
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+  .pcap { color: var(--text); margin-top: .5rem !important; font-size: var(--step-0); }
+  .pcap:empty { display: none; }
+  .sub { color: var(--faint); font-size: var(--step--1); margin-top: .4rem !important; }
+  .desc { display: none; }
+  @media (min-width: 860px) {
+    .cap { min-height: 0; }
+    .desc:not(:empty) { color: var(--muted); font-size: var(--step--1); line-height: 1.55; margin-top: .9rem !important;
+      display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden; }
+  }
+
+  .ctl { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+  .n { color: var(--faint); font-size: var(--step--1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .n b { color: var(--text); font-weight: 600; }
+  .n i { font-style: normal; margin: 0 .35em; opacity: .6; }
+  .btns { display: flex; gap: 2px; }
+  .btn-i { width: 44px; height: 44px; display: inline-grid; place-items: center; padding: 0;
+    color: var(--muted); background: transparent; border: 0; border-radius: 999px; cursor: pointer; transition: color .15s, background .15s; }
+  .btn-i:hover { color: var(--text); background: rgba(255,255,255,.07); }
+  .btn-i:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .btn-i svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .i-play { display: none; fill: currentColor !important; }
   .paused .i-play { display: block; }
   .paused .i-pause { display: none; }
 
   @media (prefers-reduced-motion: reduce) {
-    .slide.on { transition: none; }
+    .slide.on, .aura img { transition: none; }
+    .on .fg, .was .fg { animation: none; }
   }
 </style>
