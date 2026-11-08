@@ -4,6 +4,7 @@ import PageHeader from '../components/PageHeader.astro';
 import EventStories from '../components/EventStories.astro';
 import OutingGrid from '../components/OutingGrid.astro';
 import ResearchArchive from '../components/ResearchArchive.astro';
+import PhotoReel from '../components/PhotoReel.astro';
 import Lightbox from '../components/Lightbox.astro';
 import { getCollection } from 'astro:content';
 
@@ -29,6 +30,8 @@ const archive = research.filter((e) => !stories.includes(e));
 <Base title="Life at AiMS" description="Research is more than papers and models — a look at the people and community behind AiMS.">
   <PageHeader title="Life at AiMS"
     lede="Research is more than papers and models." />
+
+  <PhotoReel entries={entries} />
 
   <section class="section-tight">
     <div class="wrap">

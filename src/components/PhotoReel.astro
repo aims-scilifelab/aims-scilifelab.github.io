@@ -1,0 +1,184 @@
+---
+/* Auto-advancing frame showing every gallery photo, newest event first, with
+ * a caption saying what it was. Clicking a photo opens the shared <Lightbox />.
+ *
+ * Maintenance: nothing to do, it picks up every non-draft gallery entry.
+ * Photos whose alt text contains "placeholder" are skipped.
+ *
+ * Only the current photo and its neighbours are loaded. It pauses on hover,
+ * keyboard focus, off-screen, or while the viewer is open, and does not
+ * auto-advance for visitors who prefer reduced motion. */
+import type { CollectionEntry } from 'astro:content';
+import { lbData } from '../lib/lightbox';
+
+interface Props { entries: CollectionEntry<'gallery'>[]; interval?: number; }
+const { entries, interval = 5000 } = Astro.props;
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+
+const slides = entries.flatMap((e) =>
+  e.data.photos.map((p, k) => ({ e, p, k })).filter(({ p }) => !/placeholder/i.test(p.alt))
+).map(({ e, p, k }) => ({
+  src: p.src,
+  alt: p.alt,
+  title: e.data.title,
+  caption: p.caption,
+  sub: [e.data.place, fmt(e.data.date)].filter(Boolean).join(' · '),
+  lb: lbData(e, { start: k }),
+}));
+const first = slides[0];
+---
+{first && (
+  <section class="section-tight reel-sec" aria-label="Photos from life at AiMS">
+    <div class="wrap">
+      <div class="reel" data-reel data-interval={interval} role="group" aria-roledescription="carousel" aria-label="Life at AiMS photos">
+        <div class="stage" data-stage>
+          {slides.map((s, i) => (
+            <button type="button" class:list={['slide', { on: i === 0 }]} data-slide data-lb={s.lb}
+              data-title={s.title} data-caption={s.caption} data-sub={s.sub} data-src={s.src}
+              aria-label={`Open photo from ${s.title}: ${s.alt}`}>
+              <img class="bg" alt="" aria-hidden="true" src={i === 0 ? s.src : undefined} />
+              <img class="fg" alt="" src={i === 0 ? s.src : undefined} fetchpriority={i === 0 ? 'high' : undefined} />
+            </button>
+          ))}
+        </div>
+        <div class="bar">
+          <div class="cap" data-cap aria-live="off">
+            <p class="line"><span class="ttl" data-c-title>{first.title}</span> <span class="pcap" data-c-caption>{first.caption}</span></p>
+            <p class="sub" data-c-sub>{first.sub}</p>
+          </div>
+          {slides.length > 1 && (
+            <div class="ctl">
+              <span class="n" data-count>1 / {slides.length}</span>
+              <button type="button" class="btn-i" data-prev aria-label="Previous photo">‹</button>
+              <button type="button" class="btn-i" data-toggle aria-label="Pause slideshow">
+                <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx=".6"/><rect x="9.5" y="2.5" width="3" height="11" rx=".6"/></svg>
+                <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.6v10.8c0 .4.4.6.7.4l8-5.4c.3-.2.3-.6 0-.8l-8-5.4c-.3-.2-.7 0-.7.4z"/></svg>
+              </button>
+              <button type="button" class="btn-i" data-next aria-label="Next photo">›</button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-reel]');
+  const slides = root ? [...root.querySelectorAll<HTMLElement>('[data-slide]')] : [];
+  if (root && slides.length > 1) {
+    const $ = (s: string) => root.querySelector<HTMLElement>(s)!;
+    const toggle = $('[data-toggle]'), cap = $('[data-cap]'), stage = $('[data-stage]');
+    const delay = +root.dataset.interval! || 5000;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let i = 0, playing = !reduced, hovering = false, visible = true, last = performance.now();
+
+    const load = (k: number) => {
+      const s = slides[(k + slides.length) % slides.length];
+      s.querySelectorAll('img').forEach((im) => { if (!im.getAttribute('src')) im.src = s.dataset.src!; });
+    };
+    let token = 0;
+    const show = async (k: number) => {
+      const n = (k + slides.length) % slides.length;
+      if (n === i) return;
+      const my = ++token, s = slides[n];
+      load(n);
+      // Wait until the next photo is ready, then fade it in over the current one.
+      await Promise.race([
+        s.querySelector<HTMLImageElement>('.fg')!.decode().catch(() => {}),
+        new Promise((r) => setTimeout(r, 4000)),   // never let a slow photo stall the reel
+      ]);
+      if (my !== token) return;
+      slides.forEach((x) => x.classList.remove('was'));
+      slides[i].classList.remove('on');
+      slides[i].classList.add('was');
+      s.classList.add('on');
+      i = n;
+      load(i + 1); load(i - 1);
+      $('[data-c-title]').textContent = s.dataset.title || '';
+      $('[data-c-caption]').textContent = s.dataset.caption || '';
+      $('[data-c-sub]').textContent = s.dataset.sub || '';
+      $('[data-count]').textContent = `${i + 1} / ${slides.length}`;
+      last = performance.now();
+      setTimeout(() => { if (my === token) slides.forEach((x) => x.classList.remove('was')); }, 900);
+    };
+    const setPlaying = (p: boolean) => {
+      playing = p;
+      root.classList.toggle('paused', !p);
+      toggle.setAttribute('aria-label', p ? 'Pause slideshow' : 'Play slideshow');
+      cap.setAttribute('aria-live', p ? 'off' : 'polite');
+      last = performance.now();
+    };
+    const held = () => hovering || !visible || document.hidden
+      || !!root.querySelector(':focus-visible') || !!document.querySelector('dialog[open]');
+
+    setInterval(() => {
+      if (!playing) return;
+      if (held()) { last = performance.now(); return; }   // restart the wait after any pause
+      if (performance.now() - last >= delay) show(i + 1);
+    }, 250);
+
+    $('[data-next]').addEventListener('click', () => show(i + 1));
+    $('[data-prev]').addEventListener('click', () => show(i - 1));
+    toggle.addEventListener('click', () => setPlaying(!playing));
+    root.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
+    root.addEventListener('pointerleave', () => { hovering = false; });
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') show(i + 1);
+      if (e.key === 'ArrowLeft') show(i - 1);
+    });
+    new IntersectionObserver(([en]) => { visible = en.isIntersecting; }, { threshold: 0.3 }).observe(root);
+
+    let x0: number | null = null;
+    stage.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) show(dx < 0 ? i + 1 : i - 1);
+    });
+
+    load(1); load(-1);
+    setPlaying(playing);
+  }
+</script>
+
+<style>
+  .reel-sec { padding-top: 0; padding-bottom: 0; }
+  .reel { border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-2); overflow: hidden; }
+  .stage { position: relative; aspect-ratio: 4 / 3; width: 100%; max-height: min(68vh, 620px); background: #000; overflow: hidden; }
+  @media (min-width: 700px) { .stage { aspect-ratio: 16 / 9; } }
+
+  .slide { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in;
+    opacity: 0; visibility: hidden; z-index: 0; }
+  .slide.was { opacity: 1; visibility: visible; z-index: 1; pointer-events: none; }
+  .slide.on { opacity: 1; visibility: visible; z-index: 2; transition: opacity .8s ease; }
+  .slide:focus-visible { outline: 2px solid var(--blue); outline-offset: -3px; }
+  .slide img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  /* blurred copy fills the frame so portrait photos have no black bars */
+  .bg { object-fit: cover; filter: blur(26px) brightness(.5); transform: scale(1.15); }
+  .fg { object-fit: contain; }
+
+  .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; padding: .7rem clamp(.8rem, 2.5vw, 1.2rem); }
+  .cap { flex: 1 1 240px; min-width: 0; min-height: 2.9em; }
+  .line, .sub { margin: 0; }
+  .ttl { font-weight: 600; }
+  .pcap { color: var(--muted); }
+  .pcap:not(:empty) { margin-left: .35em; }
+  .pcap:not(:empty)::before { content: "· "; }
+  .sub { color: var(--faint); font-size: var(--step--1); margin-top: .1rem; }
+
+  .ctl { display: flex; align-items: center; gap: 6px; }
+  .n { color: var(--faint); font-size: var(--step--1); margin-right: .4rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .btn-i { width: 44px; height: 44px; display: inline-grid; place-items: center; padding: 0; font-size: 1.4rem; line-height: 1;
+    color: var(--text); background: transparent; border: 1px solid var(--border-strong); border-radius: 999px; cursor: pointer; }
+  .btn-i:hover { background: var(--bg-3); }
+  .btn-i:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .btn-i svg { width: 14px; height: 14px; fill: currentColor; }
+  .i-play { display: none; }
+  .paused .i-play { display: block; }
+  .paused .i-pause { display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide.on { transition: none; }
+  }
+</style>
