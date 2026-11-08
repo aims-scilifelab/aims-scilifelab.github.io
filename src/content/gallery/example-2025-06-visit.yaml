@@ -1,8 +1,0 @@
-# EXAMPLE placeholder — delete this file before publishing
-date: 2025-06-11
-title: "EXAMPLE — Visit from Karolinska radiology"
-type: "visit"
-place: "SciLifeLab · Solna"
-description: "EXAMPLE — A day of demos and discussions with our clinical collaborators."
-photos:
-  - { src: "/gallery/dinner-1.jpg", alt: "Placeholder visit photo", caption: "" }

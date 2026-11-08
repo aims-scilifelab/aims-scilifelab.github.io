@@ -1,8 +1,0 @@
-# EXAMPLE placeholder — delete this file before publishing
-date: 2024-05-24
-title: "EXAMPLE — Master's graduations"
-type: "graduation"
-place: "KTH"
-description: "EXAMPLE — Congratulations to three master's students graduating from the lab."
-photos:
-  - { src: "/gallery/defense-2.jpg", alt: "Placeholder graduation photo", caption: "" }

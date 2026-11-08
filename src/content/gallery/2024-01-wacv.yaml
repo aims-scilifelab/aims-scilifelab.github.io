@@ -1,0 +1,8 @@
+date: 2024-01-04
+title: "WACV 2024"
+type: "conference"
+place: "Waikoloa, Hawaii"
+description: "A second year at the IEEE/CVF Winter Conference on Applications of Computer Vision, with posters on foundation models for medical imaging and on self-supervised learning for cell imaging."
+photos:
+  - { src: "/gallery/wacv-2024-hawaii.jpg", alt: "Four AiMS members standing in front of their poster, Are Natural Domain Foundation Models Useful for Medical Image Classification?, in a busy poster hall", caption: "At the poster" }
+  - { src: "/gallery/wacv-2024-hawaii-2.jpg", alt: "Two AiMS members at a table on an evening terrace with palm trees and string lights", caption: "Dinner under the palms" }

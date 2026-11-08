@@ -1,9 +1,0 @@
-# EXAMPLE placeholder — delete this file before publishing
-date: 2025-12-04
-title: "EXAMPLE — Two papers at NeurIPS"
-type: "conference"
-place: "NeurIPS 2025 · San Diego"
-description: "EXAMPLE — Spotlight on uncertainty-aware segmentation and a poster on self-supervised pathology models."
-photos:
-  - { src: "/gallery/conf-1.jpg", alt: "Placeholder conference photo", caption: "" }
-  - { src: "/gallery/talk-1.jpg", alt: "Placeholder talk photo", caption: "Spotlight talk" }

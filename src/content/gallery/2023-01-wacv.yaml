@@ -1,0 +1,8 @@
+date: 2023-01-03
+title: "WACV 2023"
+type: "conference"
+place: "Waikoloa, Hawaii"
+description: "The lab at the IEEE/CVF Winter Conference on Applications of Computer Vision: talks by day, and a night trip to see the glow of an active volcano."
+photos:
+  - { src: "/gallery/wacv-2023-hawaii.jpg", alt: "An AiMS member giving a talk at a lectern in a conference room at WACV 2023", caption: "" }
+  - { src: "/gallery/wacv-2023-hawaii-2.jpg", alt: "An AiMS member with a backpack standing at night at the edge of a volcanic crater glowing with lava", caption: "After hours" }

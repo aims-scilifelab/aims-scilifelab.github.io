@@ -1,0 +1,10 @@
+date: 2026-07-07
+title: "MIDL 2026"
+type: "conference"
+archived: true
+place: "Taipei, Taiwan"
+description: "Medical Imaging with Deep Learning came to Taipei: a week of posters, talks and a gala dinner."
+photos:
+  - { src: "/gallery/midl-2026-taipei.jpg", alt: "An AiMS member standing in front of the MIDL Taipei 2026 conference backdrop", caption: "" }
+  - { src: "/gallery/midl-2026-taipei-2.jpg", alt: "A string quartet performing on stage under a screen reading MIDL 2026 Gala Dinner", caption: "Gala dinner" }
+  - { src: "/gallery/midl-2026-taipei-3.jpg", alt: "Taipei skyline with Taipei 101 and green mountains behind, seen across a river in evening light", caption: "Taipei" }

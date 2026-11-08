@@ -1,0 +1,7 @@
+date: 2023-01-01   # TODO: exact defense date
+title: "Dr. Yue Liu"
+type: "defense"
+place: "PhD defense · KTH"
+description: "Yue has successfully defended the PhD thesis Breast cancer risk assessment and detection in mammograms with artificial intelligence, supervised by Kevin Smith, Hossein Azizpour and Fredrik Strand. Congratulations, Dr. Liu!"
+photos:
+  - { src: "/gallery/yue-liu-defense-2023.jpg", alt: "Yue Liu standing beside a screen showing the title slide of the doctoral thesis", caption: "" }
