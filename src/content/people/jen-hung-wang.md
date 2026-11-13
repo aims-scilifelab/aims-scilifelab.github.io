@@ -7,11 +7,11 @@ face:
   beard: {style: "none"}
   eyes: "#241a14"
   glasses: "round"
-  shirt: "#c0b296"
+  shirt: "#615f5a"
   collar: true
-  expression: "grin"
+  expression: "smile"
   eyeSize: "md"
-  eyeShape: "narrow"
+  eyeShape: "almond"
   browShape: "straight"
   browWeight: "med"
   noseSize: "sm"

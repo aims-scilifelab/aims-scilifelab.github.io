@@ -11,7 +11,7 @@ face:
   collar: false
   expression: "smile"
   eyeSize: "md"
-  eyeShape: "almond"
+  eyeShape: "hooded"
   short: true
 role: "PhD Student"
 category: "phd"
