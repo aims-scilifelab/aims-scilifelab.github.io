@@ -1,0 +1,51 @@
+name: Update publications
+
+# Once a month, adds new papers by the AiMS group leaders (found on OpenAlex)
+# to src/content/publications/all.yaml, commits to `main`, and redeploys.
+# See scripts/update-publications.mjs. Can also be run by hand from the
+# Actions tab ("Run workflow").
+on:
+  schedule:
+    - cron: '0 6 1 * *'   # 06:00 UTC on the 1st of every month
+  workflow_dispatch:
+
+permissions:
+  contents: write   # commit the updated list
+  actions: write    # start the deploy workflow
+
+concurrency:
+  group: update-publications
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Look for new publications
+        id: update
+        run: node scripts/update-publications.mjs
+      - name: Commit and push
+        id: commit
+        run: |
+          git add src/content/publications/all.yaml scripts/publications-seen.json
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Publications: add ${{ steps.update.outputs.added }} new from OpenAlex"
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+      # Pushes made by this workflow don't trigger the deploy workflow on their
+      # own, so start it explicitly — only when new papers were added.
+      - name: Redeploy the site
+        if: steps.commit.outputs.pushed == 'true' && steps.update.outputs.added != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

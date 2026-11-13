@@ -17,6 +17,26 @@
 
 items:
 - year: 2026
+  title: "DisCell: Separating Spillover from Niche Response in Spatial Transcriptomics"
+  authors: "R. Molén, H. Toosi, P. F. Ferreira, J. Lagergren"
+  venue: "bioRxiv"
+  url: "https://doi.org/10.64898/2026.11.04.764463"
+- year: 2026
+  title: "Beyond Chemical Similarity: Structure-Agnostic Drug–Drug Interaction Prediction with MeSH Semantics and a Drug–Target–Protein Knowledge Graph"
+  authors: "A. Yılmaz, S. Szydlik, G. Taheri"
+  venue: "bioRxiv"
+  url: "https://doi.org/10.64898/2026.08.10.743843"
+- year: 2026
+  title: "Scalable and robust phylogenetic tree reconstruction from copy-number data with Sparse Rooted Neighbor Joining"
+  authors: "V. Zampinetti, H. Melin, A. Hallin, J. Lagergren"
+  venue: "bioRxiv"
+  url: "https://doi.org/10.64898/2026.07.30.739152"
+- year: 2026
+  title: "PhyMapNet: A Phylogeny-Guided Bayesian Framework for Reliable Microbiome Network Inference"
+  authors: "M. Shahdoust, R. Aghdam, G. Taheri"
+  venue: "bioRxiv"
+  url: "https://doi.org/10.64898/2026.02.24.707538"
+- year: 2026
   title: Streamlining the Histopathological Workflow in Diabetic Kidney Disease with Artificial Intelligence
   authors: C. Matsoukas, …, K. Smith
   venue: Journal of the American Society of Nephrology
