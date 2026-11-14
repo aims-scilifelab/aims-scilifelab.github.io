@@ -17,6 +17,7 @@ face:
   noseSize: "md"
   noseWidth: "med"
   mouthWidth: "med"
+  canadian: true
 role: "PhD Student"
 category: "phd"
 status: "current"

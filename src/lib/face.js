@@ -194,14 +194,9 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
     <path d="M35 89 L51 97 L51 92 L44 89 Z" fill="${shirt}" stroke="${darken(shirt, 0.8)}" stroke-width="0.8" stroke-linejoin="round"/>
     <path d="M65 89 L49 97 L49 92 L56 89 Z" fill="${shirt}" stroke="${darken(shirt, 0.8)}" stroke-width="0.8" stroke-linejoin="round"/>`;
 
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice">
-    <defs><clipPath id="${cid}"><path d="${head}"/></clipPath></defs>
-    <rect width="100" height="120" fill="#12131a"/>
-    ${tall ? bodyTall : (short ? '' : `<path d="${TORSO}" fill="${shirt}"/>`)}
-    ${collar}
-    <g transform="translate(${hx} ${hy}) rotate(${rot} 50 60)">
-      ${(tall || short) ? '' : `<path d="${NECK}" fill="${skin}"/>
-      <path d="M44 88 Q50 92 56 88" stroke="#00000016" stroke-width="2.4" fill="none" stroke-linecap="round"/>`}
+  const neckBits = (tall || short) ? '' : `<path d="${NECK}" fill="${skin}"/>
+      <path d="M44 88 Q50 92 56 88" stroke="#00000016" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
+  const headInner = `${neckBits}
       ${hairBack(hairS, hairC)}
       ${ears}
       <path d="${head}" fill="${skin}"/>
@@ -213,8 +208,39 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
       ${eyes}
       ${brows}
       ${nose}
-      ${mouth}
-      ${glassesSVG(glass)}
+      ${cfg.canadian ? '' : mouth}
+      ${glassesSVG(glass)}`;
+
+  // Canadian mode (South Park): the head is cut in half. Eyes/nose on the top
+  // flap, mouth/chin on the bottom. A thin dark seam shows the cut at rest, and
+  // the People-page CSS flaps the top open on hover (`.ca-top` / `.ca-bot`).
+  if (cfg.canadian) {
+    const SP = 65; // split line
+    const topC = 'ct' + cid, botC = 'cb' + cid, gapC = 'cg' + cid;
+    return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <clipPath id="${cid}"><path d="${head}"/></clipPath>
+      <clipPath id="${topC}"><rect x="-10" y="-10" width="120" height="${SP + 10}"/></clipPath>
+      <clipPath id="${botC}"><rect x="-10" y="${SP}" width="120" height="${130 - SP}"/></clipPath>
+      <clipPath id="${gapC}"><path d="${head}"/></clipPath>
+    </defs>
+    <rect width="100" height="120" fill="#12131a"/>
+    ${tall ? bodyTall : (short ? '' : `<path d="${TORSO}" fill="${shirt}"/>`)}
+    ${collar}
+    <g clip-path="url(#${gapC})"><rect class="ca-gap" x="0" y="${SP - 11}" width="100" height="26" fill="#12131a"/></g>
+    <g class="ca-bot" clip-path="url(#${botC})">${headInner}</g>
+    <g class="ca-top" clip-path="url(#${topC})">${headInner}
+      <rect class="ca-cut" x="0" y="${SP - 1.9}" width="100" height="1.9" fill="#0a0a0d" clip-path="url(#${cid})"/></g>
+  </svg>`;
+  }
+
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice">
+    <defs><clipPath id="${cid}"><path d="${head}"/></clipPath></defs>
+    <rect width="100" height="120" fill="#12131a"/>
+    ${tall ? bodyTall : (short ? '' : `<path d="${TORSO}" fill="${shirt}"/>`)}
+    ${collar}
+    <g transform="translate(${hx} ${hy}) rotate(${rot} 50 60)">
+      ${headInner}
     </g></svg>`;
 }
 

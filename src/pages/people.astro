@@ -150,6 +150,19 @@ const rosters = [
   .ptile .face { position: relative; aspect-ratio: 1 / 1; background: #12131a; }
   .ptile .face :global(svg) { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
+  /* Canadian (South Park) split-head: the head is cut in half; hovering flaps
+     the top open to reveal the interior. `.ca-top` / `.ca-bot` come from
+     faceSVG2's `canadian` mode. */
+  .ptile .face :global(svg .ca-top),
+  .ptile .face :global(svg .ca-bot) { transform-box: view-box; transition: transform .4s cubic-bezier(.34, 1.3, .5, 1); }
+  .ptile .face :global(svg .ca-top) { transform-origin: 50px 64px; }
+  .ptile .face :global(svg .ca-bot) { transform-origin: 50px 66px; }
+  .ptile:hover .face :global(svg .ca-top) { transform: translateY(-9px) rotate(-4deg); }
+  .ptile:hover .face :global(svg .ca-bot) { transform: translateY(3px) rotate(2deg); }
+  @media (prefers-reduced-motion: reduce) {
+    .ptile .face :global(svg .ca-top), .ptile .face :global(svg .ca-bot) { transition: none; }
+  }
+
   .pcap { padding: 11px 13px 13px; }
   .pnm { font-size: var(--step--1); font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
   .prl { font-size: .72rem; color: var(--muted); margin-top: 1px; }
@@ -204,6 +217,9 @@ const rosters = [
                   dx: number; dy: number; surprised: boolean; blink: boolean; key: string };
 
     function render(c: Cell) {
+      // Canadian split-heads render once; the hover flap is pure CSS, so we must
+      // not swap innerHTML (that would interrupt the transition).
+      if (c.cfg && c.cfg.canadian && c.key) return;
       const key = `${c.dx},${c.dy},${c.surprised ? 1 : 0},${c.blink ? 1 : 0}`;
       if (key === c.key) return;
       c.key = key;
