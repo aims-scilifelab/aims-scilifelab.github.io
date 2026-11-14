@@ -69,8 +69,8 @@ const rosters = [
                 <p class="prl">{p.role}</p>
                 {affLine(p) && <p class="paf">{affLine(p)}</p>}
                 <div class="plinks">
+                  <a class="plink" href={p.google_scholar || '#'} target={p.google_scholar ? '_blank' : undefined} rel="noopener">Scholar</a>
                   <a class="plink" href={p.website || '#'} target={p.website ? '_blank' : undefined} rel="noopener">Website</a>
-                  {p.google_scholar && <a class="plink" href={p.google_scholar} target="_blank" rel="noopener">Scholar</a>}
                   {p.github && <a class="plink" href={p.github} target="_blank" rel="noopener">GitHub</a>}
                   {p.linkedin && <a class="plink" href={p.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
                   {p.email && <a class="plink" href={`mailto:${p.email}`} aria-label={`Email ${p.name}`}>Email</a>}
@@ -150,17 +150,22 @@ const rosters = [
   .ptile .face { position: relative; aspect-ratio: 1 / 1; background: #12131a; }
   .ptile .face :global(svg) { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
-  /* Canadian (South Park) split-head: the head is cut in half; hovering flaps
-     the top open to reveal the interior. `.ca-top` / `.ca-bot` come from
-     faceSVG2's `canadian` mode. */
+  /* Canadian (South Park) split-head: the head is cut in half and the top flaps
+     continuously like a Canadian's. Gentle bob at rest, bigger/faster on hover.
+     `.ca-top` / `.ca-bot` come from faceSVG2's `canadian` mode. */
   .ptile .face :global(svg .ca-top),
-  .ptile .face :global(svg .ca-bot) { transform-box: view-box; transition: transform .4s cubic-bezier(.34, 1.3, .5, 1); }
-  .ptile .face :global(svg .ca-top) { transform-origin: 50px 64px; }
-  .ptile .face :global(svg .ca-bot) { transform-origin: 50px 66px; }
-  .ptile:hover .face :global(svg .ca-top) { transform: translateY(-9px) rotate(-4deg); }
-  .ptile:hover .face :global(svg .ca-bot) { transform: translateY(3px) rotate(2deg); }
+  .ptile .face :global(svg .ca-bot) { transform-box: view-box; }
+  .ptile .face :global(svg .ca-top) { transform-origin: 50px 64px; animation: ca-top-bob .95s ease-in-out infinite; }
+  .ptile .face :global(svg .ca-bot) { transform-origin: 50px 66px; animation: ca-bot-bob .95s ease-in-out infinite; }
+  .ptile:hover .face :global(svg .ca-top) { animation: ca-top-open .42s ease-in-out infinite; }
+  .ptile:hover .face :global(svg .ca-bot) { animation: ca-bot-open .42s ease-in-out infinite; }
+  @keyframes ca-top-bob  { 0%,100% { transform: translateY(0); }    50% { transform: translateY(-3px); } }
+  @keyframes ca-bot-bob  { 0%,100% { transform: translateY(0); }    50% { transform: translateY(1.5px); } }
+  @keyframes ca-top-open { 0%,100% { transform: translateY(-1px); } 50% { transform: translateY(-7px); } }
+  @keyframes ca-bot-open { 0%,100% { transform: translateY(0.5px); } 50% { transform: translateY(3.5px); } }
   @media (prefers-reduced-motion: reduce) {
-    .ptile .face :global(svg .ca-top), .ptile .face :global(svg .ca-bot) { transition: none; }
+    .ptile .face :global(svg .ca-top), .ptile .face :global(svg .ca-bot),
+    .ptile:hover .face :global(svg .ca-top), .ptile:hover .face :global(svg .ca-bot) { animation: none; }
   }
 
   .pcap { padding: 11px 13px 13px; }
