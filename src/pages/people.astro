@@ -150,22 +150,17 @@ const rosters = [
   .ptile .face { position: relative; aspect-ratio: 1 / 1; background: #12131a; }
   .ptile .face :global(svg) { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
-  /* Canadian (South Park) split-head: the head is cut in half and the top flaps
-     continuously like a Canadian's. Gentle bob at rest, bigger/faster on hover.
-     `.ca-top` / `.ca-bot` come from faceSVG2's `canadian` mode. */
+  /* Canadian (South Park) split-head EASTER EGG: at rest the tile behaves like any
+     other (gaze, still mouth — handled in the script). The split `.ca-top`/`.ca-bot`
+     head is only rendered while hovered, and flaps vertically the whole time. */
   .ptile .face :global(svg .ca-top),
   .ptile .face :global(svg .ca-bot) { transform-box: view-box; }
-  .ptile .face :global(svg .ca-top) { transform-origin: 50px 64px; animation: ca-top-bob .95s ease-in-out infinite; }
-  .ptile .face :global(svg .ca-bot) { transform-origin: 50px 66px; animation: ca-bot-bob .95s ease-in-out infinite; }
-  .ptile:hover .face :global(svg .ca-top) { animation: ca-top-open .42s ease-in-out infinite; }
-  .ptile:hover .face :global(svg .ca-bot) { animation: ca-bot-open .42s ease-in-out infinite; }
-  @keyframes ca-top-bob  { 0%,100% { transform: translateY(0); }    50% { transform: translateY(-3px); } }
-  @keyframes ca-bot-bob  { 0%,100% { transform: translateY(0); }    50% { transform: translateY(1.5px); } }
-  @keyframes ca-top-open { 0%,100% { transform: translateY(-1px); } 50% { transform: translateY(-7px); } }
-  @keyframes ca-bot-open { 0%,100% { transform: translateY(0.5px); } 50% { transform: translateY(3.5px); } }
+  .ptile .face :global(svg .ca-top) { transform-origin: 50px 64px; animation: ca-top-flap .4s ease-in-out infinite; }
+  .ptile .face :global(svg .ca-bot) { transform-origin: 50px 66px; animation: ca-bot-flap .4s ease-in-out infinite; }
+  @keyframes ca-top-flap { 0%,100% { transform: translateY(-1px); }  50% { transform: translateY(-7px); } }
+  @keyframes ca-bot-flap { 0%,100% { transform: translateY(0.5px); } 50% { transform: translateY(3.5px); } }
   @media (prefers-reduced-motion: reduce) {
-    .ptile .face :global(svg .ca-top), .ptile .face :global(svg .ca-bot),
-    .ptile:hover .face :global(svg .ca-top), .ptile:hover .face :global(svg .ca-bot) { animation: none; }
+    .ptile .face :global(svg .ca-top), .ptile .face :global(svg .ca-bot) { animation: none; }
   }
 
   .pcap { padding: 11px 13px 13px; }
@@ -219,16 +214,26 @@ const rosters = [
     }
 
     type Cell = { el: HTMLElement; face: HTMLElement; cfg: any;
-                  dx: number; dy: number; surprised: boolean; blink: boolean; key: string };
+                  dx: number; dy: number; surprised: boolean; blink: boolean; key: string;
+                  hovered: boolean; canKey: boolean };
 
     function render(c: Cell) {
-      // Canadian split-heads render once; the hover flap is pure CSS, so we must
-      // not swap innerHTML (that would interrupt the transition).
-      if (c.cfg && c.cfg.canadian && c.key) return;
+      // Canadian easter egg: ONLY while hovered does the head split and flap.
+      // Render the split head once per hover so the CSS flap isn't interrupted.
+      if (c.cfg && c.cfg.canadian && c.hovered) {
+        if (c.canKey) return;
+        c.canKey = true; c.key = '';
+        c.face.innerHTML = faceSVG2(c.cfg, 0, 0, false, false);
+        return;
+      }
+      c.canKey = false;
+      // At rest a Canadian behaves like everyone else (gaze, head tilt) but with NO
+      // mouth — a solid beard — so nothing "disappears" when the split opens on hover.
+      const cfg = (c.cfg && c.cfg.canadian) ? { ...c.cfg, canadian: false, noMouth: true } : c.cfg;
       const key = `${c.dx},${c.dy},${c.surprised ? 1 : 0},${c.blink ? 1 : 0}`;
       if (key === c.key) return;
       c.key = key;
-      c.face.innerHTML = faceSVG2(c.cfg, c.dx, c.dy, c.surprised, c.blink);
+      c.face.innerHTML = faceSVG2(cfg, c.dx, c.dy, c.surprised, c.blink);
     }
 
     const cells: Cell[] = tiles.map((el) => {
@@ -236,7 +241,7 @@ const rosters = [
       let cfg: any;
       try { cfg = el.dataset.face ? JSON.parse(el.dataset.face) : seedToConfig(Number(el.dataset.seed) || 0); }
       catch { cfg = seedToConfig(Number(el.dataset.seed) || 0); }
-      const c: Cell = { el, face, cfg, dx: 0, dy: 0, surprised: false, blink: false, key: '' };
+      const c: Cell = { el, face, cfg, dx: 0, dy: 0, surprised: false, blink: false, key: '', hovered: false, canKey: false };
       render(c);
       return c;
     });
@@ -278,8 +283,14 @@ const rosters = [
         addEventListener('mousemove', (e) => { lx = e.clientX; ly = e.clientY; if (!raf) raf = requestAnimationFrame(() => { raf = 0; apply(lx, ly); }); }, { passive: true });
         addEventListener('mouseleave', center);
         cells.forEach((c) => {
-          c.el.addEventListener('mouseenter', () => { c.surprised = true; render(c); });
-          c.el.addEventListener('mouseleave', () => { c.surprised = false; render(c); });
+          c.el.addEventListener('mouseenter', () => {
+            if (c.cfg && c.cfg.canadian) { c.hovered = true; render(c); }   // easter egg
+            else { c.surprised = true; render(c); }
+          });
+          c.el.addEventListener('mouseleave', () => {
+            if (c.cfg && c.cfg.canadian) { c.hovered = false; render(c); }
+            else { c.surprised = false; render(c); }
+          });
         });
       }
     }

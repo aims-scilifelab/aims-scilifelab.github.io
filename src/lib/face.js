@@ -208,14 +208,14 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
       ${eyes}
       ${brows}
       ${nose}
-      ${cfg.canadian ? '' : mouth}
+      ${(cfg.canadian || cfg.noMouth) ? '' : mouth}
       ${glassesSVG(glass)}`;
 
   // Canadian mode (South Park): the head is cut in half. Eyes/nose on the top
   // flap, mouth/chin on the bottom. A thin dark seam shows the cut at rest, and
   // the People-page CSS flaps the top open on hover (`.ca-top` / `.ca-bot`).
   if (cfg.canadian) {
-    const SP = 65; // split line
+    const SP = 70; // split line a little above the mouth, closer to the nose
     const topC = 'ct' + cid, botC = 'cb' + cid, gapC = 'cg' + cid;
     return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice">
     <defs>
