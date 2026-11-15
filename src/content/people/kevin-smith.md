@@ -9,6 +9,7 @@ face:
   glasses: "none"
   shirt: "#6f5c43"
   expression: "smile"
+  hoverMood: "approve"
 role: "Professor"
 category: "lead"
 status: "current"

@@ -178,6 +178,11 @@ const rosters = [
     .ptile .face :global(svg .dance-body), .ptile .face :global(svg .dance-head) { animation: none; }
   }
 
+  /* `hoverMood: "approve"`: a slow, satisfied nod (head dips forward and back). */
+  .ptile .face :global(svg .nod-head) { transform-box: view-box; transform-origin: 50px 80px; animation: nod-head 1.4s ease-in-out infinite; }
+  @keyframes nod-head { 0%, 100% { transform: none; } 50% { transform: translateY(1.5px) scaleY(.96); } }
+  @media (prefers-reduced-motion: reduce) { .ptile .face :global(svg .nod-head) { animation: none; } }
+
   .pcap { padding: 11px 13px 13px; }
   .pnm { font-size: var(--step--1); font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
   .prl { font-size: .72rem; color: var(--muted); margin-top: 1px; }

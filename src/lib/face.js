@@ -135,6 +135,10 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   // CSS on the People page (`.dance-body` / `.dance-head`).
   const dance = hovering && cfg.hoverMood === 'dance';
   if (dance) { surprised = false; blink = false; dx = 0; dy = 0; }
+  // `hoverMood: "approve"`: eyes gently closed, savouring it, big smile, nodding
+  // (CSS `.nod-head`).
+  const approve = hovering && cfg.hoverMood === 'approve';
+  if (approve) { surprised = false; blink = true; dx = 0; dy = 0; }
   const skin  = cfg.skin || '#e3b79a';
   const hairC = (cfg.hair && cfg.hair.color) || '#2b2b33';
   const hairS = (cfg.hair && cfg.hair.style) || 'short';
@@ -211,9 +215,9 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   const beardClip  = beard.clip  ? `<g clip-path="url(#${cid})">${beard.clip}</g>` : '';
   const beardFront = beard.front || '';
   const hasBeard = !!beard.clip;
-  const mouth = `<g transform="translate(50 0) scale(${mW} 1) translate(-50 0)">${hasBeard ? mouthMask((mad || thinking) ? 'neutral' : devil ? 'grin' : expr, surprised, skin) : ''}${mad ? `<path d="M43.5 ${MOUTH_Y+2} q6.5 -4 13 0" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
+  const mouth = `<g transform="translate(50 0) scale(${mW} 1) translate(-50 0)">${hasBeard ? mouthMask((mad || thinking) ? 'neutral' : (devil || approve) ? 'grin' : expr, surprised, skin) : ''}${mad ? `<path d="M43.5 ${MOUTH_Y+2} q6.5 -4 13 0" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
     : devil ? mouthSVG('grin', false, lip)
-    : dance ? mouthSVG('grin', false, lip)
+    : (dance || approve) ? mouthSVG('grin', false, lip)
     : cute ? `<path d="M45.6 ${MOUTH_Y-0.4} q4.4 5.6 8.8 0 z" fill="#7a3440" stroke="${lip}" stroke-width="1" stroke-linejoin="round"/><path d="M47.6 ${MOUTH_Y+2.2} q2.4 -1.6 4.8 0 q-2.4 1.6 -4.8 0z" fill="#e0707f"/>`
     : thinking ? `<path d="M46 ${MOUTH_Y+1.4} q4 -0.6 8.5 -2.4" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
     : sleepy ? `<ellipse cx="50" cy="${MOUTH_Y+1}" rx="1.9" ry="2.3" fill="#3a2632"/>`
@@ -308,7 +312,7 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
     ${tall ? bodyTall : (short ? '' : `<path d="${TORSO}" fill="${shirt}"/>`)}
     ${collar}
     <g transform="translate(${hx} ${hy}) rotate(${rot} 50 60)">
-      ${dance ? `<g class="dance-head">${headInner}</g>` : headInner}
+      ${dance ? `<g class="dance-head">${headInner}</g>` : approve ? `<g class="nod-head">${headInner}</g>` : headInner}
     </g>${dance ? '</g>' : ''}${zzz}${notes}${mathSyms}${hearts}</svg>`;
 }
 
