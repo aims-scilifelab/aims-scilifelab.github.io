@@ -17,6 +17,7 @@ face:
   noseSize: "md"
   noseWidth: "wide"
   mouthWidth: "wide"
+  hoverMood: "cool"
 role: "Postdoc"
 category: "postdoc"
 status: "current"

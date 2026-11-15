@@ -139,6 +139,9 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   // (CSS `.nod-head`).
   const approve = hovering && cfg.hoverMood === 'approve';
   if (approve) { surprised = false; blink = true; dx = 0; dy = 0; }
+  // `hoverMood: "cool"`: dark sunglasses with a glint, smirk, slight head tilt.
+  const cool = hovering && cfg.hoverMood === 'cool';
+  if (cool) { surprised = false; blink = false; dx = 0; dy = 0; }
   const skin  = cfg.skin || '#e3b79a';
   const hairC = (cfg.hair && cfg.hair.color) || '#2b2b33';
   const hairS = (cfg.hair && cfg.hair.style) || 'short';
@@ -215,9 +218,10 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   const beardClip  = beard.clip  ? `<g clip-path="url(#${cid})">${beard.clip}</g>` : '';
   const beardFront = beard.front || '';
   const hasBeard = !!beard.clip;
-  const mouth = `<g transform="translate(50 0) scale(${mW} 1) translate(-50 0)">${hasBeard ? mouthMask((mad || thinking) ? 'neutral' : (devil || approve) ? 'grin' : expr, surprised, skin) : ''}${mad ? `<path d="M43.5 ${MOUTH_Y+2} q6.5 -4 13 0" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
+  const mouth = `<g transform="translate(50 0) scale(${mW} 1) translate(-50 0)">${hasBeard ? mouthMask((mad || thinking || cool) ? 'neutral' : (devil || approve) ? 'grin' : expr, surprised, skin) : ''}${mad ? `<path d="M43.5 ${MOUTH_Y+2} q6.5 -4 13 0" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
     : devil ? mouthSVG('grin', false, lip)
     : (dance || approve) ? mouthSVG('grin', false, lip)
+    : cool ? `<path d="M44.5 ${MOUTH_Y+1.2} q6 2 11.5 -2.2" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
     : cute ? `<path d="M45.6 ${MOUTH_Y-0.4} q4.4 5.6 8.8 0 z" fill="#7a3440" stroke="${lip}" stroke-width="1" stroke-linejoin="round"/><path d="M47.6 ${MOUTH_Y+2.2} q2.4 -1.6 4.8 0 q-2.4 1.6 -4.8 0z" fill="#e0707f"/>`
     : thinking ? `<path d="M46 ${MOUTH_Y+1.4} q4 -0.6 8.5 -2.4" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
     : sleepy ? `<ellipse cx="50" cy="${MOUTH_Y+1}" rx="1.9" ry="2.3" fill="#3a2632"/>`
@@ -238,7 +242,7 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
     ? `<path d="M16 120 C 19 74 31 37 50 37 C 69 37 81 74 84 120 Z" fill="${shirt}"/>
        <path d="M44 21 C 44 28 44 34 46 37 C 48 38 52 38 54 37 C 56 34 56 28 56 21 Z" fill="${skin}"/>`
     : '';
-  const hx = dx * 2.4, hy = dy * 2.2 - (surprised ? 1.6 : 0) + (sleepy ? 2.5 : 0) - headYOff, rot = dx * 3.0 + (sleepy ? 9 : 0) + (music ? -7 : 0) + (thinking ? 4 : 0) + (cute ? -6 : 0);
+  const hx = dx * 2.4, hy = dy * 2.2 - (surprised ? 1.6 : 0) + (sleepy ? 2.5 : 0) - headYOff, rot = dx * 3.0 + (sleepy ? 9 : 0) + (music ? -7 : 0) + (thinking ? 4 : 0) + (cute ? -6 : 0) + (cool ? -5 : 0);
   const heart = (x, y, k) => `<path transform="translate(${x} ${y}) scale(${k})" d="M0 2.6 C -4.6 -0.6 -3.4 -4.4 -0.9 -4.1 C -0.3 -4 0 -3.5 0 -3 C 0 -3.5 0.3 -4 0.9 -4.1 C 3.4 -4.4 4.6 -0.6 0 2.6 Z"/>`;
   const hearts = cute ? `<g fill="#ff7a9a">${heart(15, 36, 1.3)}${heart(84, 28, 1.05)}${heart(88, 44, 0.75)}</g>` : '';
   // Music notes (drawn as shapes, not font glyphs) floating beside the head.
@@ -272,7 +276,11 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
       ${thinking ? thinkBrows : devil ? devilBrows : brows}
       ${nose}
       ${(cfg.canadian || cfg.noMouth) ? '' : mouth}
-      ${glassesSVG(glass)}
+      ${cool ? `<g>
+        <path d="M29 48.5 H71" stroke="#111318" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M30 48 H47.5 C 47.5 55 45.5 60.5 39 60.5 C 32.5 60.5 30 55 30 48 Z" fill="#111318"/>
+        <path d="M52.5 48 H70 C 70 55 67.5 60.5 61 60.5 C 54.5 60.5 52.5 55 52.5 48 Z" fill="#111318"/>
+        <path d="M33 50.5 l4 4 M35.5 50 l5.5 5.5 M55.5 50.5 l4 4 M58 50 l5.5 5.5" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity=".55"/></g>` : glassesSVG(glass)}
       ${angerMark}
       ${cute ? `<g fill="#ff7a8a" opacity=".38"><ellipse cx="${eyeL-2.5}" cy="63.5" rx="4.6" ry="2.6"/><ellipse cx="${eyeR+2.5}" cy="63.5" rx="4.6" ry="2.6"/></g>` : ''}
       ${devil ? `<g fill="#d3302f" stroke="#8e1b1b" stroke-width=".7" stroke-linejoin="round" transform="translate(0 2)">
