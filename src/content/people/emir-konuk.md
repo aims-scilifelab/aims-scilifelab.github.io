@@ -17,6 +17,7 @@ face:
   noseSize: "md"
   noseWidth: "wide"
   mouthWidth: "xl"
+  hoverMood: "thinking"
 role: "Senior Researcher"
 category: "researcher"
 status: "current"

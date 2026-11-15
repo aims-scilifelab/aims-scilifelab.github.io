@@ -112,8 +112,19 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   cfg = cfg || {};
   // Per-person hover mood: `hoverMood: "mad"` replaces the surprised look with
   // an angry one (V brows, squint, frown, red flush and an anger mark).
-  const mad = !!surprised && cfg.hoverMood === 'mad';
+  const hovering = !!surprised;
+  const mad = hovering && cfg.hoverMood === 'mad';
   if (mad) surprised = false;
+  // `hoverMood: "sleepy"`: eyes shut, head droops and tilts, small "o" mouth, Zzz.
+  const sleepy = hovering && cfg.hoverMood === 'sleepy';
+  if (sleepy) { surprised = false; blink = true; dx = 0; dy = 0; }
+  // `hoverMood: "music"`: headphones on, eyes happily shut, head tilted, notes.
+  const music = hovering && cfg.hoverMood === 'music';
+  if (music) { surprised = false; blink = false; dx = 0; dy = 0; }
+  // `hoverMood: "thinking"`: eyes up to the side, one brow raised, "hmm" mouth,
+  // math symbols floating around the head.
+  const thinking = hovering && cfg.hoverMood === 'thinking';
+  if (thinking) { surprised = false; blink = false; dx = 0; dy = 0; }
   const skin  = cfg.skin || '#e3b79a';
   const hairC = (cfg.hair && cfg.hair.color) || '#2b2b33';
   const hairS = (cfg.hair && cfg.hair.style) || 'short';
@@ -132,7 +143,9 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
 
   const head = HEADS[shape];
   const earX = EAR_X[shape];
-  const ears = isHijab ? '' : `<ellipse cx="${earX}" cy="58" rx="3.2" ry="5" fill="${skin}"/><ellipse cx="${100-earX}" cy="58" rx="3.2" ry="5" fill="${skin}"/>`;
+  // When mad, the ears get the same red flush as the face.
+  const earPair = (fill, extra = '') => `<ellipse cx="${earX}" cy="58" rx="3.2" ry="5" fill="${fill}"${extra}/><ellipse cx="${100-earX}" cy="58" rx="3.2" ry="5" fill="${fill}"${extra}/>`;
+  const ears = isHijab ? '' : earPair(skin) + (mad ? earPair('#e0302a', ' opacity=".16"') : '');
   const hijab = isHijab
     ? `<path fill-rule="evenodd" d="M50 11 C 89 11 95 72 83 118 L 17 118 C 5 72 11 11 50 11 Z M50 31 C 32 31 28 47 28 63 C 28 80 37 89 50 89 C 63 89 72 80 72 63 C 72 47 68 31 50 31 Z" fill="${hairC}"/>
        <path d="M50 31 C 42 31 35 32 30 34 C 33 30 41 29 50 29 C 59 29 67 30 70 34 C 65 32 58 31 50 31 Z" fill="${darken(hairC, 0.85)}"/>`
@@ -149,7 +162,7 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   const nWd    = ({ narrow:0.66, med:1, wide:1.45, xwide:1.85 }[cfg.noseWidth]) || 1;
   const mW     = ({ narrow:0.82, med:1, wide:1.28, xl:1.5 }[cfg.mouthWidth]) || 1;
 
-  const px = dx * 3.2, py = dy * 2.9;
+  const px = thinking ? 2.4 : dx * 3.2, py = thinking ? -2.2 : dy * 2.9;
   const eyeRx = (surprised ? 7.0 : 5.9) * eScale, eyeRy = (surprised ? 6.6 : 4.3) * eScale * eRatio * (mad ? 0.72 : 1);
   const pupR = (surprised ? 2.4 : 2.5) * Math.min(eScale, 1.1), irisR = pupR + 1.5;
   const eyeL = 50 - eGap, eyeR = 50 + eGap;
@@ -157,7 +170,10 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   const browY = BROW_Y + dy * 1.5 - (surprised ? 5 : 0) + (mad ? 2 : 0);
   const browCurve = (surprised ? browCurveBase - 2.6 : browCurveBase);
   const lidInk = darken(skin, 0.68);
-  const eyes = blink
+  const eyes = music
+    ? `<path d="M${eyeL-6} ${EYE_Y+1.5} q6 -4.4 12 0" stroke="#20232b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+       <path d="M${eyeR-6} ${EYE_Y+1.5} q6 -4.4 12 0" stroke="#20232b" stroke-width="1.8" fill="none" stroke-linecap="round"/>`
+    : blink
     ? `<path d="M${eyeL-6} ${EYE_Y} q6 3.4 12 0" stroke="#20232b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
        <path d="M${eyeR-6} ${EYE_Y} q6 3.4 12 0" stroke="#20232b" stroke-width="1.8" fill="none" stroke-linecap="round"/>`
     : `<ellipse cx="${eyeL}" cy="${EYE_Y}" rx="${eyeRx.toFixed(2)}" ry="${eyeRy.toFixed(2)}" fill="#fff"/>
@@ -175,13 +191,18 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
        <path d="M${eyeR-6} ${browY} L${eyeR-1} ${browY-2.2} L${eyeR+6} ${browY+1.2}" stroke="${browC}" stroke-width="${bW}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`
     : `<path d="M${eyeL-6} ${browY} q6 ${browCurve} 12 0" stroke="${browC}" stroke-width="${bW}" fill="none" stroke-linecap="round"/>
        <path d="M${eyeR-6} ${browY} q6 ${browCurve} 12 0" stroke="${browC}" stroke-width="${bW}" fill="none" stroke-linecap="round"/>`;
+  const thinkBrows = `<path d="M${eyeL-6} ${browY+1.2} q6 -0.4 12 -1.2" stroke="${browC}" stroke-width="${bW}" fill="none" stroke-linecap="round"/>
+       <path d="M${eyeR-6} ${browY-2.5} q6 ${browCurve-1.8} 12 0" stroke="${browC}" stroke-width="${bW}" fill="none" stroke-linecap="round"/>`;
   const nLen = (NOSE_BOT - NOSE_TOP) * nSz, nTip = 2.5 * nWd;
   const nose = `<path d="M50 ${NOSE_TOP} l${(-nTip).toFixed(1)} ${nLen.toFixed(1)} q${nTip.toFixed(1)} 2 ${(nTip*2).toFixed(1)} 0" stroke="${noseInk}" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".55"/>`;
   const beard = beardBand(beardS, beardC, cfg.beard && cfg.beard.line);
   const beardClip  = beard.clip  ? `<g clip-path="url(#${cid})">${beard.clip}</g>` : '';
   const beardFront = beard.front || '';
   const hasBeard = !!beard.clip;
-  const mouth = `<g transform="translate(50 0) scale(${mW} 1) translate(-50 0)">${hasBeard ? mouthMask(mad ? 'neutral' : expr, surprised, skin) : ''}${mad ? `<path d="M43.5 ${MOUTH_Y+2} q6.5 -4 13 0" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>` : mouthSVG(expr, surprised, lip)}</g>`;
+  const mouth = `<g transform="translate(50 0) scale(${mW} 1) translate(-50 0)">${hasBeard ? mouthMask((mad || thinking) ? 'neutral' : expr, surprised, skin) : ''}${mad ? `<path d="M43.5 ${MOUTH_Y+2} q6.5 -4 13 0" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
+    : thinking ? `<path d="M46 ${MOUTH_Y+1.4} q4 -0.6 8.5 -2.4" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
+    : sleepy ? `<ellipse cx="50" cy="${MOUTH_Y+1}" rx="1.9" ry="2.3" fill="#3a2632"/>`
+    : mouthSVG(expr, surprised, lip)}</g>`;
   const flush = mad ? `<path d="${head}" fill="#e0302a" opacity=".16"/>` : '';
   const angerMark = mad ? `<g transform="translate(66 30)" stroke="#e23b3b" stroke-width="1.6" fill="none" stroke-linecap="round">
        <path d="M-4 -1.2 q2.8 0 2.8 -2.8"/><path d="M1.2 -4 q0 2.8 2.8 2.8"/><path d="M4 1.2 q-2.8 0 -2.8 2.8"/><path d="M-1.2 4 q0 -2.8 -2.8 -2.8"/></g>` : '';
@@ -191,14 +212,23 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
 
   // Gag modes: `tall` crops the frame to just the chin (head up & off-frame, a
   // big torso fills it); `short` sits the figure low so the top of the head AND
-  // the eyes peek over the bottom edge.
-  const tall = !!cfg.tall, short = !!cfg.short;
+  // the eyes peek over the bottom edge. Both drop back to normal on hover.
+  const tall = !!cfg.tall && !hovering, short = !!cfg.short && !hovering;
   const headYOff = tall ? 52 : (short ? -44 : 0);
   const bodyTall = tall
     ? `<path d="M16 120 C 19 74 31 37 50 37 C 69 37 81 74 84 120 Z" fill="${shirt}"/>
        <path d="M44 21 C 44 28 44 34 46 37 C 48 38 52 38 54 37 C 56 34 56 28 56 21 Z" fill="${skin}"/>`
     : '';
-  const hx = dx * 2.4, hy = dy * 2.2 - (surprised ? 1.6 : 0) - headYOff, rot = dx * 3.0;
+  const hx = dx * 2.4, hy = dy * 2.2 - (surprised ? 1.6 : 0) + (sleepy ? 2.5 : 0) - headYOff, rot = dx * 3.0 + (sleepy ? 9 : 0) + (music ? -7 : 0) + (thinking ? 4 : 0);
+  // Music notes (drawn as shapes, not font glyphs) floating beside the head.
+  const note = (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><ellipse cx="0" cy="0" rx="2.6" ry="1.9" transform="rotate(-22)"/><rect x="1.7" y="-11" width="1.1" height="11"/><path d="M2.3 -11 q4.6 1.8 3.4 6.4 q-0.6 -3.2 -3.4 -3.6z"/></g>`;
+  const mathSyms = thinking ? `<g fill="#cfd6e6" font-family="'Times New Roman', Times, serif" font-style="italic">
+      <text x="5" y="33" font-size="11">∑</text><text x="7" y="56" font-size="10">π</text>
+      <text x="80" y="30" font-size="9.5">x²</text><text x="84" y="55" font-size="12">∫</text>
+      <text x="64" y="20" font-size="10" font-style="normal" font-family="Helvetica, Arial, sans-serif" font-weight="700">?</text></g>` : '';
+  const notes = music ? `<g fill="#cfd6e6">${note(13, 44, 1.05)}${note(20, 29, 0.85)}${note(86, 36, 0.95)}</g>` : '';
+  const zzz = sleepy ? `<g fill="#cfd6e6" font-family="Helvetica, Arial, sans-serif" font-weight="700">
+      <text x="70" y="42" font-size="7">z</text><text x="77" y="33" font-size="9.5">Z</text><text x="85" y="23" font-size="12">Z</text></g>` : '';
   const collar = (tall || short || cfg.collar === false) ? '' : `
     <path d="M42 90 L50 101 L58 90 Z" fill="${darken(shirt, 0.55)}"/>
     <path d="M35 89 L51 97 L51 92 L44 89 Z" fill="${shirt}" stroke="${darken(shirt, 0.8)}" stroke-width="0.8" stroke-linejoin="round"/>
@@ -217,11 +247,14 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
       ${hairMain}
       ${hijab}
       ${eyes}
-      ${brows}
+      ${thinking ? thinkBrows : brows}
       ${nose}
       ${(cfg.canadian || cfg.noMouth) ? '' : mouth}
       ${glassesSVG(glass)}
-      ${angerMark}`;
+      ${angerMark}
+      ${music ? `<path d="M${earX-0.5} 55 C ${earX-3} 4 ${103-earX} 4 ${100.5-earX} 55" stroke="#2a2d36" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+      <rect x="${earX-5.5}" y="49" width="8" height="16" rx="3.5" fill="#d9475a"/><rect x="${earX-4}" y="52" width="2.4" height="10" rx="1.2" fill="#2a2d36"/>
+      <rect x="${97.5-earX}" y="49" width="8" height="16" rx="3.5" fill="#d9475a"/><rect x="${101.6-earX}" y="52" width="2.4" height="10" rx="1.2" fill="#2a2d36"/>` : ''}`;
 
   // Canadian mode (South Park): the head is cut in half. Eyes/nose on the top
   // flap, mouth/chin on the bottom. A thin dark seam shows the cut at rest, and
@@ -253,7 +286,7 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
     ${collar}
     <g transform="translate(${hx} ${hy}) rotate(${rot} 50 60)">
       ${headInner}
-    </g></svg>`;
+    </g>${zzz}${notes}${mathSyms}</svg>`;
 }
 
 // ---- Seed fallback -------------------------------------------------------
