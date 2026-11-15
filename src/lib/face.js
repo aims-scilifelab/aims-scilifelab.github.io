@@ -110,6 +110,10 @@ const darken = (hex, f) => {
 let _cid = 0;
 export function faceSVG2(cfg, dx, dy, surprised, blink) {
   cfg = cfg || {};
+  // Per-person hover mood: `hoverMood: "mad"` replaces the surprised look with
+  // an angry one (V brows, squint, frown, red flush and an anger mark).
+  const mad = !!surprised && cfg.hoverMood === 'mad';
+  if (mad) surprised = false;
   const skin  = cfg.skin || '#e3b79a';
   const hairC = (cfg.hair && cfg.hair.color) || '#2b2b33';
   const hairS = (cfg.hair && cfg.hair.style) || 'short';
@@ -146,11 +150,11 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   const mW     = ({ narrow:0.82, med:1, wide:1.28, xl:1.5 }[cfg.mouthWidth]) || 1;
 
   const px = dx * 3.2, py = dy * 2.9;
-  const eyeRx = (surprised ? 7.0 : 5.9) * eScale, eyeRy = (surprised ? 6.6 : 4.3) * eScale * eRatio;
+  const eyeRx = (surprised ? 7.0 : 5.9) * eScale, eyeRy = (surprised ? 6.6 : 4.3) * eScale * eRatio * (mad ? 0.72 : 1);
   const pupR = (surprised ? 2.4 : 2.5) * Math.min(eScale, 1.1), irisR = pupR + 1.5;
   const eyeL = 50 - eGap, eyeR = 50 + eGap;
   const browCurveBase = ({ straight:-0.6, soft:-2.4, arched:-4.6, angled:-2.4 }[bShape]) ?? -2.4;
-  const browY = BROW_Y + dy * 1.5 - (surprised ? 5 : 0);
+  const browY = BROW_Y + dy * 1.5 - (surprised ? 5 : 0) + (mad ? 2 : 0);
   const browCurve = (surprised ? browCurveBase - 2.6 : browCurveBase);
   const lidInk = darken(skin, 0.68);
   const eyes = blink
@@ -163,7 +167,10 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
        <circle cx="${eyeL+px}" cy="${EYE_Y+py}" r="${pupR.toFixed(2)}" fill="#20232b"/>
        <circle cx="${eyeR+px}" cy="${EYE_Y+py}" r="${pupR.toFixed(2)}" fill="#20232b"/>
        ${hooded ? `<path d="M${(eyeL-eyeRx).toFixed(1)} ${(EYE_Y-eyeRy*0.5).toFixed(1)} q${eyeRx.toFixed(1)} ${(-eyeRy).toFixed(1)} ${(eyeRx*2).toFixed(1)} 0" stroke="${lidInk}" stroke-width="1" fill="none" opacity=".6"/><path d="M${(eyeR-eyeRx).toFixed(1)} ${(EYE_Y-eyeRy*0.5).toFixed(1)} q${eyeRx.toFixed(1)} ${(-eyeRy).toFixed(1)} ${(eyeRx*2).toFixed(1)} 0" stroke="${lidInk}" stroke-width="1" fill="none" opacity=".6"/>` : ''}`;
-  const brows = bShape === 'angled'
+  const brows = mad
+    ? `<path d="M${eyeL-6} ${browY-2} L${eyeL+6} ${browY+3}" stroke="${browC}" stroke-width="${bW+0.8}" fill="none" stroke-linecap="round"/>
+       <path d="M${eyeR-6} ${browY+3} L${eyeR+6} ${browY-2}" stroke="${browC}" stroke-width="${bW+0.8}" fill="none" stroke-linecap="round"/>`
+    : bShape === 'angled'
     ? `<path d="M${eyeL-6} ${browY+1.2} L${eyeL+1} ${browY-2.2} L${eyeL+6} ${browY}" stroke="${browC}" stroke-width="${bW}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
        <path d="M${eyeR-6} ${browY} L${eyeR-1} ${browY-2.2} L${eyeR+6} ${browY+1.2}" stroke="${browC}" stroke-width="${bW}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`
     : `<path d="M${eyeL-6} ${browY} q6 ${browCurve} 12 0" stroke="${browC}" stroke-width="${bW}" fill="none" stroke-linecap="round"/>
@@ -174,7 +181,10 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   const beardClip  = beard.clip  ? `<g clip-path="url(#${cid})">${beard.clip}</g>` : '';
   const beardFront = beard.front || '';
   const hasBeard = !!beard.clip;
-  const mouth = `<g transform="translate(50 0) scale(${mW} 1) translate(-50 0)">${hasBeard ? mouthMask(expr, surprised, skin) : ''}${mouthSVG(expr, surprised, lip)}</g>`;
+  const mouth = `<g transform="translate(50 0) scale(${mW} 1) translate(-50 0)">${hasBeard ? mouthMask(mad ? 'neutral' : expr, surprised, skin) : ''}${mad ? `<path d="M43.5 ${MOUTH_Y+2} q6.5 -4 13 0" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>` : mouthSVG(expr, surprised, lip)}</g>`;
+  const flush = mad ? `<path d="${head}" fill="#e0302a" opacity=".16"/>` : '';
+  const angerMark = mad ? `<g transform="translate(66 30)" stroke="#e23b3b" stroke-width="1.6" fill="none" stroke-linecap="round">
+       <path d="M-4 -1.2 q2.8 0 2.8 -2.8"/><path d="M1.2 -4 q0 2.8 2.8 2.8"/><path d="M4 1.2 q-2.8 0 -2.8 2.8"/><path d="M-1.2 4 q0 -2.8 -2.8 -2.8"/></g>` : '';
   // The mouth opening in the beard is drawn with the mouth itself (mouthMask).
   const mouthHole = '';
   const hairMain   = (hairS === 'bald' || isHijab) ? '' : `<g clip-path="url(#${cid})">${hairBand(hairS, hairC, cfg.hair && cfg.hair.line)}</g>`;
@@ -200,6 +210,7 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
       ${hairBack(hairS, hairC)}
       ${ears}
       <path d="${head}" fill="${skin}"/>
+      ${flush}
       ${beardClip}
       ${beardFront}
       ${mouthHole}
@@ -209,7 +220,8 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
       ${brows}
       ${nose}
       ${(cfg.canadian || cfg.noMouth) ? '' : mouth}
-      ${glassesSVG(glass)}`;
+      ${glassesSVG(glass)}
+      ${angerMark}`;
 
   // Canadian mode (South Park): the head is cut in half. Eyes/nose on the top
   // flap, mouth/chin on the bottom. A thin dark seam shows the cut at rest, and
