@@ -5,4 +5,4 @@ place: "SciLifeLab · Solna"
 description: "EXAMPLE — A visiting speaker on scaling foundation models for whole-slide images, followed by a long discussion over fika."
 photos:
   - { src: "/gallery/talk-1.jpg", alt: "A talk at AiMS (placeholder photo)", caption: "" }
-draft: false   # EXAMPLE placeholder — set back to true before publishing
+draft: true   # EXAMPLE placeholder — hidden
