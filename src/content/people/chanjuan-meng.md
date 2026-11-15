@@ -3,7 +3,7 @@ name: "Chanjuan Meng"
 face:
   skin: "#f0d1ad"
   face: "oval"
-  hair: {style: "short", color: "#211810"}
+  hair: {style: "medium", color: "#211810"}
   beard: {style: "none"}
   eyes: "#2a2018"
   glasses: "none"
