@@ -18,6 +18,7 @@ face:
   noseSize: "sm"
   noseWidth: "narrow"
   mouthWidth: "wide"
+  hoverMood: "dance"
 role: "Assistant Professor"
 category: "lead"
 status: "current"

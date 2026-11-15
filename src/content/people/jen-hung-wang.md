@@ -17,6 +17,7 @@ face:
   noseSize: "sm"
   noseWidth: "med"
   mouthWidth: "wide"
+  hoverMood: "devil"
 role: "PhD Student"
 category: "phd"
 status: "current"

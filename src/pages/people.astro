@@ -163,6 +163,21 @@ const rosters = [
     .ptile .face :global(svg .ca-top), .ptile .face :global(svg .ca-bot) { animation: none; }
   }
 
+  /* `hoverMood: "dance"`: the body sways and bounces, the head bobs on top. */
+  .ptile .face :global(svg .dance-body),
+  .ptile .face :global(svg .dance-head) { transform-box: view-box; }
+  .ptile .face :global(svg .dance-body) { transform-origin: 50px 120px; animation: dance-body .9s ease-in-out infinite; }
+  .ptile .face :global(svg .dance-head) { transform-origin: 50px 90px; animation: dance-head .45s ease-in-out infinite alternate; }
+  @keyframes dance-body {
+    0%, 100% { transform: rotate(-6deg); }
+    25%, 75% { transform: rotate(0deg) translateY(-2.5px); }
+    50% { transform: rotate(6deg); }
+  }
+  @keyframes dance-head { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .ptile .face :global(svg .dance-body), .ptile .face :global(svg .dance-head) { animation: none; }
+  }
+
   .pcap { padding: 11px 13px 13px; }
   .pnm { font-size: var(--step--1); font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
   .prl { font-size: .72rem; color: var(--muted); margin-top: 1px; }
@@ -230,7 +245,10 @@ const rosters = [
       // At rest a Canadian behaves like everyone else (gaze, head tilt) but with NO
       // mouth — a solid beard — so nothing "disappears" when the split opens on hover.
       const cfg = (c.cfg && c.cfg.canadian) ? { ...c.cfg, canadian: false, noMouth: true } : c.cfg;
-      const key = `${c.dx},${c.dy},${c.surprised ? 1 : 0},${c.blink ? 1 : 0}`;
+      // While a hover mood is showing, don't redraw on pointer moves or blinks, so
+      // its pose (and any animation, e.g. dancing) isn't restarted.
+      const key = (c.surprised && c.cfg && c.cfg.hoverMood) ? 'mood'
+        : `${c.dx},${c.dy},${c.surprised ? 1 : 0},${c.blink ? 1 : 0}`;
       if (key === c.key) return;
       c.key = key;
       c.face.innerHTML = faceSVG2(cfg, c.dx, c.dy, c.surprised, c.blink);
