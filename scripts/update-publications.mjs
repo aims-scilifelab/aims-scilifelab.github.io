@@ -6,7 +6,8 @@
 // Run by .github/workflows/update-publications.yml once a month, or by hand:
 //   node scripts/update-publications.mjs
 //
-// - Only papers published on or after SINCE are considered.
+// - Only papers published on or after SINCE are considered; preprints
+//   (arXiv, bioRxiv, medRxiv, ...) and conference abstracts are skipped.
 // - A paper is skipped if its title or DOI is already in all.yaml.
 // - Every paper the script has handled is remembered in publications-seen.json,
 //   so an entry you delete from all.yaml is not added back next month.
@@ -31,8 +32,10 @@ const AUTHORS = {
   A5028094685: 'Golnaz Taheri',  // ORCID 0000-0002-2741-0355
 };
 
-// Keep papers, reviews, chapters and preprints; skip everything else.
-const KEEP_TYPES = new Set(['article', 'conference-paper', 'preprint', 'review', 'book-chapter', 'book']);
+// Keep published papers, reviews and chapters; skip preprints and everything else.
+const KEEP_TYPES = new Set(['article', 'conference-paper', 'review', 'book-chapter', 'book']);
+// Preprint servers, in case a preprint is not typed as one.
+const PREPRINT_VENUE = /arxiv|biorxiv|medrxiv|chemrxiv|preprints?\b|ssrn|research square/i;
 // Conference abstracts numbered like "83P Title…", "1234MO …", "LBA12 …"
 // (but not titles such as "3D segmentation…").
 const ABSTRACT_TITLE = /^\s*(LBA\d+|\d+(P|PD|MO|O|TiP|YO|eP))\b/;
@@ -114,6 +117,7 @@ async function main() {
     seen.add(id);
     const title = String(w.title ?? '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
     if (!title || w.is_paratext || w.is_retracted || !KEEP_TYPES.has(w.type) || ABSTRACT_TITLE.test(title)) continue;
+    if (PREPRINT_VENUE.test(w.primary_location?.source?.display_name ?? '')) continue;
     if (onPageTitles.has(norm(title)) || (w.doi && onPageDois.has(cleanDoi(w.doi)))) continue;
     onPageTitles.add(norm(title));
     added.push({ year: w.publication_year, title, authors: authorLine(w.authorships ?? []), venue: venueOf(w), url: urlOf(w) });
