@@ -134,10 +134,16 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
     }).join('');
   }
   try {
+    const MIN_YEAR = 2020; // the reading list only goes back to 2020
     const d = JSON.parse(document.getElementById('lib')?.textContent || '{}');
-    ALL = (d.papers || []).slice().sort((a: any, b: any) => { const ea = eff(a), eb = eff(b); return ea < eb ? 1 : ea > eb ? -1 : (a.title || '').localeCompare(b.title || ''); });
-    (d.stats?.by_tag || []).forEach(([t, c]: [string, number]) => { const o = document.createElement('option'); o.value = t; o.textContent = `${t} (${c})`; $('tag').appendChild(o); });
-    (d.stats?.by_year || []).slice().sort((a: any, b: any) => b[0].localeCompare(a[0])).forEach(([y, c]: [string, number]) => { const o = document.createElement('option'); o.value = y; o.textContent = `${y} (${c})`; $('year').appendChild(o); });
+    ALL = (d.papers || []).filter((p: any) => (parseInt(p.year, 10) || 0) >= MIN_YEAR).slice().sort((a: any, b: any) => { const ea = eff(a), eb = eff(b); return ea < eb ? 1 : ea > eb ? -1 : (a.title || '').localeCompare(b.title || ''); });
+    const tagCounts = new Map<string, number>(), yearCounts = new Map<string, number>();
+    ALL.forEach((p: any) => {
+      (p.tags || []).forEach((t: string) => tagCounts.set(t, (tagCounts.get(t) || 0) + 1));
+      if (p.year) yearCounts.set(String(p.year), (yearCounts.get(String(p.year)) || 0) + 1);
+    });
+    [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])).forEach(([t, c]) => { const o = document.createElement('option'); o.value = t; o.textContent = `${t} (${c})`; $('tag').appendChild(o); });
+    [...yearCounts.entries()].sort((a, b) => b[0].localeCompare(a[0])).forEach(([y, c]) => { const o = document.createElement('option'); o.value = y; o.textContent = `${y} (${c})`; $('year').appendChild(o); });
     let t: any; $('q').addEventListener('input', (e: any) => { clearTimeout(t); t = setTimeout(() => { st.q = e.target.value.trim(); render(); }, 120); });
     $('tag').addEventListener('change', (e: any) => { st.tag = e.target.value; render(); });
     $('year').addEventListener('change', (e: any) => { st.year = e.target.value; render(); });

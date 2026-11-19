@@ -1,0 +1,48 @@
+name: Update reading list
+
+# Every Monday, rebuilds "Recent sessions" (src/content/reading/all.yaml)
+# from the reading-group response sheet (published CSV), commits to `main`,
+# and redeploys. See scripts/update-reading.mjs. Can also be run by hand
+# from the Actions tab ("Run workflow").
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # 06:00 UTC every Monday
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: update-reading
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Rebuild recent sessions
+        run: node scripts/update-reading.mjs
+      - name: Commit and push
+        id: commit
+        run: |
+          git add src/content/reading/all.yaml
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "What We Read: refresh recent sessions"
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+      - name: Redeploy the site
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main
