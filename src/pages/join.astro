@@ -16,14 +16,12 @@ const mscTopics = [
   'Risk prediction',
 ];
 
-// ── MSc thesis inquiry form ────────────────────────────────────────────────
-// Paste your published Google Form embed URL between the quotes to switch the
-// form on. In the Google Form: Send → <> (Embed HTML) → copy the src="…" URL
-// (it ends in `?embedded=true`). Suggested questions in the form:
-//   • Name   • Email   • Program / year   • Your question or project idea
-//   • Upload your CV (a "File upload" question — requires students to sign in
-//     with a Google account, which is fine and keeps the files in your Drive).
-const MSC_FORM_EMBED = '';   // e.g. 'https://docs.google.com/forms/d/e/1FAIpXXXX/viewform?embedded=true'
+// ── Application form ───────────────────────────────────────────────────────
+// The AiMS Join / Application Google Form (created by
+// automation/join-application-form.gs). It collects position, group/PI,
+// research ideas, CV and transcripts; an Apps Script then triages each
+// submission and emails the chosen group leader (or Kevin) automatically.
+const APPLY_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe__3FbJ880-sdJv_yohkxTjHv1nEODm9MTFtK9sTLDDx5lRg/viewform';
 ---
 <Base title="Join" description="Join AiMS — PhD, postdoctoral, engineering and master's thesis opportunities in AI, medicine and the life sciences.">
   <PageHeader title="Join AiMS"
@@ -53,6 +51,19 @@ const MSC_FORM_EMBED = '';   // e.g. 'https://docs.google.com/forms/d/e/1FAIpXXX
 
   <section class="section-tight">
     <div class="wrap">
+      <h2 class="cat">Apply or get in touch</h2>
+      <p class="muted measure">Whether you're interested in a PhD, a postdoc, a researcher or engineering role, or a
+      master's thesis, you can tell us about yourself directly. Choose the position and the group that fits best,
+      describe what you'd like to work on, and attach your CV and transcripts — your application goes straight to the
+      most relevant group leader.</p>
+      <p class="cta"><a class="btn btn-primary" href={APPLY_FORM_URL} target="_blank" rel="noopener">Start an application</a></p>
+      <p class="faint measure note">Uploading files asks you to sign in with a Google account; if that's a problem, the
+      form also accepts a shareable link to your CV.</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
       <h2 class="cat">Master's thesis projects</h2>
       <p class="muted measure">Master's thesis projects are available for students enrolled at KTH. Areas we're
       currently interested in supervising include:</p>
@@ -63,15 +74,9 @@ const MSC_FORM_EMBED = '';   // e.g. 'https://docs.google.com/forms/d/e/1FAIpXXX
 
       <div class="inquiry">
         <h3 class="cat3">Have a project in mind?</h3>
-        <p class="muted measure">If you're a student interested in a thesis with us, send a short inquiry — tell us
-        your question or idea and attach your CV, and we'll be in touch.</p>
-        {MSC_FORM_EMBED ? (
-          <div class="formwrap">
-            <iframe src={MSC_FORM_EMBED} title="MSc thesis inquiry form" loading="lazy" width="100%" height="920">Loading…</iframe>
-          </div>
-        ) : (
-          <p class="faint measure note">The inquiry form is being set up and will appear here shortly.</p>
-        )}
+        <p class="muted measure">If you're a student interested in a thesis with us, use the
+        <a class="link" href={APPLY_FORM_URL} target="_blank" rel="noopener">application form</a> above and choose
+        <em>Master's thesis</em> as the position — tell us your question or idea and attach your CV, and we'll be in touch.</p>
       </div>
     </div>
   </section>
@@ -89,7 +94,5 @@ const MSC_FORM_EMBED = '';   // e.g. 'https://docs.google.com/forms/d/e/1FAIpXXX
   .inquiry { margin-top: 2.4rem; padding-top: 1.8rem; border-top: 1px solid var(--border); }
   .cat3 { font-size: var(--step-0); }
   .inquiry p { margin-top: .6rem; }
-  .formwrap { margin-top: 1.4rem; max-width: 720px; border: 1px solid var(--border); border-radius: var(--radius);
-              overflow: hidden; background: var(--bg-2); }
-  .formwrap iframe { display: block; width: 100%; border: 0; }
+  .cta { margin-top: 1.3rem; }
 </style>
