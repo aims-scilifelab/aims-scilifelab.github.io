@@ -30,7 +30,11 @@ const galleryPeople = all
     a.name.localeCompare(b.name));
 
 // Faceless lists.
-const collaborators = all.filter((p) => p.status === 'current' && p.category === 'collaborator');
+// Collaborators are shown only for senior people (PIs, clinicians, researchers) —
+// not students in partner groups.
+const isStudent = (p: typeof all[number]) =>
+  /\b(student|ph\.?d|m\.?sc|master'?s?|b\.?sc|bachelor|intern|thesis)\b/i.test(p.role || '');
+const collaborators = all.filter((p) => p.status === 'current' && p.category === 'collaborator' && !isStudent(p));
 const affiliates    = all.filter((p) => p.status === 'current' && p.category === 'affiliate');
 
 const surname = (n: string) => n.split(' ').slice(1).join(' ') || n;
@@ -48,7 +52,7 @@ const affLine = (p: typeof all[number]) =>
 // Faceless roster sections (no portraits).
 const rosters = [
   { title: 'Collaborators', people: collaborators,
-    note: 'Researchers and students in partner groups and organizations we work closely with.' },
+    note: 'Senior researchers and clinicians in partner groups and organizations we work closely with.' },
   { title: 'Affiliated Researchers', people: affiliates,
     note: 'Researchers based in collaborating groups who regularly take part in AiMS research and activities.' },
 ];

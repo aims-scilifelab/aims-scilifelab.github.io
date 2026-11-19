@@ -6,6 +6,6 @@ status: "current"
 affiliation: "Karolinska Institutet (KI)"
 website: "https://ki.se/en/people/elisabeth-epstein"
 google_scholar: "https://scholar.google.com/citations?user=3Wt0_t0AAAAJ"
-order: 502
+order: 503
 draft: false
 ---

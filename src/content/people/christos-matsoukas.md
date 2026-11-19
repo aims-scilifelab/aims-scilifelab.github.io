@@ -9,6 +9,6 @@ website: "https://www.kth.se/profile/matsou"
 alumnus_of: "PhD"
 alumni_destination: "Director of AI, AstraZeneca"
 linkedin: "https://www.linkedin.com/in/chrismats/"
-order: 505
+order: 501
 draft: false
 ---
