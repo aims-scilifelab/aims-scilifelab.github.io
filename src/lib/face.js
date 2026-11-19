@@ -107,6 +107,18 @@ const darken = (hex, f) => {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 };
 
+// A sleeved forearm rising from the shoulder to the real pinched-fingers emoji
+// (🤌, flipped so its wrist meets the arm), held off to the side. The People-page
+// CSS rocks the whole `.it-hand` from the elbow.
+function italianHand(skin, shirt) {
+  return `<g class="it-hand">
+    <path d="M99 124 L92 109" stroke="${shirt}" stroke-width="16" stroke-linecap="round"/>
+    <path d="M95 115 L84 92" stroke="${skin}" stroke-width="10" stroke-linecap="round"/>
+    <g transform="matrix(-1 0 0 1 154 0)"><text x="77" y="90" font-size="30" text-anchor="middle"
+      style="font-family:'Noto Color Emoji','Apple Color Emoji','Segoe UI Emoji','Twemoji Mozilla',sans-serif">\u{1F90C}</text></g>
+  </g>`;
+}
+
 let _cid = 0;
 export function faceSVG2(cfg, dx, dy, surprised, blink) {
   cfg = cfg || {};
@@ -148,6 +160,10 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   // `hoverMood: "happy"`: crinkled happy eyes, big open smile.
   const happy = hovering && cfg.hoverMood === 'happy';
   if (happy) { surprised = false; blink = false; dx = 0; dy = 0; }
+  // `hoverMood: "italian"`: the 🤌 pinched-fingers hand on a raised, shaking arm,
+  // with an exasperated "ma che vuoi" face (raised brows, pursed mouth).
+  const italian = hovering && cfg.hoverMood === 'italian';
+  if (italian) { surprised = false; blink = false; dx = 0; dy = 0; }
   const skin  = cfg.skin || '#e3b79a';
   const hairC = (cfg.hair && cfg.hair.color) || '#2b2b33';
   const hairS = (cfg.hair && cfg.hair.style) || 'short';
@@ -190,7 +206,7 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   const pupR = (surprised ? 2.4 : 2.5) * Math.min(eScale, 1.1), irisR = pupR + 1.5;
   const eyeL = 50 - eGap, eyeR = 50 + eGap;
   const browCurveBase = ({ straight:-0.6, soft:-2.4, arched:-4.6, angled:-2.4 }[bShape]) ?? -2.4;
-  const browY = BROW_Y + dy * 1.5 - (surprised ? 5 : 0) + (mad ? 2 : 0) - (sing ? 1 : 0);
+  const browY = BROW_Y + dy * 1.5 - (surprised ? 5 : 0) + (mad ? 2 : 0) - (sing ? 1 : 0) - (italian ? 4 : 0);
   const browCurve = (surprised ? browCurveBase - 2.6 : browCurveBase);
   const lidInk = darken(skin, 0.68);
   const eyes = (music || cute || dance || happy)
@@ -235,6 +251,7 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
     : cute ? `<path d="M45.6 ${MOUTH_Y-0.4} q4.4 5.6 8.8 0 z" fill="#7a3440" stroke="${lip}" stroke-width="1" stroke-linejoin="round"/><path d="M47.6 ${MOUTH_Y+2.2} q2.4 -1.6 4.8 0 q-2.4 1.6 -4.8 0z" fill="#e0707f"/>`
     : thinking ? `<path d="M46 ${MOUTH_Y+1.4} q4 -0.6 8.5 -2.4" stroke="${lip}" stroke-width="2" fill="none" stroke-linecap="round"/>`
     : sleepy ? `<ellipse cx="50" cy="${MOUTH_Y+1}" rx="1.9" ry="2.3" fill="#3a2632"/>`
+    : italian ? `<path d="M43.5 ${MOUTH_Y+2} q6.5 -4 13 0" stroke="${lip}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`
     : mouthSVG(expr, surprised, lip)}</g>`;
   const flush = mad ? `<path d="${head}" fill="#e0302a" opacity=".16"/>` : '';
   const angerMark = mad ? `<g transform="translate(66 30)" stroke="#e23b3b" stroke-width="1.6" fill="none" stroke-linecap="round">
@@ -255,6 +272,7 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
   const hx = dx * 2.4, hy = dy * 2.2 - (surprised ? 1.6 : 0) + (sleepy ? 2.5 : 0) - headYOff, rot = dx * 3.0 + (sleepy ? 9 : 0) + (music ? -7 : 0) + (thinking ? 4 : 0) + (cute ? -6 : 0) + (cool ? -5 : 0) + (sing ? -5 : 0);
   const heart = (x, y, k) => `<path transform="translate(${x} ${y}) scale(${k})" d="M0 2.6 C -4.6 -0.6 -3.4 -4.4 -0.9 -4.1 C -0.3 -4 0 -3.5 0 -3 C 0 -3.5 0.3 -4 0.9 -4.1 C 3.4 -4.4 4.6 -0.6 0 2.6 Z"/>`;
   const hearts = cute ? `<g fill="#ff7a9a">${heart(15, 36, 1.3)}${heart(84, 28, 1.05)}${heart(88, 44, 0.75)}</g>` : '';
+  const handLayer = italian ? italianHand(skin, shirt) : '';
   // Music notes (drawn as shapes, not font glyphs) floating beside the head.
   const note = (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><ellipse cx="0" cy="0" rx="2.6" ry="1.9" transform="rotate(-22)"/><rect x="1.7" y="-11" width="1.1" height="11"/><path d="M2.3 -11 q4.6 1.8 3.4 6.4 q-0.6 -3.2 -3.4 -3.6z"/></g>`;
   const mathSyms = thinking ? `<g fill="#cfd6e6" font-family="'Times New Roman', Times, serif" font-style="italic">
@@ -332,7 +350,7 @@ export function faceSVG2(cfg, dx, dy, surprised, blink) {
     ${collar}
     <g transform="translate(${hx} ${hy}) rotate(${rot} 50 60)">
       ${dance ? `<g class="dance-head">${headInner}</g>` : approve ? `<g class="nod-head">${headInner}</g>` : headInner}
-    </g>${dance ? '</g>' : ''}${zzz}${notes}${mathSyms}${hearts}</svg>`;
+    </g>${dance ? '</g>' : ''}${zzz}${notes}${mathSyms}${hearts}${handLayer}</svg>`;
 }
 
 // ---- Seed fallback -------------------------------------------------------
