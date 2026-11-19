@@ -13,12 +13,6 @@ const domains = (await getCollection('domains', pub)).sort((a, b) => a.data.orde
 
 const leads = (await getCollection('people', (p) => !p.data.draft && p.data.category === 'lead'))
   .sort((a, b) => a.data.order - b.data.order);
-
-// latest reading session — from the single file src/content/reading/all.yaml
-const readingEntry = await getEntry('reading', 'all');
-const sessions = (readingEntry?.data.sessions ?? []).slice()
-  .sort((a, b) => +new Date(b.date) - +new Date(a.date));
-const latest = sessions[0];
 ---
 <Base>
   <Hero />
@@ -51,27 +45,6 @@ const latest = sessions[0];
       <p class="more"><a class="link" href="/research">Explore our research →</a></p>
     </div>
   </section>
-
-  <!-- What we're reading -->
-  {latest && (
-    <section class="section" aria-labelledby="wr">
-      <div class="wrap">
-        <p class="eyebrow">What we're reading</p>
-        <h2 id="wr">From our reading group</h2>
-        {h.readingIntro && <p class="lede muted intro">{h.readingIntro}</p>}
-        <ul class="read-list">
-          {latest.papers.slice(0, 3).map((p) => (
-            <li>
-              <a href={p.url || '#'} target={p.url ? '_blank' : undefined} rel="noopener">{p.title}</a>
-              <div class="faint sel-meta">{p.venue}{p.year ? ` · ${p.year}` : ''}</div>
-              {p.why && <div class="muted sel-note"><strong>Why we picked it:</strong> {p.why}</div>}
-            </li>
-          ))}
-        </ul>
-        <p class="more"><a class="link" href="/what-we-read">See what we read →</a></p>
-      </div>
-    </section>
-  )}
 
   <!-- People / culture teaser -->
   <section class="section band" aria-labelledby="pc">
