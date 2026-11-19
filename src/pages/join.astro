@@ -16,11 +16,11 @@ const mscTopics = [
   'Risk prediction',
 ];
 
-// ── Application form ───────────────────────────────────────────────────────
-// The AiMS Join / Application Google Form (created by
-// automation/join-application-form.gs). It collects position, group/PI,
-// research ideas, CV and transcripts; an Apps Script then triages each
-// submission and emails the chosen group leader (or Kevin) automatically.
+// ── Thesis-project application form ─────────────────────────────────────────
+// The Google Form (created by automation/join-application-form.gs) used ONLY
+// for MSc/BSc student thesis projects. It collects the project idea, CV and
+// transcripts; an Apps Script triages each submission and emails the group.
+// (PhD / postdoc / staff openings go through the official KTH & KI job boards.)
 const APPLY_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe__3FbJ880-sdJv_yohkxTjHv1nEODm9MTFtK9sTLDDx5lRg/viewform';
 ---
 <Base title="Join" description="Join AiMS — PhD, postdoctoral, engineering and master's thesis opportunities in AI, medicine and the life sciences.">
@@ -30,10 +30,13 @@ const APPLY_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe__3FbJ880-sdJ
   <section class="section-tight">
     <div class="wrap">
       <h2 class="cat">Open positions</h2>
-      <p class="muted measure">PhD, postdoctoral, engineering and staff positions are advertised through
-      <a class="link" href="https://www.kth.se/en/om/work-at-kth" target="_blank" rel="noopener">KTH</a> and
-      <a class="link" href="https://ki.se/en/about/jobs-and-vacancies-at-ki" target="_blank" rel="noopener">Karolinska Institutet&nbsp;(KI)</a>.
-      When we have an open call, we link it here — please apply through the official posting.</p>
+      <p class="muted measure">PhD, postdoctoral, engineering and staff positions are advertised through the official
+      KTH and Karolinska Institutet (KI) job boards. When we have an open call we link it here too — please apply
+      through the official posting.</p>
+      <p class="job-boards">
+        <a class="btn btn-ghost" href="https://www.kth.se/lediga-jobb?l=en" target="_blank" rel="noopener">KTH vacancies</a>
+        <a class="btn btn-ghost" href="https://ki.se/en/about-ki/jobs-at-ki/available-positions-at-ki" target="_blank" rel="noopener">KI vacancies</a>
+      </p>
       {rendered.length > 0 && (
         <ul class="openings">
           {rendered.map(({ data, Content }) => (
@@ -51,21 +54,8 @@ const APPLY_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe__3FbJ880-sdJ
 
   <section class="section-tight">
     <div class="wrap">
-      <h2 class="cat">Apply or get in touch</h2>
-      <p class="muted measure">Whether you're interested in a PhD, a postdoc, a researcher or engineering role, or a
-      master's thesis, you can tell us about yourself directly. Choose the position and the group that fits best,
-      describe what you'd like to work on, and attach your CV and transcripts — your application goes straight to the
-      most relevant group leader.</p>
-      <p class="cta"><a class="btn btn-primary" href={APPLY_FORM_URL} target="_blank" rel="noopener">Start an application</a></p>
-      <p class="faint measure note">Uploading files asks you to sign in with a Google account; if that's a problem, the
-      form also accepts a shareable link to your CV.</p>
-    </div>
-  </section>
-
-  <section class="section-tight">
-    <div class="wrap">
-      <h2 class="cat">Master's thesis projects</h2>
-      <p class="muted measure">Master's thesis projects are available for students enrolled at KTH. Areas we're
+      <h2 class="cat">Master's &amp; Bachelor's thesis projects</h2>
+      <p class="muted measure">We supervise degree projects (MSc and BSc) for students enrolled at KTH. Areas we're
       currently interested in supervising include:</p>
       <ul class="topics measure muted">
         {mscTopics.map((t) => <li>{t}</li>)}
@@ -74,9 +64,11 @@ const APPLY_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe__3FbJ880-sdJ
 
       <div class="inquiry">
         <h3 class="cat3">Have a project in mind?</h3>
-        <p class="muted measure">If you're a student interested in a thesis with us, use the
-        <a class="link" href={APPLY_FORM_URL} target="_blank" rel="noopener">application form</a> above and choose
-        <em>Master's thesis</em> as the position — tell us your question or idea and attach your CV, and we'll be in touch.</p>
+        <p class="muted measure">Tell us about yourself and the project you'd like to do — describe your idea and
+        attach your CV and transcripts, and we'll read it and get back to you.</p>
+        <p class="cta"><a class="btn btn-primary" href={APPLY_FORM_URL} target="_blank" rel="noopener">Apply for a thesis project</a></p>
+        <p class="faint measure note">Uploading files asks you to sign in with a Google account; if that's a problem, the
+        form also accepts a shareable link to your CV.</p>
       </div>
     </div>
   </section>
@@ -84,6 +76,7 @@ const APPLY_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe__3FbJ880-sdJ
 
 <style>
   .cat { font-size: var(--step-1); }
+  .job-boards { margin-top: 1.3rem; display: flex; flex-wrap: wrap; gap: .7rem; }
   .openings { list-style: none; padding: 0; margin-top: 1.2rem; display: grid; gap: 1rem; }
   .opening { padding: clamp(1.1rem, 3vw, 1.6rem); }
   .opening h3 { font-size: var(--step-0); }
