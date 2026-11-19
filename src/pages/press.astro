@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getEntry } from 'astro:content';
+
+const data = (await getEntry('press', 'all'))?.data;
+const outlets = data?.featuredOutlets ?? [];
+const items = [...(data?.items ?? [])].sort((a, b) => +b.date - +a.date);
+
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+
+// Group newest-first by year.
+const byYear = new Map<number, typeof items>();
+for (const it of items) {
+  const y = it.date.getFullYear();
+  if (!byYear.has(y)) byYear.set(y, []);
+  byYear.get(y)!.push(it);
+}
+const years = [...byYear.keys()].sort((a, b) => b - a);
+---
+<Base title="In the press"
+  description="Selected media coverage of AiMS research across machine learning, medicine and the life sciences.">
+  <PageHeader title="In the press"
+    lede="Selected coverage of our research, and of the clinical and international collaborations we are part of." />
+
+  {outlets.length > 0 && (
+    <section class="section-tight" aria-label="Featured in">
+      <div class="wrap">
+        <p class="eyebrow">Featured in</p>
+        <ul class="outlets">
+          {outlets.map((o) => <li>{o}</li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section-tight press-list">
+    <div class="wrap">
+      <p class="note faint measure">Where a story reports work we co-authored rather than led, the AiMS
+      contributor is noted. We list a representative outlet for each story rather than every reprint.</p>
+
+      {years.map((y) => (
+        <section class="yr" id={`y${y}`} aria-labelledby={`yh${y}`}>
+          <header class="yr-head"><h2 class="year" id={`yh${y}`}>{y}</h2></header>
+          <ol class="press">
+            {byYear.get(y)!.map((p) => (
+              <li class="item">
+                <div class="meta"><span class="outlet">{p.outlet}</span><span class="dot">·</span><span class="date">{fmt(p.date)}</span>{p.lang && p.lang !== 'EN' && <span class="lang">{p.lang}</span>}</div>
+                <a class="headline" href={p.url} target="_blank" rel="noopener">{p.headline}</a>
+                <div class="sub faint">
+                  {p.topic && <span class="topic">{p.topic}</span>}
+                  {p.topic && p.people && <span class="dot">·</span>}
+                  {p.people && <span class="people">{p.people}</span>}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .outlets { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; gap: .6rem .7rem; }
+  .outlets li { border: 1px solid var(--border-strong); border-radius: 999px; padding: 6px 14px;
+                font-size: var(--step--1); color: var(--text); font-weight: 600; background: var(--bg-2); }
+
+  .note { margin: 0 0 1.4rem; font-size: var(--step--1); }
+
+  .yr { display: grid; gap: .6rem 2rem; padding: 1.6rem 0; border-top: 1px solid var(--border); scroll-margin-top: 1rem; }
+  .yr-head { display: flex; align-items: baseline; }
+  .year { font-size: var(--step-1); color: var(--text); font-weight: 700; margin: 0; }
+  @media (min-width: 800px) {
+    .yr { grid-template-columns: 7.5rem 1fr; }
+    .yr-head { position: sticky; top: 1rem; align-self: start; }
+  }
+
+  .press { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.3rem; max-width: var(--measure); }
+  .meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem; font-size: var(--step--1); }
+  .outlet { color: var(--text); font-weight: 600; }
+  .dot { color: var(--faint); }
+  .date { color: var(--muted); }
+  .lang { border: 1px solid var(--border-strong); border-radius: 4px; padding: 0 5px; font-size: .68rem;
+          color: var(--muted); letter-spacing: .04em; margin-left: .15rem; }
+  .headline { display: block; font-weight: 600; line-height: 1.35; margin-top: .25rem; }
+  a.headline:hover { color: var(--blue); }
+  .sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem; margin-top: .3rem; font-size: var(--step--1); }
+  .topic { color: var(--muted); }
+</style>

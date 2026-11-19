@@ -1,0 +1,202 @@
+# =========================================================================
+# IN THE PRESS  —  curated media coverage.
+#
+# Two things live here:
+#   • featuredOutlets — the short list of outlet names shown in the small
+#     "Featured in" strip on the home page. Keep it to the most recognizable.
+#   • items — the full list shown on /press, newest first.
+#
+# CURATION RULE: add an item only when an AiMS person is named/interviewed,
+# OR is an author of the research being reported (note them in `people`).
+# Avoid listing many reprints of the same release — pick the best one or two.
+#
+#   date:     YYYY-MM-DD (publication date)
+#   outlet:   publication / broadcaster
+#   headline: the article title
+#   url:      link to the original coverage
+#   topic:    research theme (groups related items on the page)
+#   people:   AiMS people connected to the story
+#   lang:     EN, SV, …
+# =========================================================================
+
+featuredOutlets:
+  - "The New Yorker"
+  - "WIRED"
+  - "MIT News"
+  - "SVT"
+  - "TV4"
+  - "AuntMinnie"
+  - "KTH"
+  - "SciLifeLab"
+
+items:
+  # ---- Ovarian ultrasound (Nature Medicine, 2025) — flagship ----
+  - date: 2025-04-02
+    outlet: "Tidningen Curie"
+    headline: "Ny AI-modell bättre än experter – men läkarna får inte lita helt på tekniken"
+    url: "https://www.tidningencurie.se/nyheter/ny-ai-modell-battre-an-experter---men-lakarna-far-inte-lita-helt-pa-tekniken"
+    topic: "Ovarian ultrasound"
+    people: "Filip Christiansen, Emir Konuk"
+    lang: "SV"
+  - date: 2025-01-13
+    outlet: "KTH News"
+    headline: "AI better at detecting ovarian cancer"
+    url: "https://www.kth.se/en/om/nyheter/centrala-nyheter/ai-battre-pa-att-upptacka-aggstockscancer-1.1378780"
+    topic: "Ovarian ultrasound"
+    people: "Emir Konuk, Filip Christiansen"
+    lang: "EN"
+  - date: 2025-01-09
+    outlet: "HealthDay"
+    headline: "AI-Driven Detection of Ovarian Cancer Surpasses Human Expert-Level Accuracy"
+    url: "https://www.healthday.com/healthpro-news/cancer/ai-driven-detection-of-ovarian-cancer-surpasses-human-expert-level-accuracy"
+    topic: "Ovarian ultrasound"
+    people: "Filip Christiansen, Emir Konuk"
+    lang: "EN"
+  - date: 2025-01-03
+    outlet: "Diagnostic Imaging"
+    headline: "Multicenter Study Shows Merits of AI-Powered Ultrasound Assessment for Detecting Ovarian Cancer"
+    url: "https://www.diagnosticimaging.com/view/multicenter-study-ai-powered-ultrasound-assessment-ovarian-cancer"
+    topic: "Ovarian ultrasound"
+    people: "Filip Christiansen, Emir Konuk, Kevin Smith"
+    lang: "EN"
+  - date: 2025-01-02
+    outlet: "Karolinska Institutet"
+    headline: "AI can improve ovarian cancer diagnoses"
+    url: "https://news.ki.se/ai-can-improve-ovarian-cancer-diagnoses"
+    topic: "Ovarian ultrasound"
+    people: "Filip Christiansen, Emir Konuk, Kevin Smith"
+    lang: "EN"
+
+  # ---- Prostate cancer molecular risk (Taheri, 2026) ----
+  - date: 2026-09-30
+    outlet: "KTH News"
+    headline: "Researchers identify aggressive molecular features in low-risk prostate cancer"
+    url: "https://www.kth.se/en/om/nyheter/lokala-nyheter/forskare-identifierar-aggressiva-molekylara-egenskaper-hos-prostatacancer-1.1498716"
+    topic: "Prostate cancer / molecular risk"
+    people: "Golnaz Taheri"
+    lang: "EN"
+
+  # ---- Lung cancer metastasis — ERC Synergy (Lagergren, 2025) ----
+  - date: 2025-11-06
+    outlet: "KTH News"
+    headline: "Nytt ERC-anslag: forskare ska kartlägga hur cancer sprider sig"
+    url: "https://www.kth.se/en/om/nyheter/centrala-nyheter/nytt-erc-anslag-forskare-ska-kartlagga-hur-cancer-sprider-sig-1.1437885"
+    topic: "Lung cancer metastasis (LUMES)"
+    people: "Jens Lagergren"
+    lang: "EN"
+
+  # ---- Bioimage analysis / group-leader profile (Miranda, 2025) ----
+  - date: 2025-02-11
+    outlet: "Euro-BioImaging"
+    headline: "Gisele Miranda: From image analyst to group leader"
+    url: "https://www.eurobioimaging.eu/news/from-image-analyst-to-group-leader-gisele-miranda/"
+    topic: "Bioimage analysis"
+    people: "Gisele Miranda"
+    lang: "EN"
+
+  # ---- DDLS fellowship (Taheri, 2025) ----
+  - date: 2025-05-26
+    outlet: "SciLifeLab"
+    headline: "New DDLS Fellow: Golnaz Taheri"
+    url: "https://www.scilifelab.se/news/new-ddls-fellow-golnaz-taheri/"
+    topic: "Data-driven life science"
+    people: "Golnaz Taheri"
+    lang: "EN"
+
+  # ---- AI for healthcare / kidney pathology (Smith group, 2025) ----
+  - date: 2025-02-28
+    outlet: "WASP"
+    headline: "Advancing AI for healthcare is Christos Matsoukas' call"
+    url: "https://wasp-sweden.org/advancing-ai-for-healthcare-is-christos-matsoukas-call/"
+    topic: "Medical image analysis"
+    people: "Christos Matsoukas, Kevin Smith"
+    lang: "EN"
+
+  # ---- Supplemental breast MRI, randomized trial (ScreenTrustMRI, 2024) ----
+  - date: 2024-07-09
+    outlet: "AuntMinnie"
+    headline: "AI increases breast MRI's cancer detection 4-fold"
+    url: "https://www.auntminnie.com/clinical-news/mri/article/15679096/ai-increases-breast-mris-cancer-detection-4fold"
+    topic: "Breast screening (ScreenTrustMRI)"
+    people: "Kevin Smith (co-author)"
+    lang: "EN"
+  - date: 2024-07-09
+    outlet: "TV4 Nyheterna"
+    headline: "Ny studie: Bröstcancer kan hittas i ett tidigt skede med hjälp av AI"
+    url: "https://www.tv4.se/artikel/5dVXVHdVIE6syVwXG1QMD5/ny-studie-broestcancer-kan-upptaeckas-i-ett-tidigt-skede-med-hjaelp-av-ai"
+    topic: "Breast screening (ScreenTrustMRI)"
+    people: "Kevin Smith (co-author)"
+    lang: "SV"
+
+  # ---- AI in screening, prospective trial (ScreenTrustCAD / Lancet, 2023) ----
+  - date: 2023-09-11
+    outlet: "AuntMinnie"
+    headline: "Breast AI comparable to radiologist double reading"
+    url: "https://www.auntminnie.com/imaging-informatics/artificial-intelligence/article/15634189/breast-ai-comparable-to-radiologist-double-reading"
+    topic: "Breast screening (ScreenTrustCAD)"
+    people: "Kevin Smith (programme co-lead)"
+    lang: "EN"
+  - date: 2023-09-09
+    outlet: "SVT / Rapport"
+    headline: "Rapport — segment on the Stockholm AI breast-screening trial"
+    url: "https://www.svtplay.se/video/KroVY4D/rapport/ikvall-19-30?id=KroVY4D&position=385"
+    topic: "Breast screening (ScreenTrustCAD)"
+    people: "Kevin Smith (programme co-lead)"
+    lang: "SV"
+  - date: 2023-09-09
+    outlet: "Karolinska Institutet"
+    headline: "More cases of breast cancer can be found with the help of AI"
+    url: "https://news.ki.se/more-cases-of-breast-cancer-can-be-found-with-the-help-of-ai"
+    topic: "Breast screening (ScreenTrustCAD)"
+    people: "Kevin Smith (programme co-lead)"
+    lang: "EN"
+
+  # ---- AI vs. radiologists (JAMA Oncology, 2020) ----
+  - date: 2020-08-27
+    outlet: "Karolinska Institutet"
+    headline: "AI as good as the average radiologist in identifying breast cancer"
+    url: "https://news.ki.se/ai-as-good-as-the-average-radiologist-in-identifying-breast-cancer"
+    topic: "Breast screening (algorithm evaluation)"
+    people: "Kevin Smith (co-author)"
+    lang: "EN"
+
+  # ---- Mirai breast-cancer risk model (2021) ----
+  - date: 2021-01-28
+    outlet: "MIT News"
+    headline: "Robust artificial intelligence tools to predict future cancer"
+    url: "https://news.mit.edu/2021/robust-artificial-intelligence-tools-predict-future-cancer-0128"
+    topic: "Breast-cancer risk (Mirai)"
+    people: "Kevin Smith (co-author)"
+    lang: "EN"
+  - date: 2021-01-27
+    outlet: "WIRED"
+    headline: "These Doctors Are Using AI to Screen for Breast Cancer"
+    url: "https://www.wired.com/story/doctors-using-ai-screen-breast-cancer/"
+    topic: "Breast-cancer risk (Mirai)"
+    people: "Kevin Smith (co-author)"
+    lang: "EN"
+
+  # ---- Early mammography AI (Mammo-AI, 2017) ----
+  - date: 2017-04-11
+    outlet: "Ny Teknik"
+    headline: "Ai ska upptäcka bröstcancer"
+    url: "https://www.nyteknik.se/innovation/ai-ska-upptacka-brostcancer-6840390"
+    topic: "Breast screening (early work)"
+    people: "Kevin Smith, Hossein Azizpour"
+    lang: "SV"
+
+  # ---- Human Protein Atlas / EVE Online citizen science (2016) ----
+  - date: 2016-06-22
+    outlet: "The New Yorker"
+    headline: "Better Research Through Video Games"
+    url: "https://www.newyorker.com/tech/annals-of-technology/better-research-through-video-games"
+    topic: "Citizen science (Human Protein Atlas)"
+    people: "Kevin Smith (co-author)"
+    lang: "EN"
+  - date: 2016-04-28
+    outlet: "WIRED"
+    headline: "How thousands of gamers are helping to decode the human body"
+    url: "https://www.wired.com/story/eve-online-project-discovery-human-protein-atlas/"
+    topic: "Citizen science (Human Protein Atlas)"
+    people: "Kevin Smith (co-author)"
+    lang: "EN"

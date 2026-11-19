@@ -214,7 +214,28 @@ const publications = defineCollection({
   }),
 });
 
+/* In the press — curated media coverage (ONE YAML file) ----------- *
+ * src/content/press/all.yaml. `featuredOutlets` drives the small
+ * "Featured in" strip on the home page; `items` is the full list on
+ * the /press page. Keep it curated — add only coverage where an AiMS
+ * person is named or is an author of the work being reported.         */
+const press = defineCollection({
+  type: 'data',
+  schema: z.object({
+    featuredOutlets: z.array(z.string()).default([]),
+    items: z.array(z.object({
+      date: z.date(),
+      outlet: z.string(),
+      headline: z.string(),
+      url: z.string().url(),
+      topic: z.string().default(''),     // research theme, e.g. "Ovarian ultrasound"
+      people: z.string().default(''),    // AiMS people connected to the story
+      lang: z.string().default('EN'),    // EN, SV, …
+    })).default([]),
+  }),
+});
+
 export const collections = {
   site, home, methods, domains, collaborations, groups, people,
-  reading, publications, gallery, openScience, openings,
+  reading, publications, press, gallery, openScience, openings,
 };

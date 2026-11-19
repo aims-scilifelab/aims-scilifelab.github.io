@@ -34,6 +34,7 @@ nav:
   - { label: "What We Read", href: "/what-we-read" }
   - { label: "Life at AiMS", href: "/life-at-aims" }
   - { label: "Open Science", href: "/open-science" }
+  - { label: "Press",        href: "/press" }
   - { label: "Join",         href: "/join", cta: true }
 
 footerLinks:
@@ -41,6 +42,7 @@ footerLinks:
   - { label: "People",       href: "/people" }
   - { label: "Publications", href: "/publications" }
   - { label: "What We Read", href: "/what-we-read" }
+  - { label: "Press",        href: "/press" }
   - { label: "Join",         href: "/join" }
 
 institutionLinks:

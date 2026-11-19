@@ -13,6 +13,8 @@ const domains = (await getCollection('domains', pub)).sort((a, b) => a.data.orde
 
 const leads = (await getCollection('people', (p) => !p.data.draft && p.data.category === 'lead'))
   .sort((a, b) => a.data.order - b.data.order);
+
+const pressOutlets = (await getEntry('press', 'all'))?.data.featuredOutlets ?? [];
 ---
 <Base>
   <Hero />
@@ -45,6 +47,20 @@ const leads = (await getCollection('people', (p) => !p.data.draft && p.data.cate
       <p class="more"><a class="link" href="/research">Explore our research →</a></p>
     </div>
   </section>
+
+  <!-- In the press -->
+  {pressOutlets.length > 0 && (
+    <section class="section" aria-labelledby="pr">
+      <div class="wrap">
+        <p class="eyebrow">In the press</p>
+        <h2 id="pr">Featured in</h2>
+        <ul class="press-outlets">
+          {pressOutlets.map((o) => <li>{o}</li>)}
+        </ul>
+        <p class="more"><a class="link" href="/press">See press coverage →</a></p>
+      </div>
+    </section>
+  )}
 
   <!-- People / culture teaser -->
   <section class="section band" aria-labelledby="pc">
@@ -107,6 +123,9 @@ const leads = (await getCollection('people', (p) => !p.data.draft && p.data.cate
   .sel-meta { font-size: var(--step--1); margin-top: .25rem; }
   .sel-note { font-size: var(--step--1); margin-top: .3rem; }
   .leads { margin-top: 1rem; }
+  .press-outlets { list-style: none; padding: 0; margin: 1.6rem 0 0; display: flex; flex-wrap: wrap; gap: .6rem .7rem; }
+  .press-outlets li { border: 1px solid var(--border-strong); border-radius: 999px; padding: 6px 14px;
+                      font-size: var(--step--1); color: var(--text); font-weight: 600; background: var(--bg-2); }
   .join h2 { max-width: 20ch; }
 
   /* Find-us photo band with a small inset map */
