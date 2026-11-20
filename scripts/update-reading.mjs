@@ -55,10 +55,15 @@ function parseDate(s) {
 }
 const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
 
-// ── Semantic Scholar: AI-generated one-sentence TLDR per paper ───────────────
+// ── Semantic Scholar: paper authors + AI-generated one-sentence TLDR ──────────
 // No API key needed (shared, rate-limited pool), so we go slowly and fail soft:
-// a paper with no TLDR, or a hiccup, just yields an empty string.
+// a paper we can't match, or a hiccup, just yields empty fields.
 const SLEEP = (ms) => new Promise((r) => setTimeout(r, ms));
+const fmtAuthors = (arr) => {
+  const names = (arr || []).map((a) => a && a.name).filter(Boolean);
+  if (!names.length) return '';
+  return names.length <= 3 ? names.join(', ') : names.slice(0, 3).join(', ') + ' et al.';
+};
 const S2_UA = { 'User-Agent': 'AiMS-reading-list/1.0' };
 function paperId(url) {
   const doi = (url.match(/10\.\d{4,9}\/[^\s"'<>]+/) || [])[0];
@@ -79,18 +84,24 @@ async function s2(pathAndQuery) {
   }
   return null;
 }
-async function fetchTldr(p) {
+async function fetchMeta(p) {
+  const fields = 'tldr,authors';
   const id = paperId(p.url || '');
-  let hit = id ? await s2(`paper/${id}?fields=tldr`) : null;
-  if (!hit || !hit.tldr) {                                   // fall back to title search
-    const s = await s2(`paper/search?query=${encodeURIComponent(p.title)}&fields=tldr&limit=1`);
-    hit = s && s.data && s.data[0];
+  let hit = id ? await s2(`paper/${id}?fields=${fields}`) : null;
+  if (!hit || (!hit.tldr && !(hit.authors && hit.authors.length))) {   // fall back to title search
+    const s = await s2(`paper/search?query=${encodeURIComponent(p.title)}&fields=${fields}&limit=1`);
+    hit = (s && s.data && s.data[0]) || hit;
   }
-  return hit && hit.tldr && hit.tldr.text ? clean(hit.tldr.text) : '';
+  return {
+    authors: hit ? fmtAuthors(hit.authors) : '',
+    tldr: hit && hit.tldr && hit.tldr.text ? clean(hit.tldr.text) : '',
+  };
 }
-async function enrichTldrs(sessions) {
+async function enrichPapers(sessions) {
   for (const s of sessions) for (const p of s.papers) {
-    p.tldr = await fetchTldr(p);
+    const m = await fetchMeta(p);
+    p.authors = m.authors;
+    p.tldr = m.tldr;
     await SLEEP(1200);                                       // be polite to the shared API
   }
 }
@@ -164,6 +175,7 @@ sessions:
     out += `- date: ${s.date}\n  tags: []\n  papers:\n`;
     for (const p of s.papers) {
       out += `  - title: ${S(p.title)}\n`;
+      if (p.authors) out += `    authors: ${S(p.authors)}\n`;
       out += `    venue: ${S(p.venue)}\n`;
       if (p.year) out += `    year: ${p.year}\n`;
       out += `    url: ${S(p.url)}\n`;
@@ -176,6 +188,6 @@ sessions:
 const rows = parseCSV(await getCSV());
 const sessions = build(rows);
 if (!sessions.length) { console.error('No sessions parsed — leaving file unchanged.'); process.exit(1); }
-await enrichTldrs(sessions);   // add Semantic Scholar TLDRs (best-effort)
+await enrichPapers(sessions);   // add Semantic Scholar authors + TLDRs (best-effort)
 writeFileSync(OUT, toYAML(sessions));
 console.log(`Wrote ${sessions.length} sessions (${sessions.reduce((n, s) => n + s.papers.length, 0)} papers) to all.yaml`);
