@@ -12,9 +12,11 @@ sessions:
   tags: []
   papers:
   - title: "Hallucination Index: An Image Quality Metric for Generative Reconstruction Models"
+    authors: "Matthew Tivnan, Siyeop Yoon, Zhen-Nong Chen et al."
     venue: "MICCAI"
     year: 2024
     url: "https://doi.org/10.1007/978-3-031-72117-5_42"
+    tldr: "This work proposes a new image quality metric called the hallucination index, which could be useful for evaluation of generative image reconstructions or as a warning label to inform radiologists about the degree of hallucinations in medical images."
   - title: "FreeBridge: Variational Schrödinger Bridges for Cellular Transition Dynamics"
     venue: "MICCAI"
     year: 2026
@@ -23,9 +25,11 @@ sessions:
   tags: []
   papers:
   - title: "CORRECTION TRAINING FOR DIFFUSION MODELS"
+    authors: "Donghoon Ahn, Run-Qian Wang, Alexei A. Efros et al."
     venue: "arXiv"
     year: 2026
     url: "https://arxiv.org/abs/2610.14136"
+    tldr: "The method substantially improves upon previously reported FID scores for unguided generation and, notably, unconditional generation, where producing high-quality samples without guidance has been particularly challenging."
 - date: 2026-10-12
   tags: []
   papers:
@@ -51,20 +55,26 @@ sessions:
   tags: []
   papers:
   - title: "Clin-JEPA: A Multi-Phase Co-Training Framework for Joint-Embedding Predictive Pretraining on EHR Patient Trajectories"
+    authors: "Yi-Xuan Yang, Mehak Arora, Ryan Zhang et al."
     venue: "arXiv"
     year: 2026
     url: "https://arxiv.org/abs/2605.10840"
+    tldr: "Clin-JEPA is presented, a five-phase curriculum that stably co-trains an LLM encoder with a latent trajectory predictor on MIMIC-IV, outperforming strong per-task tuned baselines and a pretrained EHR foundation model."
 - date: 2026-09-09
   tags: []
   papers:
   - title: "Multimodality as Supervision: Self-Supervised Specialization to the Test Environment via Multimodality"
+    authors: "Kunal Pratap Singh, Ali Garjani, Rishubh Singh et al."
     venue: "ICLR"
     year: 2026
     url: "http://arxiv.org/abs/2607.14721"
+    tldr: "A controlled setup is proposed, which develops Test-Space Training (TST), which performs multimodal data collection in the test environment and performs self-supervised pre-training on it, and presents a set of analyses and ablations that raise intriguing points on substituting data with (multi)modality."
 - date: 2026-07-29
   tags: []
   papers:
   - title: "Carré du champ FLOW MATCHING: BETTER QUALITYGENERALISATION TRADEOFF IN GENERATIVE MODELS"
+    authors: "Jacob Bamberger, Iolo Jones, Dennis Duncan et al."
     venue: "ICLR"
     year: 2026
     url: "https://openreview.net/forum?id=psmrKQ5lJe"
+    tldr: "This work provides a mathematical framework for studying the interplay between data geometry, generalisation and memorisation in generative models, as well as a robust and scalable algorithm that can be readily integrated into existing flow matching pipelines."
