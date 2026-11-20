@@ -12,12 +12,12 @@ sessions:
   tags: []
   papers:
   - title: "Hallucination Index: An Image Quality Metric for Generative Reconstruction Models"
-    authors: "Matthew Tivnan, Siyeop Yoon, Zhen-Nong Chen et al."
+    authors: "Matthew Tivnan, Siyeop Yoon, Zhennong Chen et al."
     venue: "MICCAI"
     year: 2024
     url: "https://doi.org/10.1007/978-3-031-72117-5_42"
-    tldr: "This work proposes a new image quality metric called the hallucination index, which could be useful for evaluation of generative image reconstructions or as a warning label to inform radiologists about the degree of hallucinations in medical images."
   - title: "FreeBridge: Variational Schrödinger Bridges for Cellular Transition Dynamics"
+    authors: "Xurui Wang, Qin Ren, Jun Ma et al."
     venue: "MICCAI"
     year: 2026
     url: "https://papers.miccai.org/miccai-2026/0394-Paper2873.html"
@@ -25,56 +25,62 @@ sessions:
   tags: []
   papers:
   - title: "CORRECTION TRAINING FOR DIFFUSION MODELS"
-    authors: "Donghoon Ahn, Run-Qian Wang, Alexei A. Efros et al."
+    authors: "Donghoon Ahn, Runqian Wang, Alexei A. Efros et al."
     venue: "arXiv"
     year: 2026
     url: "https://arxiv.org/abs/2610.14136"
-    tldr: "The method substantially improves upon previously reported FID scores for unguided generation and, notably, unconditional generation, where producing high-quality samples without guidance has been particularly challenging."
+    tldr: "Iterative sampling in diffusion models can lead to error accumulation due to exposure bias."
 - date: 2026-10-12
   tags: []
   papers:
   - title: "Don’t be fooled: label leakage in explanation methods and the importance of their quantitative evaluation"
+    authors: "Neil Jethani, Adriel Saporta, Rajesh Ranganath"
     venue: "AI stats"
     year: 2023
     url: "https://arxiv.org/pdf/2302.12893"
+    tldr: "Feature attribution methods identify which features of an input most influence a model's output."
 - date: 2026-10-01
   tags: []
   papers:
   - title: "Mean Flows for One-step Generative Modeling"
+    authors: "Zhengyang Geng, Mingyang Deng, Xingjian Bai et al."
     venue: "NeurIPS"
     year: 2025
     url: "https://openreview.net/forum?id=uWj4s7rMnR"
+    tldr: "com/gsunshine/meanflow."
 - date: 2026-09-30
   tags: []
   papers:
   - title: "Same Encoder, Different Winner: A Paired-View Framework for Cell Painting Encoder Evaluation"
+    authors: "Tim Treis, Nikita Moshkov, Johan Fredin Haslum et al."
     venue: "arXiv"
     year: 2026
     url: "https://arxiv.org/abs/2609.12761"
+    tldr: "Vision encoders for Cell Painting are typically ranked by a single evaluation, commonly replicate mean average precision (mAP)."
 - date: 2026-09-23
   tags: []
   papers:
   - title: "Clin-JEPA: A Multi-Phase Co-Training Framework for Joint-Embedding Predictive Pretraining on EHR Patient Trajectories"
-    authors: "Yi-Xuan Yang, Mehak Arora, Ryan Zhang et al."
+    authors: "Yixuan Yang, Mehak Arora, Ryan Zhang et al."
     venue: "arXiv"
     year: 2026
     url: "https://arxiv.org/abs/2605.10840"
-    tldr: "Clin-JEPA is presented, a five-phase curriculum that stably co-trains an LLM encoder with a latent trajectory predictor on MIMIC-IV, outperforming strong per-task tuned baselines and a pretrained EHR foundation model."
+    tldr: "50 for two-stage encoders; (3) one set of embeddings serves 34 downstream tasks across three benchmarks, outperforming strong per-task tuned baselines and a pretrained EHR foundation model."
 - date: 2026-09-09
   tags: []
   papers:
   - title: "Multimodality as Supervision: Self-Supervised Specialization to the Test Environment via Multimodality"
-    authors: "Kunal Pratap Singh, Ali Garjani, Rishubh Singh et al."
+    authors: "K. SINGH, Ali Garjani, Rishubh Singh et al."
     venue: "ICLR"
     year: 2026
     url: "http://arxiv.org/abs/2607.14721"
-    tldr: "A controlled setup is proposed, which develops Test-Space Training (TST), which performs multimodal data collection in the test environment and performs self-supervised pre-training on it, and presents a set of analyses and ablations that raise intriguing points on substituting data with (multi)modality."
+    tldr: ", learning to predict one modality from another, is a fundamental mechanism for self-supervision via leveraging multimodality."
 - date: 2026-07-29
   tags: []
   papers:
   - title: "Carré du champ FLOW MATCHING: BETTER QUALITYGENERALISATION TRADEOFF IN GENERATIVE MODELS"
-    authors: "Jacob Bamberger, Iolo Jones, Dennis Duncan et al."
+    authors: "Airin Akter Tania, Md Raihan Khan"
     venue: "ICLR"
     year: 2026
     url: "https://openreview.net/forum?id=psmrKQ5lJe"
-    tldr: "This work provides a mathematical framework for studying the interplay between data geometry, generalisation and memorisation in generative models, as well as a robust and scalable algorithm that can be readily integrated into existing flow matching pipelines."
+    tldr: "Conditional Flow Matching trains generative models by regressing a network onto the velocity of a prescribed noise-to-data interpolation path."
