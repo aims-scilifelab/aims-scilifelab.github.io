@@ -32,8 +32,8 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
                 {s.papers.map((p) => (
                   <li>
                     <a href={p.url || '#'} target={p.url ? '_blank' : undefined} rel="noopener">{p.title}</a>
-                    <div class="faint p-meta">{p.authors}{p.venue ? ` · ${p.venue}` : ''}{p.year ? ` ${p.year}` : ''}</div>
-                    {p.why && <div class="muted p-why"><strong>Why we picked it:</strong> {p.why}</div>}
+                    {(p.venue || p.year) && <div class="faint p-meta">{[p.venue, p.year].filter(Boolean).join(' · ')}</div>}
+                    {p.tldr && <div class="muted p-tldr"><strong>TL;DR:</strong> {p.tldr}</div>}
                   </li>
                 ))}
               </ul>
@@ -77,7 +77,7 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
   .s-papers > li > a { font-weight: 600; }
   .s-papers > li > a:hover { color: var(--blue); }
   .p-meta { font-size: var(--step--1); margin-top: .2rem; }
-  .p-why { font-size: var(--step--1); margin-top: .3rem; }
+  .p-tldr { font-size: var(--step--1); margin-top: .3rem; }
 
   .controls { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1.4rem; }
   .controls input { flex: 1 1 240px; background: var(--bg-2); border: 1px solid var(--border-strong); color: var(--text);

@@ -197,6 +197,7 @@ const reading = defineCollection({
         year: z.number().optional(),
         url: link,
         why: z.string().default(''),
+        tldr: z.string().default(''),   // short AI summary from Semantic Scholar
       })).default([]),
     })).default([]),
   }),

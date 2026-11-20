@@ -3,9 +3,9 @@
  * Regenerate "Recent sessions" (src/content/reading/all.yaml) from the
  * reading-group Google Form responses, published as CSV.
  *
- * Privacy: emails (col "Email Address") and the private Google-Drive PDF
- * uploads are never read into the output — only public paper info + the
- * presenter's name + their own-words summary.
+ * Privacy: only public paper info (title, venue, year, link) is written out.
+ * Presenter names, their summaries, emails, and the private Google-Drive PDF
+ * uploads from the sheet are intentionally excluded.
  *
  * Usage:  node scripts/update-reading.mjs
  *   env READING_CSV_URL  overrides the default published-CSV URL.
@@ -54,6 +54,46 @@ function parseDate(s) {
   return { iso: '', year: m ? m[1] : '' };
 }
 const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
+
+// ── Semantic Scholar: AI-generated one-sentence TLDR per paper ───────────────
+// No API key needed (shared, rate-limited pool), so we go slowly and fail soft:
+// a paper with no TLDR, or a hiccup, just yields an empty string.
+const SLEEP = (ms) => new Promise((r) => setTimeout(r, ms));
+const S2_UA = { 'User-Agent': 'AiMS-reading-list/1.0' };
+function paperId(url) {
+  const doi = (url.match(/10\.\d{4,9}\/[^\s"'<>]+/) || [])[0];
+  if (doi) return 'DOI:' + doi.replace(/[.,);]+$/, '');
+  const ax = (url.match(/arxiv\.org\/(?:abs|pdf)\/(\d{4}\.\d{4,5})/i) || [])[1];
+  if (ax) return 'arXiv:' + ax;
+  return null;
+}
+async function s2(pathAndQuery) {
+  const base = 'https://api.semanticscholar.org/graph/v1/';
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await fetch(base + pathAndQuery, { headers: S2_UA });
+      if (res.status === 429) { await SLEEP(3000 * (attempt + 1)); continue; }
+      if (!res.ok) return null;
+      return await res.json();
+    } catch { await SLEEP(1500); }
+  }
+  return null;
+}
+async function fetchTldr(p) {
+  const id = paperId(p.url || '');
+  let hit = id ? await s2(`paper/${id}?fields=tldr`) : null;
+  if (!hit || !hit.tldr) {                                   // fall back to title search
+    const s = await s2(`paper/search?query=${encodeURIComponent(p.title)}&fields=tldr&limit=1`);
+    hit = s && s.data && s.data[0];
+  }
+  return hit && hit.tldr && hit.tldr.text ? clean(hit.tldr.text) : '';
+}
+async function enrichTldrs(sessions) {
+  for (const s of sessions) for (const p of s.papers) {
+    p.tldr = await fetchTldr(p);
+    await SLEEP(1200);                                       // be polite to the shared API
+  }
+}
 
 async function getCSV() {
   if (process.env.READING_CSV_FILE) return readFileSync(process.env.READING_CSV_FILE, 'utf8');
@@ -123,13 +163,11 @@ sessions:
   for (const s of sessions) {
     out += `- date: ${s.date}\n  tags: []\n  papers:\n`;
     for (const p of s.papers) {
-      const author = p.presenter ? `Presented by ${p.presenter}` : '';
       out += `  - title: ${S(p.title)}\n`;
-      out += `    authors: ${S(author)}\n`;
       out += `    venue: ${S(p.venue)}\n`;
       if (p.year) out += `    year: ${p.year}\n`;
       out += `    url: ${S(p.url)}\n`;
-      out += `    why: ${S(p.why)}\n`;
+      if (p.tldr) out += `    tldr: ${S(p.tldr)}\n`;
     }
   }
   return out;
@@ -138,5 +176,6 @@ sessions:
 const rows = parseCSV(await getCSV());
 const sessions = build(rows);
 if (!sessions.length) { console.error('No sessions parsed — leaving file unchanged.'); process.exit(1); }
+await enrichTldrs(sessions);   // add Semantic Scholar TLDRs (best-effort)
 writeFileSync(OUT, toYAML(sessions));
 console.log(`Wrote ${sessions.length} sessions (${sessions.reduce((n, s) => n + s.papers.length, 0)} papers) to all.yaml`);

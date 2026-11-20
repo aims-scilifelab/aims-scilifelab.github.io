@@ -12,77 +12,59 @@ sessions:
   tags: []
   papers:
   - title: "Hallucination Index: An Image Quality Metric for Generative Reconstruction Models"
-    authors: "Presented by Felipe Colombelli"
     venue: "MICCAI"
     year: 2024
     url: "https://doi.org/10.1007/978-3-031-72117-5_42"
-    why: "The authors propose a hallucination metric that doesn't tell us anything."
   - title: "FreeBridge: Variational Schrödinger Bridges for Cellular Transition Dynamics"
-    authors: "Presented by Jen-Hung Wang"
     venue: "MICCAI"
     year: 2026
     url: "https://papers.miccai.org/miccai-2026/0394-Paper2873.html"
-    why: "FreeBridge models how cells respond to treatment from endpoint images while keeping predicted transitions close to observed cell shapes."
 - date: 2026-10-28
   tags: []
   papers:
   - title: "CORRECTION TRAINING FOR DIFFUSION MODELS"
-    authors: "Presented by Robert Welch"
     venue: "arXiv"
     year: 2026
     url: "https://arxiv.org/abs/2610.14136"
-    why: "They mainly improve unconditional (also conditional but with less improvement) generation for diffusion models by adding a second corrector network. During inference, the corrector network takes a denoised image at time-step t, and pushes it towards the clean image. It's not exactly clear why this works so well, but they argue this helps push the denoised images closer to the training distribution of noised images, helping with the denoising process."
 - date: 2026-10-12
   tags: []
   papers:
   - title: "Don’t be fooled: label leakage in explanation methods and the importance of their quantitative evaluation"
-    authors: "Presented by Lasse Stahnke"
     venue: "AI stats"
     year: 2023
     url: "https://arxiv.org/pdf/2302.12893"
-    why: "Addition of KL divergence to SHAP and FastSHAP to avoid \"label leakage\" that supposedly happens in class dependent methods"
 - date: 2026-10-01
   tags: []
   papers:
   - title: "Mean Flows for One-step Generative Modeling"
-    authors: "Presented by Felipe Colombelli"
     venue: "NeurIPS"
     year: 2025
     url: "https://openreview.net/forum?id=uWj4s7rMnR"
-    why: "The paper proposes to train a flow matching model to predict the average velocity over a delta-t, rather than the instantaneous velocity at t. For ImageNet, it beats all the competitors using only 1 NFE, and matches the performance of methods that are 500x more costly at inference time."
 - date: 2026-09-30
   tags: []
   papers:
   - title: "Same Encoder, Different Winner: A Paired-View Framework for Cell Painting Encoder Evaluation"
-    authors: "Presented by Jen-Hung Wang"
     venue: "arXiv"
     year: 2026
     url: "https://arxiv.org/abs/2609.12761"
-    why: "The paper shows that Cell Painting model rankings depend on evaluation methods, making a single metric misleading."
 - date: 2026-09-23
   tags: []
   papers:
   - title: "Clin-JEPA: A Multi-Phase Co-Training Framework for Joint-Embedding Predictive Pretraining on EHR Patient Trajectories"
-    authors: "Presented by Robert Welch"
     venue: "arXiv"
     year: 2026
     url: "https://arxiv.org/abs/2605.10840"
-    why: "They devise a JEPA pretraining curriculum to jointly trade an encoder + predictor on EHR data from mimic. The ultimate goal is to train an encoder with a latent space useful for modelling the trajectory of the embeddings (patient state) as time progresses and new EHR data comes in."
 - date: 2026-09-09
   tags: []
   papers:
   - title: "Multimodality as Supervision: Self-Supervised Specialization to the Test Environment via Multimodality"
-    authors: "Presented by Jingyu Guo"
     venue: "ICLR"
     year: 2026
     url: "http://arxiv.org/abs/2607.14721"
-    why: "Using multimodal masked modelling, with the help of feature maps from public/pretrained models as input data, it is possible to pre-train an encoder in the test space, which can perform comparably with public models."
 - date: 2026-07-29
   tags: []
   papers:
   - title: "Carré du champ FLOW MATCHING: BETTER QUALITYGENERALISATION TRADEOFF IN GENERATIVE MODELS"
-    authors: "Presented by Felipe Colombelli"
     venue: "ICLR"
     year: 2026
     url: "https://openreview.net/forum?id=psmrKQ5lJe"
-    why: "The authors proposed a regularization method for Flow Matching to fight memorization explicitly in the training objective. Their method uses a local anisotropic gaussian instead of a global isotropic one. The idea is to put uncertainty mass only in the directions that follow the local curvature of the data geometry, under the manifold hypothesis. They bring some evidence supporting that their method improves FM's quality-generalisation tradeoff."
