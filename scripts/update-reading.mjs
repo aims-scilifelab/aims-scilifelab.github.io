@@ -55,54 +55,82 @@ function parseDate(s) {
 }
 const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
 
-// ── Semantic Scholar: paper authors + AI-generated one-sentence TLDR ──────────
-// No API key needed (shared, rate-limited pool), so we go slowly and fail soft:
-// a paper we can't match, or a hiccup, just yields empty fields.
+// ── OpenAlex: paper authors + a short TLDR built from the abstract ────────────
+// Free, keyless and reliable. We fail soft: a paper we can't match, or a
+// hiccup, just yields empty fields (that line is then omitted).
+// Optional: set OPENALEX_MAILTO (env / GitHub secret) to join the faster
+// "polite pool"; omitted here on purpose so no personal email is committed.
 const SLEEP = (ms) => new Promise((r) => setTimeout(r, ms));
 const fmtAuthors = (arr) => {
   const names = (arr || []).map((a) => a && a.name).filter(Boolean);
   if (!names.length) return '';
   return names.length <= 3 ? names.join(', ') : names.slice(0, 3).join(', ') + ' et al.';
 };
-const S2_UA = { 'User-Agent': 'AiMS-reading-list/1.0' };
-function paperId(url) {
-  const doi = (url.match(/10\.\d{4,9}\/[^\s"'<>]+/) || [])[0];
-  if (doi) return 'DOI:' + doi.replace(/[.,);]+$/, '');
-  const ax = (url.match(/arxiv\.org\/(?:abs|pdf)\/(\d{4}\.\d{4,5})/i) || [])[1];
-  if (ax) return 'arXiv:' + ax;
-  return null;
-}
-async function s2(pathAndQuery) {
-  const base = 'https://api.semanticscholar.org/graph/v1/';
+const OA_MAILTO = process.env.OPENALEX_MAILTO ? `&mailto=${encodeURIComponent(process.env.OPENALEX_MAILTO)}` : '';
+async function oa(pathAndQuery) {
+  const url = 'https://api.openalex.org/' + pathAndQuery + (pathAndQuery.includes('?') ? OA_MAILTO : '');
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      const res = await fetch(base + pathAndQuery, { headers: S2_UA });
-      if (res.status === 429) { await SLEEP(3000 * (attempt + 1)); continue; }
+      const res = await fetch(url, { headers: { 'User-Agent': 'AiMS-reading-list/1.0' } });
+      if (res.status === 429) { await SLEEP(2000 * (attempt + 1)); continue; }
       if (!res.ok) return null;
       return await res.json();
     } catch { await SLEEP(1500); }
   }
   return null;
 }
-async function fetchMeta(p) {
-  const fields = 'tldr,authors';
-  const id = paperId(p.url || '');
-  let hit = id ? await s2(`paper/${id}?fields=${fields}`) : null;
-  if (!hit || (!hit.tldr && !(hit.authors && hit.authors.length))) {   // fall back to title search
-    const s = await s2(`paper/search?query=${encodeURIComponent(p.title)}&fields=${fields}&limit=1`);
-    hit = (s && s.data && s.data[0]) || hit;
+// OpenAlex lookup ids derived from the paper's link (DOI, or arXiv via its DOI).
+function oaIds(url) {
+  const ids = [];
+  const doi = (url.match(/10\.\d{4,9}\/[^\s"'<>]+/) || [])[0];
+  if (doi) ids.push('works/doi:' + doi.replace(/[.,);]+$/, ''));
+  const ax = (url.match(/arxiv\.org\/(?:abs|pdf)\/(\d{4}\.\d{4,5})/i) || [])[1];
+  if (ax) ids.push('works/doi:10.48550/arXiv.' + ax);
+  return ids;
+}
+// Rebuild the plain abstract from OpenAlex's inverted index.
+function abstractFromIndex(idx) {
+  if (!idx) return '';
+  const words = [];
+  for (const [w, pos] of Object.entries(idx)) for (const i of pos) words[i] = w;
+  return words.filter((x) => x != null).join(' ').replace(/\s+/g, ' ').trim();
+}
+// A short TLDR: the first sentence or two of the abstract, capped in length.
+function toTldr(abstract) {
+  if (!abstract) return '';
+  const sentences = abstract.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [abstract];
+  let out = '';
+  for (const s of sentences) {
+    if (out && (out + s).length > 260) break;
+    out += s;
+    if (out.length >= 140) break;
   }
-  return {
-    authors: hit ? fmtAuthors(hit.authors) : '',
-    tldr: hit && hit.tldr && hit.tldr.text ? clean(hit.tldr.text) : '',
-  };
+  out = out.replace(/\s+/g, ' ').trim();
+  if (out.length > 280) out = out.slice(0, 279).replace(/\s+\S*$/, '') + '…';
+  return out;
+}
+const SELECT = 'select=title,authorships,abstract_inverted_index';
+async function fetchMeta(p) {
+  let w = null;
+  for (const id of oaIds(p.url || '')) {
+    w = await oa(`${id}?${SELECT}`);
+    if (w && (w.authorships || w.abstract_inverted_index)) break;
+    w = null;
+  }
+  if (!w) {                                                  // fall back to a title search
+    const s = await oa(`works?search=${encodeURIComponent(p.title)}&per-page=1&${SELECT}`);
+    w = s && s.results && s.results[0];
+  }
+  if (!w) return { authors: '', tldr: '' };
+  const authors = fmtAuthors((w.authorships || []).map((a) => ({ name: a.author && a.author.display_name })));
+  return { authors, tldr: toTldr(abstractFromIndex(w.abstract_inverted_index)) };
 }
 async function enrichPapers(sessions) {
   for (const s of sessions) for (const p of s.papers) {
     const m = await fetchMeta(p);
     p.authors = m.authors;
     p.tldr = m.tldr;
-    await SLEEP(1200);                                       // be polite to the shared API
+    await SLEEP(800);                                        // stay well under OpenAlex limits
   }
 }
 
@@ -188,6 +216,6 @@ sessions:
 const rows = parseCSV(await getCSV());
 const sessions = build(rows);
 if (!sessions.length) { console.error('No sessions parsed — leaving file unchanged.'); process.exit(1); }
-await enrichPapers(sessions);   // add Semantic Scholar authors + TLDRs (best-effort)
+await enrichPapers(sessions);   // add OpenAlex authors + abstract-based TLDRs (best-effort)
 writeFileSync(OUT, toYAML(sessions));
 console.log(`Wrote ${sessions.length} sessions (${sessions.reduce((n, s) => n + s.papers.length, 0)} papers) to all.yaml`);
